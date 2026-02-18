@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky"
   },
   "keywords": [],
   "author": "",
@@ -23,5 +24,14 @@
     "prettier": "^3.8.1",
     "typescript": "5.5",
     "vite": "^7.3.1"
+  },
+  "lint-staged": {
+    "**/*.ts": [
+      "eslint .",
+      "prettier --write"
+    ],
+    "**/*.{css,scss,html}": [
+      "prettier --write"
+    ]
   }
 }
