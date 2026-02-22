@@ -2,6 +2,7 @@ export const EVENT = {
   click: "click",
   input: "input",
   submit: "submit",
+  hashchange: "hashchange",
   domContentLoaded: "DOMContentLoaded",
 } as const;
 
@@ -30,3 +31,5 @@ export const ID = {
 export const CLASS_NAME = {
   container: "container",
 } as const;
+
+export const HEADINGS_TWO = 2;
