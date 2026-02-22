@@ -3,6 +3,7 @@ import { RoutePath } from "../../types/route-path.enum.js";
 import ButtonCreator from "../../utils/button/button-creator.js";
 import HeadingsCreator from "../../utils/headings/headings-creator.js";
 import { BasePage } from "../base-page.js";
+import ElementCreator from "../../utils/element-creator.js";
 
 export class LandingPage extends BasePage {
   create(parent: HTMLElement): void {
@@ -27,5 +28,16 @@ export class LandingPage extends BasePage {
       parent: this.container,
     }).getElement();
     registerButton.dataset.route = RoutePath.Register;
+
+    const Wrapper = new ElementCreator({
+      tag: "div",
+      parent: this.container,
+    }).getElement();
+    const Div1 = new ElementCreator({
+      tag: "div",
+      text: "div1!",
+      parent: Wrapper,
+    }).getElement();
+    Div1.style = "color: blue";
   }
 }
