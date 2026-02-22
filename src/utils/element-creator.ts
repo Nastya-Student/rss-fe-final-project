@@ -1,11 +1,4 @@
-export interface CreateElementOptions {
-  tag?: string;
-  id?: string;
-  text?: string;
-  classes?: string[];
-  hidden?: boolean;
-  parent?: HTMLElement;
-}
+import { CreateElementOptions } from "../interfaces/create-interfaces/create-element-options.interface.js";
 
 export default class ElementCreator {
   public element: HTMLElement;

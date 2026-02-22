@@ -1,5 +1,5 @@
-import { CreateButtonOptions } from "../../../types/elements.js";
-import ElementCreator from "./base-component.js";
+import { CreateButtonOptions } from "../../interfaces/create-interfaces/create-button-options.interface.js";
+import ElementCreator from "../element-creator.js";
 import "./button.css";
 
 export default class ButtonCreator extends ElementCreator {
