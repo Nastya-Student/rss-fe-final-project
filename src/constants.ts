@@ -2,6 +2,7 @@ export const EVENT = {
   click: "click",
   input: "input",
   submit: "submit",
+  hashchange: "hashchange",
   domContentLoaded: "DOMContentLoaded",
 } as const;
 

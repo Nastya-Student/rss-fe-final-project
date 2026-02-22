@@ -1,24 +1,28 @@
+import { EVENT } from "../constants.js";
 import { Page } from "../types/page.type.js";
 import { RouteMatch } from "../types/route-match.type.js";
+import { RoutePath } from "../types/route-path.enum.js";
 import App from "./app.js";
 
 const staticRoutes: Record<string, Page> = {
-  "/": "landing",
-  "/login": "login",
-  "/register": "register",
-  "/dashboard": "dashboard",
-  "/library": "library",
-  "/profile": "profile",
+  [RoutePath.Landing]: "landing",
+  [RoutePath.Login]: "login",
+  [RoutePath.Register]: "register",
+  [RoutePath.Dashboard]: "dashboard",
+  [RoutePath.Library]: "library",
+  [RoutePath.Profile]: "profile",
 };
 
 export class Router {
   constructor(private app: App) {}
 
   init(): void {
-    document.addEventListener("click", (event: MouseEvent) => {
+    document.addEventListener(EVENT.click, (event: MouseEvent) => {
       const target = event.target;
 
-      if (!(target instanceof HTMLElement)) return;
+      if (!(target instanceof HTMLElement)) {
+        return;
+      }
 
       const route = target.dataset.route;
 
@@ -28,7 +32,7 @@ export class Router {
       }
     });
 
-    window.addEventListener("hashchange", () => {
+    window.addEventListener(EVENT.hashchange, () => {
       this.resolve();
     });
 
@@ -41,7 +45,7 @@ export class Router {
 
   private resolve(): void {
     const hash = window.location.hash;
-    const path = hash ? hash.slice(1) : "/";
+    const path = hash ? hash.slice(1) : RoutePath.Landing;
 
     const match = this.matchRoute(path);
 
