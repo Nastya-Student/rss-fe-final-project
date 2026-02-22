@@ -31,3 +31,5 @@ export const ID = {
 export const CLASS_NAME = {
   container: "container",
 } as const;
+
+export const HEADINGS_TWO = 2;
