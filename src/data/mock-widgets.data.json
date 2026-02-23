@@ -1,0 +1,86 @@
+[
+  {
+    "id": "w1",
+    "topicId": "core-js",
+    "type": "quiz",
+    "title": "typeof null",
+    "question": "Что вернет typeof null?",
+    "options": ["null", "undefined", "object", "NaN"],
+    "correctIndex": 2
+  },
+  {
+    "id": "w2",
+    "topicId": "core-js",
+    "type": "true-false",
+    "title": "Promise.all order",
+    "statement": "Promise.all возвращает результаты в порядке завершения",
+    "correct": false,
+    "explanation": "Порядок сохраняется как во входном массиве"
+  },
+  {
+    "id": "w3",
+    "topicId": "core-js",
+    "type": "async-sorter",
+    "title": "Event Loop Basic",
+    "code": "console.log('1'); setTimeout(() => console.log('2'),0); Promise.resolve().then(()=>console.log('3')); console.log('4');",
+    "buckets": [
+      { "name": "callstack", "correctItems": ["1", "4"] },
+      { "name": "microtasks", "correctItems": ["3"] },
+      { "name": "macrotasks", "correctItems": ["2"] },
+      { "name": "output", "correctItems": ["1", "4", "3", "2"] }
+    ]
+  },
+  {
+    "id": "w4",
+    "topicId": "algorithms",
+    "type": "code-ordering",
+    "title": "Bubble Sort",
+    "description": "Отсортируй массив по возрастанию",
+    "lines": [
+      "for(let i=0;i<arr.length;i++){",
+      "for(let j=0;j<arr.length-i-1;j++){",
+      "if(arr[j]>arr[j+1]){",
+      "[arr[j], arr[j+1]]=[arr[j+1], arr[j]];",
+      "}",
+      "}",
+      "}"
+    ],
+    "correctOrder": [0, 1, 2, 3, 4, 5, 6]
+  },
+  {
+    "id": "w5",
+    "topicId": "algorithms",
+    "type": "stack-builder",
+    "title": "Factorial Stack",
+    "steps": [
+      {
+        "line": 1,
+        "code": "factorial(3)",
+        "correctStack": ["main", "factorial(3)"]
+      }
+    ]
+  },
+  {
+    "id": "w6",
+    "topicId": "typescript",
+    "type": "code-completion",
+    "title": "Filter Array",
+    "code": "const positive = arr.___(x => x > 0);",
+    "blanks": ["___"],
+    "correctAnswers": ["filter"]
+  },
+  {
+    "id": "w7",
+    "topicId": "typescript",
+    "type": "memory-game",
+    "title": "Garbage Collector",
+    "codeSnippet": "let a = {val:1}; let b=a; a=null;",
+    "objects": [
+      { "id": 1, "label": "Object {val:1}" },
+      { "id": 2, "label": "Variable a" },
+      { "id": 3, "label": "Variable b" }
+    ],
+    "links": [{ "from": 3, "to": 1 }],
+    "garbageIds": [2]
+  }
+]
