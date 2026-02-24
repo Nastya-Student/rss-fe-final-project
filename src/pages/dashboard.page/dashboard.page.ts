@@ -1,4 +1,6 @@
 import progressComponent from "../../components/dashboard.components/progress.component/progress.component.js";
+import sessionHistoryComponent from "../../components/dashboard.components/session-history.component/session-history.component.js";
+import { PracticeSession } from "../../interfaces/practice-session.interface.js";
 import { TopicProgress } from "../../interfaces/topic-progress.interface.js";
 import { User } from "../../interfaces/user.interface.js";
 import { RoutePath } from "../../types/route-path.enum.js";
@@ -26,6 +28,7 @@ export class DashboardPage extends BasePage {
       streak: 5,
       createdAt: "2026-02-20",
     };
+    userGreeting.textContent = `Hello, ${tempUser.name}!`;
 
     const topicProgressArr: TopicProgress[] = [
       {
@@ -64,29 +67,118 @@ export class DashboardPage extends BasePage {
         percent: 100,
         updatedAt: "2026-02-22",
       },
+      {
+        id: "p5",
+        userId: "u1",
+        topicId: "typescript",
+        topicTitle: "Typescript",
+        completedWidgetIds: ["w4"],
+        percent: 20,
+        updatedAt: "2026-02-22",
+      },
+      {
+        id: "p6",
+        userId: "u1",
+        topicId: "html",
+        topicTitle: "HTML",
+        completedWidgetIds: ["w1", "w3", "w4"],
+        percent: 45,
+        updatedAt: "2026-02-23",
+      },
+    ];
+
+    const sessionArr: PracticeSession[] = [
+      {
+        id: "s1",
+        userId: "u1",
+        topicId: "core-js",
+        topicTitle: "Core JS",
+        answers: [
+          { widgetId: "w1", isCorrect: true, timeSpent: 12 },
+          { widgetId: "w2", isCorrect: true, timeSpent: 8 },
+        ],
+        score: 85,
+        startedAt: "2026-02-22T10:00:00",
+        completedAt: "2026-02-22T10:10:00",
+      },
+      {
+        id: "s2",
+        userId: "u1",
+        topicId: "algorithms",
+        topicTitle: "Algorithms",
+        answers: [{ widgetId: "w4", isCorrect: true, timeSpent: 20 }],
+        score: 70,
+        startedAt: "2026-02-23T11:00:00",
+        completedAt: "2026-02-23T11:15:00",
+      },
+      {
+        id: "s3",
+        userId: "u2",
+        topicId: "core-js",
+        topicTitle: "Core JS",
+        answers: [{ widgetId: "w1", isCorrect: false, timeSpent: 15 }],
+        score: 0,
+        startedAt: "2026-02-22T12:00:00",
+        completedAt: "2026-02-22T12:05:00",
+      },
+      {
+        id: "s4",
+        userId: "u3",
+        topicId: "typescript",
+        topicTitle: "Typescript",
+        answers: [
+          { widgetId: "w6", isCorrect: true, timeSpent: 10 },
+          { widgetId: "w7", isCorrect: true, timeSpent: 12 },
+        ],
+        score: 100,
+        startedAt: "2026-02-22T09:00:00",
+        completedAt: "2026-02-22T09:20:00",
+      },
+      {
+        id: "s5",
+        userId: "u1",
+        topicId: "typescript",
+        topicTitle: "Typescript",
+        answers: [{ widgetId: "w4", isCorrect: true, timeSpent: 20 }],
+        score: 54,
+        startedAt: "2026-02-20T11:00:00",
+        completedAt: "2026-02-20T11:15:00",
+      },
+      {
+        id: "s6",
+        userId: "u1",
+        topicId: "html",
+        topicTitle: "HTML",
+        answers: [{ widgetId: "w4", isCorrect: true, timeSpent: 20 }],
+        score: 90,
+        startedAt: "2026-02-24T11:00:00",
+        completedAt: "2026-02-24T11:15:00",
+      },
+      {
+        id: "s7",
+        userId: "u1",
+        topicId: "html",
+        topicTitle: "HTML",
+        answers: [{ widgetId: "w4", isCorrect: true, timeSpent: 20 }],
+        score: 25,
+        startedAt: "2026-02-21T11:00:00",
+        completedAt: "2026-02-21T11:15:00",
+      },
     ];
 
     const userTopicProgressArr = topicProgressArr.filter(
       (topicProgress) => topicProgress.userId === tempUser.id,
     );
-
-    userGreeting.textContent = `Hello, ${tempUser.name}!`;
+    const userSessionArr = sessionArr
+      .filter((session) => session.userId === tempUser.id)
+      .sort((a, b) => {
+        return (
+          new Date(b.completedAt).getTime() - new Date(a.completedAt).getTime()
+        );
+      });
 
     this.container.append(progressComponent(tempUser, userTopicProgressArr));
-
-    const logoutButton = new ButtonCreator({
-      text: "To login page",
-      classes: ["button"],
-      parent: this.container,
-    }).getElement();
-    logoutButton.dataset.route = RoutePath.Login;
-
-    const profileButton = new ButtonCreator({
-      text: "To profile page",
-      classes: ["button"],
-      parent: this.container,
-    }).getElement();
-    profileButton.dataset.route = RoutePath.Profile;
+    this.container.append(sessionHistoryComponent(userSessionArr));
 
     const libraryButton = new ButtonCreator({
       text: "To library page",

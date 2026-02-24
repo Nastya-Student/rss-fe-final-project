@@ -1,0 +1,37 @@
+.dashboard__session-container {
+  display: flex;
+  gap: 5px;
+  width: 100%;
+  align-items: center;
+}
+
+.dashboard__session-topic-title {
+  flex: 0 0 35%;
+  min-width: 0;
+  word-break: break-all;
+}
+
+.dashboard__session-topic-score {
+  text-align: center;
+  flex: 0 0 20%;
+}
+
+.dashboard__session-topic-date {
+  flex: 1 1 auto;
+  text-align: center;
+}
+
+.dashboard__session-topic-button {
+  flex: 0 0 10%;
+  text-align: center;
+}
+
+.dashboard__session-topic-button {
+  padding: 0;
+  height: 10px;
+  background-repeat: no-repeat;
+  background-position: center;
+  object-fit: contain;
+  background-color: transparent;
+  background-image: url("../../../assets/svg/arrow-right.svg");
+}
