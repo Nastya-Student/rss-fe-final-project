@@ -1,0 +1,26 @@
+[
+  {
+    "id": "core-js",
+    "title": "Core JS",
+    "description": "Замыкания, event loop, this",
+    "difficulty": 3,
+    "tags": ["js", "core"],
+    "widgetIds": ["w1", "w2", "w3"]
+  },
+  {
+    "id": "algorithms",
+    "title": "Algorithms",
+    "description": "Сортировки, рекурсия",
+    "difficulty": 4,
+    "tags": ["algo"],
+    "widgetIds": ["w4", "w5"]
+  },
+  {
+    "id": "typescript",
+    "title": "TypeScript",
+    "description": "Типы, generics, utility types",
+    "difficulty": 3,
+    "tags": ["ts"],
+    "widgetIds": ["w6", "w7"]
+  }
+]
