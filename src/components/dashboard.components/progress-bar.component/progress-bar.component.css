@@ -1,0 +1,39 @@
+.dashboard__progress-topic-container {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+}
+.dashboard__progress-topic-container.dashboard__total-progress {
+  flex-direction: column;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+  border-bottom: 1px solid black;
+}
+
+.dashboard__progress-topic-title {
+  flex: 0 0 25%;
+  min-width: 0;
+}
+
+.dashboard__topic-progress-percent-container {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+.dashboard__topic-progress-percent-container.dashboard__total-progress {
+  width: 100%;
+}
+
+.dashboard__topic-progress {
+  flex: 1;
+}
+
+.dashboard__topic-percent {
+  flex: 0 0 25%;
+  text-align: right;
+}
+
+.dashboard__topic-percent.dashboard__total-progress {
+  flex: 0 0 20%;
+}

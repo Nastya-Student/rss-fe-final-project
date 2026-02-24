@@ -1,0 +1,18 @@
+.dashboard__progress-container {
+  width: 100%;
+  display: flex;
+  padding: 10px;
+  gap: 10px;
+  justify-content: space-evenly;
+}
+
+.dashboard__topics-progress-container,
+.dashboard__streak-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 10px;
+  flex: 1;
+}
