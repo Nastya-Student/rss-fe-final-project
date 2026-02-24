@@ -1,13 +1,9 @@
 export interface TopicProgress {
-  topicProgressId: string;
+  id: string;
   userId: string;
+  topicId: string;
+  topicTitle: string;
   completedWidgetIds: string[];
   percent: number;
   updatedAt: string;
-  topicId: string;
-  title: string;
-  description: string;
-  difficulty: number;
-  tags: string[];
-  widgetIds: string[];
 }
