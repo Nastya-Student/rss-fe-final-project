@@ -1,14 +1,10 @@
-//import { HEADINGS_TWO } from "../../constants.js";
 import { RoutePath } from "../../types/route-path.enum.js";
 import ButtonCreator from "../../utils/button/button-creator.js";
 import HeadingsCreator from "../../utils/headings/headings-creator.js";
 import { BasePage } from "../base-page.js";
 import ElementCreator from "../../utils/element-creator.js";
-//import HeaderCreator from "../../utils/header/header-creator.js";
-//import NavigationCreator from "../../utils/navigation/navigation-creator.js";
 import UnorderedListCreator from "../../utils/unordered-list/unordered-list-creator.js";
 import ListItemCreator from "../../utils/list-item/list-item-creator.js";
-//import AnchorCreator from "../../utils/anchor/anchor-creator.js";
 import "./landing.page.css";
 
 export class LandingPage extends BasePage {
@@ -21,50 +17,18 @@ export class LandingPage extends BasePage {
       classes: ["landing-wrapper"],
     }).getElement();
 
-    // const Header = new HeaderCreator({
-    //   parent: Wrapper,
-    //   classes: ["header"],
-    // }).getElement();
-
-    // const Navigation = new NavigationCreator({
-    //   parent: Header,
-    //   classes: ["nav"],
-    // }).getElement();
-
-    // const NavigationList = new UnorderedListCreator({
-    //   parent: Navigation,
-    //   classes: ["nav-list"],
-    // }).getElement();
-
-    // const linksArray: string[] = ["How it works", "Topics", "Wigets"];
-
-    // linksArray.forEach((link) => {
-    //   const NavigationItem = new ListItemCreator({
-    //     parent: NavigationList,
-    //     classes: ["nav-item"],
-    //     text: link,
-    //   }).getElement();
-
-    //   const NavigationLink = new AnchorCreator({
-    //     parent: NavigationItem,
-    //     href: link,
-    //     target: 'xz'
-    //   }).getElement();
-
-    // });
-
     const pageTitle = new HeadingsCreator(1, {
       parent: Wrapper,
       classes: ["title"],
     }).getElement();
-    pageTitle.textContent = "Widget trainer";
+    pageTitle.textContent = "Tandem - widget trainer";
 
-    const pageSubTitle = new ElementCreator({
+    new ElementCreator({
       text: "Train skills for JS interviews!",
       parent: Wrapper,
       classes: ["subtitle"],
     }).getElement();
-    pageSubTitle.style.alignItems = "self"; // for linter
+    //pageSubTitle.style.alignItems = "self"; // for linter
 
     const BtnWrapper = new ElementCreator({
       parent: Wrapper,
@@ -148,26 +112,26 @@ export class LandingPage extends BasePage {
         classes: ["widget-card"],
       }).getElement();
 
-      const TitleItem = new HeadingsCreator(3, {
+      new HeadingsCreator(3, {
         parent: CardItem,
         classes: ["widget-title"],
         text: item.title,
       }).getElement();
-      TitleItem.style.alignItems = "self"; // for linter
+      //TitleItem.style.alignItems = "self"; // for linter
 
-      const TypeItem = new ElementCreator({
+      new ElementCreator({
         parent: CardItem,
         classes: ["widget-type"],
         text: item.type,
       }).getElement();
-      TypeItem.style.alignItems = "self"; // for linter
+      //TypeItem.style.alignItems = "self"; // for linter
 
-      const DescriptionItem = new ElementCreator({
+      new ElementCreator({
         parent: CardItem,
         classes: ["widget-description"],
         text: item.description,
       }).getElement();
-      DescriptionItem.style.alignItems = "self"; // for linter
+      //DescriptionItem.style.alignItems = "self"; // for linter
     }
   }
 }
