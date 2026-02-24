@@ -1,0 +1,41 @@
+.next-prev-container {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 20px;
+}
+
+.page-counter {
+  font-size: 1rem;
+}
+
+.prev-button,
+.next-button {
+  background-color: transparent;
+  border: 1px solid black;
+  font-size: 1rem;
+  padding: 5px 10px;
+  border-radius: 10px;
+  transition: 0.3s ease;
+}
+
+.prev-button:hover,
+.next-button:hover {
+  color: white;
+  background-color: black;
+}
+
+.prev-button.no-active,
+.next-button.no-active {
+  color: black;
+  opacity: 20%;
+}
+
+.prev-button.no-active:hover,
+.next-button.no-active:hover {
+  cursor: not-allowed;
+  color: black;
+  background-color: white;
+  opacity: 20%;
+}

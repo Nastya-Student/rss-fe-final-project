@@ -1,5 +1,7 @@
+import nextPrevComponent from "../../components/dashboard.components/next-prev.component/next-prev.component.js";
 import progressComponent from "../../components/dashboard.components/progress.component/progress.component.js";
 import sessionHistoryComponent from "../../components/dashboard.components/session-history.component/session-history.component.js";
+import sessionComponent from "../../components/dashboard.components/session.component/session.component.js";
 import { PracticeSession } from "../../interfaces/practice-session.interface.js";
 import { TopicProgress } from "../../interfaces/topic-progress.interface.js";
 import { User } from "../../interfaces/user.interface.js";
@@ -10,6 +12,57 @@ import { BasePage } from "../base-page.js";
 import "./dashboard.css";
 
 export class DashboardPage extends BasePage {
+  private currentPage = 1;
+  private totalPages = 1;
+  private SESSION_PER_PAGE = 3;
+  private userSessionArr: PracticeSession[] = [];
+
+  private _sessionsContainer?: HTMLElement;
+  private pagination?: {
+    container: HTMLElement;
+    update: (currentPage: number, totalPages: number) => void;
+  };
+
+  private get sessionsContainer(): HTMLElement {
+    if (!this._sessionsContainer) {
+      throw new Error("sessionsContainer is not initialized");
+    }
+    return this._sessionsContainer;
+  }
+
+  private renderSessions() {
+    this.sessionsContainer.innerHTML = "";
+
+    this.totalPages = Math.ceil(
+      this.userSessionArr.length / this.SESSION_PER_PAGE,
+    );
+
+    const start = (this.currentPage - 1) * this.SESSION_PER_PAGE;
+    const end = start + this.SESSION_PER_PAGE;
+
+    const pageSessions = this.userSessionArr.slice(start, end);
+
+    for (const session of pageSessions) {
+      this.sessionsContainer.append(sessionComponent(session));
+    }
+
+    this.pagination?.update(this.currentPage, this.totalPages);
+  }
+
+  private prevPage() {
+    if (this.currentPage > 1) {
+      this.currentPage -= 1;
+      this.renderSessions();
+    }
+  }
+
+  private nextPage() {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage += 1;
+      this.renderSessions();
+    }
+  }
+
   create(parent: HTMLElement): void {
     parent.append(this.container);
     this.container.classList.add("dashboard-page");
@@ -169,7 +222,7 @@ export class DashboardPage extends BasePage {
     const userTopicProgressArr = topicProgressArr.filter(
       (topicProgress) => topicProgress.userId === tempUser.id,
     );
-    const userSessionArr = sessionArr
+    this.userSessionArr = sessionArr
       .filter((session) => session.userId === tempUser.id)
       .sort((a, b) => {
         return (
@@ -178,7 +231,22 @@ export class DashboardPage extends BasePage {
       });
 
     this.container.append(progressComponent(tempUser, userTopicProgressArr));
-    this.container.append(sessionHistoryComponent(userSessionArr));
+    const { sessionHistoryContainer, sessionsContainer } =
+      sessionHistoryComponent();
+    this.container.append(sessionHistoryContainer);
+
+    this._sessionsContainer = sessionsContainer;
+
+    this.pagination = nextPrevComponent(
+      () => {
+        this.prevPage();
+      },
+      () => {
+        this.nextPage();
+      },
+    );
+
+    this.container.append(this.pagination.container);
 
     const libraryButton = new ButtonCreator({
       text: "To library page",
@@ -186,5 +254,7 @@ export class DashboardPage extends BasePage {
       parent: this.container,
     }).getElement();
     libraryButton.dataset.route = RoutePath.Library;
+
+    this.renderSessions();
   }
 }
