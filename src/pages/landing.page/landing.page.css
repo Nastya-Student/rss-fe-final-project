@@ -1,0 +1,88 @@
+main .landing-page {
+  background-color: #f9f9f9;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.landing-wrapper {
+  text-align: center;
+  width: 100%;
+  padding: 50px 0;
+}
+
+.title {
+  font-size: 3rem;
+}
+
+.subtitle {
+  color: #078ec9;
+  margin-top: 20px;
+}
+
+.btn-wrapper {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.button {
+  background-color: #3fbdf1;
+  color: #fff;
+}
+
+.widget-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin: 30px auto;
+  padding: 0;
+  list-style: none;
+  max-width: 1200px;
+}
+
+.widget-card {
+  display: block;
+  min-width: 220px;
+  max-width: 260px;
+  padding: 24px 20px;
+  border-radius: 16px;
+  background: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  border: 1px solid #f0f0f0;
+  list-style: none;
+}
+
+/* .widget-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(7, 142, 201, 0.12);
+    border-color: #078ec9;
+} */
+
+.widget-title {
+  color: #000000;
+  font-size: 1.3rem;
+  margin: 0 0 4px 0;
+  font-weight: 600;
+}
+
+.widget-type {
+  color: #078ec9;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 16px;
+  display: inline-block;
+  background: rgba(7, 142, 201, 0.08);
+  padding: 4px 12px;
+  border-radius: 30px;
+  font-weight: 500;
+}
+
+.widget-description {
+  color: #555;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0;
+}
