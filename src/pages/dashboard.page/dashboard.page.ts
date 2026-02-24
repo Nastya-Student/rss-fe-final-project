@@ -71,7 +71,7 @@ export class DashboardPage extends BasePage {
 
     userGreeting.textContent = `Hello, ${tempUser.name}!`;
 
-    this.container.append(progressComponent(userTopicProgressArr));
+    this.container.append(progressComponent(tempUser, userTopicProgressArr));
 
     const logoutButton = new ButtonCreator({
       text: "To login page",

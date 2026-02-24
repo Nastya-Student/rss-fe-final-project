@@ -1,11 +1,14 @@
 import { TopicProgress } from "../../../interfaces/topic-progress.interface.js";
+import { User } from "../../../interfaces/user.interface.js";
 import ElementCreator from "../../../utils/element-creator.js";
+import ParagraphCreator from "../../../utils/paragraph/paragraph-creator.js";
 import progressBarComponent from "../progress-bar.component/progress-bar.component.js";
 import "./progress.component.css";
 
 export const TOTAL_PROGRESS = "Total Progress";
 
 export default function progressComponent(
+  user: User,
   topicProgressArr: TopicProgress[],
 ): HTMLElement {
   const progressContainer = new ElementCreator({
@@ -38,7 +41,12 @@ export default function progressComponent(
     classes: ["dashboard__streak-container"],
     parent: progressContainer,
   }).getElement();
-  streakContainer.textContent = "";
+
+  const streakText = new ParagraphCreator({
+    classes: ["dashboard__streak-paragraph"],
+    parent: streakContainer,
+  }).getElement();
+  streakText.textContent = `Streak: ${user.streak} days`;
 
   return progressContainer;
 }

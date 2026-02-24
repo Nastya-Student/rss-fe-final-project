@@ -10,6 +10,8 @@
 .dashboard__streak-container {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 5px;
   padding: 10px;
   border: 1px solid black;
