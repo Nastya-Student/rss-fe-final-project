@@ -1,0 +1,44 @@
+[
+  {
+    "id": "s1",
+    "userId": "u1",
+    "topicId": "core-js",
+    "answers": [
+      { "widgetId": "w1", "isCorrect": true, "timeSpent": 12 },
+      { "widgetId": "w2", "isCorrect": true, "timeSpent": 8 }
+    ],
+    "score": 85,
+    "startedAt": "2026-02-22T10:00:00",
+    "completedAt": "2026-02-22T10:10:00"
+  },
+  {
+    "id": "s2",
+    "userId": "u1",
+    "topicId": "algorithms",
+    "answers": [{ "widgetId": "w4", "isCorrect": true, "timeSpent": 20 }],
+    "score": 70,
+    "startedAt": "2026-02-23T11:00:00",
+    "completedAt": "2026-02-23T11:15:00"
+  },
+  {
+    "id": "s3",
+    "userId": "u2",
+    "topicId": "core-js",
+    "answers": [{ "widgetId": "w1", "isCorrect": false, "timeSpent": 15 }],
+    "score": 0,
+    "startedAt": "2026-02-22T12:00:00",
+    "completedAt": "2026-02-22T12:05:00"
+  },
+  {
+    "id": "s4",
+    "userId": "u3",
+    "topicId": "typescript",
+    "answers": [
+      { "widgetId": "w6", "isCorrect": true, "timeSpent": 10 },
+      { "widgetId": "w7", "isCorrect": true, "timeSpent": 12 }
+    ],
+    "score": 100,
+    "startedAt": "2026-02-22T09:00:00",
+    "completedAt": "2026-02-22T09:20:00"
+  }
+]

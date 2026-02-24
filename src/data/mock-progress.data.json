@@ -1,0 +1,38 @@
+[
+  {
+    "id": "p1",
+    "userId": "u1",
+    "topicId": "core-js",
+    "topicTitle": "Core JS",
+    "completedWidgetIds": ["w1", "w2"],
+    "percent": 66,
+    "updatedAt": "2026-02-22"
+  },
+  {
+    "id": "p2",
+    "userId": "u1",
+    "topicId": "algorithms",
+    "topicTitle": "Algorithms",
+    "completedWidgetIds": ["w4"],
+    "percent": 50,
+    "updatedAt": "2026-02-23"
+  },
+  {
+    "id": "p3",
+    "userId": "u2",
+    "topicId": "core-js",
+    "topicTitle": "Core JS",
+    "completedWidgetIds": ["w1"],
+    "percent": 33,
+    "updatedAt": "2026-02-22"
+  },
+  {
+    "id": "p4",
+    "userId": "u3",
+    "topicId": "typescript",
+    "topicTitle": "Typescript",
+    "completedWidgetIds": ["w6", "w7"],
+    "percent": 100,
+    "updatedAt": "2026-02-22"
+  }
+]
