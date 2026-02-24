@@ -248,12 +248,12 @@ export class DashboardPage extends BasePage {
 
     this.container.append(this.pagination.container);
 
-    const libraryButton = new ButtonCreator({
-      text: "To library page",
-      classes: ["button"],
+    const startPracticing = new ButtonCreator({
+      text: "Start practicing",
+      classes: ["dashboard__start-practicing", "button"],
       parent: this.container,
     }).getElement();
-    libraryButton.dataset.route = RoutePath.Library;
+    startPracticing.dataset.route = RoutePath.Library;
 
     this.renderSessions();
   }

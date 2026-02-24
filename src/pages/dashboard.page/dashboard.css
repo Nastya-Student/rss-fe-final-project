@@ -9,3 +9,18 @@
   font-size: 1.5rem;
   padding: 20px 0;
 }
+
+.dashboard__start-practicing {
+  width: fit-content;
+  background-color: transparent;
+  border: 1px solid black;
+  font-size: 1rem;
+  padding: 10px 15px;
+  border-radius: 10px;
+  transition: 0.3s ease;
+}
+
+.dashboard__start-practicing:hover {
+  color: white;
+  background-color: black;
+}
