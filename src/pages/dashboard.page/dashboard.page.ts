@@ -14,6 +14,7 @@ export class DashboardPage extends BasePage {
 
     const userGreeting = new ParagraphCreator({
       parent: this.container,
+      classes: ["dashboard__user-greeting"],
     }).getElement();
 
     const tempUser: User = {

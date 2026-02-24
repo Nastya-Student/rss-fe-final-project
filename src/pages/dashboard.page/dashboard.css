@@ -2,3 +2,8 @@
   flex-direction: column;
   flex: 1;
 }
+
+.dashboard__user-greeting {
+  font-size: 1.5rem;
+  padding: 20px 10px;
+}
