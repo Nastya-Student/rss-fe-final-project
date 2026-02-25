@@ -1,5 +1,5 @@
 main .landing-page {
-  background-color: #f9f9f9;
+  background-color: var(--bg-color);
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -34,7 +34,7 @@ main .landing-page {
 }
 
 .button {
-  background-color: #3fbdf1;
+  background-color: var(--btn-color);
   color: #fff;
 }
 
@@ -58,7 +58,7 @@ main .landing-page {
   background: white;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
-  border: 1px solid #f0f0f0;
+  border: 1px solid var(--border-color);
   list-style: none;
 }
 
@@ -76,20 +76,20 @@ main .landing-page {
 }
 
 .widget-type {
-  color: #078ec9;
+  color: var(--primary-color);
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-bottom: 16px;
   display: inline-block;
-  background: rgba(7, 142, 201, 0.08);
+  background: var(--secondary-color);
   padding: 4px 12px;
   border-radius: 30px;
   font-weight: 500;
 }
 
 .widget-description {
-  color: #555;
+  color: var(--descr-color);
   font-size: 0.9rem;
   line-height: 1.5;
   margin: 0;
@@ -97,7 +97,7 @@ main .landing-page {
 
 .landing-topics {
   padding: 50px 0;
-  background-color: rgb(231, 248, 255);
+  background-color: var(--secondary-color);
 }
 
 .landing-topics-title {
@@ -112,14 +112,14 @@ main .landing-page {
 .landing-topics-item {
   justify-content: center;
   margin-top: 10px;
-  color: #078ec9;
+  color: var(--primary-color);
   font-size: 1.5rem;
 }
 
 .landing-topics-item::before {
   content: "✓";
   font-size: 1.5rem;
-  color: black;
+  color: #000000;
 }
 
 .landing-motivation {
@@ -129,7 +129,7 @@ main .landing-page {
 
 .motivation-topics-title {
   font-size: 3rem;
-  color: #078ec9;
+  color: var(--primary-color);
 }
 
 .button-start {

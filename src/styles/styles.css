@@ -28,3 +28,23 @@ body {
   flex: 1;
   min-height: 0;
 }
+
+:root {
+  --primary-color: #078ec9;
+  --secondary-color: #e7f8ff;
+  --btn-color: #3fbdf1;
+  --bg-color: #f9f9f9;
+  --border-color: #f0f0f0;
+  --descr-color: #555555;
+
+  --btn-disabled: #898a88;
+  --error-color: #ff0202;
+
+  --spacing-0-5: 0.5rem;
+  --spacing-0-75: 0.75rem;
+  --spacing-1: 1rem;
+  --spacing-1-5: 1.5rem;
+  --spacing-2: 2rem;
+  --spacing-3: 3rem;
+  --spacing-4: 4rem;
+}
