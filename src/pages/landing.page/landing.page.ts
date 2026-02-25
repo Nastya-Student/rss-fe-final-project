@@ -17,21 +17,26 @@ export class LandingPage extends BasePage {
       classes: ["landing-wrapper"],
     }).getElement();
 
-    const pageTitle = new HeadingsCreator(1, {
+    const HeroSection = new ElementCreator({
+      tag: "section",
       parent: Wrapper,
+      classes: ["landing-section", "landing-hero"],
+    }).getElement();
+
+    const pageTitle = new HeadingsCreator(1, {
+      parent: HeroSection,
       classes: ["title"],
     }).getElement();
     pageTitle.textContent = "Tandem - widget trainer";
 
     new ElementCreator({
       text: "Train skills for JS interviews!",
-      parent: Wrapper,
+      parent: HeroSection,
       classes: ["subtitle"],
     }).getElement();
-    //pageSubTitle.style.alignItems = "self"; // for linter
 
     const BtnWrapper = new ElementCreator({
-      parent: Wrapper,
+      parent: HeroSection,
       classes: ["btn-wrapper"],
     }).getElement();
 
@@ -56,7 +61,6 @@ export class LandingPage extends BasePage {
     // }).getElement();
     // loginButton.dataset.route = RoutePath.Dashboard;
 
-    //const ThemesArray: string[] = ["Core-js", "Algorithms", "Typescript"];
     const widgetTypes = [
       {
         title: "Quiz",
@@ -101,8 +105,14 @@ export class LandingPage extends BasePage {
       },
     ];
 
-    const CardList = new UnorderedListCreator({
+    const CardsSection = new ElementCreator({
+      tag: "section",
       parent: Wrapper,
+      classes: ["landing-section", "landing-cards"],
+    }).getElement();
+
+    const CardList = new UnorderedListCreator({
+      parent: CardsSection,
       classes: ["widget-cards"],
     }).getElement();
 
@@ -133,5 +143,51 @@ export class LandingPage extends BasePage {
       }).getElement();
       //DescriptionItem.style.alignItems = "self"; // for linter
     }
+
+    const TopicsSection = new ElementCreator({
+      tag: "section",
+      parent: Wrapper,
+      classes: ["landing-section", "landing-topics"],
+    }).getElement();
+
+    new HeadingsCreator(2, {
+      parent: TopicsSection,
+      classes: ["landing-topics-title"],
+      text: "Topics you can profoundly train:",
+    }).getElement();
+
+    const topicsArray: string[] = ["Core-JS", "Algorithms", "Typescript"];
+
+    const TopicsList = new UnorderedListCreator({
+      parent: TopicsSection,
+      classes: ["landing-topics-list"],
+    }).getElement();
+
+    for (const item of topicsArray) {
+      new ListItemCreator({
+        parent: TopicsList,
+        classes: ["landing-topics-item"],
+        text: item,
+      }).getElement();
+    }
+
+    const MotivationSection = new ElementCreator({
+      tag: "section",
+      parent: Wrapper,
+      classes: ["landing-section", "landing-motivation"],
+    }).getElement();
+
+    new HeadingsCreator(2, {
+      parent: MotivationSection,
+      classes: ["motivation-topics-title"],
+      text: "Start today and get a Dream Job tomorrow!",
+    }).getElement();
+
+    const startButton = new ButtonCreator({
+      text: "Begin training!",
+      classes: ["button", "button-start"],
+      parent: MotivationSection,
+    }).getElement();
+    startButton.dataset.route = RoutePath.Dashboard;
   }
 }
