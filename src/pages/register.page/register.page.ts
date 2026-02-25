@@ -1,25 +1,21 @@
-import { HEADINGS_TWO } from "../../constants.js";
 import { RoutePath } from "../../types/route-path.enum.js";
-import ButtonCreator from "../../utils/button/button-creator.js";
-import HeadingsCreator from "../../utils/headings/headings-creator.js";
 import { BasePage } from "../base-page.js";
 import { createElement } from "../../utils/create-element.js";
-import "../login.page/style.css";
+import { register } from "../../api/auth.service.js";
+import "../login.page/login.page.style.css";
 
 export class RegisterPage extends BasePage {
   create(parent: HTMLElement): void {
     parent.append(this.container);
-
     this.container.classList.add("auth-wrapper");
 
     const card = createElement("div", {
       className: "auth-card",
     });
 
-    const pageTitle = new HeadingsCreator(HEADINGS_TWO, {
-      parent: card,
-    }).getElement();
-    pageTitle.textContent = "Register";
+    const pageTitle = createElement("h2", {
+      textContent: "Register",
+    });
 
     const form = createElement("form", {
       className: "auth-form",
@@ -29,7 +25,7 @@ export class RegisterPage extends BasePage {
       attrs: {
         type: "text",
         placeholder: "Name",
-        required: "",
+        required: true,
       },
     });
 
@@ -37,7 +33,7 @@ export class RegisterPage extends BasePage {
       attrs: {
         type: "email",
         placeholder: "Email",
-        required: "",
+        required: true,
       },
     });
 
@@ -45,7 +41,7 @@ export class RegisterPage extends BasePage {
       attrs: {
         type: "password",
         placeholder: "Password",
-        required: "",
+        required: true,
       },
     });
 
@@ -53,16 +49,41 @@ export class RegisterPage extends BasePage {
       attrs: {
         type: "password",
         placeholder: "Confirm Password",
-        required: "",
+        required: true,
       },
     });
 
     const submitButton = createElement("button", {
       textContent: "Create Account",
-      attrs: {
-        type: "submit",
-      },
+      attrs: { type: "submit" },
     });
+
+    const errorMessage = createElement("p", {
+      className: "auth-error",
+    });
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      void this.handleSubmit(
+        nameInput,
+        emailInput,
+        passwordInput,
+        confirmPasswordInput,
+        errorMessage,
+        submitButton,
+      );
+    });
+
+    const switchBlock = createElement("div", {
+      className: "switch-block",
+    });
+
+    const loginButton = createElement("button", {
+      textContent: "Already have an account? Login",
+      className: "button",
+    });
+
+    loginButton.dataset.route = RoutePath.Login;
 
     form.append(
       nameInput,
@@ -70,38 +91,46 @@ export class RegisterPage extends BasePage {
       passwordInput,
       confirmPasswordInput,
       submitButton,
+      errorMessage,
     );
 
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-
-      const name = nameInput.value.trim();
-      const email = emailInput.value.trim();
-      const password = passwordInput.value;
-      const confirmPassword = confirmPasswordInput.value;
-
-      if (!name || !email || !password || !confirmPassword) return;
-
-      if (password !== confirmPassword) {
-        alert("Passwords do not match");
-        return;
-      }
-
-      window.location.hash = RoutePath.Dashboard;
-    });
-    const switchBlock = createElement("div", {
-      className: "switch-block",
-    });
-
-    const loginButton = new ButtonCreator({
-      text: "Already have an account? Login",
-      classes: ["button"],
-      parent: switchBlock,
-    }).getElement();
-
-    loginButton.dataset.route = RoutePath.Login;
-
-    card.append(form, switchBlock);
+    switchBlock.append(loginButton);
+    card.append(pageTitle, form, switchBlock);
     this.container.append(card);
+  }
+
+  private async handleSubmit(
+    nameInput: HTMLInputElement,
+    emailInput: HTMLInputElement,
+    passwordInput: HTMLInputElement,
+    confirmPasswordInput: HTMLInputElement,
+    errorMessage: HTMLElement,
+    submitButton: HTMLButtonElement,
+  ): Promise<void> {
+    const name = nameInput.value.trim();
+    const email = emailInput.value.trim();
+    const password = passwordInput.value;
+    const confirmPassword = confirmPasswordInput.value;
+
+    if (!name || !email || !password || !confirmPassword) return;
+
+    if (password !== confirmPassword) {
+      errorMessage.textContent = "Passwords do not match";
+      return;
+    }
+
+    submitButton.setAttribute("disabled", "true");
+    errorMessage.textContent = "";
+
+    const { error } = await register(email, password, name);
+
+    submitButton.removeAttribute("disabled");
+
+    if (error) {
+      errorMessage.textContent = error.message;
+      return;
+    }
+
+    window.location.hash = RoutePath.Dashboard;
   }
 }

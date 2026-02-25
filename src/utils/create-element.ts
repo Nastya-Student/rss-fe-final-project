@@ -3,7 +3,8 @@ export function createElement<K extends keyof HTMLElementTagNameMap>(
   options?: {
     className?: string;
     textContent?: string;
-    attrs?: Record<string, string>;
+    attrs?: Partial<HTMLElementTagNameMap[K]>;
+    children?: (HTMLElement | string)[];
   },
 ): HTMLElementTagNameMap[K] {
   const element = document.createElement(tag);
@@ -17,8 +18,12 @@ export function createElement<K extends keyof HTMLElementTagNameMap>(
   }
 
   if (options?.attrs !== undefined) {
-    for (const [key, value] of Object.entries(options.attrs)) {
-      element.setAttribute(key, value);
+    Object.assign(element, options.attrs);
+  }
+
+  if (options?.children !== undefined) {
+    for (const child of options.children) {
+      element.append(child);
     }
   }
 
