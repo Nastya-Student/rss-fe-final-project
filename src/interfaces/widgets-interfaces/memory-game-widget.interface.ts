@@ -1,4 +1,4 @@
-import { BaseWidget } from "../../interfaces/base-widget.interface.js";
+import { BaseWidget } from "../base-widget.interface.js";
 
 export interface MemoryGameWidget extends BaseWidget {
   type: "memory-game";
