@@ -36,6 +36,13 @@ main .landing-page {
 .button {
   background-color: var(--btn-color);
   color: #fff;
+  transition: all 0.4s ease;
+}
+
+.button:hover {
+  background-color: var(--primary-color);
+  transform: translateY(-1px);
+  box-shadow: 0 12px 20px var(--secondary-color);
 }
 
 .widget-cards {
