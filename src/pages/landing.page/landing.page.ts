@@ -16,44 +16,44 @@ export class LandingPage extends BasePage {
     parent.append(this.container);
     this.container.classList.add("landing-page");
 
-    const Wrapper = new ElementCreator({
+    const wrapper = new ElementCreator({
       parent: this.container,
       classes: ["landing-wrapper"],
     }).getElement();
 
-    const HeroSection = new SectionCreator({
-      parent: Wrapper,
+    const heroSection = new SectionCreator({
+      parent: wrapper,
       classes: ["landing-section", "landing-hero"],
     }).getElement();
 
     const pageTitle = new HeadingsCreator(HEADINGS_ONE, {
-      parent: HeroSection,
-      classes: ["title"],
+      parent: heroSection,
+      classes: ["landing-title"],
     }).getElement();
     pageTitle.textContent = "Tandem - widget trainer";
 
     new ElementCreator({
       text: "Train skills for JS interviews!",
-      parent: HeroSection,
-      classes: ["subtitle"],
+      parent: heroSection,
+      classes: ["landing-subtitle"],
     }).getElement();
 
-    const BtnWrapper = new ElementCreator({
-      parent: HeroSection,
-      classes: ["btn-wrapper"],
+    const btnWrapper = new ElementCreator({
+      parent: heroSection,
+      classes: ["landing-btn-wrapper"],
     }).getElement();
 
     const registerButton = new ButtonCreator({
       text: "Register",
       classes: ["button"],
-      parent: BtnWrapper,
+      parent: btnWrapper,
     }).getElement();
     registerButton.dataset.route = RoutePath.Register;
 
     const loginButton = new ButtonCreator({
       text: "Login",
       classes: ["button"],
-      parent: BtnWrapper,
+      parent: btnWrapper,
     }).getElement();
     loginButton.dataset.route = RoutePath.Login;
 
@@ -101,74 +101,74 @@ export class LandingPage extends BasePage {
       },
     ];
 
-    const CardsSection = new SectionCreator({
-      parent: Wrapper,
+    const cardsSection = new SectionCreator({
+      parent: wrapper,
       classes: ["landing-section", "landing-cards"],
     }).getElement();
 
-    const CardList = new UnorderedListCreator({
-      parent: CardsSection,
-      classes: ["widget-cards"],
+    const cardList = new UnorderedListCreator({
+      parent: cardsSection,
+      classes: ["landing-widget-cards"],
     }).getElement();
 
     for (const item of widgetTypes) {
-      const CardItem = new ListItemCreator({
-        parent: CardList,
-        classes: ["widget-card"],
+      const cardItem = new ListItemCreator({
+        parent: cardList,
+        classes: ["landing-widget-card"],
       }).getElement();
 
       new HeadingsCreator(HEADINGS_THREE, {
-        parent: CardItem,
-        classes: ["widget-title"],
+        parent: cardItem,
+        classes: ["landing-widget-title"],
         text: item.title,
       }).getElement();
 
       new ElementCreator({
-        parent: CardItem,
-        classes: ["widget-type"],
+        parent: cardItem,
+        classes: ["landing-widget-type"],
         text: item.type,
       }).getElement();
 
       new ElementCreator({
-        parent: CardItem,
-        classes: ["widget-description"],
+        parent: cardItem,
+        classes: ["landing-widget-description"],
         text: item.description,
       }).getElement();
     }
 
-    const TopicsSection = new SectionCreator({
-      parent: Wrapper,
+    const topicsSection = new SectionCreator({
+      parent: wrapper,
       classes: ["landing-section", "landing-topics"],
     }).getElement();
 
     new HeadingsCreator(HEADINGS_TWO, {
-      parent: TopicsSection,
+      parent: topicsSection,
       classes: ["landing-topics-title"],
       text: "Topics you can profoundly train:",
     }).getElement();
 
     const topicsArray: string[] = ["Core-JS", "Algorithms", "Typescript"];
 
-    const TopicsList = new UnorderedListCreator({
-      parent: TopicsSection,
+    const topicsList = new UnorderedListCreator({
+      parent: topicsSection,
       classes: ["landing-topics-list"],
     }).getElement();
 
     for (const item of topicsArray) {
       new ListItemCreator({
-        parent: TopicsList,
+        parent: topicsList,
         classes: ["landing-topics-item"],
         text: item,
       }).getElement();
     }
 
-    const MotivationSection = new SectionCreator({
-      parent: Wrapper,
+    const motivationSection = new SectionCreator({
+      parent: wrapper,
       classes: ["landing-section", "landing-motivation"],
     }).getElement();
 
     new HeadingsCreator(HEADINGS_TWO, {
-      parent: MotivationSection,
+      parent: motivationSection,
       classes: ["motivation-topics-title"],
       text: "Start today and get a Dream Job tomorrow!",
     }).getElement();
@@ -176,7 +176,7 @@ export class LandingPage extends BasePage {
     const startButton = new ButtonCreator({
       text: "Begin training!",
       classes: ["button", "button-start"],
-      parent: MotivationSection,
+      parent: motivationSection,
     }).getElement();
     startButton.dataset.route = RoutePath.Dashboard;
   }

@@ -16,17 +16,17 @@ main .landing-page {
   padding-top: 50px;
 }
 
-.title {
+.landing-title {
   font-size: 3.5rem;
 }
 
-.subtitle {
-  color: #078ec9;
+.landing-subtitle {
+  color: var(--primary-color);
   margin-top: 20px;
   font-size: 1.5rem;
 }
 
-.btn-wrapper {
+.landing-btn-wrapper {
   display: flex;
   gap: 10px;
   justify-content: center;
@@ -45,7 +45,7 @@ main .landing-page {
   box-shadow: 0 12px 20px var(--secondary-color);
 }
 
-.widget-cards {
+.landing-widget-cards {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
@@ -56,7 +56,7 @@ main .landing-page {
   max-width: 1200px;
 }
 
-.widget-card {
+.landing-widget-card {
   display: block;
   min-width: 220px;
   max-width: 260px;
@@ -69,14 +69,14 @@ main .landing-page {
   list-style: none;
 }
 
-.widget-title {
+.landing-widget-title {
   color: #000000;
   font-size: 1.3rem;
   margin: 0 0 4px 0;
   font-weight: 600;
 }
 
-.widget-type {
+.landing-widget-type {
   color: var(--primary-color);
   font-size: 0.75rem;
   text-transform: uppercase;
@@ -89,7 +89,7 @@ main .landing-page {
   font-weight: 500;
 }
 
-.widget-description {
+.landing-widget-description {
   color: var(--descr-color);
   font-size: 0.9rem;
   line-height: 1.5;
