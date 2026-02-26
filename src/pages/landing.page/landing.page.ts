@@ -54,13 +54,6 @@ export class LandingPage extends BasePage {
     }).getElement();
     loginButton.dataset.route = RoutePath.Login;
 
-    // const startButton = new ButtonCreator({
-    //   text: "Start",
-    //   classes: ["button"],
-    //   parent: BtnWrapper,
-    // }).getElement();
-    // loginButton.dataset.route = RoutePath.Dashboard;
-
     const widgetTypes = [
       {
         title: "Quiz",
@@ -127,21 +120,18 @@ export class LandingPage extends BasePage {
         classes: ["widget-title"],
         text: item.title,
       }).getElement();
-      //TitleItem.style.alignItems = "self"; // for linter
 
       new ElementCreator({
         parent: CardItem,
         classes: ["widget-type"],
         text: item.type,
       }).getElement();
-      //TypeItem.style.alignItems = "self"; // for linter
 
       new ElementCreator({
         parent: CardItem,
         classes: ["widget-description"],
         text: item.description,
       }).getElement();
-      //DescriptionItem.style.alignItems = "self"; // for linter
     }
 
     const TopicsSection = new ElementCreator({
