@@ -5,6 +5,10 @@ import { BasePage } from "../base-page.js";
 import ElementCreator from "../../utils/element-creator.js";
 import UnorderedListCreator from "../../utils/unordered-list/unordered-list-creator.js";
 import ListItemCreator from "../../utils/list-item/list-item-creator.js";
+import SectionCreator from "../../utils/section/section-creator.js";
+import { HEADINGS_ONE } from "../../constants.js";
+import { HEADINGS_TWO } from "../../constants.js";
+import { HEADINGS_THREE } from "../../constants.js";
 import "./landing.page.css";
 
 export class LandingPage extends BasePage {
@@ -17,13 +21,12 @@ export class LandingPage extends BasePage {
       classes: ["landing-wrapper"],
     }).getElement();
 
-    const HeroSection = new ElementCreator({
-      tag: "section",
+    const HeroSection = new SectionCreator({
       parent: Wrapper,
       classes: ["landing-section", "landing-hero"],
     }).getElement();
 
-    const pageTitle = new HeadingsCreator(1, {
+    const pageTitle = new HeadingsCreator(HEADINGS_ONE, {
       parent: HeroSection,
       classes: ["title"],
     }).getElement();
@@ -98,8 +101,7 @@ export class LandingPage extends BasePage {
       },
     ];
 
-    const CardsSection = new ElementCreator({
-      tag: "section",
+    const CardsSection = new SectionCreator({
       parent: Wrapper,
       classes: ["landing-section", "landing-cards"],
     }).getElement();
@@ -115,7 +117,7 @@ export class LandingPage extends BasePage {
         classes: ["widget-card"],
       }).getElement();
 
-      new HeadingsCreator(3, {
+      new HeadingsCreator(HEADINGS_THREE, {
         parent: CardItem,
         classes: ["widget-title"],
         text: item.title,
@@ -134,13 +136,12 @@ export class LandingPage extends BasePage {
       }).getElement();
     }
 
-    const TopicsSection = new ElementCreator({
-      tag: "section",
+    const TopicsSection = new SectionCreator({
       parent: Wrapper,
       classes: ["landing-section", "landing-topics"],
     }).getElement();
 
-    new HeadingsCreator(2, {
+    new HeadingsCreator(HEADINGS_TWO, {
       parent: TopicsSection,
       classes: ["landing-topics-title"],
       text: "Topics you can profoundly train:",
@@ -161,13 +162,12 @@ export class LandingPage extends BasePage {
       }).getElement();
     }
 
-    const MotivationSection = new ElementCreator({
-      tag: "section",
+    const MotivationSection = new SectionCreator({
       parent: Wrapper,
       classes: ["landing-section", "landing-motivation"],
     }).getElement();
 
-    new HeadingsCreator(2, {
+    new HeadingsCreator(HEADINGS_TWO, {
       parent: MotivationSection,
       classes: ["motivation-topics-title"],
       text: "Start today and get a Dream Job tomorrow!",

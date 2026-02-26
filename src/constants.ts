@@ -32,4 +32,6 @@ export const CLASS_NAME = {
   container: "container",
 } as const;
 
+export const HEADINGS_ONE = 1;
 export const HEADINGS_TWO = 2;
+export const HEADINGS_THREE = 3;
