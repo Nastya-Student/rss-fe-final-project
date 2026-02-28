@@ -1,33 +1,19 @@
 import type { Topic } from "../interfaces/topic.interface.js";
-import { API_BASE_URL, isMockData } from "../config/api.config.js";
 import topicsMock from "../data/mock-topics.data.json" with { type: "json" };
 import { isTopicArray } from "../guards/topic.guards.js";
+import { BaseDataService } from "./base-data.service.js";
 
-class TopicService {
+class TopicService extends BaseDataService<Topic> {
+  protected endpoint = "topics";
+  protected mockData: unknown = topicsMock;
+  protected isValid = isTopicArray;
+
   async getTopics(): Promise<Topic[] | undefined> {
-    if (isMockData()) {
-      const data: unknown = topicsMock;
-
-      if (isTopicArray(data)) {
-        return data;
-      }
-
-      return;
-    }
-
-    return fetch(`${API_BASE_URL}/topics`)
-      .then((response) => response.json())
-      .then((data) => {
-        if (isTopicArray(data)) {
-          return data;
-        }
-
-        return;
-      });
+    return this.getAll();
   }
 
   async getTopicById(id: string): Promise<Topic | undefined> {
-    const topics = await this.getTopics();
+    const topics = await this.getAll();
     return topics?.find((topic) => topic.id === id);
   }
 }

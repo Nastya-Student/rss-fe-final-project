@@ -1,33 +1,19 @@
 import type { User } from "../interfaces/user.interface.js";
-import { API_BASE_URL, isMockData } from "../config/api.config.js";
 import usersMock from "../data/mock-user.data.json" with { type: "json" };
 import { isUserArray } from "../guards/user.guards.js";
+import { BaseDataService } from "./base-data.service.js";
 
-class UserService {
+class UserService extends BaseDataService<User> {
+  protected endpoint = "users";
+  protected mockData: unknown = usersMock;
+  protected isValid = isUserArray;
+
   async getUsers(): Promise<User[] | undefined> {
-    if (isMockData()) {
-      const data: unknown = usersMock;
-
-      if (isUserArray(data)) {
-        return data;
-      }
-
-      return;
-    }
-
-    return fetch(`${API_BASE_URL}/users`)
-      .then((response) => response.json())
-      .then((data) => {
-        if (isUserArray(data)) {
-          return data;
-        }
-
-        return;
-      });
+    return this.getAll();
   }
 
   async getUserById(id: string): Promise<User | undefined> {
-    const users = await this.getUsers();
+    const users = await this.getAll();
     return users?.find((user) => user.id === id);
   }
 }
