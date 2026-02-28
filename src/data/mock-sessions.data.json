@@ -3,6 +3,7 @@
     "id": "s1",
     "userId": "u1",
     "topicId": "core-js",
+    "topicTitle": "Core JS",
     "answers": [
       { "widgetId": "w1", "isCorrect": true, "timeSpent": 12 },
       { "widgetId": "w2", "isCorrect": true, "timeSpent": 8 }
@@ -15,6 +16,7 @@
     "id": "s2",
     "userId": "u1",
     "topicId": "algorithms",
+    "topicTitle": "Algorithms",
     "answers": [{ "widgetId": "w4", "isCorrect": true, "timeSpent": 20 }],
     "score": 70,
     "startedAt": "2026-02-23T11:00:00",
@@ -24,6 +26,7 @@
     "id": "s3",
     "userId": "u2",
     "topicId": "core-js",
+    "topicTitle": "Core JS",
     "answers": [{ "widgetId": "w1", "isCorrect": false, "timeSpent": 15 }],
     "score": 0,
     "startedAt": "2026-02-22T12:00:00",
@@ -33,6 +36,7 @@
     "id": "s4",
     "userId": "u3",
     "topicId": "typescript",
+    "topicTitle": "Typescript",
     "answers": [
       { "widgetId": "w6", "isCorrect": true, "timeSpent": 10 },
       { "widgetId": "w7", "isCorrect": true, "timeSpent": 12 }
