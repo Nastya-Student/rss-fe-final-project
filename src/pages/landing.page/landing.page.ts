@@ -9,53 +9,75 @@ import SectionCreator from "../../utils/section/section-creator.js";
 import { HEADINGS_ONE } from "../../constants.js";
 import { HEADINGS_TWO } from "../../constants.js";
 import { HEADINGS_THREE } from "../../constants.js";
+import { CLASS_NAME } from "../../constants.js";
 import "./landing.page.css";
+
+export const CLASS_NAMES_LANDING = {
+  page: "landing-page",
+  wrapper: "landing-wrapper",
+
+  section: "landing-section",
+  hero: "landing-hero",
+  cards: "landing-cards",
+  topics: "landing-topics",
+  motivation: "landing-motivation",
+
+  title: "landing-title",
+  subtitle: "landing-subtitle",
+  widgetTitle: "landing-widget-title",
+  topicsTitle: "landing-topics-title",
+  motivationTitle: "motivation-topics-title",
+
+  widgetCards: "landing-widget-cards",
+  widgetCard: "landing-widget-card",
+  widgetType: "landing-widget-type",
+  widgetDescription: "landing-widget-description",
+
+  btnWrapper: "landing-btn-wrapper",
+  buttonStart: "button-start",
+
+  topicsList: "landing-topics-list",
+  topicsItem: "landing-topics-item",
+} as const;
 
 export class LandingPage extends BasePage {
   create(parent: HTMLElement): void {
     parent.append(this.container);
-    this.container.classList.add("landing-page");
+    this.container.classList.add(CLASS_NAMES_LANDING.page);
 
     const wrapper = new ElementCreator({
       parent: this.container,
-      classes: ["landing-wrapper"],
+      classes: [CLASS_NAMES_LANDING.wrapper],
     }).getElement();
 
     const heroSection = new SectionCreator({
       parent: wrapper,
-      classes: ["landing-section", "landing-hero"],
+      classes: [CLASS_NAMES_LANDING.section, CLASS_NAMES_LANDING.hero],
     }).getElement();
 
     const pageTitle = new HeadingsCreator(HEADINGS_ONE, {
       parent: heroSection,
-      classes: ["landing-title"],
+      classes: [CLASS_NAMES_LANDING.title],
     }).getElement();
     pageTitle.textContent = "Tandem - widget trainer";
 
     new ElementCreator({
       text: "Train skills for JS interviews!",
       parent: heroSection,
-      classes: ["landing-subtitle"],
+      classes: [CLASS_NAMES_LANDING.subtitle],
     }).getElement();
 
-    const btnWrapper = new ElementCreator({
+    const btnWrapperFirst = new ElementCreator({
       parent: heroSection,
-      classes: ["landing-btn-wrapper"],
+      classes: [CLASS_NAMES_LANDING.btnWrapper],
     }).getElement();
 
-    const registerButton = new ButtonCreator({
-      text: "Register",
-      classes: ["button"],
-      parent: btnWrapper,
+    const startButtonFirst = new ButtonCreator({
+      text: "Begin training!",
+      classes: [CLASS_NAME.button, CLASS_NAMES_LANDING.buttonStart],
+      parent: btnWrapperFirst,
     }).getElement();
-    registerButton.dataset.route = RoutePath.Register;
-
-    const loginButton = new ButtonCreator({
-      text: "Login",
-      classes: ["button"],
-      parent: btnWrapper,
-    }).getElement();
-    loginButton.dataset.route = RoutePath.Login;
+    startButtonFirst.dataset.route = RoutePath.Dashboard;
 
     const widgetTypes = [
       {
@@ -103,47 +125,47 @@ export class LandingPage extends BasePage {
 
     const cardsSection = new SectionCreator({
       parent: wrapper,
-      classes: ["landing-section", "landing-cards"],
+      classes: [CLASS_NAMES_LANDING.section, CLASS_NAMES_LANDING.cards],
     }).getElement();
 
     const cardList = new UnorderedListCreator({
       parent: cardsSection,
-      classes: ["landing-widget-cards"],
+      classes: [CLASS_NAMES_LANDING.widgetCards],
     }).getElement();
 
     for (const item of widgetTypes) {
       const cardItem = new ListItemCreator({
         parent: cardList,
-        classes: ["landing-widget-card"],
+        classes: [CLASS_NAMES_LANDING.widgetCard],
       }).getElement();
 
       new HeadingsCreator(HEADINGS_THREE, {
         parent: cardItem,
-        classes: ["landing-widget-title"],
+        classes: [CLASS_NAMES_LANDING.widgetTitle],
         text: item.title,
       }).getElement();
 
       new ElementCreator({
         parent: cardItem,
-        classes: ["landing-widget-type"],
+        classes: [CLASS_NAMES_LANDING.widgetType],
         text: item.type,
       }).getElement();
 
       new ElementCreator({
         parent: cardItem,
-        classes: ["landing-widget-description"],
+        classes: [CLASS_NAMES_LANDING.widgetDescription],
         text: item.description,
       }).getElement();
     }
 
     const topicsSection = new SectionCreator({
       parent: wrapper,
-      classes: ["landing-section", "landing-topics"],
+      classes: [CLASS_NAMES_LANDING.section, CLASS_NAMES_LANDING.topics],
     }).getElement();
 
     new HeadingsCreator(HEADINGS_TWO, {
       parent: topicsSection,
-      classes: ["landing-topics-title"],
+      classes: [CLASS_NAMES_LANDING.topicsTitle],
       text: "Topics you can profoundly train:",
     }).getElement();
 
@@ -151,32 +173,37 @@ export class LandingPage extends BasePage {
 
     const topicsList = new UnorderedListCreator({
       parent: topicsSection,
-      classes: ["landing-topics-list"],
+      classes: [CLASS_NAMES_LANDING.topicsList],
     }).getElement();
 
     for (const item of topicsArray) {
       new ListItemCreator({
         parent: topicsList,
-        classes: ["landing-topics-item"],
+        classes: [CLASS_NAMES_LANDING.topicsItem],
         text: item,
       }).getElement();
     }
 
     const motivationSection = new SectionCreator({
       parent: wrapper,
-      classes: ["landing-section", "landing-motivation"],
+      classes: [CLASS_NAMES_LANDING.section, CLASS_NAMES_LANDING.motivation],
     }).getElement();
 
     new HeadingsCreator(HEADINGS_TWO, {
       parent: motivationSection,
-      classes: ["motivation-topics-title"],
+      classes: [CLASS_NAMES_LANDING.motivationTitle],
       text: "Start today and get a Dream Job tomorrow!",
+    }).getElement();
+
+    const btnWrapper = new ElementCreator({
+      parent: motivationSection,
+      classes: [CLASS_NAMES_LANDING.btnWrapper],
     }).getElement();
 
     const startButton = new ButtonCreator({
       text: "Begin training!",
-      classes: ["button", "button-start"],
-      parent: motivationSection,
+      classes: [CLASS_NAME.button, CLASS_NAMES_LANDING.buttonStart],
+      parent: btnWrapper,
     }).getElement();
     startButton.dataset.route = RoutePath.Dashboard;
   }

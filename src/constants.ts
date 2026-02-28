@@ -30,6 +30,7 @@ export const ID = {
 
 export const CLASS_NAME = {
   container: "container",
+  button: "button",
 } as const;
 
 export const HEADINGS_ONE = 1;

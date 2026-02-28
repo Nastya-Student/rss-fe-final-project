@@ -138,7 +138,3 @@ main .landing-page {
   font-size: 3rem;
   color: var(--primary-color);
 }
-
-.button-start {
-  margin: 30px auto 0 auto;
-}
