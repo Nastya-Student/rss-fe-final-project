@@ -44,5 +44,35 @@
     "score": 100,
     "startedAt": "2026-02-22T09:00:00",
     "completedAt": "2026-02-22T09:20:00"
+  },
+  {
+    "id": "s5",
+    "userId": "u1",
+    "topicId": "typescript",
+    "topicTitle": "Typescript",
+    "answers": [{ "widgetId": "w4", "isCorrect": true, "timeSpent": 20 }],
+    "score": 54,
+    "startedAt": "2026-02-20T11:00:00",
+    "completedAt": "2026-02-20T11:15:00"
+  },
+  {
+    "id": "s6",
+    "userId": "u1",
+    "topicId": "html",
+    "topicTitle": "HTML",
+    "answers": [{ "widgetId": "w4", "isCorrect": true, "timeSpent": 20 }],
+    "score": 90,
+    "startedAt": "2026-02-24T11:00:00",
+    "completedAt": "2026-02-24T11:15:00"
+  },
+  {
+    "id": "s7",
+    "userId": "u1",
+    "topicId": "html",
+    "topicTitle": "HTML",
+    "answers": [{ "widgetId": "w4", "isCorrect": true, "timeSpent": 20 }],
+    "score": 25,
+    "startedAt": "2026-02-21T11:00:00",
+    "completedAt": "2026-02-21T11:15:00"
   }
 ]
