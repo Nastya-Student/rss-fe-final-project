@@ -62,7 +62,7 @@ export class LandingPage extends BasePage {
         title: "Quiz",
         type: "Multiple Choice",
         description:
-          "Test your knowledge with interactive quizzes — choose correct answers from multiple options",
+          "Test your knowledge with interactive multiple-choice quizzes",
       },
       {
         title: "True / False",

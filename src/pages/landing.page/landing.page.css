@@ -45,6 +45,12 @@ main .landing-page {
   box-shadow: 0 12px 20px var(--secondary-color);
 }
 
+.button:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+  transition: all 0.1s ease;
+}
+
 .landing-widget-cards {
   display: flex;
   flex-wrap: wrap;
