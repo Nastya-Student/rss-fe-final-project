@@ -10,11 +10,10 @@ export const TOTAL_PROGRESS = "Total Progress";
 export default function progressComponent(
   user: User,
   topicProgressArr: TopicProgress[],
-): HTMLElement {
-  const progressContainer = new ElementCreator({
-    classes: ["dashboard__progress-container"],
-  }).getElement();
-
+): {
+  topicsProgressContainer: HTMLElement;
+  streakContainer: HTMLElement;
+} {
   const topicsProgressContainer = new ElementCreator({
     classes: ["dashboard__topics-progress-container"],
   }).getElement();
@@ -35,11 +34,8 @@ export default function progressComponent(
     ),
   );
 
-  progressContainer.append(topicsProgressContainer);
-
   const streakContainer = new ElementCreator({
     classes: ["dashboard__streak-container"],
-    parent: progressContainer,
   }).getElement();
 
   const streakText = new ParagraphCreator({
@@ -48,5 +44,5 @@ export default function progressComponent(
   }).getElement();
   streakText.textContent = `Streak: ${user.streak} days`;
 
-  return progressContainer;
+  return { topicsProgressContainer, streakContainer };
 }

@@ -5,8 +5,12 @@ import sessionComponent from "../../components/dashboard.components/session.comp
 import { PracticeSession } from "../../interfaces/practice-session.interface.js";
 import { TopicProgress } from "../../interfaces/topic-progress.interface.js";
 import { User } from "../../interfaces/user.interface.js";
+import { practiceSessionService } from "../../services/practice-session.service.js";
+import { topicProgressService } from "../../services/topic-progress.service.js";
+import { userService } from "../../services/user.service.js";
 import { RoutePath } from "../../types/route-path.enum.js";
 import ButtonCreator from "../../utils/button/button-creator.js";
+import ElementCreator from "../../utils/element-creator.js";
 import ParagraphCreator from "../../utils/paragraph/paragraph-creator.js";
 import { BasePage } from "../base-page.js";
 import "./dashboard.css";
@@ -15,13 +19,33 @@ export class DashboardPage extends BasePage {
   private currentPage = 1;
   private totalPages = 1;
   private SESSION_PER_PAGE = 3;
-  private userSessionArr: PracticeSession[] = [];
+  private USER_ID = "u1";
 
+  private userSessionArr?: PracticeSession[];
+  private userTopicArr?: TopicProgress[];
+  private user?: User | undefined;
+
+  private _userGreeting?: HTMLParagraphElement;
+  private _progressContainer?: HTMLElement;
   private _sessionsContainer?: HTMLElement;
   private pagination?: {
     container: HTMLElement;
     update: (currentPage: number, totalPages: number) => void;
   };
+
+  private get userGreeting(): HTMLElement {
+    if (!this._userGreeting) {
+      throw new Error("userGreeting is not initialized");
+    }
+    return this._userGreeting;
+  }
+
+  private get progressContainer(): HTMLElement {
+    if (!this._progressContainer) {
+      throw new Error("progressContainer is not initialized");
+    }
+    return this._progressContainer;
+  }
 
   private get sessionsContainer(): HTMLElement {
     if (!this._sessionsContainer) {
@@ -32,9 +56,13 @@ export class DashboardPage extends BasePage {
 
   private renderSessions() {
     this.sessionsContainer.innerHTML = "";
+    if (this.userSessionArr === undefined) {
+      return;
+    }
 
-    this.totalPages = Math.ceil(
-      this.userSessionArr.length / this.SESSION_PER_PAGE,
+    this.totalPages = Math.max(
+      1,
+      Math.ceil(this.userSessionArr.length / this.SESSION_PER_PAGE),
     );
 
     const start = (this.currentPage - 1) * this.SESSION_PER_PAGE;
@@ -63,174 +91,58 @@ export class DashboardPage extends BasePage {
     }
   }
 
+  private async initDashboardElements(): Promise<void> {
+    this.user = await userService.getUserById(this.USER_ID);
+    if (this.user === undefined) {
+      return;
+    }
+    this.userGreeting.textContent = `Hello, ${this.user.name}!`;
+
+    this.userTopicArr =
+      (await topicProgressService.getTopicProgressByUserId(this.user.id)) ?? [];
+    if (this.userTopicArr === undefined) {
+      return;
+    }
+
+    this.progressContainer.innerHTML = "";
+    const { topicsProgressContainer, streakContainer } = progressComponent(
+      this.user,
+      this.userTopicArr,
+    );
+    this.progressContainer.append(topicsProgressContainer);
+    this.progressContainer.append(streakContainer);
+
+    this.userSessionArr =
+      (await practiceSessionService.getPracticeSessionsByUserId(
+        this.user.id,
+      )) ?? [];
+    if (this.userSessionArr === undefined) {
+      return;
+    }
+    this.userSessionArr.sort((a, b) => {
+      return (
+        new Date(b.completedAt).getTime() - new Date(a.completedAt).getTime()
+      );
+    });
+
+    this.renderSessions();
+  }
+
   create(parent: HTMLElement): void {
     parent.append(this.container);
     this.container.classList.add("dashboard-page");
 
-    const userGreeting = new ParagraphCreator({
+    this._userGreeting = new ParagraphCreator({
       parent: this.container,
       classes: ["dashboard__user-greeting"],
     }).getElement();
+    this.userGreeting.textContent = "Hello, User!";
 
-    const tempUser: User = {
-      id: "u1",
-      name: "Ivan",
-      email: "ivan@mail.com",
-      passwordHash: "hashed",
-      xp: 120,
-      streak: 5,
-      createdAt: "2026-02-20",
-    };
-    userGreeting.textContent = `Hello, ${tempUser.name}!`;
+    this._progressContainer = new ElementCreator({
+      parent: this.container,
+      classes: ["dashboard__progress-container"],
+    }).getElement();
 
-    const topicProgressArr: TopicProgress[] = [
-      {
-        id: "p1",
-        userId: "u1",
-        topicId: "core-js",
-        topicTitle: "Core JS",
-        completedWidgetIds: ["w1", "w2"],
-        percent: 66,
-        updatedAt: "2026-02-22",
-      },
-      {
-        id: "p2",
-        userId: "u1",
-        topicId: "algorithms",
-        topicTitle: "Algorithms",
-        completedWidgetIds: ["w4"],
-        percent: 50,
-        updatedAt: "2026-02-23",
-      },
-      {
-        id: "p3",
-        userId: "u2",
-        topicId: "core-js",
-        topicTitle: "Core JS",
-        completedWidgetIds: ["w1"],
-        percent: 33,
-        updatedAt: "2026-02-22",
-      },
-      {
-        id: "p4",
-        userId: "u3",
-        topicId: "typescript",
-        topicTitle: "Typescript",
-        completedWidgetIds: ["w6", "w7"],
-        percent: 100,
-        updatedAt: "2026-02-22",
-      },
-      {
-        id: "p5",
-        userId: "u1",
-        topicId: "typescript",
-        topicTitle: "Typescript",
-        completedWidgetIds: ["w4"],
-        percent: 20,
-        updatedAt: "2026-02-22",
-      },
-      {
-        id: "p6",
-        userId: "u1",
-        topicId: "html",
-        topicTitle: "HTML",
-        completedWidgetIds: ["w1", "w3", "w4"],
-        percent: 45,
-        updatedAt: "2026-02-23",
-      },
-    ];
-
-    const sessionArr: PracticeSession[] = [
-      {
-        id: "s1",
-        userId: "u1",
-        topicId: "core-js",
-        topicTitle: "Core JS",
-        answers: [
-          { widgetId: "w1", isCorrect: true, timeSpent: 12 },
-          { widgetId: "w2", isCorrect: true, timeSpent: 8 },
-        ],
-        score: 85,
-        startedAt: "2026-02-22T10:00:00",
-        completedAt: "2026-02-22T10:10:00",
-      },
-      {
-        id: "s2",
-        userId: "u1",
-        topicId: "algorithms",
-        topicTitle: "Algorithms",
-        answers: [{ widgetId: "w4", isCorrect: true, timeSpent: 20 }],
-        score: 70,
-        startedAt: "2026-02-23T11:00:00",
-        completedAt: "2026-02-23T11:15:00",
-      },
-      {
-        id: "s3",
-        userId: "u2",
-        topicId: "core-js",
-        topicTitle: "Core JS",
-        answers: [{ widgetId: "w1", isCorrect: false, timeSpent: 15 }],
-        score: 0,
-        startedAt: "2026-02-22T12:00:00",
-        completedAt: "2026-02-22T12:05:00",
-      },
-      {
-        id: "s4",
-        userId: "u3",
-        topicId: "typescript",
-        topicTitle: "Typescript",
-        answers: [
-          { widgetId: "w6", isCorrect: true, timeSpent: 10 },
-          { widgetId: "w7", isCorrect: true, timeSpent: 12 },
-        ],
-        score: 100,
-        startedAt: "2026-02-22T09:00:00",
-        completedAt: "2026-02-22T09:20:00",
-      },
-      {
-        id: "s5",
-        userId: "u1",
-        topicId: "typescript",
-        topicTitle: "Typescript",
-        answers: [{ widgetId: "w4", isCorrect: true, timeSpent: 20 }],
-        score: 54,
-        startedAt: "2026-02-20T11:00:00",
-        completedAt: "2026-02-20T11:15:00",
-      },
-      {
-        id: "s6",
-        userId: "u1",
-        topicId: "html",
-        topicTitle: "HTML",
-        answers: [{ widgetId: "w4", isCorrect: true, timeSpent: 20 }],
-        score: 90,
-        startedAt: "2026-02-24T11:00:00",
-        completedAt: "2026-02-24T11:15:00",
-      },
-      {
-        id: "s7",
-        userId: "u1",
-        topicId: "html",
-        topicTitle: "HTML",
-        answers: [{ widgetId: "w4", isCorrect: true, timeSpent: 20 }],
-        score: 25,
-        startedAt: "2026-02-21T11:00:00",
-        completedAt: "2026-02-21T11:15:00",
-      },
-    ];
-
-    const userTopicProgressArr = topicProgressArr.filter(
-      (topicProgress) => topicProgress.userId === tempUser.id,
-    );
-    this.userSessionArr = sessionArr
-      .filter((session) => session.userId === tempUser.id)
-      .sort((a, b) => {
-        return (
-          new Date(b.completedAt).getTime() - new Date(a.completedAt).getTime()
-        );
-      });
-
-    this.container.append(progressComponent(tempUser, userTopicProgressArr));
     const { sessionHistoryContainer, sessionsContainer } =
       sessionHistoryComponent();
     this.container.append(sessionHistoryContainer);
@@ -255,6 +167,8 @@ export class DashboardPage extends BasePage {
     }).getElement();
     startPracticing.dataset.route = RoutePath.Library;
 
-    this.renderSessions();
+    this.initDashboardElements().catch(() => {
+      throw new Error("Error loading dashboard");
+    });
   }
 }
