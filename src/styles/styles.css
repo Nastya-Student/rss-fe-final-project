@@ -1,9 +1,15 @@
 :root {
   --primary-color: #078ec9;
   --secondary-color: #e7f8ff;
+
   --btn-color: #3fbdf1;
-  --bg-color: #f9f9f9;
+  --btn-text: #ffffff;
   --border-color: #f0f0f0;
+
+  --bg-color: #f9f9f9;
+  --bg-color-secondary: #fff;
+
+  --text-color: #000;
   --descr-color: #555555;
 
   --btn-disabled: #898a88;
@@ -16,6 +22,10 @@
   --spacing-2: 2rem;
   --spacing-3: 3rem;
   --spacing-4: 4rem;
+
+  --landing-cards-width: 86vh;
+  --landing-title: 3.5rem;
+  --landing-subtitle: 1.5rem;
 }
 
 * {
@@ -37,13 +47,13 @@ body {
   color: black;
   background-color: white;
   font-size: clamp(0.7rem, 1vw + 0.5rem, 1rem);
+  padding: 10px;
 }
 
 .main {
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding: 10px;
   width: 100%;
   flex: 1;
   min-height: 0;

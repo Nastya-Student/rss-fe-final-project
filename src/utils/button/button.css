@@ -8,4 +8,19 @@
   border-radius: 0.25rem;
   cursor: pointer;
   font-size: 1rem;
+  background-color: var(--btn-color);
+  color: var(--btn-text);
+  transition: all 0.4s ease;
+}
+
+.button:hover {
+  background-color: var(--primary-color);
+  transform: translateY(-1px);
+  box-shadow: 0 0.75rem 1.25rem var(--secondary-color);
+}
+
+.button:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+  transition: all 0.1s ease;
 }

@@ -9,76 +9,57 @@ main .landing-page {
 }
 
 .landing-hero {
-  min-height: 10rem;
+  padding: 3.125rem 0 1.25rem 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-top: 50px;
 }
 
 .landing-title {
-  font-size: 3.5rem;
+  font-size: var(--landing-title);
 }
 
 .landing-subtitle {
   color: var(--primary-color);
-  margin-top: 20px;
-  font-size: 1.5rem;
+  margin-top: 1.25rem;
+  font-size: var(--landing-subtitle);
 }
 
 .landing-btn-wrapper {
   display: flex;
-  gap: 10px;
+  gap: var(--spacing-0-75);
   justify-content: center;
-  margin-top: 20px;
-}
-
-.button {
-  background-color: var(--btn-color);
-  color: #fff;
-  transition: all 0.4s ease;
-}
-
-.button:hover {
-  background-color: var(--primary-color);
-  transform: translateY(-1px);
-  box-shadow: 0 12px 20px var(--secondary-color);
-}
-
-.button:focus {
-  outline: 2px solid var(--primary-color);
-  outline-offset: 2px;
-  transition: all 0.1s ease;
+  margin-top: 1.25rem;
 }
 
 .landing-widget-cards {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 1.25rem;
   justify-content: center;
-  margin: 30px auto;
+  margin: 1.875rem auto;
   padding: 0;
   list-style: none;
-  max-width: 1200px;
+  max-width: 86vw;
 }
 
 .landing-widget-card {
   display: block;
-  min-width: 220px;
-  max-width: 260px;
-  padding: 24px 20px;
-  border-radius: 16px;
-  background: white;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  min-width: 13.75rem;
+  max-width: 16.25rem;
+  padding: 1.5rem 1.25rem;
+  border-radius: 1rem;
+  background: var(--bg-color-secondary);
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
   border: 1px solid var(--border-color);
   list-style: none;
 }
 
 .landing-widget-title {
-  color: #000000;
+  color: var(--text-color);
   font-size: 1.3rem;
-  margin: 0 0 4px 0;
+  margin: 0 0 0.25rem 0;
   font-weight: 600;
 }
 
@@ -87,11 +68,11 @@ main .landing-page {
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  margin-bottom: 16px;
+  margin-bottom: 1rem;
   display: inline-block;
   background: var(--secondary-color);
-  padding: 4px 12px;
-  border-radius: 30px;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1.875rem;
   font-weight: 500;
 }
 
@@ -103,7 +84,7 @@ main .landing-page {
 }
 
 .landing-topics {
-  padding: 50px 0;
+  padding: 3.125rem 0;
   background-color: var(--secondary-color);
 }
 
@@ -113,12 +94,12 @@ main .landing-page {
 
 .landing-topics-list {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 1.25rem;
 }
 
 .landing-topics-item {
   justify-content: center;
-  margin-top: 10px;
+  margin-top: 0.625rem;
   color: var(--primary-color);
   font-size: 1.5rem;
 }
@@ -126,12 +107,12 @@ main .landing-page {
 .landing-topics-item::before {
   content: "✓";
   font-size: 1.5rem;
-  color: #000000;
+  color: var(--text-color);
 }
 
 .landing-motivation {
-  padding: 50px 0;
-  background-color: #fff;
+  padding: 3.125rem 0;
+  background-color: var(--bg-color-secondary);
 }
 
 .motivation-topics-title {
