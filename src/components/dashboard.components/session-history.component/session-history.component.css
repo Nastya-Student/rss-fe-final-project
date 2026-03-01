@@ -1,14 +1,14 @@
 .dashboard__session-history-container {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: var(--spacing-0-6);
 }
 
 .dashboard__sessions-container {
   min-height: 7.5rem;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: var(--spacing-0-6);
 }
 
 .dashboard__session-history-paragraph {

@@ -1,13 +1,13 @@
 .dashboard-page {
   flex-direction: column;
   flex: 1;
-  padding: 20px;
-  gap: 15px;
+  padding: var(--spacing-1-25);
+  gap: var(--spacing-1-25);
 }
 
 .dashboard__user-greeting {
   font-size: 1.5rem;
-  padding: 20px 0;
+  padding: var(--spacing-1-25) 0;
 }
 
 .dashboard__start-practicing {

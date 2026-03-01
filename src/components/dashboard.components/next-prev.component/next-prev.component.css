@@ -1,9 +1,9 @@
 .next-prev-container {
   display: flex;
-  gap: 40px;
+  gap: var(--spacing-2-5);
   justify-content: center;
   align-items: center;
-  padding-bottom: 20px;
+  padding-bottom: var(--spacing-1-25);
 }
 
 .page-counter {
@@ -12,11 +12,5 @@
 
 .prev-button,
 .next-button {
-  padding: 5px 10px;
-}
-
-.prev-button.no-active,
-.next-button.no-active {
-  opacity: 20%;
-  cursor: not-allowed;
+  padding: var(--spacing-0-3) var(--spacing-0-6);
 }
