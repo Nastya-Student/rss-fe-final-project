@@ -12,15 +12,13 @@
 
 .dashboard__start-practicing {
   width: fit-content;
-  background-color: transparent;
-  border: 1px solid black;
-  font-size: 1rem;
-  padding: 10px 15px;
-  border-radius: 10px;
-  transition: 0.3s ease;
 }
 
-.dashboard__start-practicing:hover {
-  color: white;
-  background-color: black;
+.dashboard__card-element {
+  padding: 1.2rem 1rem;
+  border-radius: 1rem;
+  background: var(--bg-color-secondary);
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  border: 1px solid var(--border-color);
 }

@@ -15,7 +15,10 @@ export default function progressComponent(
   streakContainer: HTMLElement;
 } {
   const topicsProgressContainer = new ElementCreator({
-    classes: ["dashboard__topics-progress-container"],
+    classes: [
+      "dashboard__topics-progress-container",
+      "dashboard__card-element",
+    ],
   }).getElement();
 
   let totalPercent = 0;
@@ -35,7 +38,7 @@ export default function progressComponent(
   );
 
   const streakContainer = new ElementCreator({
-    classes: ["dashboard__streak-container"],
+    classes: ["dashboard__streak-container", "dashboard__card-element"],
   }).getElement();
 
   const streakText = new ParagraphCreator({

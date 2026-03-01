@@ -17,7 +17,7 @@ export default function sessionHistoryComponent(): {
   sessionHistoryTitle.textContent = "Session history";
 
   const sessionsContainer = new ElementCreator({
-    classes: ["dashboard__sessions-container"],
+    classes: ["dashboard__sessions-container", "dashboard__card-element"],
     parent: sessionHistoryContainer,
   }).getElement();
 

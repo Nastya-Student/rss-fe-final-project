@@ -29,8 +29,25 @@
 }
 
 .dashboard__topic-progress {
+  max-height: 5px;
   flex: 1 1 auto;
   min-width: 0;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.dashboard__topic-progress::-webkit-progress-bar {
+  background-color: #eee;
+  border-radius: 10px;
+}
+
+.dashboard__topic-progress::-webkit-progress-value {
+  background-color: var(--primary-color);
+  border-radius: 10px;
+}
+
+.dashboard__topic-progress::-moz-progress-bar {
+  background-color: var(--primary-color);
 }
 
 .dashboard__topic-percent {

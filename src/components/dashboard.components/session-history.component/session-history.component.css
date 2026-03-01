@@ -5,12 +5,9 @@
 }
 
 .dashboard__sessions-container {
-  min-height: 83px;
+  min-height: 7.5rem;
   display: flex;
   flex-direction: column;
-  padding: 10px 10px;
-  border: 1px solid black;
-  border-radius: 10px;
   gap: 10px;
 }
 

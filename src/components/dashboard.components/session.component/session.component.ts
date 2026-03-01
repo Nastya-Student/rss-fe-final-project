@@ -34,6 +34,7 @@ export default function sessionComponent(
     classes: ["dashboard__session-topic-button", "button"],
     parent: sessionContainer,
   }).getElement();
+  sessionTopicButton.textContent = "→";
   sessionTopicButton.dataset.route = `/practice/${session.topicId}`;
 
   return sessionContainer;
