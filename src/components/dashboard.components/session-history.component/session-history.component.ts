@@ -1,3 +1,7 @@
+import {
+  CLASS_NAMES_DASHBOARD,
+  STRING_CONSTANTS_DASHBOARD,
+} from "../../../pages/dashboard.page/dashboard.page.js";
 import ElementCreator from "../../../utils/element-creator.js";
 import ParagraphCreator from "../../../utils/paragraph/paragraph-creator.js";
 import "./session-history.component.css";
@@ -7,17 +11,20 @@ export default function sessionHistoryComponent(): {
   sessionsContainer: HTMLElement;
 } {
   const sessionHistoryContainer = new ElementCreator({
-    classes: ["dashboard__session-history-container"],
+    classes: [CLASS_NAMES_DASHBOARD.sessionHistoryContainer],
   }).getElement();
 
   const sessionHistoryTitle = new ParagraphCreator({
-    classes: ["dashboard__session-history-paragraph"],
+    classes: [CLASS_NAMES_DASHBOARD.sessionHistoryParagraph],
     parent: sessionHistoryContainer,
   }).getElement();
-  sessionHistoryTitle.textContent = "Session history";
+  sessionHistoryTitle.textContent = STRING_CONSTANTS_DASHBOARD.sessionHistory;
 
   const sessionsContainer = new ElementCreator({
-    classes: ["dashboard__sessions-container", "dashboard__card-element"],
+    classes: [
+      CLASS_NAMES_DASHBOARD.sessionsContainer,
+      CLASS_NAMES_DASHBOARD.cardElement,
+    ],
     parent: sessionHistoryContainer,
   }).getElement();
 

@@ -1,7 +1,10 @@
+import {
+  CLASS_NAMES_DASHBOARD,
+  STRING_CONSTANTS_DASHBOARD,
+} from "../../../pages/dashboard.page/dashboard.page.js";
 import ElementCreator from "../../../utils/element-creator.js";
 import ParagraphCreator from "../../../utils/paragraph/paragraph-creator.js";
 import ProgressCreator from "../../../utils/progress/progress-creator.js";
-import { TOTAL_PROGRESS } from "../progress.component/progress.component.js";
 import "./progress-bar.component.css";
 
 export default function progressBarComponent(
@@ -9,17 +12,17 @@ export default function progressBarComponent(
   progressPercent: number,
 ): HTMLElement {
   const progressTopicContainer = new ElementCreator({
-    classes: ["dashboard__progress-topic-container"],
+    classes: [CLASS_NAMES_DASHBOARD.progressTopicContainer],
   }).getElement();
 
   const topicTitle = new ParagraphCreator({
     parent: progressTopicContainer,
-    classes: ["dashboard__progress-topic-title"],
+    classes: [CLASS_NAMES_DASHBOARD.progressTopicTitle],
   }).getElement();
   topicTitle.textContent = progressTitle;
 
   const progressPercentContainer = new ElementCreator({
-    classes: ["dashboard__topic-progress-percent-container"],
+    classes: [CLASS_NAMES_DASHBOARD.topicProgressPercentContainer],
     parent: progressTopicContainer,
   }).getElement();
 
@@ -27,20 +30,20 @@ export default function progressBarComponent(
     max: 100,
     value: progressPercent,
     parent: progressPercentContainer,
-    classes: ["dashboard__topic-progress"],
+    classes: [CLASS_NAMES_DASHBOARD.topicProgress],
   }).getElement();
 
   const topicPercent = new ParagraphCreator({
     parent: progressPercentContainer,
-    classes: ["dashboard__topic-percent"],
+    classes: [CLASS_NAMES_DASHBOARD.topicPercent],
   }).getElement();
 
-  topicPercent.textContent = `${progressPercent}%`;
+  topicPercent.textContent = `${progressPercent}${STRING_CONSTANTS_DASHBOARD.percent}`;
 
-  if (progressTitle === TOTAL_PROGRESS) {
-    progressTopicContainer.classList.add("dashboard__total-progress");
-    progressPercentContainer.classList.add("dashboard__total-progress");
-    topicPercent.classList.add("dashboard__total-progress");
+  if (progressTitle === STRING_CONSTANTS_DASHBOARD.totalProgress) {
+    progressTopicContainer.classList.add(CLASS_NAMES_DASHBOARD.totalProgress);
+    progressPercentContainer.classList.add(CLASS_NAMES_DASHBOARD.totalProgress);
+    topicPercent.classList.add(CLASS_NAMES_DASHBOARD.totalProgress);
   }
 
   return progressTopicContainer;
