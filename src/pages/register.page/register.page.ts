@@ -9,24 +9,19 @@ export class RegisterPage extends BasePage {
     parent.append(this.container);
     this.container.classList.add("auth-wrapper");
 
-    const card = createElement("div", {
-      className: "auth-card",
-    });
+    const card = createElement("div", { className: "auth-card" });
+    const pageTitle = createElement("h2", { textContent: "Register" });
+    const form = createElement("form", { className: "auth-form" });
 
-    const pageTitle = createElement("h2", {
-      textContent: "Register",
-    });
-
-    const form = createElement("form", {
-      className: "auth-form",
-    });
+    const createField = (input: HTMLInputElement) => {
+      const wrapper = createElement("div", { className: "form-field" });
+      const error = createElement("p", { className: "field-error" });
+      wrapper.append(input, error);
+      return { wrapper, error };
+    };
 
     const nameInput = createElement("input", {
-      attrs: {
-        type: "text",
-        placeholder: "Name",
-        required: true,
-      },
+      attrs: { type: "text", placeholder: "Name", required: true },
     });
 
     const emailInput = createElement("input", {
@@ -34,6 +29,7 @@ export class RegisterPage extends BasePage {
         type: "email",
         placeholder: "Email",
         required: true,
+        autocomplete: "email",
       },
     });
 
@@ -42,6 +38,7 @@ export class RegisterPage extends BasePage {
         type: "password",
         placeholder: "Password",
         required: true,
+        autocomplete: "new-password",
       },
     });
 
@@ -50,17 +47,32 @@ export class RegisterPage extends BasePage {
         type: "password",
         placeholder: "Confirm Password",
         required: true,
+        autocomplete: "new-password",
       },
     });
 
+    const nameField = createField(nameInput);
+    const emailField = createField(emailInput);
+    const passwordField = createField(passwordInput);
+    const confirmField = createField(confirmPasswordInput);
+
     const submitButton = createElement("button", {
       textContent: "Create Account",
-      attrs: { type: "submit" },
+      attrs: { type: "submit", disabled: true },
     });
 
-    const errorMessage = createElement("p", {
-      className: "auth-error",
-    });
+    const updateSubmitState = () => {
+      submitButton.disabled =
+        !nameInput.value.trim() ||
+        !emailInput.value.trim() ||
+        !passwordInput.value ||
+        !confirmPasswordInput.value;
+    };
+
+    nameInput.addEventListener("input", updateSubmitState);
+    emailInput.addEventListener("input", updateSubmitState);
+    passwordInput.addEventListener("input", updateSubmitState);
+    confirmPasswordInput.addEventListener("input", updateSubmitState);
 
     form.addEventListener("submit", (e) => {
       e.preventDefault();
@@ -69,7 +81,10 @@ export class RegisterPage extends BasePage {
         emailInput,
         passwordInput,
         confirmPasswordInput,
-        errorMessage,
+        nameField.error,
+        emailField.error,
+        passwordField.error,
+        confirmField.error,
         submitButton,
       );
     });
@@ -86,17 +101,18 @@ export class RegisterPage extends BasePage {
     loginButton.dataset.route = RoutePath.Login;
 
     form.append(
-      nameInput,
-      emailInput,
-      passwordInput,
-      confirmPasswordInput,
+      nameField.wrapper,
+      emailField.wrapper,
+      passwordField.wrapper,
+      confirmField.wrapper,
       submitButton,
-      errorMessage,
     );
 
     switchBlock.append(loginButton);
     card.append(pageTitle, form, switchBlock);
     this.container.append(card);
+
+    nameInput.focus();
   }
 
   private async handleSubmit(
@@ -104,33 +120,84 @@ export class RegisterPage extends BasePage {
     emailInput: HTMLInputElement,
     passwordInput: HTMLInputElement,
     confirmPasswordInput: HTMLInputElement,
-    errorMessage: HTMLElement,
+    nameError: HTMLElement,
+    emailError: HTMLElement,
+    passwordError: HTMLElement,
+    confirmError: HTMLElement,
     submitButton: HTMLButtonElement,
   ): Promise<void> {
     const name = nameInput.value.trim();
-    const email = emailInput.value.trim();
+    const email = emailInput.value.trim().toLowerCase();
     const password = passwordInput.value;
     const confirmPassword = confirmPasswordInput.value;
 
-    if (!name || !email || !password || !confirmPassword) return;
+    for (const el of [nameError, emailError, passwordError, confirmError]) {
+      el.textContent = "";
+    }
+
+    for (const input of [
+      nameInput,
+      emailInput,
+      passwordInput,
+      confirmPasswordInput,
+    ]) {
+      input.classList.remove("input-error");
+    }
+
+    if (!name) {
+      nameError.textContent = "Name is required";
+      nameInput.classList.add("input-error");
+      return;
+    }
+
+    if (!email) {
+      emailError.textContent = "Email is required";
+      emailInput.classList.add("input-error");
+      return;
+    }
+
+    if (!email.includes("@")) {
+      emailError.textContent = "Invalid email format";
+      emailInput.classList.add("input-error");
+      return;
+    }
+
+    if (password.length < 6) {
+      passwordError.textContent = "Password must be at least 6 characters";
+      passwordInput.classList.add("input-error");
+      return;
+    }
 
     if (password !== confirmPassword) {
-      errorMessage.textContent = "Passwords do not match";
+      confirmError.textContent = "Passwords do not match";
+      confirmPasswordInput.classList.add("input-error");
       return;
     }
 
-    submitButton.setAttribute("disabled", "true");
-    errorMessage.textContent = "";
+    submitButton.disabled = true;
+    submitButton.textContent = "Creating account...";
 
-    const { error } = await register(email, password, name);
+    try {
+      const { error } = await register(email, password, name);
 
-    submitButton.removeAttribute("disabled");
+      if (error) {
+        emailError.textContent = error.message;
+        emailInput.classList.add("input-error");
+        return;
+      }
 
-    if (error) {
-      errorMessage.textContent = error.message;
-      return;
+      window.location.hash = RoutePath.Dashboard;
+    } catch {
+      emailError.textContent = "Network error. Please try again.";
+      emailInput.classList.add("input-error");
+    } finally {
+      submitButton.disabled =
+        !nameInput.value.trim() ||
+        !emailInput.value.trim() ||
+        !passwordInput.value ||
+        !confirmPasswordInput.value;
+
+      submitButton.textContent = "Create Account";
     }
-
-    window.location.hash = RoutePath.Dashboard;
   }
 }
