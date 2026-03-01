@@ -1,0 +1,17 @@
+.dashboard__progress-container {
+  width: 100%;
+  display: flex;
+  padding-bottom: var(--spacing-0-6);
+  gap: var(--spacing-0-6);
+  justify-content: space-evenly;
+}
+
+.dashboard__topics-progress-container,
+.dashboard__streak-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-0-3);
+  flex: 1;
+}

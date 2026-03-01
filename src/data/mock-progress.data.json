@@ -34,5 +34,23 @@
     "completedWidgetIds": ["w6", "w7"],
     "percent": 100,
     "updatedAt": "2026-02-22"
+  },
+  {
+    "id": "p5",
+    "userId": "u1",
+    "topicId": "typescript",
+    "topicTitle": "Typescript",
+    "completedWidgetIds": ["w4"],
+    "percent": 20,
+    "updatedAt": "2026-02-22"
+  },
+  {
+    "id": "p6",
+    "userId": "u1",
+    "topicId": "html",
+    "topicTitle": "HTML",
+    "completedWidgetIds": ["w1", "w3", "w4"],
+    "percent": 45,
+    "updatedAt": "2026-02-23"
   }
 ]

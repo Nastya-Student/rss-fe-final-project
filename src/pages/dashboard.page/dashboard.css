@@ -1,0 +1,24 @@
+.dashboard-page {
+  flex-direction: column;
+  flex: 1;
+  padding: var(--spacing-1-25);
+  gap: var(--spacing-1-25);
+}
+
+.dashboard__user-greeting {
+  font-size: 1.5rem;
+  padding: var(--spacing-1-25) 0;
+}
+
+.dashboard__start-practicing {
+  width: fit-content;
+}
+
+.dashboard__card-element {
+  padding: 1.2rem 1rem;
+  border-radius: 1rem;
+  background: var(--bg-color-secondary);
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  border: 1px solid var(--border-color);
+}
