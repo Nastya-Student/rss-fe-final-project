@@ -1,0 +1,121 @@
+main .landing-page {
+  background-color: var(--bg-color);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.landing-wrapper {
+  text-align: center;
+  width: 100%;
+}
+
+.landing-hero {
+  padding: 3.125rem 0 1.25rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.landing-title {
+  font-size: var(--landing-title);
+}
+
+.landing-subtitle {
+  color: var(--primary-color);
+  margin-top: 1.25rem;
+  font-size: var(--landing-subtitle);
+}
+
+.landing-btn-wrapper {
+  display: flex;
+  gap: var(--spacing-0-75);
+  justify-content: center;
+  margin-top: 1.25rem;
+}
+
+.landing-widget-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  justify-content: center;
+  margin: 1.875rem auto;
+  padding: 0;
+  list-style: none;
+  max-width: 86vw;
+}
+
+.landing-widget-card {
+  display: block;
+  min-width: 13.75rem;
+  max-width: 16.25rem;
+  padding: 1.5rem 1.25rem;
+  border-radius: 1rem;
+  background: var(--bg-color-secondary);
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  border: 1px solid var(--border-color);
+  list-style: none;
+}
+
+.landing-widget-title {
+  color: var(--text-color);
+  font-size: 1.3rem;
+  margin: 0 0 0.25rem 0;
+  font-weight: 600;
+}
+
+.landing-widget-type {
+  color: var(--primary-color);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 1rem;
+  display: inline-block;
+  background: var(--secondary-color);
+  padding: 0.25rem 0.75rem;
+  border-radius: 1.875rem;
+  font-weight: 500;
+}
+
+.landing-widget-description {
+  color: var(--descr-color);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.landing-topics {
+  padding: 3.125rem 0;
+  background-color: var(--secondary-color);
+}
+
+.landing-topics-title {
+  font-size: 2rem;
+}
+
+.landing-topics-list {
+  text-align: center;
+  margin-top: 1.25rem;
+}
+
+.landing-topics-item {
+  justify-content: center;
+  margin-top: 0.625rem;
+  color: var(--primary-color);
+  font-size: 1.5rem;
+}
+
+.landing-topics-item::before {
+  content: "✓";
+  font-size: 1.5rem;
+  color: var(--text-color);
+}
+
+.landing-motivation {
+  padding: 3.125rem 0;
+  background-color: var(--bg-color-secondary);
+}
+
+.motivation-topics-title {
+  font-size: 3rem;
+  color: var(--primary-color);
+}
