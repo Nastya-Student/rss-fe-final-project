@@ -1,5 +1,7 @@
 # Tandem
 
+[deploy](https://rss-fe-final-project-nydnjjsdv-nastya-students-projects.vercel.app/)
+
 Название проекта - Tandem.
 За основу проекта взяли пример [01-widget-trainer](https://github.com/rolling-scopes-school/tasks/blob/master/stage2/tasks/rs-tandem/examples/01-widget-trainer/README.md) из репозитория школы.
 Приложение представляет собой SPA для подготовки к интервью и будет включать страницы:
