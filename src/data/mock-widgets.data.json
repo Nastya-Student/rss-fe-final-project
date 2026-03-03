@@ -3,7 +3,6 @@
     "id": "w1",
     "topicId": "core-js",
     "type": "quiz",
-    "version": 1,
     "difficulty": 1,
     "tags": ["core-js"],
     "payload": {
@@ -17,7 +16,6 @@
     "id": "w2",
     "topicId": "core-js",
     "type": "true-false",
-    "version": 1,
     "difficulty": 1,
     "tags": ["core-js"],
     "payload": {
@@ -31,7 +29,6 @@
     "id": "w3",
     "topicId": "typescript",
     "type": "code-completion",
-    "version": 1,
     "difficulty": 1,
     "tags": ["typescript"],
     "payload": {
@@ -45,7 +42,6 @@
     "id": "w4",
     "topicId": "algorithms",
     "type": "code-ordering",
-    "version": 1,
     "difficulty": 2,
     "tags": ["algorithms"],
     "payload": {
@@ -67,7 +63,6 @@
     "id": "w5",
     "topicId": "typescript",
     "type": "memory-game",
-    "version": 1,
     "difficulty": 3,
     "tags": ["typescript", "gc"],
     "payload": {
@@ -86,7 +81,6 @@
     "id": "w6",
     "topicId": "algorithms",
     "type": "stack-builder",
-    "version": 1,
     "difficulty": 2,
     "tags": ["algorithms", "recursion"],
     "payload": {
@@ -104,7 +98,6 @@
     "id": "w7",
     "topicId": "core-js",
     "type": "async-sorter",
-    "version": 1,
     "difficulty": 2,
     "tags": ["core-js", "event-loop"],
     "payload": {

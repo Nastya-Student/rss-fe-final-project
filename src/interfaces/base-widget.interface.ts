@@ -4,7 +4,6 @@ export interface BaseWidget<TPayload, TType extends WidgetType> {
   id: string;
   topicId: string;
   type: TType;
-  version: number;
   difficulty: 1 | 2 | 3;
   tags: string[];
   payload: TPayload;

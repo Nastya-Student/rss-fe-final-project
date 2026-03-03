@@ -20,7 +20,6 @@ export function isBaseWidget(obj: unknown): obj is Widget {
     hasStringProp(obj, "topicId") &&
     "type" in obj &&
     isWidgetType(obj.type) &&
-    hasNumberProp(obj, "version") &&
     hasNumberProp(obj, "difficulty") &&
     "tags" in obj &&
     isStringArray(obj.tags)
