@@ -1,20 +1,18 @@
-import type { BaseWidget } from "../interfaces/base-widget.interface.js";
 import widgetsMock from "../data/mock-widgets.data.json" with { type: "json" };
-import { isBaseWidgetArray } from "../guards/base-widget.guards.js";
 import { BaseDataService } from "./base-data.service.js";
+import { Widget } from "../types/widget.type.js";
+import { isWidgetArray } from "../guards/widget.guards.js";
 
-class WidgetService extends BaseDataService<BaseWidget> {
-  protected endpoint = "users";
+class WidgetService extends BaseDataService<Widget> {
+  protected endpoint = "widgets";
   protected mockData: unknown = widgetsMock;
-  protected isValid = isBaseWidgetArray;
+  protected isValid = isWidgetArray;
 
-  async getWidgets(): Promise<BaseWidget[] | undefined> {
+  async getWidgets(): Promise<Widget[] | undefined> {
     return this.getAll();
   }
 
-  async getWidgetsByTopicId(
-    topicId: string,
-  ): Promise<BaseWidget[] | undefined> {
+  async getWidgetsByTopicId(topicId: string): Promise<Widget[] | undefined> {
     const widgets = await this.getAll();
     return widgets?.filter((widget) => widget.topicId === topicId);
   }
