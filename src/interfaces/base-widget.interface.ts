@@ -1,8 +1,10 @@
-import { Widget } from "../types/widget.type.js";
+import { WidgetType } from "../types/widget-type.type.js";
 
-export interface BaseWidget {
+export interface BaseWidget<TPayload, TType extends WidgetType> {
   id: string;
   topicId: string;
-  type: Widget;
-  title: string;
+  type: TType;
+  difficulty: 1 | 2 | 3;
+  tags: string[];
+  payload: TPayload;
 }
