@@ -3,13 +3,13 @@ import {
   EVENT,
   HEADINGS_THREE,
   HEADINGS_TWO,
-} from "../../../constants.js";
-import { QuizPayload } from "../../../interfaces/widget-payload.interfaces.js";
-import { QuizAnswer } from "../../../interfaces/widget-user-answer.interfaces.js";
-import ButtonCreator from "../../../utils/button/button-creator.js";
-import ElementCreator from "../../../utils/element-creator.js";
-import HeadingsCreator from "../../../utils/headings/headings-creator.js";
-import ParagraphCreator from "../../../utils/paragraph/paragraph-creator.js";
+} from "../../constants.js";
+import { QuizPayload } from "../../interfaces/widget-payload.interfaces.js";
+import { QuizAnswer } from "../../interfaces/widget-user-answer.interfaces.js";
+import ButtonCreator from "../../utils/button/button-creator.js";
+import ElementCreator from "../../utils/element-creator.js";
+import HeadingsCreator from "../../utils/headings/headings-creator.js";
+import ParagraphCreator from "../../utils/paragraph/paragraph-creator.js";
 import "./quiz.widget.css";
 
 export default function quizWidget(

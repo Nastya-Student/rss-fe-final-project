@@ -3,13 +3,13 @@ import {
   EVENT,
   HEADINGS_THREE,
   HEADINGS_TWO,
-} from "../../../constants.js";
-import { MemoryGamePayload } from "../../../interfaces/widget-payload.interfaces.js";
-import { MemoryGameAnswer } from "../../../interfaces/widget-user-answer.interfaces.js";
-import ButtonCreator from "../../../utils/button/button-creator.js";
-import ElementCreator from "../../../utils/element-creator.js";
-import HeadingsCreator from "../../../utils/headings/headings-creator.js";
-import ParagraphCreator from "../../../utils/paragraph/paragraph-creator.js";
+} from "../../constants.js";
+import { MemoryGamePayload } from "../../interfaces/widget-payload.interfaces.js";
+import { MemoryGameAnswer } from "../../interfaces/widget-user-answer.interfaces.js";
+import ButtonCreator from "../../utils/button/button-creator.js";
+import ElementCreator from "../../utils/element-creator.js";
+import HeadingsCreator from "../../utils/headings/headings-creator.js";
+import ParagraphCreator from "../../utils/paragraph/paragraph-creator.js";
 import "./memory-game.widget.css";
 
 export default function memoryGameWidget(
