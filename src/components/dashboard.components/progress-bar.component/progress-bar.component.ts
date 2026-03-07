@@ -28,7 +28,7 @@ export default function progressBarComponent(
     parent: progressTopicContainer,
   }).getElement();
 
-  new ProgressCreator({
+  const progress = new ProgressCreator({
     max: 100,
     value: progressPercent,
     parent: progressPercentContainer,
@@ -45,6 +45,7 @@ export default function progressBarComponent(
     progressTopicContainer.classList.add(CLASS_NAMES_DASHBOARD.totalProgress);
     progressPercentContainer.classList.add(CLASS_NAMES_DASHBOARD.totalProgress);
     topicPercent.classList.add(CLASS_NAMES_DASHBOARD.totalProgress);
+    progress.classList.add(CLASS_NAMES_DASHBOARD.totalProgress);
   }
 
   return progressTopicContainer;

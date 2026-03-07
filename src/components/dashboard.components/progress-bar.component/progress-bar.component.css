@@ -52,6 +52,14 @@
   background-color: var(--primary-color);
 }
 
+.dashboard__topic-progress.dashboard__total-progress::-webkit-progress-value {
+  background-color: var(--total-progress-color);
+}
+
+.dashboard__topic-progress.dashboard__total-progress::-moz-progress-bar {
+  background-color: var(--total-progress-color);
+}
+
 .dashboard__topic-percent {
   flex: 0 0 25%;
   text-align: right;
