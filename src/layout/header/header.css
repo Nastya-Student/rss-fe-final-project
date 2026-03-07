@@ -1,0 +1,84 @@
+.header {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  min-height: 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+}
+
+.logo {
+  display: flex;
+  color: #000;
+  gap: 5px;
+  align-items: center;
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.logo-svg {
+  display: flex;
+  align-items: center;
+}
+
+.logo-svg svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  stroke: currentColor;
+}
+
+.logo-text {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 1.2rem;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.header-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav {
+  display: flex;
+}
+
+.nav-list {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-link {
+  color: var(--primary-color);
+}
+
+.button-header {
+  height: 2rem;
+}
+
+.button-theme,
+.button-lang {
+  align-items: center;
+  width: 2rem;
+  height: 2rem;
+  color: var(--btn-color);
+  background-color: var(--bg-color-secondary);
+  border: 1px solid var(--btn-color);
+}
+
+.button-theme svg {
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+.button-theme:hover svg {
+  color: var(--text-color);
+}
