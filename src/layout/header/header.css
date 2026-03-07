@@ -2,9 +2,11 @@
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background-color: var(--secondary-color);
   color: var(--primary-color);
-  min-height: 40px;
+  min-height: 2.5rem;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
 }
 
 .logo {
@@ -12,11 +14,11 @@
   color: #000;
   gap: 5px;
   align-items: center;
-  margin-left: 20px;
 }
 
 .logo-link {
   display: flex;
+  align-items: center;
   gap: 3px;
 }
 
@@ -26,19 +28,21 @@
 }
 
 .logo-svg svg {
-  width: 25px;
-  height: 25px;
+  width: 1.5rem;
+  height: 1.5rem;
+  stroke: currentColor;
 }
 
 .logo-text {
   font-family: Georgia, "Times New Roman", Times, serif;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-style: italic;
   font-weight: 600;
 }
 
 .header-wrapper {
   display: flex;
+  align-items: center;
   gap: 10px;
 }
 
@@ -56,7 +60,25 @@
   color: var(--primary-color);
 }
 
+.button-header {
+  height: 2rem;
+}
+
+.button-theme,
+.button-lang {
+  align-items: center;
+  width: 2rem;
+  height: 2rem;
+  color: var(--btn-color);
+  background-color: var(--bg-color-secondary);
+  border: 1px solid var(--btn-color);
+}
+
 .button-theme svg {
-  width: 25px;
-  height: 25px;
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+.button-theme:hover svg {
+  color: var(--text-color);
 }
