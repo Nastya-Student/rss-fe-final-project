@@ -1,7 +1,45 @@
 .header {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  min-height: 40px;
   display: flex;
-  min-height: 2.5rem;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  color: #000;
+  gap: 5px;
+  align-items: center;
+  margin-left: 20px;
+}
+
+.logo-link {
+  display: flex;
+  gap: 3px;
+}
+
+.logo-svg {
+  display: flex;
+  align-items: center;
+}
+
+.logo-svg svg {
+  width: 25px;
+  height: 25px;
+}
+
+.logo-text {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 1.5rem;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.header-wrapper {
+  display: flex;
+  gap: 10px;
 }
 
 .nav {
@@ -12,4 +50,13 @@
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+.nav-link {
+  color: var(--primary-color);
+}
+
+.button-theme svg {
+  width: 25px;
+  height: 25px;
 }
