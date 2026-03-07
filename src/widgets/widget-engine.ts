@@ -1,6 +1,6 @@
+import resultsScreenComponent from "../components/practice.components/results-screen.component/results-screen.component.js";
 import { CLASS_NAME, EVENT } from "../constants.js";
 import { WidgetStrategy } from "../interfaces/widget-strategy.interface.js";
-import { RoutePath } from "../types/route-path.enum.js";
 import { WidgetType } from "../types/widget-type.type.js";
 import { Widget, WidgetAnswerMap, WidgetMap } from "../types/widget.type.js";
 import ButtonCreator from "../utils/button/button-creator.js";
@@ -89,7 +89,9 @@ export class WidgetEngine {
       this.currentIndex += 1;
 
       if (this.currentIndex >= this.widgets.length) {
-        this.renderResultsScreen();
+        this.container.innerHTML = "";
+        this.widgetContainer.innerHTML = "";
+        this.container.append(resultsScreenComponent());
         return;
       }
 
@@ -106,26 +108,5 @@ export class WidgetEngine {
     if (widget) {
       this.render(widget);
     }
-  }
-
-  private renderResultsScreen() {
-    this.container.innerHTML = "";
-    this.widgetContainer.innerHTML = "";
-    const resultsScreenContainer = new ElementCreator({
-      parent: this.container,
-      classes: ["results-screen-container"],
-    }).getElement();
-
-    new ParagraphCreator({
-      parent: resultsScreenContainer,
-      text: "Results Screen",
-    }).getElement();
-
-    const libraryButton = new ButtonCreator({
-      parent: resultsScreenContainer,
-      text: "Go back to Library",
-      classes: [CLASS_NAME.button],
-    }).getElement();
-    libraryButton.dataset.route = RoutePath.Library;
   }
 }
