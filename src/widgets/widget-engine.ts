@@ -14,6 +14,10 @@ import { quizStrategy } from "./quiz.widget/quiz.strategy.js";
 import { stackBuilderStrategy } from "./stack-builder.widget/stack-builder.strategy.js";
 import { trueFalseStrategy } from "./true-false.widget/true-false.strategy.js";
 import "../pages/practice.page/practice.page.css";
+import {
+  CLASS_NAMES_PRACTICE,
+  STRING_CONSTANTS_PRACTICE,
+} from "../pages/practice.page/practice.page.js";
 
 const widgetStrategies: {
   [K in WidgetType]: WidgetStrategy<WidgetMap[K], WidgetAnswerMap[K]>;
@@ -38,7 +42,7 @@ export class WidgetEngine {
     this.container = container;
     this.widgetContainer = new ElementCreator({
       parent: this.container,
-      classes: ["practice__widget-container"],
+      classes: [CLASS_NAMES_PRACTICE.widgetContainer],
     }).getElement();
   }
 
@@ -68,20 +72,24 @@ export class WidgetEngine {
   private showResult(correct: boolean) {
     const resultText = new ParagraphCreator({
       parent: this.widgetContainer,
-      classes: ["practice__widget-result-text", CLASS_NAME.cardElement],
-      text: correct ? "Correct" : "Wrong",
+      classes: [CLASS_NAMES_PRACTICE.widgetResultText, CLASS_NAME.cardElement],
+      text: correct
+        ? STRING_CONSTANTS_PRACTICE.correctAnswer
+        : STRING_CONSTANTS_PRACTICE.wrongAnswer,
     }).getElement();
 
-    resultText.classList.add(correct ? "correct" : "wrong");
+    resultText.classList.add(
+      correct ? CLASS_NAMES_PRACTICE.correct : CLASS_NAMES_PRACTICE.wrong,
+    );
 
     const nextButton = new ButtonCreator({
       parent: this.widgetContainer,
-      text: "Next",
+      text: STRING_CONSTANTS_PRACTICE.next,
       classes: [CLASS_NAME.button],
     }).getElement();
 
     if (this.currentIndex >= this.widgets.length - 1) {
-      nextButton.textContent = "Go to Results";
+      nextButton.textContent = STRING_CONSTANTS_PRACTICE.goToResults;
     }
 
     nextButton.addEventListener(EVENT.click, () => {

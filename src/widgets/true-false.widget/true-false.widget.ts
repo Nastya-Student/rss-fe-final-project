@@ -6,6 +6,10 @@ import {
 } from "../../constants.js";
 import { TrueFalsePayload } from "../../interfaces/widget-payload.interfaces.js";
 import { TrueFalseAnswer } from "../../interfaces/widget-user-answer.interfaces.js";
+import {
+  CLASS_NAMES_PRACTICE,
+  STRING_CONSTANTS_PRACTICE,
+} from "../../pages/practice.page/practice.page.js";
 import ButtonCreator from "../../utils/button/button-creator.js";
 import ElementCreator from "../../utils/element-creator.js";
 import HeadingsCreator from "../../utils/headings/headings-creator.js";
@@ -17,7 +21,10 @@ export default function trueFalseWidget(
   onAnswer: (answer: TrueFalseAnswer) => void,
 ): HTMLElement {
   const trueFalseWidgetContainer = new ElementCreator({
-    classes: ["true-false-widget-container", CLASS_NAME.cardElement],
+    classes: [
+      CLASS_NAMES_PRACTICE.trueFalseWidgetContainer,
+      CLASS_NAME.cardElement,
+    ],
   }).getElement();
 
   new HeadingsCreator(HEADINGS_TWO, {
@@ -36,7 +43,7 @@ export default function trueFalseWidget(
   }).getElement();
 
   const submitButton = new ButtonCreator({
-    text: "Submit",
+    text: STRING_CONSTANTS_PRACTICE.submit,
     classes: [CLASS_NAME.button],
     parent: trueFalseWidgetContainer,
   }).getElement();

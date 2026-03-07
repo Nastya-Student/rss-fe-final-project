@@ -6,6 +6,10 @@ import {
 } from "../../constants.js";
 import { QuizPayload } from "../../interfaces/widget-payload.interfaces.js";
 import { QuizAnswer } from "../../interfaces/widget-user-answer.interfaces.js";
+import {
+  CLASS_NAMES_PRACTICE,
+  STRING_CONSTANTS_PRACTICE,
+} from "../../pages/practice.page/practice.page.js";
 import ButtonCreator from "../../utils/button/button-creator.js";
 import ElementCreator from "../../utils/element-creator.js";
 import HeadingsCreator from "../../utils/headings/headings-creator.js";
@@ -17,7 +21,7 @@ export default function quizWidget(
   onAnswer: (answer: QuizAnswer) => void,
 ): HTMLElement {
   const quizWidgetContainer = new ElementCreator({
-    classes: ["quiz-widget-container", CLASS_NAME.cardElement],
+    classes: [CLASS_NAMES_PRACTICE.quizWidgetContainer, CLASS_NAME.cardElement],
   }).getElement();
 
   new HeadingsCreator(HEADINGS_TWO, {
@@ -36,7 +40,7 @@ export default function quizWidget(
   }).getElement();
 
   const submitButton = new ButtonCreator({
-    text: "Submit",
+    text: STRING_CONSTANTS_PRACTICE.submit,
     classes: [CLASS_NAME.button],
     parent: quizWidgetContainer,
   }).getElement();
