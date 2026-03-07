@@ -1,10 +1,10 @@
 [
   {
     "id": "w1",
-    "topicId": "core-js",
+    "topicId": "coreJS",
     "type": "quiz",
     "difficulty": 1,
-    "tags": ["core-js"],
+    "tags": ["coreJS"],
     "payload": {
       "title": "typeof null",
       "question": "Что вернет typeof null?",
@@ -14,10 +14,10 @@
   },
   {
     "id": "w2",
-    "topicId": "core-js",
+    "topicId": "coreJS",
     "type": "true-false",
     "difficulty": 1,
-    "tags": ["core-js"],
+    "tags": ["coreJS"],
     "payload": {
       "title": "Promise.all order",
       "statement": "Promise.all возвращает результаты в порядке завершения",
@@ -96,10 +96,10 @@
   },
   {
     "id": "w7",
-    "topicId": "core-js",
+    "topicId": "coreJS",
     "type": "async-sorter",
     "difficulty": 2,
-    "tags": ["core-js", "event-loop"],
+    "tags": ["coreJS", "event-loop"],
     "payload": {
       "title": "Event Loop Basic",
       "code": "console.log('1'); setTimeout(() => console.log('2'),0); Promise.resolve().then(()=>console.log('3')); console.log('4');",
