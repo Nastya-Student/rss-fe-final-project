@@ -121,29 +121,29 @@ export default function headerCreator(): HTMLElement {
   }).getElement();
 
   let authorized: boolean;
-  authorized = false;
+  authorized = true;
 
   if (authorized) {
-    const Navigation = new NavigationCreator({
+    const navigation = new NavigationCreator({
       parent: headerWrapper,
       classes: ["nav"],
     }).getElement();
 
-    const NavigationList = new UnorderedListCreator({
-      parent: Navigation,
+    const navigationList = new UnorderedListCreator({
+      parent: navigation,
       classes: ["nav-list"],
     }).getElement();
 
     const linksArray: string[] = ["Dashboard", "Profile"];
 
     for (const link of linksArray) {
-      const NavigationItem = new ListItemCreator({
-        parent: NavigationList,
+      const navigationItem = new ListItemCreator({
+        parent: navigationList,
         classes: ["nav-item"],
       }).getElement();
 
       new AnchorCreator({
-        parent: NavigationItem,
+        parent: navigationItem,
         href: `#/${link.toLowerCase()}`,
         target: "_self",
         classes: ["nav-link"],
