@@ -11,6 +11,7 @@
   gap: var(--spacing-0-6);
 }
 
-.dashboard__session-history-paragraph {
+.dashboard__session-history-title {
   font-size: 1rem;
+  font-weight: normal;
 }

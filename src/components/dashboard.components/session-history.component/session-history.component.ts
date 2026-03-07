@@ -1,9 +1,10 @@
+import { HEADINGS_THREE } from "../../../constants.js";
 import {
   CLASS_NAMES_DASHBOARD,
   STRING_CONSTANTS_DASHBOARD,
 } from "../../../pages/dashboard.page/dashboard.page.js";
 import ElementCreator from "../../../utils/element-creator.js";
-import ParagraphCreator from "../../../utils/paragraph/paragraph-creator.js";
+import HeadingsCreator from "../../../utils/headings/headings-creator.js";
 import "./session-history.component.css";
 
 export default function sessionHistoryComponent(): {
@@ -14,11 +15,11 @@ export default function sessionHistoryComponent(): {
     classes: [CLASS_NAMES_DASHBOARD.sessionHistoryContainer],
   }).getElement();
 
-  const sessionHistoryTitle = new ParagraphCreator({
-    classes: [CLASS_NAMES_DASHBOARD.sessionHistoryParagraph],
+  new HeadingsCreator(HEADINGS_THREE, {
+    classes: [CLASS_NAMES_DASHBOARD.sessionHistoryTitle],
     parent: sessionHistoryContainer,
+    text: STRING_CONSTANTS_DASHBOARD.sessionHistory,
   }).getElement();
-  sessionHistoryTitle.textContent = STRING_CONSTANTS_DASHBOARD.sessionHistory;
 
   const sessionsContainer = new ElementCreator({
     classes: [

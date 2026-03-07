@@ -27,7 +27,7 @@ export const CLASS_NAMES_DASHBOARD = {
   sessionTopicDate: "dashboard__session-topic-date",
   sessionTopicButton: "dashboard__session-topic-button",
   sessionHistoryContainer: "dashboard__session-history-container",
-  sessionHistoryParagraph: "dashboard__session-history-paragraph",
+  sessionHistoryTitle: "dashboard__session-history-title",
   sessionsContainer: "dashboard__sessions-container",
   cardElement: "dashboard__card-element",
   topicsProgressContainer: "dashboard__topics-progress-container",
