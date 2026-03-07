@@ -52,6 +52,8 @@ export default function codeCompletionWidget(
 
   submitButton.addEventListener(EVENT.click, () => {
     onAnswer(selectedAnswerIndex);
+    submitButton.classList.add(CLASS_NAME.noActive);
+    submitButton.disabled = true;
   });
 
   return codeCompletionWidgetContainer;

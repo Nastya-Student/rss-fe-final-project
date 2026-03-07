@@ -54,6 +54,8 @@ export default function memoryGameWidget(
 
   submitButton.addEventListener(EVENT.click, () => {
     onAnswer(selectedAnswerIndex);
+    submitButton.classList.add(CLASS_NAME.noActive);
+    submitButton.disabled = true;
   });
 
   return memoryGameCollectorWidgetContainer;

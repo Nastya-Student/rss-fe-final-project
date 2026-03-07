@@ -59,6 +59,8 @@ export default function asyncSorterWidget(
 
   submitButton.addEventListener(EVENT.click, () => {
     onAnswer(selectedAnswerIndex);
+    submitButton.classList.add(CLASS_NAME.noActive);
+    submitButton.disabled = true;
   });
 
   return asyncSorterWidgetContainer;
