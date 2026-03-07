@@ -17,7 +17,7 @@ export default function trueFalseWidget(
   onAnswer: (answer: TrueFalseAnswer) => void,
 ): HTMLElement {
   const trueFalseWidgetContainer = new ElementCreator({
-    classes: ["true-false-widget-container"],
+    classes: ["true-false-widget-container", CLASS_NAME.cardElement],
   }).getElement();
 
   new HeadingsCreator(HEADINGS_TWO, {

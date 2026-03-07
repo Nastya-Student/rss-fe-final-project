@@ -13,6 +13,7 @@ import { memoryGameStrategy } from "./memory-game.widget/memory-game.strategy.js
 import { quizStrategy } from "./quiz.widget/quiz.strategy.js";
 import { stackBuilderStrategy } from "./stack-builder.widget/stack-builder.strategy.js";
 import { trueFalseStrategy } from "./true-false.widget/true-false.strategy.js";
+import "../pages/practice.page/practice.page.css";
 
 const widgetStrategies: {
   [K in WidgetType]: WidgetStrategy<WidgetMap[K], WidgetAnswerMap[K]>;
@@ -37,6 +38,7 @@ export class WidgetEngine {
     this.container = container;
     this.widgetContainer = new ElementCreator({
       parent: this.container,
+      classes: ["widget-container"],
     }).getElement();
   }
 
@@ -45,8 +47,10 @@ export class WidgetEngine {
 
     this.container.innerHTML = "";
     this.widgetContainer.innerHTML = "";
-    this.widgetContainer = strategy.render(widget, (answer) =>
-      this.handleAnswer(widget, strategy, answer),
+    this.widgetContainer.append(
+      strategy.render(widget, (answer) =>
+        this.handleAnswer(widget, strategy, answer),
+      ),
     );
     this.container.append(this.widgetContainer);
   }
@@ -59,19 +63,12 @@ export class WidgetEngine {
     const correct = strategy.validate(widget, answer);
 
     this.showResult(correct);
-    new ParagraphCreator({
-      parent: this.container,
-      text: `Answer: ${JSON.stringify(answer)}`,
-    });
-    new ParagraphCreator({
-      parent: this.container,
-      text: `Correct: ${strategy.validate(widget, answer)}`,
-    });
   }
 
   private showResult(correct: boolean) {
     new ParagraphCreator({
       parent: this.widgetContainer,
+      classes: [CLASS_NAME.cardElement],
       text: correct ? "Correct" : "Wrong",
     }).getElement();
 

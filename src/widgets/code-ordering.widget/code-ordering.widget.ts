@@ -17,7 +17,7 @@ export default function codeOrderingWidget(
   onAnswer: (answer: CodeOrderingAnswer) => void,
 ): HTMLElement {
   const codeOrderingWidgetContainer = new ElementCreator({
-    classes: ["code-ordering-widget-container"],
+    classes: ["code-ordering-widget-container", CLASS_NAME.cardElement],
   }).getElement();
 
   new HeadingsCreator(HEADINGS_TWO, {

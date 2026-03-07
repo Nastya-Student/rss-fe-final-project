@@ -17,7 +17,7 @@ export default function memoryGameWidget(
   onAnswer: (answer: MemoryGameAnswer) => void,
 ): HTMLElement {
   const memoryGameCollectorWidgetContainer = new ElementCreator({
-    classes: ["memory-game-widget-container"],
+    classes: ["memory-game-widget-container", CLASS_NAME.cardElement],
   }).getElement();
 
   new HeadingsCreator(HEADINGS_TWO, {

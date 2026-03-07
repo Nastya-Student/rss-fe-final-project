@@ -17,7 +17,7 @@ export default function quizWidget(
   onAnswer: (answer: QuizAnswer) => void,
 ): HTMLElement {
   const quizWidgetContainer = new ElementCreator({
-    classes: ["quiz-widget-container"],
+    classes: ["quiz-widget-container", CLASS_NAME.cardElement],
   }).getElement();
 
   new HeadingsCreator(HEADINGS_TWO, {

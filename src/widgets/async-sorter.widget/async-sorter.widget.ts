@@ -17,7 +17,7 @@ export default function asyncSorterWidget(
   onAnswer: (answer: AsyncSorterAnswer) => void,
 ): HTMLElement {
   const asyncSorterWidgetContainer = new ElementCreator({
-    classes: ["async-sorter-widget-container"],
+    classes: ["async-sorter-widget-container", CLASS_NAME.cardElement],
   }).getElement();
 
   new HeadingsCreator(HEADINGS_TWO, {

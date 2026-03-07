@@ -17,7 +17,7 @@ export default function stackBuilderWidget(
   onAnswer: (answer: StackBuilderAnswer) => void,
 ): HTMLElement {
   const stackBuilderWidgetContainer = new ElementCreator({
-    classes: ["stack-builder-widget-container"],
+    classes: ["stack-builder-widget-container", CLASS_NAME.cardElement],
   }).getElement();
 
   new HeadingsCreator(HEADINGS_TWO, {

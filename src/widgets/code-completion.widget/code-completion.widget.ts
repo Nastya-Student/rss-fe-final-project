@@ -17,7 +17,7 @@ export default function codeCompletionWidget(
   onAnswer: (answer: CodeCompletionAnswer) => void,
 ): HTMLElement {
   const codeCompletionWidgetContainer = new ElementCreator({
-    classes: ["code-completion-widget-container"],
+    classes: ["code-completion-widget-container", CLASS_NAME.cardElement],
   }).getElement();
 
   new HeadingsCreator(HEADINGS_TWO, {

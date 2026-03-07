@@ -31,6 +31,7 @@ export const ID = {
 export const CLASS_NAME = {
   container: "container",
   button: "button",
+  cardElement: "card-element",
 } as const;
 
 export const HEADINGS_ONE = 1;
