@@ -38,7 +38,7 @@ export class WidgetEngine {
     this.container = container;
     this.widgetContainer = new ElementCreator({
       parent: this.container,
-      classes: ["widget-container"],
+      classes: ["practice__widget-container"],
     }).getElement();
   }
 
@@ -66,11 +66,13 @@ export class WidgetEngine {
   }
 
   private showResult(correct: boolean) {
-    new ParagraphCreator({
+    const resultText = new ParagraphCreator({
       parent: this.widgetContainer,
-      classes: [CLASS_NAME.cardElement],
+      classes: ["practice__widget-result-text", CLASS_NAME.cardElement],
       text: correct ? "Correct" : "Wrong",
     }).getElement();
+
+    resultText.classList.add(correct ? "correct" : "wrong");
 
     const nextButton = new ButtonCreator({
       parent: this.widgetContainer,
