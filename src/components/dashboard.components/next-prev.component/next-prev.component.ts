@@ -34,8 +34,8 @@ export default function nextPrevComponent(
   const prevBtn = new ButtonCreator({
     parent: container,
     classes: [CLASS_NAMES_DASHBOARD.prevButton, CLASS_NAME.button],
+    text: STRING_CONSTANTS_DASHBOARD.arrowLeft,
   }).getElement();
-  prevBtn.textContent = STRING_CONSTANTS_DASHBOARD.arrowLeft;
 
   const counter = new ParagraphCreator({
     parent: container,
@@ -45,8 +45,8 @@ export default function nextPrevComponent(
   const nextBtn = new ButtonCreator({
     parent: container,
     classes: [CLASS_NAMES_DASHBOARD.nextButton, CLASS_NAME.button],
+    text: STRING_CONSTANTS_DASHBOARD.arrowRight,
   }).getElement();
-  nextBtn.textContent = STRING_CONSTANTS_DASHBOARD.arrowRight;
 
   function update(currentPage: number, totalPages: number) {
     counter.textContent = `${currentPage}`;

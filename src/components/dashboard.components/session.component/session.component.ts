@@ -17,32 +17,32 @@ export default function sessionComponent(
     classes: [CLASS_NAMES_DASHBOARD.sessionContainer],
   }).getElement();
 
-  const sessionTopicTitle = new ParagraphCreator({
+  new ParagraphCreator({
     classes: [CLASS_NAMES_DASHBOARD.sessionTopicTitle],
     parent: sessionContainer,
+    text: session.topicTitle,
   }).getElement();
-  sessionTopicTitle.textContent = session.topicTitle;
 
-  const sessionTopicScore = new ParagraphCreator({
+  new ParagraphCreator({
     classes: [CLASS_NAMES_DASHBOARD.sessionTopicScore],
     parent: sessionContainer,
+    text: `${session.score.toString()}${STRING_CONSTANTS_DASHBOARD.outOfHundred}`,
   }).getElement();
-  sessionTopicScore.textContent = `${session.score.toString()}${STRING_CONSTANTS_DASHBOARD.outOfHundred}`;
 
-  const sessionTopicDate = new ParagraphCreator({
+  const completedAt = new Date(session.completedAt);
+  new ParagraphCreator({
     classes: [CLASS_NAMES_DASHBOARD.sessionTopicDate],
     parent: sessionContainer,
+    text: completedAt.toLocaleDateString(
+      STRING_CONSTANTS_DASHBOARD.sessionTopicDateLocale,
+    ),
   }).getElement();
-  const completedAt = new Date(session.completedAt);
-  sessionTopicDate.textContent = completedAt.toLocaleDateString(
-    STRING_CONSTANTS_DASHBOARD.sessionTopicDateLocale,
-  );
 
   const sessionTopicButton = new ButtonCreator({
     classes: [CLASS_NAMES_DASHBOARD.sessionTopicButton, CLASS_NAME.button],
     parent: sessionContainer,
+    text: STRING_CONSTANTS_DASHBOARD.arrowRight,
   }).getElement();
-  sessionTopicButton.textContent = STRING_CONSTANTS_DASHBOARD.arrowRight;
   sessionTopicButton.dataset.route = `${RoutePath.Practice}/${session.topicId}`;
 
   return sessionContainer;

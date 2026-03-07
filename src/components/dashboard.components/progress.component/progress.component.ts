@@ -46,11 +46,11 @@ export default function progressComponent(
     ],
   }).getElement();
 
-  const streakText = new ParagraphCreator({
+  new ParagraphCreator({
     classes: [CLASS_NAMES_DASHBOARD.streakParagraph],
     parent: streakContainer,
+    text: `${STRING_CONSTANTS_DASHBOARD.streak}: ${user.streak} ${STRING_CONSTANTS_DASHBOARD.days}`,
   }).getElement();
-  streakText.textContent = `${STRING_CONSTANTS_DASHBOARD.streak}: ${user.streak} ${STRING_CONSTANTS_DASHBOARD.days}`;
 
   return { topicsProgressContainer, streakContainer };
 }

@@ -184,9 +184,8 @@ export class DashboardPage extends BasePage {
     this._userGreeting = new ParagraphCreator({
       parent: this.container,
       classes: [CLASS_NAMES_DASHBOARD.userGreeting],
+      text: STRING_CONSTANTS_DASHBOARD.notFoundUserGreeting,
     }).getElement();
-    this.userGreeting.textContent =
-      STRING_CONSTANTS_DASHBOARD.notFoundUserGreeting;
 
     this._progressContainer = new ElementCreator({
       parent: this.container,
