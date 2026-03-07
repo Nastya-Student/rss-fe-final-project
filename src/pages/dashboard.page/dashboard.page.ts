@@ -43,6 +43,7 @@ export const CLASS_NAMES_DASHBOARD = {
   prevButton: "prev-button",
   nextButton: "next-button",
   pageCounter: "page-counter",
+  dashboardContainer: "dashboard-container",
 } as const;
 
 export const STRING_CONSTANTS_DASHBOARD = {
@@ -181,20 +182,25 @@ export class DashboardPage extends BasePage {
     parent.append(this.container);
     this.container.classList.add(CLASS_NAMES_DASHBOARD.page);
 
-    this._userGreeting = new ParagraphCreator({
+    const dashboardContainer = new ElementCreator({
+      classes: [CLASS_NAMES_DASHBOARD.dashboardContainer],
       parent: this.container,
+    }).getElement();
+
+    this._userGreeting = new ParagraphCreator({
+      parent: dashboardContainer,
       classes: [CLASS_NAMES_DASHBOARD.userGreeting],
       text: STRING_CONSTANTS_DASHBOARD.notFoundUserGreeting,
     }).getElement();
 
     this._progressContainer = new ElementCreator({
-      parent: this.container,
+      parent: dashboardContainer,
       classes: [CLASS_NAMES_DASHBOARD.progressContainer],
     }).getElement();
 
     const { sessionHistoryContainer, sessionsContainer } =
       sessionHistoryComponent();
-    this.container.append(sessionHistoryContainer);
+    dashboardContainer.append(sessionHistoryContainer);
 
     this._sessionsContainer = sessionsContainer;
 
@@ -207,12 +213,12 @@ export class DashboardPage extends BasePage {
       },
     );
 
-    this.container.append(this.pagination.container);
+    dashboardContainer.append(this.pagination.container);
 
     const startPracticing = new ButtonCreator({
       text: STRING_CONSTANTS_DASHBOARD.startPracticing,
       classes: [CLASS_NAMES_DASHBOARD.startPracticing, CLASS_NAME.button],
-      parent: this.container,
+      parent: dashboardContainer,
     }).getElement();
     startPracticing.dataset.route = RoutePath.Library;
 
