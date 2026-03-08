@@ -1,7 +1,9 @@
 # Tandem
 
 [deploy](https://rss-fe-final-project.vercel.app/)
+
 [board](https://rss-final.atlassian.net/jira/core/projects/RST/board)
+
 [project description](https://github.com/rolling-scopes-school/tasks/tree/master/stage2/tasks/rs-tandem)
 
 Название проекта - Tandem.
@@ -16,9 +18,15 @@
 * Profile,
 * 404.
 
-Состав команды:
+### Состав команды:
 
-* Настя [Nastya-Student](https://github.com/Nastya-Student)
-* Никита [Atikin132](https://github.com/Atikin132)
-* Андрей [amelur](https://github.com/amelur)
-* Ульяна [Ulya10](https://github.com/Ulya10)
+* Настя [Nastya-Student](https://github.com/Nastya-Student)  [ - notes](https://github.com/Nastya-Student/rss-fe-final-project/tree/main/development-notes/nastya-student)
+* Никита [Atikin132](https://github.com/Atikin132)  [ - notes](https://github.com/Nastya-Student/rss-fe-final-project/tree/main/development-notes/atikin132)
+* Андрей [amelur](https://github.com/amelur)  [ - notes](https://github.com/Nastya-Student/rss-fe-final-project/tree/main/development-notes/amelur)
+* Ульяна [Ulya10](https://github.com/Ulya10)  [ - notes](https://github.com/Nastya-Student/rss-fe-final-project/tree/main/development-notes/ulya10)
+
+### Meeting Notes: ###
+
+* [2026-02-21](https://github.com/Nastya-Student/rss-fe-final-project/blob/main/meetings/meeting-2026-02-21.md)
+* [2026-03-01](https://github.com/Nastya-Student/rss-fe-final-project/blob/main/meetings/meeting-2026-03-01.md)
+* [2026-03-08](https://github.com/Nastya-Student/rss-fe-final-project/blob/main/meetings/meeting-2026-03-08.md)
