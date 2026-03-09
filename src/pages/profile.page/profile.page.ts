@@ -4,6 +4,8 @@ import ButtonCreator from "../../utils/button/button-creator.js";
 import ElementCreator from "../../utils/element-creator.js";
 import HeadingsCreator from "../../utils/headings/headings-creator.js";
 import { BasePage } from "../base-page.js";
+import { settingsOnClickHandler } from "./controllers/settings.js";
+import { renderSettingsWindow } from "./profile-settings.window.js";
 import "./profile.page.css";
 
 export class ProfilePage extends BasePage {
@@ -16,6 +18,19 @@ export class ProfilePage extends BasePage {
       classes: ["profile__header"],
       parent: this.container,
     }).getElement();
+
+    const profileContent = new ElementCreator({
+      classes: ["profile__content"],
+      parent: this.container,
+    }).getElement();
+    profileContent.id = "profile-content";
+
+    const profileSettings = new ElementCreator({
+      classes: ["profile__settings", "hidden"],
+      parent: this.container,
+    }).getElement();
+    profileSettings.id = "profile-settings";
+    renderSettingsWindow();
 
     const pageTitle = new HeadingsCreator(HEADINGS_TWO, {
       parent: profileHeader,
@@ -41,7 +56,7 @@ export class ProfilePage extends BasePage {
 
     const descriptionBlock = new ElementCreator({
       classes: ["profile__description-block"],
-      parent: this.container,
+      parent: profileContent,
     }).getElement();
     descriptionBlock.id = "profile-description-block";
 
@@ -74,12 +89,10 @@ export class ProfilePage extends BasePage {
     }).getElement();
 
     const settings = new ButtonCreator({
-      // text: "settings",
-      // text: settingsSVG,
       classes: ["button"],
       parent: descriptionBlock,
     }).getElement();
-    settings.id = "settings";
+    settings.id = "profile-settings-button";
     settings.innerHTML = settingsSVG;
 
     const achievementWrapper = new ElementCreator({
@@ -97,20 +110,15 @@ export class ProfilePage extends BasePage {
     }).getElement();
     readyText.id = "profile-ready-text";
 
-    // const settingWindow = new ElementCreator({
-    //   // classes: [""],
-    //   hidden: false,
-    //   parent: this.container,
-    // }).getElement();
-    // settingWindow.id = "profile-setting-window";
-
     const chartBlock = new ElementCreator({
       classes: ["profile__chart-wrapper"],
-      parent: this.container,
+      parent: profileContent,
     }).getElement();
     chartBlock.id = "profile-chart-wrapper";
 
     toDashboardButton.dataset.route = RoutePath.Dashboard;
+
+    settingsOnClickHandler();
   }
 }
 

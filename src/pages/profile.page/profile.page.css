@@ -6,6 +6,17 @@
   background-color: var(--bg-color);
 }
 
+.button {
+  width: fit-content;
+  height: fit-content;
+}
+
+.profile__content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
 .profile__header {
   display: flex;
   justify-content: space-between;
@@ -44,10 +55,22 @@
   display: flex;
 }
 
-#settings {
-  height: fit-content;
+#profile-achievement-wrapper,
+#profile-settings-header {
+  color: var(--descr-color);
 }
 
-#profile-achievement-wrapper {
-  color: var(--descr-color);
+.hidden {
+  display: none;
+}
+
+.profile__settings-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.profile__settings-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
