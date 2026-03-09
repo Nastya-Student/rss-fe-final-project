@@ -1,0 +1,53 @@
+.profile-page {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 5rem;
+  gap: 2rem;
+  background-color: var(--bg-color);
+}
+
+.profile__header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.profile__header-buttons {
+  display: flex;
+  justify-content: space-around;
+  gap: 5rem;
+}
+
+.profile__avatar {
+  width: 15rem;
+  height: 15rem;
+  box-shadow: 0.35rem 0.35rem 0.35rem rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    box-shadow: 1rem 1rem 1rem rgba(0, 0, 0, 0.3);
+  }
+}
+
+.profile__description {
+  width: 25rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+}
+
+.profile__description-block {
+  display: flex;
+  justify-content: space-between;
+}
+
+.profile__description-header {
+  display: flex;
+}
+
+#settings {
+  height: fit-content;
+}
+
+#profile-achievement-wrapper {
+  color: var(--descr-color);
+}
