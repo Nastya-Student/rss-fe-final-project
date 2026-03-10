@@ -2,7 +2,10 @@
   display: flex;
   flex-direction: column;
   gap: var(--spacing-1);
-  align-items: center;
+}
+
+.async-sorter__code-title {
+  text-align: center;
 }
 
 .async-sorter__code-container {
@@ -13,4 +16,19 @@
   gap: var(--spacing-0-5);
   background-color: var(--bg-code-color);
   color: var(--text-code-color);
+}
+
+.async-sorter__code-blocks-container {
+  display: flex;
+  gap: var(--spacing-1);
+  flex-wrap: wrap;
+}
+
+.async-sorter__code-block {
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.6rem;
+  background: var(--primary-color);
+  color: var(--secondary-color);
+  transition: all 0.3s ease;
+  cursor: grab;
 }

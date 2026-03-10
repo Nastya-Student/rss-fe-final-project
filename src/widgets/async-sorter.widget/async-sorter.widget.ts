@@ -29,6 +29,7 @@ export default function asyncSorterWidget(
 
   new HeadingsCreator(HEADINGS_TWO, {
     parent: asyncSorterWidgetContainer,
+    classes: ["async-sorter__code-title"],
     text: "Async Sorter Widget",
   }).getElement();
 
@@ -43,12 +44,40 @@ export default function asyncSorterWidget(
   }).getElement();
 
   const codeLines = payload.code.split("\n");
+  const codeBlockValues: string[] = [];
 
   for (const codeLine of codeLines) {
+    if (codeLine.includes("console.log")) {
+      const start = codeLine.indexOf("console.log") + "console.log(".length + 1;
+      const end = codeLine.indexOf(")", start) - 1;
+      let value = codeLine.slice(start, end);
+      if (value === "") {
+        value = codeLine.slice(start - 1, end + 1);
+      }
+      codeBlockValues.push(value);
+    }
     new ParagraphCreator({
       parent: codeContainer,
       text: codeLine,
     }).getElement();
+  }
+
+  new HeadingsCreator(HEADINGS_THREE, {
+    parent: asyncSorterWidgetContainer,
+    text: "Code Blocks",
+  }).getElement();
+
+  const codeBlocksContainer = new ElementCreator({
+    classes: ["async-sorter__code-blocks-container", CLASS_NAME.cardElement],
+    parent: asyncSorterWidgetContainer,
+  }).getElement();
+
+  for (const value of codeBlockValues) {
+    new ElementCreator({
+      parent: codeBlocksContainer,
+      text: value,
+      classes: ["async-sorter__code-block"],
+    });
   }
 
   const submitButton = new ButtonCreator({
