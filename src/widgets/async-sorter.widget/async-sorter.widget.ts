@@ -97,6 +97,22 @@ export default function asyncSorterWidget(
     }).getElement();
   }
 
+  new ButtonCreator({
+    text: "Run",
+    classes: [CLASS_NAME.button],
+    parent: asyncSorterWidgetContainer,
+  }).getElement();
+
+  new HeadingsCreator(HEADINGS_THREE, {
+    parent: asyncSorterWidgetContainer,
+    text: "Output",
+  }).getElement();
+
+  new ElementCreator({
+    classes: ["async-sorter__output-container", CLASS_NAME.cardElement],
+    parent: asyncSorterWidgetContainer,
+  }).getElement();
+
   const submitButton = new ButtonCreator({
     text: STRING_CONSTANTS_PRACTICE.submit,
     classes: [CLASS_NAME.button],
