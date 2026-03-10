@@ -1,7 +1,7 @@
 .practice__async-sorter-widget-container {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-1);
+  gap: var(--spacing-0-75);
 }
 
 .async-sorter__code-title {
@@ -31,4 +31,19 @@
   color: var(--secondary-color);
   transition: all 0.3s ease;
   cursor: grab;
+}
+
+.async-sorter__buckets-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-0-75);
+}
+
+.async-sorter__bucket {
+  font-weight: bold;
+  text-align: center;
+  min-height: 7rem;
+  background-color: var(--bg-bucket-color);
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.6rem;
 }

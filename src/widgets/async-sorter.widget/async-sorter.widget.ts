@@ -30,7 +30,7 @@ export default function asyncSorterWidget(
   new HeadingsCreator(HEADINGS_TWO, {
     parent: asyncSorterWidgetContainer,
     classes: ["async-sorter__code-title"],
-    text: "Async Sorter Widget",
+    text: "Async Sorter",
   }).getElement();
 
   new HeadingsCreator(HEADINGS_THREE, {
@@ -78,6 +78,23 @@ export default function asyncSorterWidget(
       text: value,
       classes: ["async-sorter__code-block"],
     });
+  }
+
+  const bucketsContainer = new ElementCreator({
+    classes: ["async-sorter__buckets-container"],
+    parent: asyncSorterWidgetContainer,
+  }).getElement();
+
+  for (const bucket of ["Call Stack", "Microtasks", "Macrotasks"]) {
+    const bucketElement = new ElementCreator({
+      parent: bucketsContainer,
+      classes: ["async-sorter__bucket", CLASS_NAME.cardElement],
+    }).getElement();
+
+    new ParagraphCreator({
+      parent: bucketElement,
+      text: bucket,
+    }).getElement();
   }
 
   const submitButton = new ButtonCreator({
