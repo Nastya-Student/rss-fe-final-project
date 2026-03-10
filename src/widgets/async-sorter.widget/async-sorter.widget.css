@@ -1,5 +1,16 @@
 .practice__async-sorter-widget-container {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: var(--spacing-1);
+  align-items: center;
+}
+
+.async-sorter__code-container {
+  display: flex;
+  flex-direction: column;
+  font-family: "Courier New", Courier, monospace;
+  font-size: clamp(0.5rem, 1vw + 0.35rem, 1rem);
+  gap: var(--spacing-0-5);
+  background-color: var(--bg-code-color);
+  color: var(--text-code-color);
 }

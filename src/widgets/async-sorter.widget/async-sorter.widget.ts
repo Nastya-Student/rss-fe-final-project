@@ -37,10 +37,19 @@ export default function asyncSorterWidget(
     text: payload.title,
   }).getElement();
 
-  new ParagraphCreator({
+  const codeContainer = new ElementCreator({
+    classes: ["async-sorter__code-container", CLASS_NAME.cardElement],
     parent: asyncSorterWidgetContainer,
-    text: payload.code,
   }).getElement();
+
+  const codeLines = payload.code.split("\n");
+
+  for (const codeLine of codeLines) {
+    new ParagraphCreator({
+      parent: codeContainer,
+      text: codeLine,
+    }).getElement();
+  }
 
   const submitButton = new ButtonCreator({
     text: STRING_CONSTANTS_PRACTICE.submit,
