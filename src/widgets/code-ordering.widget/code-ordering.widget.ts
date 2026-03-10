@@ -3,13 +3,17 @@ import {
   EVENT,
   HEADINGS_THREE,
   HEADINGS_TWO,
-} from "../../../constants.js";
-import { CodeOrderingPayload } from "../../../interfaces/widget-payload.interfaces.js";
-import { CodeOrderingAnswer } from "../../../interfaces/widget-user-answer.interfaces.js";
-import ButtonCreator from "../../../utils/button/button-creator.js";
-import ElementCreator from "../../../utils/element-creator.js";
-import HeadingsCreator from "../../../utils/headings/headings-creator.js";
-import ParagraphCreator from "../../../utils/paragraph/paragraph-creator.js";
+} from "../../constants.js";
+import { CodeOrderingPayload } from "../../interfaces/widget-payload.interfaces.js";
+import { CodeOrderingAnswer } from "../../interfaces/widget-user-answer.interfaces.js";
+import {
+  CLASS_NAMES_PRACTICE,
+  STRING_CONSTANTS_PRACTICE,
+} from "../../pages/practice.page/practice.page.js";
+import ButtonCreator from "../../utils/button/button-creator.js";
+import ElementCreator from "../../utils/element-creator.js";
+import HeadingsCreator from "../../utils/headings/headings-creator.js";
+import ParagraphCreator from "../../utils/paragraph/paragraph-creator.js";
 import "./code-ordering.widget.css";
 
 export default function codeOrderingWidget(
@@ -17,7 +21,10 @@ export default function codeOrderingWidget(
   onAnswer: (answer: CodeOrderingAnswer) => void,
 ): HTMLElement {
   const codeOrderingWidgetContainer = new ElementCreator({
-    classes: ["code-ordering-widget-container"],
+    classes: [
+      CLASS_NAMES_PRACTICE.codeOrderingWidgetContainer,
+      CLASS_NAME.cardElement,
+    ],
   }).getElement();
 
   new HeadingsCreator(HEADINGS_TWO, {
@@ -41,7 +48,7 @@ export default function codeOrderingWidget(
   }).getElement();
 
   const submitButton = new ButtonCreator({
-    text: "Submit",
+    text: STRING_CONSTANTS_PRACTICE.submit,
     classes: [CLASS_NAME.button],
     parent: codeOrderingWidgetContainer,
   }).getElement();
@@ -52,6 +59,8 @@ export default function codeOrderingWidget(
 
   submitButton.addEventListener(EVENT.click, () => {
     onAnswer(selectedAnswerIndex);
+    submitButton.classList.add(CLASS_NAME.noActive);
+    submitButton.disabled = true;
   });
 
   return codeOrderingWidgetContainer;
