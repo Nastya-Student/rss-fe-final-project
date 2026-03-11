@@ -46,7 +46,7 @@
   outline: none;
 }
 
-.auth-form button:not(.toggle-password) {
+.auth-form button:not(.auth-toggle-password) {
   height: 40px;
   background: var(--btn-color);
   color: var(--btn-text);
@@ -55,119 +55,36 @@
   cursor: pointer;
 }
 
-.auth-form button:not(.toggle-password):hover {
+.auth-form button:not(.auth-toggle-password):hover {
   opacity: 0.9;
 }
 
-.switch-block {
-  text-align: center;
-}
-
-.switch-block .button {
-  background: none;
-  border: none;
-  color: var(--primary-color);
-  cursor: pointer;
-  padding: 0;
-}
-
-.switch-block .button:hover {
-  text-decoration: underline;
-}
-
-.google-btn {
-  height: 42px;
+.auth-form-field {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-
-  background-color: var(--bg-color-secondary);
-  color: var(--text-color);
-
-  border: 1px solid var(--border-color);
-  border-radius: 6px;
-
-  font-size: 14px;
-  font-weight: 500;
-
-  cursor: pointer;
-  transition: all 0.2s ease;
+  flex-direction: column;
+  gap: 6px;
 }
 
-.google-btn:hover {
-  background-color: var(--secondary-color);
+.auth-field-error {
+  font-size: 12px;
+  color: var(--error-color);
+  min-height: 14px;
 }
 
-.google-btn img {
-  width: 18px;
-  height: 18px;
+.auth-input-error {
+  border-color: var(--error-color);
 }
 
-.github-btn {
-  height: 42px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-
-  background-color: #24292e;
-  color: #ffffff;
-
-  border: none;
-  border-radius: 6px;
-
-  font-size: 14px;
-  font-weight: 500;
-
-  cursor: pointer;
-}
-
-.github-btn:hover {
-  background-color: #1b1f23;
-}
-
-.github-btn svg {
-  width: 18px;
-  height: 18px;
-}
-
-.oauth-divider {
-  position: relative;
-  text-align: center;
-  font-size: 14px;
-  color: var(--descr-color);
-  margin: var(--spacing-1) 0;
-}
-
-.oauth-divider::before,
-.oauth-divider::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  width: 42%;
-  height: 1px;
-  background: var(--border-color);
-}
-
-.oauth-divider::before {
-  left: 0;
-}
-
-.oauth-divider::after {
-  right: 0;
-}
-
-.password-wrapper {
+.auth-password-wrapper {
   position: relative;
 }
 
-.password-wrapper input {
+.auth-password-wrapper input {
   width: 100%;
   padding-right: 60px;
 }
 
-.toggle-password {
+.auth-toggle-password {
   position: absolute;
   right: 14px;
   top: 50%;
@@ -181,22 +98,104 @@
   padding: 0;
 }
 
-.toggle-password:hover {
+.auth-toggle-password:hover {
   color: var(--primary-color);
 }
 
-.form-field {
+.auth-oauth-divider {
+  position: relative;
+  text-align: center;
+  font-size: 14px;
+  color: var(--descr-color);
+  margin: var(--spacing-1) 0;
+}
+
+.auth-oauth-divider::before,
+.auth-oauth-divider::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 42%;
+  height: 1px;
+  background: var(--border-color);
+}
+
+.auth-oauth-divider::before {
+  left: 0;
+}
+
+.auth-oauth-divider::after {
+  right: 0;
+}
+
+.auth-oauth-btn {
+  height: 42px;
   display: flex;
-  flex-direction: column;
-  gap: 6px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-.field-error {
-  font-size: 12px;
-  color: var(--error-color);
-  min-height: 14px;
+.auth-oauth-btn img {
+  width: 18px;
+  height: 18px;
 }
 
-.input-error {
-  border-color: var(--error-color) !important;
+.auth-google-btn img,
+.auth-github-btn img {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.auth-google-btn,
+.auth-github-btn {
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.auth-google-btn {
+  background-color: var(--bg-color-secondary);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+}
+
+.auth-google-btn:hover {
+  background-color: var(--secondary-color);
+}
+
+.auth-github-btn {
+  background-color: #24292e;
+  color: #ffffff;
+  border: none;
+}
+
+.auth-github-btn:hover {
+  background-color: #1b1f23;
+}
+
+.auth-switch-block {
+  text-align: center;
+}
+
+.auth-button {
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  cursor: pointer;
+  padding: 0;
+}
+
+.auth-button:hover {
+  text-decoration: underline;
 }
