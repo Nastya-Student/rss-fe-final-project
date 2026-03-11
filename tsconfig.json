@@ -7,7 +7,7 @@
     "types": ["vite/client"],
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
-    "module": "nodenext",
+    "module": "ESNext",
     "target": "esnext",
     // For nodejs:
     // "lib": ["esnext"],

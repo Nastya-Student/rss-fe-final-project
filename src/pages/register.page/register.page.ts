@@ -4,6 +4,12 @@ import { createElement } from "../../utils/create-element.js";
 import { register } from "../../api/auth.service.js";
 import "../login.page/login.page.style.css";
 
+type AuthField = {
+  wrapper: HTMLDivElement;
+  input: HTMLInputElement;
+  error: HTMLParagraphElement;
+};
+
 export class RegisterPage extends BasePage {
   create(parent: HTMLElement): void {
     parent.append(this.container);
@@ -13,48 +19,53 @@ export class RegisterPage extends BasePage {
     const pageTitle = createElement("h2", { textContent: "Register" });
     const form = createElement("form", { className: "auth-form" });
 
-    const createField = (input: HTMLInputElement) => {
-      const wrapper = createElement("div", { className: "form-field" });
-      const error = createElement("p", { className: "field-error" });
+    const createField = (input: HTMLInputElement): AuthField => {
+      const wrapper = createElement("div", { className: "auth-form-field" });
+      const error = createElement("p", { className: "auth-field-error" });
       wrapper.append(input, error);
-      return { wrapper, error };
+      return { wrapper, input, error };
     };
 
-    const nameInput = createElement("input", {
-      attrs: { type: "text", placeholder: "Name", required: true },
-    });
+    const name = createField(
+      createElement("input", {
+        attrs: { type: "text", placeholder: "Name", required: true },
+      }),
+    );
 
-    const emailInput = createElement("input", {
-      attrs: {
-        type: "email",
-        placeholder: "Email",
-        required: true,
-        autocomplete: "email",
-      },
-    });
+    const email = createField(
+      createElement("input", {
+        attrs: {
+          type: "email",
+          placeholder: "Email",
+          required: true,
+          autocomplete: "email",
+        },
+      }),
+    );
 
-    const passwordInput = createElement("input", {
-      attrs: {
-        type: "password",
-        placeholder: "Password",
-        required: true,
-        autocomplete: "new-password",
-      },
-    });
+    const password = createField(
+      createElement("input", {
+        attrs: {
+          type: "password",
+          placeholder: "Password",
+          required: true,
+          autocomplete: "new-password",
+        },
+      }),
+    );
 
-    const confirmPasswordInput = createElement("input", {
-      attrs: {
-        type: "password",
-        placeholder: "Confirm Password",
-        required: true,
-        autocomplete: "new-password",
-      },
-    });
+    const confirm = createField(
+      createElement("input", {
+        attrs: {
+          type: "password",
+          placeholder: "Confirm Password",
+          required: true,
+          autocomplete: "new-password",
+        },
+      }),
+    );
 
-    const nameField = createField(nameInput);
-    const emailField = createField(emailInput);
-    const passwordField = createField(passwordInput);
-    const confirmField = createField(confirmPasswordInput);
+    const fields: AuthField[] = [name, email, password, confirm];
 
     const submitButton = createElement("button", {
       textContent: "Create Account",
@@ -62,49 +73,34 @@ export class RegisterPage extends BasePage {
     });
 
     const updateSubmitState = () => {
-      submitButton.disabled =
-        !nameInput.value.trim() ||
-        !emailInput.value.trim() ||
-        !passwordInput.value ||
-        !confirmPasswordInput.value;
+      submitButton.disabled = fields.some((field) => !field.input.value.trim());
     };
 
-    nameInput.addEventListener("input", updateSubmitState);
-    emailInput.addEventListener("input", updateSubmitState);
-    passwordInput.addEventListener("input", updateSubmitState);
-    confirmPasswordInput.addEventListener("input", updateSubmitState);
+    for (const field of fields) {
+      field.input.addEventListener("input", updateSubmitState);
+    }
 
     form.addEventListener("submit", (e) => {
       e.preventDefault();
-      void this.handleSubmit(
-        nameInput,
-        emailInput,
-        passwordInput,
-        confirmPasswordInput,
-        nameField.error,
-        emailField.error,
-        passwordField.error,
-        confirmField.error,
-        submitButton,
-      );
+      void this.handleSubmit(fields, submitButton);
     });
 
     const switchBlock = createElement("div", {
-      className: "switch-block",
+      className: "auth-switch-block",
     });
 
     const loginButton = createElement("button", {
       textContent: "Already have an account? Login",
-      className: "button",
+      className: "auth-button",
     });
 
     loginButton.dataset.route = RoutePath.Login;
 
     form.append(
-      nameField.wrapper,
-      emailField.wrapper,
-      passwordField.wrapper,
-      confirmField.wrapper,
+      name.wrapper,
+      email.wrapper,
+      password.wrapper,
+      confirm.wrapper,
       submitButton,
     );
 
@@ -112,65 +108,51 @@ export class RegisterPage extends BasePage {
     card.append(pageTitle, form, switchBlock);
     this.container.append(card);
 
-    nameInput.focus();
+    name.input.focus();
   }
 
   private async handleSubmit(
-    nameInput: HTMLInputElement,
-    emailInput: HTMLInputElement,
-    passwordInput: HTMLInputElement,
-    confirmPasswordInput: HTMLInputElement,
-    nameError: HTMLElement,
-    emailError: HTMLElement,
-    passwordError: HTMLElement,
-    confirmError: HTMLElement,
+    fields: AuthField[],
     submitButton: HTMLButtonElement,
   ): Promise<void> {
-    const name = nameInput.value.trim();
-    const email = emailInput.value.trim().toLowerCase();
-    const password = passwordInput.value;
-    const confirmPassword = confirmPasswordInput.value;
+    const [name, email, password, confirm] = fields as [
+      AuthField,
+      AuthField,
+      AuthField,
+      AuthField,
+    ];
 
-    for (const el of [nameError, emailError, passwordError, confirmError]) {
-      el.textContent = "";
+    for (const field of fields) {
+      field.error.textContent = "";
+      field.input.classList.remove("auth-input-error");
     }
 
-    for (const input of [
-      nameInput,
-      emailInput,
-      passwordInput,
-      confirmPasswordInput,
-    ]) {
-      input.classList.remove("input-error");
-    }
+    const nameValue = name.input.value.trim();
+    const emailValue = email.input.value.trim().toLowerCase();
+    const passwordValue = password.input.value;
+    const confirmValue = confirm.input.value;
 
-    if (!name) {
-      nameError.textContent = "Name is required";
-      nameInput.classList.add("input-error");
+    if (!nameValue) {
+      name.error.textContent = "Name is required";
+      name.input.classList.add("auth-input-error");
       return;
     }
 
-    if (!email) {
-      emailError.textContent = "Email is required";
-      emailInput.classList.add("input-error");
+    if (!emailValue.includes("@")) {
+      email.error.textContent = "Invalid email format";
+      email.input.classList.add("auth-input-error");
       return;
     }
 
-    if (!email.includes("@")) {
-      emailError.textContent = "Invalid email format";
-      emailInput.classList.add("input-error");
+    if (passwordValue.length < 6) {
+      password.error.textContent = "Password must be at least 6 characters";
+      password.input.classList.add("auth-input-error");
       return;
     }
 
-    if (password.length < 6) {
-      passwordError.textContent = "Password must be at least 6 characters";
-      passwordInput.classList.add("input-error");
-      return;
-    }
-
-    if (password !== confirmPassword) {
-      confirmError.textContent = "Passwords do not match";
-      confirmPasswordInput.classList.add("input-error");
+    if (passwordValue !== confirmValue) {
+      confirm.error.textContent = "Passwords do not match";
+      confirm.input.classList.add("auth-input-error");
       return;
     }
 
@@ -178,26 +160,21 @@ export class RegisterPage extends BasePage {
     submitButton.textContent = "Creating account...";
 
     try {
-      const { error } = await register(email, password, name);
+      const { error } = await register(emailValue, passwordValue, nameValue);
 
       if (error) {
-        emailError.textContent = error.message;
-        emailInput.classList.add("input-error");
+        email.error.textContent = error.message;
+        email.input.classList.add("auth-input-error");
         return;
       }
 
       window.location.hash = RoutePath.Dashboard;
     } catch {
-      emailError.textContent = "Network error. Please try again.";
-      emailInput.classList.add("input-error");
+      email.error.textContent = "Network error. Please try again.";
+      email.input.classList.add("auth-input-error");
     } finally {
-      submitButton.disabled =
-        !nameInput.value.trim() ||
-        !emailInput.value.trim() ||
-        !passwordInput.value ||
-        !confirmPasswordInput.value;
-
       submitButton.textContent = "Create Account";
+      submitButton.disabled = fields.some((field) => !field.input.value.trim());
     }
   }
 }
