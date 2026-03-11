@@ -4,10 +4,10 @@
     // File Layout
     "rootDir": "./src",
     "outDir": "./dist",
-
+    "types": ["vite/client"],
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
-    "module": "nodenext",
+    "module": "ESNext",
     "target": "esnext",
     // For nodejs:
     // "lib": ["esnext"],
@@ -36,7 +36,8 @@
     "strict": true,
     "isolatedModules": true,
     "moduleDetection": "force",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "moduleResolution": "bundler"
   },
   "include": ["src/**/*"]
 }
