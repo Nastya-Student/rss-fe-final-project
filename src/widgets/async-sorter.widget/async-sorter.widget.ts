@@ -72,11 +72,21 @@ export default function asyncSorterWidget(
     parent: asyncSorterWidgetContainer,
   }).getElement();
 
+  let dragged: HTMLElement | undefined;
+
   for (const value of codeBlockValues) {
-    new ElementCreator({
+    const codeBlock = new ElementCreator({
       parent: codeBlocksContainer,
       text: value,
       classes: ["async-sorter__code-block"],
+    }).getElement();
+
+    codeBlock.draggable = true;
+    codeBlock.addEventListener("dragstart", () => {
+      dragged = codeBlock;
+    });
+    codeBlock.addEventListener("dragend", () => {
+      dragged = undefined;
     });
   }
 
@@ -95,6 +105,31 @@ export default function asyncSorterWidget(
       parent: bucketElement,
       text: bucket,
     }).getElement();
+
+    const dropZone = new ElementCreator({
+      parent: bucketElement,
+      classes: ["async-sorter__drop-zone"],
+    }).getElement();
+
+    dropZone.addEventListener("dragenter", () => {
+      dropZone.classList.add("dragenter");
+    });
+    dropZone.addEventListener("dragleave", () => {
+      dropZone.classList.remove("dragenter");
+    });
+    dropZone.addEventListener("dragend", () => {
+      dropZone.classList.remove("dragenter");
+    });
+    dropZone.addEventListener("dragover", (event) => {
+      event.preventDefault();
+      dropZone.classList.add("dragenter");
+    });
+    dropZone.addEventListener("drop", () => {
+      if (dragged) {
+        dropZone.append(dragged);
+      }
+      dragged = undefined;
+    });
   }
 
   new ButtonCreator({
