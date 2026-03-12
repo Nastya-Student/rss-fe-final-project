@@ -95,16 +95,28 @@ export default function asyncSorterWidget(
     parent: asyncSorterWidgetContainer,
   }).getElement();
 
-  for (const bucket of ["Call Stack", "Microtasks", "Macrotasks"]) {
+  const bucketNamesMap = new Map<string, string>([
+    ["callstack", "Call Stack"],
+    ["microtasks", "Microtasks"],
+    ["macrotasks", "Macrotasks"],
+  ]);
+
+  const dropZones: HTMLElement[] = [];
+
+  for (const bucket of bucketNamesMap.keys()) {
     const bucketElement = new ElementCreator({
       parent: bucketsContainer,
       classes: ["async-sorter__bucket", CLASS_NAME.cardElement],
     }).getElement();
 
-    new ParagraphCreator({
-      parent: bucketElement,
-      text: bucket,
-    }).getElement();
+    const bucketName = bucketNamesMap.get(bucket);
+
+    if (bucketName !== undefined) {
+      new ParagraphCreator({
+        parent: bucketElement,
+        text: bucketName,
+      }).getElement();
+    }
 
     const dropZone = new ElementCreator({
       parent: bucketElement,
@@ -130,13 +142,17 @@ export default function asyncSorterWidget(
       }
       dragged = undefined;
     });
+    dropZone.dataset.name = bucket;
+    dropZones.push(dropZone);
   }
 
-  new ButtonCreator({
+  const runButton = new ButtonCreator({
     text: "Run",
     classes: [CLASS_NAME.button],
     parent: asyncSorterWidgetContainer,
   }).getElement();
+
+  runButton.addEventListener(EVENT.click, () => {});
 
   new HeadingsCreator(HEADINGS_THREE, {
     parent: asyncSorterWidgetContainer,
@@ -154,20 +170,26 @@ export default function asyncSorterWidget(
     parent: asyncSorterWidgetContainer,
   }).getElement();
 
-  const selectedAnswerIndex: AsyncSorterAnswer = {
-    answer: [
-      { name: "callstack", items: ["1", "4"] },
-      { name: "microtasks", items: ["3"] },
-      { name: "macrotasks", items: ["2"] },
-      { name: "output", items: ["1", "4", "3", "2"] },
-    ],
-  };
-
   submitButton.addEventListener(EVENT.click, () => {
-    onAnswer(selectedAnswerIndex);
+    onAnswer(getAnswer(dropZones));
     submitButton.classList.add(CLASS_NAME.noActive);
     submitButton.disabled = true;
   });
 
   return asyncSorterWidgetContainer;
+}
+
+function getAnswer(dropZones: HTMLElement[]): AsyncSorterAnswer {
+  const answer: { name: string; items: string[] }[] = [];
+  const output: string[] = [];
+  for (const dropZone of dropZones) {
+    const name = dropZone.dataset.name;
+    if (name !== undefined) {
+      const items = [...dropZone.children].map((el) => el.textContent);
+      output.push(...items);
+      answer.push({ name, items });
+    }
+  }
+  answer.push({ name: "output", items: output });
+  return { answer };
 }
