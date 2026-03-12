@@ -38,5 +38,5 @@
     "moduleDetection": "force",
     "skipLibCheck": true
   },
-  "include": ["src/**/*", "src/sum.ts", "test/sum.test.ts"]
+  "include": ["src/**/*", "src/", "test/"]
 }
