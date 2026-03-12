@@ -11,6 +11,7 @@ import {
   STRING_CONSTANTS_PRACTICE,
 } from "../../pages/practice.page/practice.page.js";
 import ButtonCreator from "../../utils/button/button-creator.js";
+import { delay } from "../../utils/delay.js";
 import ElementCreator from "../../utils/element-creator.js";
 import HeadingsCreator from "../../utils/headings/headings-creator.js";
 import ParagraphCreator from "../../utils/paragraph/paragraph-creator.js";
@@ -152,17 +153,31 @@ export default function asyncSorterWidget(
     parent: asyncSorterWidgetContainer,
   }).getElement();
 
-  runButton.addEventListener(EVENT.click, () => {});
-
   new HeadingsCreator(HEADINGS_THREE, {
     parent: asyncSorterWidgetContainer,
     text: "Output",
   }).getElement();
 
-  new ElementCreator({
+  const outputContainer = new ElementCreator({
     classes: ["async-sorter__output-container", CLASS_NAME.cardElement],
     parent: asyncSorterWidgetContainer,
   }).getElement();
+
+  runButton.addEventListener(EVENT.click, () => {
+    outputContainer.innerHTML = "";
+    const output = getAnswer(dropZones).answer.at(-1)?.items;
+    if (output) {
+      void (async () => {
+        for (const element of output) {
+          await delay(400);
+          new ParagraphCreator({
+            parent: outputContainer,
+            text: element,
+          }).getElement();
+        }
+      })();
+    }
+  });
 
   const submitButton = new ButtonCreator({
     text: STRING_CONSTANTS_PRACTICE.submit,
