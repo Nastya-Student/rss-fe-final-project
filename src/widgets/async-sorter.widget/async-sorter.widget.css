@@ -19,10 +19,6 @@
   color: var(--text-code-color);
 }
 
-.async-sorter__console-container {
-  gap: unset;
-}
-
 .async-sorter__code-blocks-container {
   display: flex;
   gap: var(--spacing-1);
@@ -69,10 +65,4 @@
   gap: var(--spacing-0-5);
   flex-wrap: wrap;
   flex: 1;
-}
-
-.async-sorter__drop-zone.dragenter {
-  border-radius: 0.6rem;
-  border: 1px dashed black;
-  background-color: var(--bg-color);
 }
