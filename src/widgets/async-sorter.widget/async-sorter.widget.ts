@@ -16,6 +16,7 @@ import ElementCreator from "../../utils/element-creator.js";
 import HeadingsCreator from "../../utils/headings/headings-creator.js";
 import ParagraphCreator from "../../utils/paragraph/paragraph-creator.js";
 import "./async-sorter.widget.css";
+import Sortable from "sortablejs";
 
 export default function asyncSorterWidget(
   payload: AsyncSorterPayload,
@@ -73,22 +74,12 @@ export default function asyncSorterWidget(
     parent: asyncSorterWidgetContainer,
   }).getElement();
 
-  let dragged: HTMLElement | undefined;
-
   for (const value of codeBlockValues) {
-    const codeBlock = new ElementCreator({
+    new ElementCreator({
       parent: codeBlocksContainer,
       text: value,
       classes: ["async-sorter__code-block"],
     }).getElement();
-
-    codeBlock.draggable = true;
-    codeBlock.addEventListener("dragstart", () => {
-      dragged = codeBlock;
-    });
-    codeBlock.addEventListener("dragend", () => {
-      dragged = undefined;
-    });
   }
 
   const bucketsContainer = new ElementCreator({
@@ -104,15 +95,13 @@ export default function asyncSorterWidget(
 
   const dropZones: HTMLElement[] = [];
 
-  for (const bucket of bucketNamesMap.keys()) {
+  for (const [bucket, bucketName] of bucketNamesMap.entries()) {
     const bucketElement = new ElementCreator({
       parent: bucketsContainer,
       classes: ["async-sorter__bucket", CLASS_NAME.cardElement],
     }).getElement();
 
-    const bucketName = bucketNamesMap.get(bucket);
-
-    if (bucketName !== undefined) {
+    if (bucketName) {
       new ParagraphCreator({
         parent: bucketElement,
         text: bucketName,
@@ -124,27 +113,22 @@ export default function asyncSorterWidget(
       classes: ["async-sorter__drop-zone"],
     }).getElement();
 
-    dropZone.addEventListener("dragenter", () => {
-      dropZone.classList.add("dragenter");
-    });
-    dropZone.addEventListener("dragleave", () => {
-      dropZone.classList.remove("dragenter");
-    });
-    dropZone.addEventListener("dragend", () => {
-      dropZone.classList.remove("dragenter");
-    });
-    dropZone.addEventListener("dragover", (event) => {
-      event.preventDefault();
-      dropZone.classList.add("dragenter");
-    });
-    dropZone.addEventListener("drop", () => {
-      if (dragged) {
-        dropZone.append(dragged);
-      }
-      dragged = undefined;
-    });
     dropZone.dataset.name = bucket;
     dropZones.push(dropZone);
+  }
+
+  Sortable.create(codeBlocksContainer, {
+    group: "asyncSorter",
+    animation: 150,
+    ghostClass: "dragging",
+  });
+
+  for (const dropZone of dropZones) {
+    Sortable.create(dropZone, {
+      group: "asyncSorter",
+      animation: 150,
+      ghostClass: "dragging",
+    });
   }
 
   const runButton = new ButtonCreator({
