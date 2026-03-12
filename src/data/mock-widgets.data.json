@@ -102,7 +102,7 @@
     "tags": ["coreJS", "event-loop"],
     "payload": {
       "title": "Event Loop Basic",
-      "code": "console.log('1'); setTimeout(() => console.log('2'),0); Promise.resolve().then(()=>console.log('3')); console.log('4');",
+      "code": "console.log('1');\nsetTimeout(() => console.log('2'),0);\nPromise.resolve().then(()=>console.log('3'));\nconsole.log('4');",
       "buckets": [
         { "name": "callstack", "correctItems": ["1", "4"] },
         { "name": "microtasks", "correctItems": ["3"] },
