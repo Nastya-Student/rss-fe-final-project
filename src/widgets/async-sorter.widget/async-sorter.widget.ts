@@ -18,6 +18,39 @@ import ParagraphCreator from "../../utils/paragraph/paragraph-creator.js";
 import "./async-sorter.widget.css";
 import Sortable from "sortablejs";
 
+export const CLASS_NAMES_ASYNC_SORTER_WIDGET = {
+  asyncSorterTitle: "async-sorter__async-sorter-title",
+  codeContainer: "async-sorter__code-container",
+  codeBlocksContainer: "async-sorter__code-blocks-container",
+  codeBlock: "async-sorter__code-block",
+  bucketsContainer: "async-sorter__buckets-container",
+  bucket: "async-sorter__bucket",
+  dropZone: "async-sorter__drop-zone",
+  outputContainer: "async-sorter__output-container",
+};
+
+export const STRING_CONSTANTS_ASYNC_SORTER_WIDGET = {
+  asyncSorter: "Async Sorter",
+  consoleLog: "console.log",
+  codeBlocks: "Code Blocks",
+  callstackKey: "callstack",
+  callstackValue: "Call Stack",
+  microtasksKey: "microtasks",
+  microtasksValue: "Microtasks",
+  macrotasksKey: "macrotasks",
+  macrotasksValue: "Macrotasks",
+  sortableGroup: "asyncSorter",
+  sortableGhostClass: "dragging",
+  runButtonText: "Run",
+  output: "Output",
+  outputKey: "output",
+};
+
+export const NUMBER_CONSTANTS_ASYNC_SORTER_WIDGET = {
+  sortableAnimation: 150,
+  outputDelay: 400,
+};
+
 export default function asyncSorterWidget(
   payload: AsyncSorterPayload,
   onAnswer: (answer: AsyncSorterAnswer) => void,
@@ -31,8 +64,8 @@ export default function asyncSorterWidget(
 
   new HeadingsCreator(HEADINGS_TWO, {
     parent: asyncSorterWidgetContainer,
-    classes: ["async-sorter__code-title"],
-    text: "Async Sorter",
+    classes: [CLASS_NAMES_ASYNC_SORTER_WIDGET.asyncSorterTitle],
+    text: STRING_CONSTANTS_ASYNC_SORTER_WIDGET.asyncSorter,
   }).getElement();
 
   new HeadingsCreator(HEADINGS_THREE, {
@@ -41,7 +74,10 @@ export default function asyncSorterWidget(
   }).getElement();
 
   const codeContainer = new ElementCreator({
-    classes: ["async-sorter__code-container", CLASS_NAME.cardElement],
+    classes: [
+      CLASS_NAMES_ASYNC_SORTER_WIDGET.codeContainer,
+      CLASS_NAME.cardElement,
+    ],
     parent: asyncSorterWidgetContainer,
   }).getElement();
 
@@ -49,8 +85,11 @@ export default function asyncSorterWidget(
   const codeBlockValues: string[] = [];
 
   for (const codeLine of codeLines) {
-    if (codeLine.includes("console.log")) {
-      const start = codeLine.indexOf("console.log") + "console.log(".length + 1;
+    if (codeLine.includes(STRING_CONSTANTS_ASYNC_SORTER_WIDGET.consoleLog)) {
+      const start =
+        codeLine.indexOf(STRING_CONSTANTS_ASYNC_SORTER_WIDGET.consoleLog) +
+        `${STRING_CONSTANTS_ASYNC_SORTER_WIDGET.consoleLog}(`.length +
+        1;
       const end = codeLine.indexOf(")", start) - 1;
       let value = codeLine.slice(start, end);
       if (value === "") {
@@ -66,11 +105,14 @@ export default function asyncSorterWidget(
 
   new HeadingsCreator(HEADINGS_THREE, {
     parent: asyncSorterWidgetContainer,
-    text: "Code Blocks",
+    text: STRING_CONSTANTS_ASYNC_SORTER_WIDGET.codeBlocks,
   }).getElement();
 
   const codeBlocksContainer = new ElementCreator({
-    classes: ["async-sorter__code-blocks-container", CLASS_NAME.cardElement],
+    classes: [
+      CLASS_NAMES_ASYNC_SORTER_WIDGET.codeBlocksContainer,
+      CLASS_NAME.cardElement,
+    ],
     parent: asyncSorterWidgetContainer,
   }).getElement();
 
@@ -78,19 +120,28 @@ export default function asyncSorterWidget(
     new ElementCreator({
       parent: codeBlocksContainer,
       text: value,
-      classes: ["async-sorter__code-block"],
+      classes: [CLASS_NAMES_ASYNC_SORTER_WIDGET.codeBlock],
     }).getElement();
   }
 
   const bucketsContainer = new ElementCreator({
-    classes: ["async-sorter__buckets-container"],
+    classes: [CLASS_NAMES_ASYNC_SORTER_WIDGET.bucketsContainer],
     parent: asyncSorterWidgetContainer,
   }).getElement();
 
   const bucketNamesMap = new Map<string, string>([
-    ["callstack", "Call Stack"],
-    ["microtasks", "Microtasks"],
-    ["macrotasks", "Macrotasks"],
+    [
+      STRING_CONSTANTS_ASYNC_SORTER_WIDGET.callstackKey,
+      STRING_CONSTANTS_ASYNC_SORTER_WIDGET.callstackValue,
+    ],
+    [
+      STRING_CONSTANTS_ASYNC_SORTER_WIDGET.microtasksKey,
+      STRING_CONSTANTS_ASYNC_SORTER_WIDGET.microtasksValue,
+    ],
+    [
+      STRING_CONSTANTS_ASYNC_SORTER_WIDGET.macrotasksKey,
+      STRING_CONSTANTS_ASYNC_SORTER_WIDGET.macrotasksValue,
+    ],
   ]);
 
   const dropZones: HTMLElement[] = [];
@@ -98,7 +149,7 @@ export default function asyncSorterWidget(
   for (const [bucket, bucketName] of bucketNamesMap.entries()) {
     const bucketElement = new ElementCreator({
       parent: bucketsContainer,
-      classes: ["async-sorter__bucket", CLASS_NAME.cardElement],
+      classes: [CLASS_NAMES_ASYNC_SORTER_WIDGET.bucket, CLASS_NAME.cardElement],
     }).getElement();
 
     if (bucketName) {
@@ -110,7 +161,7 @@ export default function asyncSorterWidget(
 
     const dropZone = new ElementCreator({
       parent: bucketElement,
-      classes: ["async-sorter__drop-zone"],
+      classes: [CLASS_NAMES_ASYNC_SORTER_WIDGET.dropZone],
     }).getElement();
 
     dropZone.dataset.name = bucket;
@@ -118,32 +169,35 @@ export default function asyncSorterWidget(
   }
 
   Sortable.create(codeBlocksContainer, {
-    group: "asyncSorter",
-    animation: 150,
-    ghostClass: "dragging",
+    group: STRING_CONSTANTS_ASYNC_SORTER_WIDGET.sortableGroup,
+    animation: NUMBER_CONSTANTS_ASYNC_SORTER_WIDGET.sortableAnimation,
+    ghostClass: STRING_CONSTANTS_ASYNC_SORTER_WIDGET.sortableGhostClass,
   });
 
   for (const dropZone of dropZones) {
     Sortable.create(dropZone, {
-      group: "asyncSorter",
-      animation: 150,
-      ghostClass: "dragging",
+      group: STRING_CONSTANTS_ASYNC_SORTER_WIDGET.sortableGroup,
+      animation: NUMBER_CONSTANTS_ASYNC_SORTER_WIDGET.sortableAnimation,
+      ghostClass: STRING_CONSTANTS_ASYNC_SORTER_WIDGET.sortableGhostClass,
     });
   }
 
   const runButton = new ButtonCreator({
-    text: "Run",
+    text: STRING_CONSTANTS_ASYNC_SORTER_WIDGET.runButtonText,
     classes: [CLASS_NAME.button],
     parent: asyncSorterWidgetContainer,
   }).getElement();
 
   new HeadingsCreator(HEADINGS_THREE, {
     parent: asyncSorterWidgetContainer,
-    text: "Output",
+    text: STRING_CONSTANTS_ASYNC_SORTER_WIDGET.output,
   }).getElement();
 
   const outputContainer = new ElementCreator({
-    classes: ["async-sorter__output-container", CLASS_NAME.cardElement],
+    classes: [
+      CLASS_NAMES_ASYNC_SORTER_WIDGET.outputContainer,
+      CLASS_NAME.cardElement,
+    ],
     parent: asyncSorterWidgetContainer,
   }).getElement();
 
@@ -153,7 +207,7 @@ export default function asyncSorterWidget(
     if (output) {
       void (async () => {
         for (const element of output) {
-          await delay(400);
+          await delay(NUMBER_CONSTANTS_ASYNC_SORTER_WIDGET.outputDelay);
           new ParagraphCreator({
             parent: outputContainer,
             text: element,
@@ -189,6 +243,9 @@ function getAnswer(dropZones: HTMLElement[]): AsyncSorterAnswer {
       answer.push({ name, items });
     }
   }
-  answer.push({ name: "output", items: output });
+  answer.push({
+    name: STRING_CONSTANTS_ASYNC_SORTER_WIDGET.outputKey,
+    items: output,
+  });
   return { answer };
 }
