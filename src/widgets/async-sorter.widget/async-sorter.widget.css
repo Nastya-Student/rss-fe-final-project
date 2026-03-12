@@ -66,3 +66,7 @@
   flex-wrap: wrap;
   flex: 1;
 }
+
+.async-sorter__run-button {
+  width: fit-content;
+}

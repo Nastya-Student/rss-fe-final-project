@@ -27,6 +27,7 @@ export const CLASS_NAMES_ASYNC_SORTER_WIDGET = {
   bucket: "async-sorter__bucket",
   dropZone: "async-sorter__drop-zone",
   outputContainer: "async-sorter__output-container",
+  runButton: "async-sorter__run-button",
 };
 
 export const STRING_CONSTANTS_ASYNC_SORTER_WIDGET = {
@@ -184,7 +185,7 @@ export default function asyncSorterWidget(
 
   const runButton = new ButtonCreator({
     text: STRING_CONSTANTS_ASYNC_SORTER_WIDGET.runButtonText,
-    classes: [CLASS_NAME.button],
+    classes: [CLASS_NAMES_ASYNC_SORTER_WIDGET.runButton, CLASS_NAME.button],
     parent: asyncSorterWidgetContainer,
   }).getElement();
 
@@ -219,7 +220,7 @@ export default function asyncSorterWidget(
 
   const submitButton = new ButtonCreator({
     text: STRING_CONSTANTS_PRACTICE.submit,
-    classes: [CLASS_NAME.button],
+    classes: [CLASS_NAMES_PRACTICE.submitButton, CLASS_NAME.button],
     parent: asyncSorterWidgetContainer,
   }).getElement();
 

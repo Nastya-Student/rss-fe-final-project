@@ -7,6 +7,11 @@
   max-width: 40rem;
 }
 
+.practice__submit-button {
+  width: fit-content;
+  align-self: flex-end;
+}
+
 .practice__widget-result-text {
   font-size: 0.8rem;
 }
