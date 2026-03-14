@@ -105,3 +105,6 @@ dist
 
 # Desktop Services Store macOS
 .DS_Store
+
+#Web Storm IDE
+.idea/
