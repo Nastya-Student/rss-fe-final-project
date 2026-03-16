@@ -71,4 +71,9 @@ describe("TopicProgressService", () => {
     const topics = await service.callGetAll();
     expect(topics).toBeUndefined();
   });
+
+  it("getTopicById should return undefined if no matches", async () => {
+    const topics = await service.getTopicById("null");
+    expect(topics).toBeUndefined();
+  });
 });
