@@ -75,4 +75,23 @@ describe("TopicProgressService", () => {
     expect(allTopicProgress).toHaveLength(expectedTopicProgress.length);
     expect(allTopicProgress).toStrictEqual(expectedTopicProgress);
   });
+
+  it("getTopicProgressByTopicId should filter correctly for a random topicId", async () => {
+    const topicIds = [
+      ...new Set(mockData.map((topicProgress) => topicProgress.topicId)),
+    ];
+    const randomTopicId = topicIds[Math.floor(Math.random() * topicIds.length)];
+    if (randomTopicId === undefined) {
+      throw new Error("randomTopicId is undefined");
+    }
+
+    const expectedTopicProgress = mockData.filter(
+      (topicProgress) => topicProgress.topicId === randomTopicId,
+    );
+
+    const allTopicProgress =
+      await service.getTopicProgressByTopicId(randomTopicId);
+    expect(allTopicProgress).toHaveLength(expectedTopicProgress.length);
+    expect(allTopicProgress).toStrictEqual(expectedTopicProgress);
+  });
 });
