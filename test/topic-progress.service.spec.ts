@@ -100,4 +100,9 @@ describe("TopicProgressService", () => {
     const allTopicProgress = await service.callGetAll();
     expect(allTopicProgress).toBeUndefined();
   });
+
+  it("getTopicProgressByTopicId should return empty array if no matches", async () => {
+    const allTopicProgress = await service.getTopicProgressByTopicId("null");
+    expect(allTopicProgress).toEqual([]);
+  });
 });
