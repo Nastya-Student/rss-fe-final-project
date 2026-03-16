@@ -84,4 +84,10 @@ describe("WidgetService", () => {
     expect(widgets).toHaveLength(expectedWidgets.length);
     expect(widgets).toStrictEqual(expectedWidgets);
   });
+
+  it("getAll should return undefined if mockData is invalid", async () => {
+    const service = new TestWidgetService(undefined);
+    const allTopicProgress = await service.callGetAll();
+    expect(allTopicProgress).toBeUndefined();
+  });
 });
