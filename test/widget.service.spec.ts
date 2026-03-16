@@ -90,4 +90,9 @@ describe("WidgetService", () => {
     const allTopicProgress = await service.callGetAll();
     expect(allTopicProgress).toBeUndefined();
   });
+
+  it("getWidgetsByTopicId should return empty array if no matches", async () => {
+    const allTopicProgress = await service.getWidgetsByTopicId("null");
+    expect(allTopicProgress).toEqual([]);
+  });
 });
