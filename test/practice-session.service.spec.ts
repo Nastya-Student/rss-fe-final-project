@@ -100,4 +100,9 @@ describe("PracticeSessionService", () => {
     const sessions = await service.callGetAll();
     expect(sessions).toBeUndefined();
   });
+
+  it("getPracticeSessionsByUserId should return empty array if no matches", async () => {
+    const sessions = await service.getPracticeSessionsByUserId("null");
+    expect(sessions).toEqual([]);
+  });
 });
