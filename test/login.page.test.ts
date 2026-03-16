@@ -96,4 +96,25 @@ describe("LoginPage", () => {
 
     expect(window.location.hash).toBe(`#${RoutePath.Dashboard}`);
   });
+
+  it("toggles password visibility", () => {
+    const password = getElement<HTMLInputElement>('input[type="password"]');
+    const toggle = getElement<HTMLButtonElement>(".auth-toggle-password");
+
+    expect(password.type).toBe("password");
+
+    toggle.click();
+
+    expect(password.type).toBe("text");
+
+    toggle.click();
+
+    expect(password.type).toBe("password");
+  });
+
+  it("submit button is disabled when inputs are empty", () => {
+    const submit = getElement<HTMLButtonElement>('button[type="submit"]');
+
+    expect(submit.disabled).toBe(true);
+  });
 });
