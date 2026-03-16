@@ -65,4 +65,10 @@ describe("TopicProgressService", () => {
     const topicById = await service.getTopicById(randomTopicId);
     expect(topicById).toStrictEqual(expectedTopic);
   });
+
+  it("getAll should return undefined if mockData is invalid", async () => {
+    const service = new TestTopicService(undefined);
+    const topics = await service.callGetAll();
+    expect(topics).toBeUndefined();
+  });
 });
