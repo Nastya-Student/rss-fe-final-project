@@ -1,12 +1,14 @@
 [
   {
     "id": "u1",
-    "name": "Ivan",
-    "email": "ivan@mail.com",
+    "name": "Alisa",
+    "email": "alisa@gmail.com",
     "passwordHash": "hashed",
     "xp": 120,
     "streak": 5,
-    "createdAt": "2026-02-20"
+    "createdAt": "2026-02-20",
+    "photo": "/src/pages/profile.page/assets-avatar/alisa.jpg",
+    "getReminder": "false"
   },
   {
     "id": "u2",
@@ -15,7 +17,9 @@
     "passwordHash": "hashed",
     "xp": 80,
     "streak": 2,
-    "createdAt": "2026-02-18"
+    "createdAt": "2026-02-18",
+    "photo": "",
+    "getReminder": "false"
   },
   {
     "id": "u3",
@@ -24,6 +28,8 @@
     "passwordHash": "hashed",
     "xp": 200,
     "streak": 10,
-    "createdAt": "2026-02-10"
+    "createdAt": "2026-02-10",
+    "photo": "",
+    "getReminder": "false"
   }
 ]
