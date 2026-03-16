@@ -57,4 +57,21 @@ describe("PracticeSessionService", () => {
     const sessions = await service.getPracticeSessions();
     expect(sessions).toHaveLength(mockData.length);
   });
+
+  it("getPracticeSessionsByUserId should filter correctly for a random userId", async () => {
+    const userIds = [...new Set(mockData.map((session) => session.userId))];
+    const randomUserId = userIds[Math.floor(Math.random() * userIds.length)];
+    if (randomUserId === undefined) {
+      throw new Error("randomUserId is undefined");
+    }
+
+    const expectedSessions = mockData.filter(
+      (session) => session.userId === randomUserId,
+    );
+
+    const sessions = await service.getPracticeSessionsByUserId(randomUserId);
+
+    expect(sessions).toHaveLength(expectedSessions.length);
+    expect(sessions).toStrictEqual(expectedSessions);
+  });
 });
