@@ -3,9 +3,13 @@ import { PracticeSession } from "../src/interfaces/practice-session.interface.js
 import { PracticeSessionService } from "../src/services/practice-session.service.js";
 
 class TestPracticeSessionService extends PracticeSessionService {
-  constructor(data: PracticeSession[]) {
+  constructor(data: PracticeSession[] | undefined) {
     super();
     this.mockData = data;
+  }
+
+  public callGetAll() {
+    return this.getAll();
   }
 }
 
@@ -89,5 +93,11 @@ describe("PracticeSessionService", () => {
     const sessions = await service.getPracticeSessionsByTopicId(randomTopicId);
     expect(sessions).toHaveLength(expectedSessions.length);
     expect(sessions).toStrictEqual(expectedSessions);
+  });
+
+  it("getAll should return undefined if mockData is invalid", async () => {
+    const service = new TestPracticeSessionService(undefined);
+    const sessions = await service.callGetAll();
+    expect(sessions).toBeUndefined();
   });
 });
