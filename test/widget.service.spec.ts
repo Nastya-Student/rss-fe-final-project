@@ -66,4 +66,22 @@ describe("WidgetService", () => {
     const widgets = await service.getWidgets();
     expect(widgets).toHaveLength(mockData.length);
   });
+
+  it("getWidgetsByTopicId should filter correctly for a random topicId", async () => {
+    const topicIds = [
+      ...new Set(mockData.map((topicProgress) => topicProgress.topicId)),
+    ];
+    const randomTopicId = topicIds[Math.floor(Math.random() * topicIds.length)];
+    if (randomTopicId === undefined) {
+      throw new Error("randomTopicId is undefined");
+    }
+
+    const expectedWidgets = mockData.filter(
+      (widget) => widget.topicId === randomTopicId,
+    );
+
+    const widgets = await service.getWidgetsByTopicId(randomTopicId);
+    expect(widgets).toHaveLength(expectedWidgets.length);
+    expect(widgets).toStrictEqual(expectedWidgets);
+  });
 });
