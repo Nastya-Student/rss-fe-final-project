@@ -74,4 +74,20 @@ describe("PracticeSessionService", () => {
     expect(sessions).toHaveLength(expectedSessions.length);
     expect(sessions).toStrictEqual(expectedSessions);
   });
+
+  it("getPracticeSessionsByTopicId should filter correctly for a random topicId", async () => {
+    const topicIds = [...new Set(mockData.map((session) => session.topicId))];
+    const randomTopicId = topicIds[Math.floor(Math.random() * topicIds.length)];
+    if (randomTopicId === undefined) {
+      throw new Error("randomTopicId is undefined");
+    }
+
+    const expectedSessions = mockData.filter(
+      (session) => session.topicId === randomTopicId,
+    );
+
+    const sessions = await service.getPracticeSessionsByTopicId(randomTopicId);
+    expect(sessions).toHaveLength(expectedSessions.length);
+    expect(sessions).toStrictEqual(expectedSessions);
+  });
 });
