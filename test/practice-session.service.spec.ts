@@ -105,4 +105,9 @@ describe("PracticeSessionService", () => {
     const sessions = await service.getPracticeSessionsByUserId("null");
     expect(sessions).toEqual([]);
   });
+
+  it("getPracticeSessionsByTopicId should return empty array if no matches", async () => {
+    const sessions = await service.getPracticeSessionsByTopicId("null");
+    expect(sessions).toEqual([]);
+  });
 });
