@@ -72,4 +72,9 @@ describe("UserService", () => {
     const topics = await service.callGetAll();
     expect(topics).toBeUndefined();
   });
+
+  it("getUserById should return undefined if no matches", async () => {
+    const users = await service.getUserById("null");
+    expect(users).toBeUndefined();
+  });
 });
