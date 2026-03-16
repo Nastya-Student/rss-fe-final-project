@@ -94,4 +94,10 @@ describe("TopicProgressService", () => {
     expect(allTopicProgress).toHaveLength(expectedTopicProgress.length);
     expect(allTopicProgress).toStrictEqual(expectedTopicProgress);
   });
+
+  it("getAll should return undefined if mockData is invalid", async () => {
+    const service = new TestTopicProgressService(undefined);
+    const allTopicProgress = await service.callGetAll();
+    expect(allTopicProgress).toBeUndefined();
+  });
 });
