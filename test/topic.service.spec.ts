@@ -13,7 +13,7 @@ class TestTopicService extends TopicService {
   }
 }
 
-describe("TopicProgressService", () => {
+describe("TopicService", () => {
   let service: TestTopicService;
   let mockData: Topic[];
   beforeEach(() => {
