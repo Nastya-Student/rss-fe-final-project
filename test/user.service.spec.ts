@@ -13,7 +13,7 @@ class TestUserService extends UserService {
   }
 }
 
-describe("TopicProgressService", () => {
+describe("UserService", () => {
   let service: TestUserService;
   let mockData: User[];
   beforeEach(() => {
@@ -53,5 +53,17 @@ describe("TopicProgressService", () => {
   it("getUsers should return all users", async () => {
     const users = await service.getUsers();
     expect(users).toHaveLength(mockData.length);
+  });
+
+  it("getUserById should filter correctly for a random Id", async () => {
+    const userIds = mockData.map((user) => user.id);
+    const randomUserId = userIds[Math.floor(Math.random() * userIds.length)];
+    if (randomUserId === undefined) {
+      throw new Error("randomUserId is undefined");
+    }
+
+    const expectedUser = mockData.find((user) => user.id === randomUserId);
+    const userById = await service.getUserById(randomUserId);
+    expect(userById).toStrictEqual(expectedUser);
   });
 });
