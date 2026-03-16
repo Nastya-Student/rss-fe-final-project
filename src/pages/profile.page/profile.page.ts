@@ -14,24 +14,55 @@ import {
   createLocalUser,
   createPracticeHistory,
 } from "./utils/create-local-data.js";
+import { establishAchievementStatus } from "./utils/establish-achievement-status.js";
 
 export class ProfilePage extends BasePage {
   private user: User | undefined;
   private sessions: PracticeSession[] | undefined;
 
+  private _avatar?: HTMLImageElement | undefined;
+
+  private _name?: HTMLHeadingElement | undefined;
+
+  private _achievement?: HTMLElement | undefined;
+
+  public get avatar(): HTMLImageElement {
+    if (!this._avatar) {
+      throw new Error("Avatar not found");
+    }
+    return this._avatar;
+  }
+
+  public get name(): HTMLHeadingElement {
+    if (!this._name) {
+      throw new Error("User name not found");
+    }
+    return this._name;
+  }
+
+  public get achievement(): HTMLElement {
+    if (!this._achievement) {
+      throw new Error("Achievement can not be calculated");
+    }
+    return this._achievement;
+  }
+
   private async setData(): Promise<void> {
     this.user = await createLocalUser("u1").catch();
     this.sessions = await createPracticeHistory("u1");
+    if (!this.user || !this.sessions) {
+      return;
+    }
+
+    this.avatar.src = this.user.photo;
+    this.name.textContent = this.user.name;
+    this.achievement.textContent = establishAchievementStatus(this.sessions);
   }
 
   create(parent: HTMLElement): void {
     parent.append(this.container);
     this.container.classList.add("profile-page");
     this.container.id = "profile-page";
-
-    this.setData().catch(() => {
-      throw new Error("Error loading user data");
-    });
 
     const profileHeader = new ElementCreator({
       classes: ["profile__header"],
@@ -85,10 +116,10 @@ export class ProfilePage extends BasePage {
     }).getElement();
     avatarWrapper.id = "profile-avatar-wrapper";
 
-    const avatar = document.createElement("img");
-    avatar.src = "src/pages/profile.page/assets-avatar/alisa.jpg";
-    avatar.classList.add("profile__avatar");
-    avatarWrapper.append(avatar);
+    this._avatar = document.createElement("img");
+    // avatar.src = "src/pages/profile.page/assets-avatar/alisa.jpg";
+    this.avatar.classList.add("profile__avatar");
+    avatarWrapper.append(this.avatar);
 
     const description = new ElementCreator({
       classes: ["profile__description"],
@@ -101,8 +132,8 @@ export class ProfilePage extends BasePage {
     }).getElement();
 
     // name
-    new HeadingsCreator(HEADINGS_ONE, {
-      text: "Alisa",
+    this._name = new HeadingsCreator(HEADINGS_ONE, {
+      // text: this.user?.name ?? "get name error",
       classes: ["profile__username"],
       parent: descriptionHeader,
     }).getElement();
@@ -115,7 +146,7 @@ export class ProfilePage extends BasePage {
     settings.innerHTML = settingsSVG;
 
     const achievementWrapper = new ElementCreator({
-      text: "Novice",
+      // text: "Novice",
       classes: ["profile__achievement-wrapper"],
       parent: description,
     }).getElement();
@@ -138,6 +169,10 @@ export class ProfilePage extends BasePage {
     toDashboardButton.dataset.route = RoutePath.Dashboard;
 
     settingsOnClickHandler();
+
+    this.setData().catch(() => {
+      throw new Error("Error loading user data");
+    });
   }
 }
 
