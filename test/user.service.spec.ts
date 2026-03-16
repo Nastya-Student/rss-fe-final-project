@@ -66,4 +66,10 @@ describe("UserService", () => {
     const userById = await service.getUserById(randomUserId);
     expect(userById).toStrictEqual(expectedUser);
   });
+
+  it("getAll should return undefined if mockData is invalid", async () => {
+    const service = new TestUserService(undefined);
+    const topics = await service.callGetAll();
+    expect(topics).toBeUndefined();
+  });
 });
