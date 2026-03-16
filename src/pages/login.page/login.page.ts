@@ -23,7 +23,9 @@ export class LoginPage extends BasePage {
           window.location.hash = RoutePath.Dashboard;
         }
       })
-      .catch(() => {});
+      .catch(() => {
+        // handle session error
+      });
 
     const card = createElement("div", { className: "auth-card" });
     const pageTitle = createElement("h2", { textContent: "Login" });

@@ -39,5 +39,5 @@
     "skipLibCheck": true,
     "moduleResolution": "bundler"
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*", "src/", "test/", "vitest.config.ts"]
 }

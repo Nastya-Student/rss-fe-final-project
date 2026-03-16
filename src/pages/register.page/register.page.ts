@@ -17,7 +17,10 @@ export class RegisterPage extends BasePage {
 
     const card = createElement("div", { className: "auth-card" });
     const pageTitle = createElement("h2", { textContent: "Register" });
-    const form = createElement("form", { className: "auth-form" });
+    const form = createElement("form", {
+      className: "auth-form",
+      attrs: { novalidate: true },
+    });
 
     const createField = (input: HTMLInputElement): AuthField => {
       const wrapper = createElement("div", { className: "auth-form-field" });
