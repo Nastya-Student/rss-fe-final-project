@@ -7,8 +7,8 @@
     "xp": 120,
     "streak": 5,
     "createdAt": "2026-02-20",
-    "photo": "/src/pages/profile.page/assets-avatar/alisa.jpg",
-    "getReminder": "false"
+    "photo": "src/pages/profile.page/assets-avatar/alisa.jpg",
+    "getReminder": false
   },
   {
     "id": "u2",
@@ -19,7 +19,7 @@
     "streak": 2,
     "createdAt": "2026-02-18",
     "photo": "",
-    "getReminder": "false"
+    "getReminder": false
   },
   {
     "id": "u3",
@@ -30,6 +30,6 @@
     "streak": 10,
     "createdAt": "2026-02-10",
     "photo": "",
-    "getReminder": "false"
+    "getReminder": false
   }
 ]
