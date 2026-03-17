@@ -1,18 +1,335 @@
 [
-{"id":"s1","userId":"u1","topicId":"Core JS","answers":[{"widgetId":"w1","isCorrect":true,"timeSpent":5,"difficulty":1},{"widgetId":"w2","isCorrect":true,"timeSpent":5,"difficulty":2}]},
-{"id":"s2","userId":"u1","topicId":"Algorithms","answers":[{"widgetId":"w3","isCorrect":true,"timeSpent":5,"difficulty":2},{"widgetId":"w4","isCorrect":true,"timeSpent":5,"difficulty":3}]},
-{"id":"s3","userId":"u1","topicId":"Typescript","answers":[{"widgetId":"w5","isCorrect":true,"timeSpent":5,"difficulty":1},{"widgetId":"w6","isCorrect":true,"timeSpent":5,"difficulty":2}]},
-{"id":"s4","userId":"u1","topicId":"HTML","answers":[{"widgetId":"w7","isCorrect":true,"timeSpent":5,"difficulty":3}]},
-{"id":"s5","userId":"u1","topicId":"Core JS","answers":[{"widgetId":"w1","isCorrect":true,"timeSpent":5,"difficulty":1}]},
-{"id":"s6","userId":"u1","topicId":"Algorithms","answers":[{"widgetId":"w2","isCorrect":true,"timeSpent":5,"difficulty":2}]},
-{"id":"s7","userId":"u1","topicId":"Typescript","answers":[{"widgetId":"w3","isCorrect":true,"timeSpent":5,"difficulty":1}]},
-{"id":"s8","userId":"u1","topicId":"HTML","answers":[{"widgetId":"w4","isCorrect":true,"timeSpent":5,"difficulty":3}]},
-{"id":"s9","userId":"u1","topicId":"Core JS","answers":[{"widgetId":"w5","isCorrect":true,"timeSpent":5,"difficulty":2}]},
-{"id":"s10","userId":"u1","topicId":"Algorithms","answers":[{"widgetId":"w6","isCorrect":true,"timeSpent":5,"difficulty":1}]},
-
-{"id":"s11","userId":"u1","topicId":"Typescript","answers":[{"widgetId":"w7","isCorrect":true,"timeSpent":5,"difficulty":1}]},
-{"id":"s12","userId":"u1","topicId":"HTML","answers":[{"widgetId":"w1","isCorrect":true,"timeSpent":5,"difficulty":2}]},
-{"id":"s13","userId":"u1","topicId":"Core JS","answers":[{"widgetId":"w2","isCorrect":true,"timeSpent":5,"difficulty":1}]},
-{"id":"s14","userId":"u1","topicId":"Algorithms","answers":[{"widgetId":"w3","isCorrect":true,"timeSpent":5,"difficulty":3}]},
-{"id":"s15","userId":"u1","topicId":"HTML","answers":[{"widgetId":"w4","isCorrect":false,"timeSpent":5,"difficulty":2},{"widgetId":"w5","isCorrect":false,"timeSpent":5,"difficulty":3}]}
+  {
+    "id": "s1",
+    "userId": "u1",
+    "topicId": "Core JS",
+    "topicTitle": "Core JS",
+    "answers": [
+      {
+        "widgetId": "w1",
+        "isCorrect": true,
+        "timeSpent": 5,
+        "difficulty": 2
+      },
+      {
+        "widgetId": "w1",
+        "isCorrect": false,
+        "timeSpent": 5,
+        "difficulty": 3
+      },
+      {
+        "widgetId": "w1",
+        "isCorrect": false,
+        "timeSpent": 5,
+        "difficulty": 3
+      },
+      {
+        "widgetId": "w1",
+        "isCorrect": false,
+        "timeSpent": 5,
+        "difficulty": 3
+      },
+      {
+        "widgetId": "w1",
+        "isCorrect": false,
+        "timeSpent": 5,
+        "difficulty": 3
+      }
+    ],
+    "score": 80,
+    "startedAt": "2026-02-23T10:00:00",
+    "completedAt": "2026-02-23T10:05:00"
+  },
+  {
+    "id": "s2",
+    "userId": "u1",
+    "topicId": "Algorithms",
+    "topicTitle": "Algorithms",
+    "answers": [
+      {
+        "widgetId": "w2",
+        "isCorrect": true,
+        "timeSpent": 6,
+        "difficulty": 2
+      },
+      {
+        "widgetId": "w1",
+        "isCorrect": true,
+        "timeSpent": 5,
+        "difficulty": 3
+      },
+      {
+        "widgetId": "w1",
+        "isCorrect": true,
+        "timeSpent": 5,
+        "difficulty": 3
+      },
+      {
+        "widgetId": "w1",
+        "isCorrect": true,
+        "timeSpent": 5,
+        "difficulty": 3
+      },
+      {
+        "widgetId": "w1",
+        "isCorrect": true,
+        "timeSpent": 5,
+        "difficulty": 3
+      }
+    ],
+    "score": 70,
+    "startedAt": "2026-02-24T10:00:00",
+    "completedAt": "2026-02-24T10:06:00"
+  },
+  {
+    "id": "s3",
+    "userId": "u1",
+    "topicId": "Typescript",
+    "topicTitle": "Typescript",
+    "answers": [
+      {
+        "widgetId": "w3",
+        "isCorrect": true,
+        "timeSpent": 7,
+        "difficulty": 1
+      }
+    ],
+    "score": 60,
+    "startedAt": "2026-02-25T10:00:00",
+    "completedAt": "2026-02-25T10:07:00"
+  },
+  {
+    "id": "s4",
+    "userId": "u1",
+    "topicId": "HTML",
+    "topicTitle": "HTML",
+    "answers": [
+      {
+        "widgetId": "w4",
+        "isCorrect": true,
+        "timeSpent": 8,
+        "difficulty": 3
+      }
+    ],
+    "score": 90,
+    "startedAt": "2026-02-26T10:00:00",
+    "completedAt": "2026-02-26T10:08:00"
+  },
+  {
+    "id": "s5",
+    "userId": "u1",
+    "topicId": "Core JS",
+    "topicTitle": "Core JS",
+    "answers": [
+      {
+        "widgetId": "w5",
+        "isCorrect": true,
+        "timeSpent": 9,
+        "difficulty": 1
+      },
+      {
+        "widgetId": "w1",
+        "isCorrect": true,
+        "timeSpent": 5,
+        "difficulty": 3
+      },
+      {
+        "widgetId": "w1",
+        "isCorrect": true,
+        "timeSpent": 5,
+        "difficulty": 3
+      }
+    ],
+    "score": 75,
+    "startedAt": "2026-02-27T10:00:00",
+    "completedAt": "2026-02-27T10:09:00"
+  },
+  {
+    "id": "s6",
+    "userId": "u1",
+    "topicId": "Algorithms",
+    "topicTitle": "Algorithms",
+    "answers": [
+      {
+        "widgetId": "w6",
+        "isCorrect": true,
+        "timeSpent": 10,
+        "difficulty": 2
+      },
+      {
+        "widgetId": "w1",
+        "isCorrect": true,
+        "timeSpent": 5,
+        "difficulty": 3
+      },
+      {
+        "widgetId": "w1",
+        "isCorrect": true,
+        "timeSpent": 5,
+        "difficulty": 3
+      }
+    ],
+    "score": 85,
+    "startedAt": "2026-02-28T10:00:00",
+    "completedAt": "2026-02-28T10:10:00"
+  },
+  {
+    "id": "s7",
+    "userId": "u1",
+    "topicId": "Typescript",
+    "topicTitle": "Typescript",
+    "answers": [
+      {
+        "widgetId": "w7",
+        "isCorrect": true,
+        "timeSpent": 11,
+        "difficulty": 1
+      }
+    ],
+    "score": 95,
+    "startedAt": "2026-03-01T10:00:00",
+    "completedAt": "2026-03-01T10:11:00"
+  },
+  {
+    "id": "s8",
+    "userId": "u1",
+    "topicId": "HTML",
+    "topicTitle": "HTML",
+    "answers": [
+      {
+        "widgetId": "w1",
+        "isCorrect": true,
+        "timeSpent": 12,
+        "difficulty": 2
+      }
+    ],
+    "score": 88,
+    "startedAt": "2026-03-02T10:00:00",
+    "completedAt": "2026-03-02T10:12:00"
+  },
+  {
+    "id": "s9",
+    "userId": "u1",
+    "topicId": "Core JS",
+    "topicTitle": "Core JS",
+    "answers": [
+      {
+        "widgetId": "w2",
+        "isCorrect": true,
+        "timeSpent": 13,
+        "difficulty": 2
+      }
+    ],
+    "score": 92,
+    "startedAt": "2026-03-03T10:00:00",
+    "completedAt": "2026-03-03T10:13:00"
+  },
+  {
+    "id": "s10",
+    "userId": "u1",
+    "topicId": "Algorithms",
+    "topicTitle": "Algorithms",
+    "answers": [
+      {
+        "widgetId": "w3",
+        "isCorrect": true,
+        "timeSpent": 14,
+        "difficulty": 3
+      }
+    ],
+    "score": 93,
+    "startedAt": "2026-03-04T10:00:00",
+    "completedAt": "2026-03-04T10:14:00"
+  },
+  {
+    "id": "s11",
+    "userId": "u1",
+    "topicId": "Typescript",
+    "topicTitle": "Typescript",
+    "answers": [
+      {
+        "widgetId": "w4",
+        "isCorrect": true,
+        "timeSpent": 5,
+        "difficulty": 2
+      }
+    ],
+    "score": 20,
+    "startedAt": "2026-03-05T10:00:00",
+    "completedAt": "2026-03-05T10:05:00"
+  },
+  {
+    "id": "s12",
+    "userId": "u1",
+    "topicId": "HTML",
+    "topicTitle": "HTML",
+    "answers": [
+      {
+        "widgetId": "w5",
+        "isCorrect": true,
+        "timeSpent": 5,
+        "difficulty": 2
+      }
+    ],
+    "score": 10,
+    "startedAt": "2026-03-06T10:00:00",
+    "completedAt": "2026-03-06T10:05:00"
+  },
+  {
+    "id": "s13",
+    "userId": "u1",
+    "topicId": "Core JS",
+    "topicTitle": "Core JS",
+    "answers": [
+      {
+        "widgetId": "w6",
+        "isCorrect": false,
+        "timeSpent": 5,
+        "difficulty": 1
+      }
+    ],
+    "score": 0,
+    "startedAt": "2026-03-07T10:00:00",
+    "completedAt": "2026-03-07T10:05:00"
+  },
+  {
+    "id": "s14",
+    "userId": "u1",
+    "topicId": "Algorithms",
+    "topicTitle": "Algorithms",
+    "answers": [
+      {
+        "widgetId": "w7",
+        "isCorrect": false,
+        "timeSpent": 5,
+        "difficulty": 2
+      }
+    ],
+    "score": 0,
+    "startedAt": "2026-03-08T10:00:00",
+    "completedAt": "2026-03-08T10:05:00"
+  },
+  {
+    "id": "s15",
+    "userId": "u1",
+    "topicId": "HTML",
+    "topicTitle": "HTML",
+    "answers": [
+      {
+        "widgetId": "w1",
+        "isCorrect": false,
+        "timeSpent": 5,
+        "difficulty": 3
+      },
+      {
+        "widgetId": "w1",
+        "isCorrect": false,
+        "timeSpent": 5,
+        "difficulty": 3
+      }
+    ],
+    "score": 0,
+    "startedAt": "2026-03-09T10:00:00",
+    "completedAt": "2026-03-09T10:05:00"
+  }
 ]

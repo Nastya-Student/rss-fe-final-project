@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { isPracticeSessionArray } from "../src/guards/practice-session.guards.js";
 import { PracticeSession } from "../src/interfaces/practice-session.interface.js";
 import { establishAchievementStatus } from "../src/pages/profile.page/utils/establish-achievement-status.js";
@@ -10,25 +11,25 @@ import sessionsTestData6 from "./profile-test-data/profile-test-data-6.json" wit
 
 import { expect, test } from "vitest";
 
-test("", () => {
+test("number of success is not enough for 'student'", () => {
   const sessions: PracticeSession[] = isPracticeSessionArray(sessionsTestData1)
     ? sessionsTestData1
-    : [];
-
-  const status = establishAchievementStatus(sessions);
-  expect(status).toBe("student");
-});
-
-test("", () => {
-  const sessions: PracticeSession[] = isPracticeSessionArray(sessionsTestData2)
-    ? sessionsTestData2
     : [];
 
   const status = establishAchievementStatus(sessions);
   expect(status).toBe("novice");
 });
 
-test("", () => {
+test("percent of success is not enough for 'student'", () => {
+  const sessions2: PracticeSession[] = isPracticeSessionArray(sessionsTestData2)
+    ? sessionsTestData2
+    : [];
+
+  const status = establishAchievementStatus(sessions2);
+  expect(status).toBe("novice");
+});
+
+test("percent of success with difficulty 2 is not enough for 'student'", () => {
   const sessions: PracticeSession[] = isPracticeSessionArray(sessionsTestData3)
     ? sessionsTestData3
     : [];
@@ -37,29 +38,29 @@ test("", () => {
   expect(status).toBe("novice");
 });
 
-test("", () => {
+test("the conditions for achievement 'student' are met", () => {
   const sessions: PracticeSession[] = isPracticeSessionArray(sessionsTestData4)
     ? sessionsTestData4
     : [];
 
   const status = establishAchievementStatus(sessions);
-  expect(status).toBe("novice");
+  expect(status).toBe("student");
 });
 
-test("", () => {
+test("the conditions for achievement 'top-performer' are met", () => {
   const sessions: PracticeSession[] = isPracticeSessionArray(sessionsTestData5)
     ? sessionsTestData5
     : [];
 
   const status = establishAchievementStatus(sessions);
-  expect(status).toBe("novice");
+  expect(status).toBe("top-performer");
 });
 
-test("", () => {
+test("the conditions for achievement 'expert' are met", () => {
   const sessions: PracticeSession[] = isPracticeSessionArray(sessionsTestData6)
     ? sessionsTestData6
     : [];
 
   const status = establishAchievementStatus(sessions);
-  expect(status).toBe("novice");
+  expect(status).toBe("expert");
 });
