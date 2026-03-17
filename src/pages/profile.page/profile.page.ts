@@ -15,6 +15,7 @@ import {
   createPracticeHistory,
 } from "./utils/create-local-data.js";
 import { establishAchievementStatus } from "./utils/establish-achievement-status.js";
+// import { establishAchievementStatus } from "./utils/establish-achievement-status.js";
 
 export class ProfilePage extends BasePage {
   private user: User | undefined;
@@ -50,6 +51,7 @@ export class ProfilePage extends BasePage {
   private async setData(): Promise<void> {
     this.user = await createLocalUser("u1").catch();
     this.sessions = await createPracticeHistory("u1");
+
     if (!this.user || !this.sessions) {
       return;
     }
@@ -145,12 +147,12 @@ export class ProfilePage extends BasePage {
     settings.id = "profile-settings-button";
     settings.innerHTML = settingsSVG;
 
-    const achievementWrapper = new ElementCreator({
+    this._achievement = new ElementCreator({
       // text: "Novice",
       classes: ["profile__achievement-wrapper"],
       parent: description,
     }).getElement();
-    achievementWrapper.id = "profile-achievement-wrapper";
+    this._achievement.id = "profile-achievement-wrapper";
 
     const readyText = new ElementCreator({
       text: "You are ready to the interview!",
