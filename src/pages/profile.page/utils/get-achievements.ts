@@ -45,11 +45,15 @@ export const countDifficulties = (
   let result = 0;
   for (const element of sessions) {
     for (const answer of element.answers) {
+      if (!answer.isCorrect) {
+        continue;
+      }
       if (answer.difficulty === difficulty) {
         result += 1;
       }
     }
   }
+  // console.log(difficulty + "d - " + result);
   return result;
 };
 
