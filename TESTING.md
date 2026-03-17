@@ -55,3 +55,19 @@ PR с тестами: https://github.com/Nastya-Student/rss-fe-final-project/pul
 | `test/landing-page.test.ts` | Проверка содержимого карточек |
 
 PR с тестами: https://github.com/Nastya-Student/rss-fe-final-project/pull/37
+
+#### @nastya-student
+
+Что тестирую: функции для расчёта достижений на странице профиля
+
+| Файл | Описание |
+|------|----------|
+| `test/profile.test.ts` | успешных попыток слишком мало для student |
+| `test/profile.test.ts` | процент успешных попыток слишком маленький для student |
+| `test/profile.test.ts` | процент успешных попыток со сложностью 2  слишком маленький для student |
+| `test/profile.test.ts` | выполняются условия для student |
+| `test/profile.test.ts` | выполняются условия для top-performer |
+| `test/profile.test.ts` | выполняются условия для expert |
+
+
+PR с тестами: https://github.com/Nastya-Student/rss-fe-final-project/pull/39
