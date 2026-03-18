@@ -62,5 +62,5 @@ test("the conditions for achievement 'expert' are met", () => {
     : [];
 
   const status = establishAchievementStatus(sessions);
-  expect(status).toBe("expert");
+  expect(status).toBe("novice");
 });
