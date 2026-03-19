@@ -24,3 +24,7 @@
   outline-offset: 2px;
   transition: all 0.1s ease;
 }
+.button.no-active {
+  opacity: 20%;
+  cursor: not-allowed;
+}
