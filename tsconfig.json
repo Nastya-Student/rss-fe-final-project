@@ -7,8 +7,10 @@
 
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
-    "module": "nodenext",
+    "types": ["vite/client"],
+    "module": "esnext",
     "target": "esnext",
+    "moduleResolution": "bundler",
     // For nodejs:
     // "lib": ["esnext"],
     // "types": ["node"],
@@ -38,5 +40,5 @@
     "moduleDetection": "force",
     "skipLibCheck": true
   },
-  "include": ["src/**/*", "src/", "test/"]
+  "include": ["src/**/*", "test/"]
 }
