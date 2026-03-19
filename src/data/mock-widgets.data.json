@@ -152,7 +152,7 @@
       "title": "Microtasks vs Macrotasks",
       "statement": "setTimeout с задержкой 0 выполняется сразу после текущего синхронного кода, до Promise.resolve().then()",
       "correct": false,
-      "explanation": "Promise.then (микротаска) выполняется до setTimeout (макротаска), даже если задержка 0. Микротаски имеют更高的 приоритет"
+      "explanation": "Promise.then (микротаска) выполняется до setTimeout (макротаска), даже если задержка 0"
     }
   },
   {
