@@ -105,3 +105,7 @@ dist
 
 # Desktop Services Store macOS
 .DS_Store
+
+coverage/
+.vercel
+.env*.local

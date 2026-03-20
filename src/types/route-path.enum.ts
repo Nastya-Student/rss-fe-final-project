@@ -5,4 +5,5 @@ export enum RoutePath {
   Dashboard = "/dashboard",
   Library = "/library",
   Profile = "/profile",
+  Practice = "/practice",
 }
