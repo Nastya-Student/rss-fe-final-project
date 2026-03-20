@@ -13,4 +13,4 @@
 
 Позже в Production Deploy добавлю job для e2e теcтов, если они будут.
 
-Для структуры файла yml опиралась на пример из (видео)[https://www.youtube.com/watch?v=FHVaWZjWec4&pp=0gcJCcUKAYcqIYzv] и искала пояснения в документации git и vercel.
+Для структуры файла yml опиралась на пример из [видео](https://www.youtube.com/watch?v=FHVaWZjWec4&pp=0gcJCcUKAYcqIYzv) и искала пояснения в документации git и vercel.
