@@ -31,14 +31,20 @@ export const establishAchievementStatus = (
   );
 
   // const last1DPercent = get1DifficultySuccess();
-  const last2DPercent = get2DifficultySuccess(sessions, lastSuccessfulAttempts);
-  const last3DPercent = get3DifficultySuccess(sessions, lastSuccessfulAttempts);
+  const last2DifficultyPercent = get2DifficultySuccess(
+    sessions,
+    lastSuccessfulAttempts,
+  );
+  const last3DifficultyPercent = get3DifficultySuccess(
+    sessions,
+    lastSuccessfulAttempts,
+  );
 
   if (
     lastSuccessfulAttempts >= 30 &&
     lastSuccessPercent >= 95 &&
-    last2DPercent >= 40 &&
-    last3DPercent >= 50
+    last2DifficultyPercent >= 40 &&
+    last3DifficultyPercent >= 50
   ) {
     return ACHIEVEMENTS.expert;
   }
@@ -46,8 +52,8 @@ export const establishAchievementStatus = (
   if (
     lastSuccessfulAttempts >= 20 &&
     lastSuccessPercent >= 70 &&
-    last2DPercent >= 30 &&
-    last3DPercent >= 20
+    last2DifficultyPercent >= 30 &&
+    last3DifficultyPercent >= 20
   ) {
     return ACHIEVEMENTS.topPerformer;
   }
@@ -55,7 +61,7 @@ export const establishAchievementStatus = (
   if (
     lastSuccessfulAttempts >= 10 &&
     lastSuccessPercent >= 50 &&
-    last2DPercent >= 10
+    last2DifficultyPercent >= 10
   ) {
     return ACHIEVEMENTS.student;
   }

@@ -8,7 +8,9 @@ export const groupDataByDays = (id: string) => {
   return id;
 };
 
-export const getLastTrainingDaysData = (sessions: PracticeSession[]) => {
+export const getLastTrainingDaysData = (
+  sessions: PracticeSession[],
+): PracticeSession[] => {
   return sessions.slice(-5);
 };
 
@@ -53,7 +55,6 @@ export const countDifficulties = (
       }
     }
   }
-  // console.log(difficulty + "d - " + result);
   return result;
 };
 
@@ -61,19 +62,25 @@ export const get1DifficultySuccess = (
   sessions: PracticeSession[],
   successfulAttempts: number,
 ): number => {
-  return (countDifficulties(sessions, 1) / successfulAttempts) * 100;
+  return Math.round(
+    (countDifficulties(sessions, 1) / successfulAttempts) * 100,
+  );
 };
 
 export const get2DifficultySuccess = (
   sessions: PracticeSession[],
   successfulAttempts: number,
 ): number => {
-  return (countDifficulties(sessions, 2) / successfulAttempts) * 100;
+  return Math.round(
+    (countDifficulties(sessions, 2) / successfulAttempts) * 100,
+  );
 };
 
 export const get3DifficultySuccess = (
   sessions: PracticeSession[],
   successfulAttempts: number,
 ): number => {
-  return (countDifficulties(sessions, 3) / successfulAttempts) * 100;
+  return Math.round(
+    (countDifficulties(sessions, 3) / successfulAttempts) * 100,
+  );
 };

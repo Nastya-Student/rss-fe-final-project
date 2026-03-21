@@ -4,22 +4,16 @@ import ElementCreator from "../../utils/element-creator.js";
 import HeadingsCreator from "../../utils/headings/headings-creator.js";
 import { SettingsButtonHandler } from "./controllers/settings.js";
 
-export const renderSettingsWindow = (): void => {
-  const container = document.querySelector<HTMLElement>("#profile-settings");
-
-  if (!container) {
-    return;
-  }
-
+export const renderSettingsWindow = (container: HTMLElement): void => {
   const settingsHeader = new ElementCreator({
     classes: ["profile__settings-header"],
     parent: container,
   }).getElement();
 
   const pageTitle = new HeadingsCreator(HEADINGS_TWO, {
+    text: "Profile Settings:",
     parent: settingsHeader,
   }).getElement();
-  pageTitle.textContent = "Profile Settings:";
   pageTitle.id = "profile-settings-header";
 
   const goBack = new ButtonCreator({

@@ -7,7 +7,6 @@ import ElementCreator from "../../utils/element-creator.js";
 import HeadingsCreator from "../../utils/headings/headings-creator.js";
 import { BasePage } from "../base-page.js";
 import { SettingsButtonHandler } from "./controllers/settings.js";
-// import { settingsOnClickHandler } from "./controllers/settings.js";
 import { renderSettingsWindow } from "./profile-settings.window.js";
 import "./profile.page.css";
 import {
@@ -89,7 +88,7 @@ export class ProfilePage extends BasePage {
       parent: this.container,
     }).getElement();
     profileSettings.id = "profile-settings";
-    renderSettingsWindow();
+    renderSettingsWindow(profileSettings);
 
     const pageTitle = new HeadingsCreator(HEADINGS_TWO, {
       parent: profileHeader,
@@ -139,7 +138,6 @@ export class ProfilePage extends BasePage {
       parent: description,
     }).getElement();
 
-    // name
     this._name = new HeadingsCreator(HEADINGS_ONE, {
       classes: ["profile__username"],
       parent: descriptionHeader,

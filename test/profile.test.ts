@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { isPracticeSessionArray } from "../src/guards/practice-session.guards.js";
 import { PracticeSession } from "../src/interfaces/practice-session.interface.js";
 import { establishAchievementStatus } from "../src/pages/profile.page/utils/establish-achievement-status.js";
@@ -62,5 +61,5 @@ test("the conditions for achievement 'expert' are met", () => {
     : [];
 
   const status = establishAchievementStatus(sessions);
-  expect(status).toBe("novice");
+  expect(status).toBe("expert");
 });
