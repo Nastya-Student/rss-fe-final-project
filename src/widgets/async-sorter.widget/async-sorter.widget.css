@@ -4,7 +4,8 @@
   gap: var(--spacing-0-75);
 }
 
-.async-sorter__async-sorter-title {
+.async-sorter__async-sorter-title,
+.async-sorter__widget-description {
   text-align: center;
 }
 

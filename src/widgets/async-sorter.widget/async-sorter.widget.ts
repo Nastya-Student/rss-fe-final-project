@@ -20,6 +20,7 @@ import Sortable from "sortablejs";
 
 export const CLASS_NAMES_ASYNC_SORTER_WIDGET = {
   asyncSorterTitle: "async-sorter__async-sorter-title",
+  widgetDescription: "async-sorter__widget-description",
   codeContainer: "async-sorter__code-container",
   codeBlocksContainer: "async-sorter__code-blocks-container",
   codeBlock: "async-sorter__code-block",
@@ -32,6 +33,8 @@ export const CLASS_NAMES_ASYNC_SORTER_WIDGET = {
 
 export const STRING_CONSTANTS_ASYNC_SORTER_WIDGET = {
   asyncSorter: "Async Sorter",
+  widgetDescription:
+    "Place code blocks into Call Stack, Microtasks, and Macrotasks queues",
   consoleLog: "console.log",
   codeBlocks: "Code Blocks",
   callstackKey: "callstack",
@@ -68,6 +71,12 @@ export default function asyncSorterWidget(
     classes: [CLASS_NAMES_ASYNC_SORTER_WIDGET.asyncSorterTitle],
     text: STRING_CONSTANTS_ASYNC_SORTER_WIDGET.asyncSorter,
   }).getElement();
+
+  new ParagraphCreator({
+    parent: asyncSorterWidgetContainer,
+    classes: [CLASS_NAMES_ASYNC_SORTER_WIDGET.widgetDescription],
+    text: STRING_CONSTANTS_ASYNC_SORTER_WIDGET.widgetDescription,
+  });
 
   new HeadingsCreator(HEADINGS_THREE, {
     parent: asyncSorterWidgetContainer,
