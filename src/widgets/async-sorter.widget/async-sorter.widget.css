@@ -25,6 +25,7 @@
   gap: var(--spacing-1);
   flex-wrap: wrap;
   align-items: center;
+  min-height: 12vh;
 }
 
 .async-sorter__code-block {
