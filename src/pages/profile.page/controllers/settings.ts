@@ -1,21 +1,25 @@
 import { EVENT } from "../../../constants.js";
 
-export const settingsOnClickHandler = (): void => {
-  const settings = document.querySelector<HTMLButtonElement>(
-    "#profile-settings-button",
-  );
-
+export const SettingsButtonHandler = (button: HTMLButtonElement): void => {
   const profileContent =
     document.querySelector<HTMLElement>("#profile-content");
   const profileSettings =
     document.querySelector<HTMLElement>("#profile-settings");
 
-  if (!settings || !profileContent || !profileSettings) {
+  if (!profileContent || !profileSettings) {
     return;
   }
 
-  settings.addEventListener(EVENT.click, () => {
-    profileContent.classList.add("hidden");
-    profileSettings.classList.remove("hidden");
+  button.addEventListener(EVENT.click, () => {
+    toggleContent(profileContent);
+    toggleContent(profileSettings);
   });
+};
+
+export const toggleContent = (content: HTMLElement): void => {
+  if (content.classList.contains("hidden")) {
+    content.classList.remove("hidden");
+  } else {
+    content.classList.add("hidden");
+  }
 };

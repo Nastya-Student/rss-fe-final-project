@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { HEADINGS_ONE, HEADINGS_TWO } from "../../constants.js";
 import { PracticeSession } from "../../interfaces/practice-session.interface.js";
 import { User } from "../../interfaces/user.interface.js";
@@ -7,7 +6,8 @@ import ButtonCreator from "../../utils/button/button-creator.js";
 import ElementCreator from "../../utils/element-creator.js";
 import HeadingsCreator from "../../utils/headings/headings-creator.js";
 import { BasePage } from "../base-page.js";
-import { settingsOnClickHandler } from "./controllers/settings.js";
+import { SettingsButtonHandler } from "./controllers/settings.js";
+// import { settingsOnClickHandler } from "./controllers/settings.js";
 import { renderSettingsWindow } from "./profile-settings.window.js";
 import "./profile.page.css";
 import {
@@ -174,7 +174,7 @@ export class ProfilePage extends BasePage {
 
     toDashboardButton.dataset.route = RoutePath.Dashboard;
 
-    settingsOnClickHandler();
+    SettingsButtonHandler(settings);
 
     this.setData().catch(() => {
       throw new Error("Error loading user data");
