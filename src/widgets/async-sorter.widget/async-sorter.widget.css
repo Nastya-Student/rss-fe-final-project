@@ -42,6 +42,10 @@
 .async-sorter__code-block:active {
   cursor: grabbing;
 }
+.async-sorter__code-block.no-active {
+  pointer-events: none;
+  opacity: 20%;
+}
 
 .async-sorter__buckets-container {
   display: grid;

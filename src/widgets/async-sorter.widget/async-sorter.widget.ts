@@ -14,6 +14,7 @@ import ButtonCreator from "../../utils/button/button-creator.js";
 import { delay } from "../../utils/delay.js";
 import ElementCreator from "../../utils/element-creator.js";
 import HeadingsCreator from "../../utils/headings/headings-creator.js";
+import { offButton } from "../../utils/off-button.js";
 import ParagraphCreator from "../../utils/paragraph/paragraph-creator.js";
 import "./async-sorter.widget.css";
 import Sortable from "sortablejs";
@@ -126,12 +127,16 @@ export default function asyncSorterWidget(
     parent: asyncSorterWidgetContainer,
   }).getElement();
 
+  const codeBlockArr: HTMLElement[] = [];
+
   for (const value of codeBlockValues) {
-    new ElementCreator({
+    const codeBlock = new ElementCreator({
       parent: codeBlocksContainer,
       text: value,
       classes: [CLASS_NAMES_ASYNC_SORTER_WIDGET.codeBlock],
     }).getElement();
+
+    codeBlockArr.push(codeBlock);
   }
 
   const bucketsContainer = new ElementCreator({
@@ -235,8 +240,11 @@ export default function asyncSorterWidget(
 
   submitButton.addEventListener(EVENT.click, () => {
     onAnswer(getAnswer(dropZones));
-    submitButton.classList.add(CLASS_NAME.noActive);
-    submitButton.disabled = true;
+    offButton(submitButton);
+    offButton(runButton);
+    for (const codeBlock of codeBlockArr) {
+      codeBlock.classList.add(CLASS_NAME.noActive);
+    }
   });
 
   return asyncSorterWidgetContainer;
