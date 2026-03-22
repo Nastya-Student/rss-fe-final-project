@@ -1,7 +1,12 @@
 import { supabase } from "./supabase";
-import type { AuthResponse } from "@supabase/supabase-js";
+import type {
+  AuthResponse,
+  AuthTokenResponsePassword,
+  AuthSession,
+  OAuthResponse,
+} from "@supabase/supabase-js";
 
-export const register = async (
+export const register = (
   email: string,
   password: string,
   name: string,
@@ -15,32 +20,35 @@ export const register = async (
   });
 };
 
-export const login = async (
+export const login = (
   email: string,
   password: string,
-): Promise<AuthResponse> => {
+): Promise<AuthTokenResponsePassword> => {
   return supabase.auth.signInWithPassword({
     email,
     password,
   });
 };
 
-export const loginWithGoogle = async () => {
+export const loginWithGoogle = (): Promise<OAuthResponse> => {
   return supabase.auth.signInWithOAuth({
     provider: "google",
   });
 };
 
-export const loginWithGithub = async () => {
+export const loginWithGithub = (): Promise<OAuthResponse> => {
   return supabase.auth.signInWithOAuth({
     provider: "github",
   });
 };
 
-export const logout = async () => {
+export const logout = (): Promise<{ error: Error | null }> => {
   return supabase.auth.signOut();
 };
 
-export const getSession = async () => {
+export const getSession = (): Promise<{
+  data: { session: AuthSession | null };
+  error: Error | null;
+}> => {
   return supabase.auth.getSession();
 };

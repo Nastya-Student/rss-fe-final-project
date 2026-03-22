@@ -7,6 +7,7 @@ import {
   loginWithGithub,
   getSession,
 } from "../../api/auth.service.js";
+import type { OAuthResponse } from "@supabase/supabase-js";
 
 import "./login.page.style.css";
 import githubIcon from "../../assets/svg/github.svg";
@@ -23,9 +24,7 @@ export class LoginPage extends BasePage {
           window.location.hash = RoutePath.Dashboard;
         }
       })
-      .catch(() => {
-        // handle session error
-      });
+      .catch(() => {});
 
     const card = createElement("div", { className: "auth-card" });
     const pageTitle = createElement("h2", { textContent: "Login" });
@@ -65,7 +64,7 @@ export class LoginPage extends BasePage {
       attrs: { type: "button" },
     });
 
-    togglePasswordBtn.addEventListener("click", () => {
+    togglePasswordBtn.addEventListener("click", (): void => {
       const hidden = passwordInput.type === "password";
       passwordInput.type = hidden ? "text" : "password";
       togglePasswordBtn.textContent = hidden ? "Hide" : "Show";
@@ -117,36 +116,41 @@ export class LoginPage extends BasePage {
       createElement("span", { textContent: "Sign in with GitHub" }),
     );
 
-    const updateSubmitState = () => {
+    const updateSubmitState = (): void => {
       submitButton.disabled = !emailInput.value.trim() || !passwordInput.value;
     };
 
     emailInput.addEventListener("input", updateSubmitState);
     passwordInput.addEventListener("input", updateSubmitState);
 
-    const handleOAuthClick = async (providerFn: () => Promise<unknown>) => {
+    const handleOAuthClick = async (
+      providerFn: () => Promise<OAuthResponse>,
+    ): Promise<void> => {
       googleButton.disabled = true;
       githubButton.disabled = true;
 
       try {
-        await providerFn();
+        const { error } = await providerFn();
+
+        if (error) {
+          googleButton.disabled = false;
+          githubButton.disabled = false;
+        }
       } catch {
         googleButton.disabled = false;
         githubButton.disabled = false;
       }
     };
 
-    googleButton.addEventListener(
-      "click",
-      () => void handleOAuthClick(loginWithGoogle),
-    );
+    googleButton.addEventListener("click", (): void => {
+      void handleOAuthClick(loginWithGoogle);
+    });
 
-    githubButton.addEventListener(
-      "click",
-      () => void handleOAuthClick(loginWithGithub),
-    );
+    githubButton.addEventListener("click", (): void => {
+      void handleOAuthClick(loginWithGithub);
+    });
 
-    form.addEventListener("submit", (e) => {
+    form.addEventListener("submit", (e: SubmitEvent): void => {
       e.preventDefault();
       void this.handleSubmit(
         emailInput,
