@@ -1,5 +1,10 @@
 import resultsScreenComponent from "../components/practice.components/results-screen.component/results-screen.component.js";
-import { CLASS_NAME, EVENT } from "../constants.js";
+import {
+  CLASS_NAME,
+  EVENT,
+  HALF_SECOND_DELAY,
+  ONE_SECOND_DELAY,
+} from "../constants.js";
 import { WidgetStrategy } from "../interfaces/widget-strategy.interface.js";
 import { WidgetType } from "../types/widget-type.type.js";
 import { Widget, WidgetAnswerMap, WidgetMap } from "../types/widget.type.js";
@@ -112,9 +117,9 @@ export class WidgetEngine {
     const loader = loaderComponent();
 
     this.container.append(loader);
-    delay(1000)
+    delay(ONE_SECOND_DELAY)
       .then(() => this.renderCurrentWidget())
-      .then(() => delay(500))
+      .then(() => delay(HALF_SECOND_DELAY))
       .then(() => {
         loader.remove();
       })

@@ -3,7 +3,11 @@ import progressComponent from "../../components/dashboard.components/progress.co
 import sessionHistoryComponent from "../../components/dashboard.components/session-history.component/session-history.component.js";
 import sessionComponent from "../../components/dashboard.components/session.component/session.component.js";
 import loaderComponent from "../../components/loader.component/loader.component.js";
-import { CLASS_NAME } from "../../constants.js";
+import {
+  CLASS_NAME,
+  HALF_SECOND_DELAY,
+  ONE_SECOND_DELAY,
+} from "../../constants.js";
 import { PracticeSession } from "../../interfaces/practice-session.interface.js";
 import { TopicProgress } from "../../interfaces/topic-progress.interface.js";
 import { User } from "../../interfaces/user.interface.js";
@@ -147,7 +151,7 @@ export class DashboardPage extends BasePage {
     const loader = loaderComponent();
 
     this.container.append(loader);
-    await delay(1000);
+    await delay(ONE_SECOND_DELAY);
 
     this.user = await userService.getUserById(this.USER_ID);
     if (this.user === undefined) {
@@ -184,7 +188,7 @@ export class DashboardPage extends BasePage {
 
     this.renderSessions();
 
-    await delay(500);
+    await delay(HALF_SECOND_DELAY);
     loader.remove();
   }
 
