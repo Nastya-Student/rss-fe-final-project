@@ -18,6 +18,8 @@ import {
   CLASS_NAMES_PRACTICE,
   STRING_CONSTANTS_PRACTICE,
 } from "../pages/practice.page/practice.page.js";
+import loaderComponent from "../components/loader.component/loader.component.js";
+import { delay } from "../utils/delay.js";
 
 const widgetStrategies: {
   [K in WidgetType]: WidgetStrategy<WidgetMap[K], WidgetAnswerMap[K]>;
@@ -107,7 +109,18 @@ export class WidgetEngine {
   }
 
   startSession() {
-    this.renderCurrentWidget();
+    const loader = loaderComponent();
+
+    this.container.append(loader);
+    delay(1000)
+      .then(() => this.renderCurrentWidget())
+      .then(() => delay(500))
+      .then(() => {
+        loader.remove();
+      })
+      .catch(() => {
+        loader.remove();
+      });
   }
 
   private renderCurrentWidget() {
