@@ -2,7 +2,12 @@ import nextPrevComponent from "../../components/dashboard.components/next-prev.c
 import progressComponent from "../../components/dashboard.components/progress.component/progress.component.js";
 import sessionHistoryComponent from "../../components/dashboard.components/session-history.component/session-history.component.js";
 import sessionComponent from "../../components/dashboard.components/session.component/session.component.js";
-import { CLASS_NAME } from "../../constants.js";
+import loaderComponent from "../../components/loader.component/loader.component.js";
+import {
+  CLASS_NAME,
+  HALF_SECOND_DELAY,
+  ONE_SECOND_DELAY,
+} from "../../constants.js";
 import { PracticeSession } from "../../interfaces/practice-session.interface.js";
 import { TopicProgress } from "../../interfaces/topic-progress.interface.js";
 import { User } from "../../interfaces/user.interface.js";
@@ -11,6 +16,7 @@ import { topicProgressService } from "../../services/topic-progress.service.js";
 import { userService } from "../../services/user.service.js";
 import { RoutePath } from "../../types/route-path.enum.js";
 import ButtonCreator from "../../utils/button/button-creator.js";
+import { delay } from "../../utils/delay.js";
 import ElementCreator from "../../utils/element-creator.js";
 import ParagraphCreator from "../../utils/paragraph/paragraph-creator.js";
 import { BasePage } from "../base-page.js";
@@ -142,6 +148,11 @@ export class DashboardPage extends BasePage {
   }
 
   private async initDashboardElements(): Promise<void> {
+    const loader = loaderComponent();
+
+    this.container.append(loader);
+    await delay(ONE_SECOND_DELAY);
+
     this.user = await userService.getUserById(this.USER_ID);
     if (this.user === undefined) {
       return;
@@ -176,6 +187,9 @@ export class DashboardPage extends BasePage {
     });
 
     this.renderSessions();
+
+    await delay(HALF_SECOND_DELAY);
+    loader.remove();
   }
 
   create(parent: HTMLElement): void {

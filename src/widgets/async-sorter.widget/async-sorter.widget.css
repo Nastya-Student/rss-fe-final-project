@@ -1,5 +1,78 @@
 .practice__async-sorter-widget-container {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: var(--spacing-0-75);
+}
+
+.async-sorter__async-sorter-title,
+.async-sorter__widget-description {
+  text-align: center;
+}
+
+.async-sorter__code-container,
+.async-sorter__output-container {
+  display: flex;
+  flex-direction: column;
+  font-family: "Courier New", Courier, monospace;
+  font-size: clamp(0.5rem, 1vw + 0.35rem, 1rem);
+  gap: var(--spacing-0-5);
+  background-color: var(--bg-code-color);
+  color: var(--text-code-color);
+}
+
+.async-sorter__code-blocks-container {
+  display: flex;
+  gap: var(--spacing-1);
+  flex-wrap: wrap;
+  align-items: center;
+  min-height: 12vh;
+}
+
+.async-sorter__code-block {
+  width: fit-content;
+  height: fit-content;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.6rem;
+  background: var(--primary-color);
+  color: var(--secondary-color);
+  transition: all 0.3s ease;
+  cursor: grab;
+}
+
+.async-sorter__code-block:active {
+  cursor: grabbing;
+}
+.async-sorter__code-block.no-active {
+  pointer-events: none;
+  opacity: 20%;
+}
+
+.async-sorter__buckets-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-0-75);
+}
+
+.async-sorter__bucket {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-0-5);
+  font-weight: bold;
+  text-align: center;
+  min-height: 7rem;
+  height: 100%;
+  background-color: var(--bg-bucket-color);
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.6rem;
+}
+
+.async-sorter__drop-zone {
+  display: flex;
+  gap: var(--spacing-0-5);
+  flex-wrap: wrap;
+  flex: 1;
+}
+
+.async-sorter__run-button {
+  width: fit-content;
 }
