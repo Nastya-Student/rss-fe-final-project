@@ -38,3 +38,6 @@ export const CLASS_NAME = {
 export const HEADINGS_ONE = 1;
 export const HEADINGS_TWO = 2;
 export const HEADINGS_THREE = 3;
+
+export const HALF_SECOND_DELAY = 500;
+export const ONE_SECOND_DELAY = 1000;

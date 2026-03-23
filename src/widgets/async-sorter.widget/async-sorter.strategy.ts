@@ -14,11 +14,24 @@ export const asyncSorterStrategy: WidgetStrategy<
   },
 
   validate(widget, answer) {
-    if (!widget.payload.buckets[0]) {
-      return false;
-    }
-    const correct = widget.payload.buckets[0];
+    const correct = widget.payload.buckets;
+    const answerMap = new Map(
+      answer.answer.map((bucket) => [bucket.name, bucket.items]),
+    );
 
-    return JSON.stringify(answer.answer) === JSON.stringify(correct);
+    return correct.every((bucket) => {
+      const answerItems = answerMap.get(bucket.name);
+      if (!answerItems) {
+        return false;
+      }
+
+      if (answerItems.length !== bucket.correctItems.length) {
+        return false;
+      }
+
+      return bucket.correctItems.every(
+        (item: string, index: number) => item === answerItems[index],
+      );
+    });
   },
 };

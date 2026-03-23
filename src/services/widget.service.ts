@@ -3,7 +3,7 @@ import { BaseDataService } from "./base-data.service.js";
 import { Widget } from "../types/widget.type.js";
 import { isWidgetArray } from "../guards/widget.guards.js";
 
-class WidgetService extends BaseDataService<Widget> {
+export class WidgetService extends BaseDataService<Widget> {
   protected endpoint = "widgets";
   protected mockData: unknown = widgetsMock;
   protected isValid = isWidgetArray;
