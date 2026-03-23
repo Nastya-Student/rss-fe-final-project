@@ -18,6 +18,8 @@
 * Profile,
 * 404.
 
+[видео - 404, loading, error state](https://youtu.be/M57p4R2uLhU) 
+
 ### Состав команды:
 
 * Настя [Nastya-Student](https://github.com/Nastya-Student)  [ - notes](https://github.com/Nastya-Student/rss-fe-final-project/tree/main/development-notes/nastya-student)
