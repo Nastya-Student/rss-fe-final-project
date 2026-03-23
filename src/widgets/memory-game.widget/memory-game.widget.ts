@@ -14,6 +14,7 @@ import ButtonCreator from "../../utils/button/button-creator.js";
 import ElementCreator from "../../utils/element-creator.js";
 import HeadingsCreator from "../../utils/headings/headings-creator.js";
 import ParagraphCreator from "../../utils/paragraph/paragraph-creator.js";
+import PreCreator from "../../utils/pre/pre-creator.js";
 import "./memory-game.widget.css";
 
 export const CLASS_NAMES_MEMORY_GAME_WIDGET = {
@@ -32,7 +33,7 @@ export default function memoryGameWidget(
   payload: MemoryGamePayload,
   onAnswer: (answer: MemoryGameAnswer) => void,
 ): HTMLElement {
-  const memoryGameCollectorWidgetContainer = new ElementCreator({
+  const memoryGameWidgetContainer = new ElementCreator({
     classes: [
       CLASS_NAMES_PRACTICE.memoryGameWidgetContainer,
       CLASS_NAME.cardElement,
@@ -40,31 +41,35 @@ export default function memoryGameWidget(
   }).getElement();
 
   new HeadingsCreator(HEADINGS_TWO, {
-    parent: memoryGameCollectorWidgetContainer,
+    parent: memoryGameWidgetContainer,
     classes: [CLASS_NAMES_MEMORY_GAME_WIDGET.memoryGameTitle],
     text: STRING_CONSTANTS_MEMORY_GAME_WIDGET.memoryGame,
   }).getElement();
 
   new ParagraphCreator({
-    parent: memoryGameCollectorWidgetContainer,
+    parent: memoryGameWidgetContainer,
     classes: [CLASS_NAMES_MEMORY_GAME_WIDGET.widgetDescription],
     text: STRING_CONSTANTS_MEMORY_GAME_WIDGET.widgetDescription,
   });
 
   new HeadingsCreator(HEADINGS_THREE, {
-    parent: memoryGameCollectorWidgetContainer,
+    parent: memoryGameWidgetContainer,
     text: payload.title,
   }).getElement();
 
-  new ParagraphCreator({
-    parent: memoryGameCollectorWidgetContainer,
+  new PreCreator({
+    classes: [
+      CLASS_NAMES_MEMORY_GAME_WIDGET.codeContainer,
+      CLASS_NAME.cardElement,
+    ],
+    parent: memoryGameWidgetContainer,
     text: payload.codeSnippet,
   }).getElement();
 
   const submitButton = new ButtonCreator({
     text: STRING_CONSTANTS_PRACTICE.submit,
     classes: [CLASS_NAME.button],
-    parent: memoryGameCollectorWidgetContainer,
+    parent: memoryGameWidgetContainer,
   }).getElement();
 
   const selectedAnswerIndex: MemoryGameAnswer = {
@@ -77,5 +82,5 @@ export default function memoryGameWidget(
     submitButton.disabled = true;
   });
 
-  return memoryGameCollectorWidgetContainer;
+  return memoryGameWidgetContainer;
 }

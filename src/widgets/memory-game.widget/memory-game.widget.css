@@ -8,3 +8,11 @@
 .memory-game__widget-description {
   text-align: center;
 }
+
+.memory-game__code-container {
+  font-family: "Courier New", Courier, monospace;
+  font-size: clamp(0.5rem, 1vw + 0.35rem, 1rem);
+  background-color: var(--bg-code-color);
+  color: var(--text-code-color);
+  margin: 0;
+}
