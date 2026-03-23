@@ -16,6 +16,18 @@ import HeadingsCreator from "../../utils/headings/headings-creator.js";
 import ParagraphCreator from "../../utils/paragraph/paragraph-creator.js";
 import "./memory-game.widget.css";
 
+export const CLASS_NAMES_MEMORY_GAME_WIDGET = {
+  memoryGameTitle: "memory-game__memory-game-title",
+  widgetDescription: "memory-game__widget-description",
+  codeContainer: "memory-game__code-container",
+};
+
+export const STRING_CONSTANTS_MEMORY_GAME_WIDGET = {
+  memoryGame: "Memory Game",
+  widgetDescription:
+    "Click on objects that become garbage after code execution",
+};
+
 export default function memoryGameWidget(
   payload: MemoryGamePayload,
   onAnswer: (answer: MemoryGameAnswer) => void,
@@ -29,8 +41,15 @@ export default function memoryGameWidget(
 
   new HeadingsCreator(HEADINGS_TWO, {
     parent: memoryGameCollectorWidgetContainer,
-    text: "Memory Game Widget",
+    classes: [CLASS_NAMES_MEMORY_GAME_WIDGET.memoryGameTitle],
+    text: STRING_CONSTANTS_MEMORY_GAME_WIDGET.memoryGame,
   }).getElement();
+
+  new ParagraphCreator({
+    parent: memoryGameCollectorWidgetContainer,
+    classes: [CLASS_NAMES_MEMORY_GAME_WIDGET.widgetDescription],
+    text: STRING_CONSTANTS_MEMORY_GAME_WIDGET.widgetDescription,
+  });
 
   new HeadingsCreator(HEADINGS_THREE, {
     parent: memoryGameCollectorWidgetContainer,
