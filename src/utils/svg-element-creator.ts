@@ -1,6 +1,6 @@
 import { CreateSVGElementOptions } from "../interfaces/create-interfaces/create-svg-element-options.interface";
 
-export const SVG_NAMESPACE = "http://www.w3.org/2000/svg";
+const SVG_NAMESPACE = "http://www.w3.org/2000/svg";
 
 export default class SVGElementCreator {
   public element: SVGElement;
