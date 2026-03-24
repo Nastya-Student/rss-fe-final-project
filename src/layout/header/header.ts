@@ -11,20 +11,19 @@ import "./header.css";
 export default function headerCreator(): HTMLElement {
   const header = new HeaderCreator({
     classes: ["header"],
-  });
+  }).getElement();
 
   const logo = new ElementCreator({
-    parent: header.getElement(),
+    parent: header,
     classes: ["logo"],
   }).getElement();
 
   const logoLink = new AnchorCreator({
     parent: logo,
     href: "/#",
-    target: "blanc",
+    target: "_self",
     classes: ["logo-link"],
   }).getElement();
-  logoLink.style.display = "flex";
 
   new ElementCreator({
     parent: logoLink,
@@ -43,12 +42,12 @@ export default function headerCreator(): HTMLElement {
   }).getElement();
 
   const headerWrapper = new ElementCreator({
-    parent: header.getElement(),
+    parent: header,
     classes: ["header-wrapper"],
   }).getElement();
 
-  let authorized: boolean;
-  authorized = true;
+  let authorized: boolean = true;
+  //authorized = true;
 
   if (authorized) {
     const navigation = new NavigationCreator({
@@ -124,5 +123,5 @@ export default function headerCreator(): HTMLElement {
     langButton.textContent = langEn ? "EN" : "RU";
   });
 
-  return header.getElement();
+  return header;
 }
