@@ -15,6 +15,8 @@ import ElementCreator from "../../utils/element-creator.js";
 import HeadingsCreator from "../../utils/headings/headings-creator.js";
 import ParagraphCreator from "../../utils/paragraph/paragraph-creator.js";
 import PreCreator from "../../utils/pre/pre-creator.js";
+import { SVGSVGCreator } from "../../utils/svg-elements/svg-svg/svg-svg.js";
+import { GraphRenderer } from "./graph-renderer.js";
 import "./memory-game.widget.css";
 
 export const CLASS_NAMES_MEMORY_GAME_WIDGET = {
@@ -65,6 +67,19 @@ export default function memoryGameWidget(
     parent: memoryGameWidgetContainer,
     text: payload.codeSnippet,
   }).getElement();
+
+  const svgElement = new SVGSVGCreator({
+    classes: ["memory-game__svg", CLASS_NAME.cardElement],
+    attributes: {
+      viewBox: "0 0 500 300",
+      preserveAspectRatio: "xMidYMid meet",
+    },
+  }).getElement();
+
+  const graphRenderer = new GraphRenderer(svgElement);
+
+  graphRenderer.render(payload);
+  memoryGameWidgetContainer.append(svgElement);
 
   const submitButton = new ButtonCreator({
     text: STRING_CONSTANTS_PRACTICE.submit,
