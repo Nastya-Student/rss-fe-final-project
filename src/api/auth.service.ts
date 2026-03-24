@@ -1,54 +1,86 @@
 import { supabase } from "./supabase";
 import type {
   AuthResponse,
-  AuthTokenResponsePassword,
   AuthSession,
+  AuthError,
   OAuthResponse,
 } from "@supabase/supabase-js";
 
-export const register = (
+export const register = async (
   email: string,
   password: string,
   name: string,
-): Promise<AuthResponse> => {
-  return supabase.auth.signUp({
+): Promise<{ data: AuthResponse["data"]; error: AuthError | null }> => {
+  const { data, error } = await supabase.auth.signUp({
     email,
     password,
     options: {
       data: { name },
     },
   });
+
+  return { data, error };
 };
 
-export const login = (
+export const login = async (
   email: string,
   password: string,
-): Promise<AuthTokenResponsePassword> => {
-  return supabase.auth.signInWithPassword({
+): Promise<{ session: AuthSession | null; error: AuthError | null }> => {
+  const { data, error } = await supabase.auth.signInWithPassword({
     email,
     password,
   });
+
+  return { session: data.session, error };
 };
 
-export const loginWithGoogle = (): Promise<OAuthResponse> => {
-  return supabase.auth.signInWithOAuth({
+export const loginWithGoogle = async (): Promise<{
+  data: OAuthResponse["data"];
+  error: AuthError | null;
+}> => {
+  const { data, error } = await supabase.auth.signInWithOAuth({
     provider: "google",
   });
+
+  return { data, error };
 };
 
-export const loginWithGithub = (): Promise<OAuthResponse> => {
-  return supabase.auth.signInWithOAuth({
+export const loginWithGithub = async (): Promise<{
+  data: OAuthResponse["data"];
+  error: AuthError | null;
+}> => {
+  const { data, error } = await supabase.auth.signInWithOAuth({
     provider: "github",
   });
+
+  return { data, error };
 };
 
-export const logout = (): Promise<{ error: Error | null }> => {
-  return supabase.auth.signOut();
+export const logout = async (): Promise<{ error: AuthError | null }> => {
+  const { error } = await supabase.auth.signOut();
+  return { error };
 };
 
-export const getSession = (): Promise<{
-  data: { session: AuthSession | null };
-  error: Error | null;
+export const getSession = async (): Promise<{
+  session: AuthSession | null;
+  error: AuthError | null;
 }> => {
-  return supabase.auth.getSession();
+  const { data, error } = await supabase.auth.getSession();
+  return { session: data.session, error };
+};
+
+export const getUser = async (): Promise<{
+  user: AuthSession["user"] | null;
+  error: AuthError | null;
+}> => {
+  const { data, error } = await supabase.auth.getUser();
+  return { user: data.user, error };
+};
+
+export const onAuthChange = (
+  callback: (session: AuthSession | null) => void,
+) => {
+  return supabase.auth.onAuthStateChange((_event, session) => {
+    callback(session);
+  });
 };

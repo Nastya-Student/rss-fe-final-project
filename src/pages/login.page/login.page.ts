@@ -5,9 +5,7 @@ import {
   login,
   loginWithGoogle,
   loginWithGithub,
-  getSession,
 } from "../../api/auth.service.js";
-import type { OAuthResponse } from "@supabase/supabase-js";
 
 import "./login.page.style.css";
 import githubIcon from "../../assets/svg/github.svg";
@@ -17,14 +15,6 @@ export class LoginPage extends BasePage {
   create(parent: HTMLElement): void {
     parent.append(this.container);
     this.container.classList.add("auth-wrapper");
-
-    void getSession()
-      .then(({ data }) => {
-        if (data.session) {
-          window.location.hash = RoutePath.Dashboard;
-        }
-      })
-      .catch(() => {});
 
     const card = createElement("div", { className: "auth-card" });
     const pageTitle = createElement("h2", { textContent: "Login" });
@@ -124,18 +114,10 @@ export class LoginPage extends BasePage {
     passwordInput.addEventListener("input", updateSubmitState);
 
     const handleOAuthClick = async (
-      providerFn: () => Promise<OAuthResponse>,
+      providerFn: () => Promise<{ error: unknown }>,
     ): Promise<void> => {
-      googleButton.disabled = true;
-      githubButton.disabled = true;
-
       try {
-        const { error } = await providerFn();
-
-        if (error) {
-          googleButton.disabled = false;
-          githubButton.disabled = false;
-        }
+        await providerFn();
       } catch {
         googleButton.disabled = false;
         githubButton.disabled = false;
@@ -203,13 +185,15 @@ export class LoginPage extends BasePage {
     emailInput.classList.remove("auth-input-error");
     passwordInput.classList.remove("auth-input-error");
 
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
     if (!email) {
       emailError.textContent = "Email is required";
       emailInput.classList.add("auth-input-error");
       return;
     }
 
-    if (!email.includes("@")) {
+    if (!emailRegex.test(email)) {
       emailError.textContent = "Invalid email format";
       emailInput.classList.add("auth-input-error");
       return;
