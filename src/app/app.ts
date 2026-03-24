@@ -1,7 +1,6 @@
 import { Screen } from "../interfaces/screen.interface.js";
 import { Page } from "../types/page.type.js";
 import FooterCreator from "../utils/footer/footer-creator.js";
-//import HeaderCreator from "../utils/header/header-creator.js";
 import MainCreator from "../utils/main/main-creator.js";
 import headerCreator from "../layout/header/header.js";
 

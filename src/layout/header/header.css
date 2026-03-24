@@ -25,12 +25,12 @@
 .logo-svg {
   display: flex;
   align-items: center;
-}
-
-.logo-svg svg {
-  width: 1.5rem;
-  height: 1.5rem;
-  stroke: currentColor;
+  width: 2rem;
+  height: 2rem;
+  background-image: url("../../assets/svg/logo-part.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 1.5rem;
 }
 
 .logo-text {
@@ -64,7 +64,6 @@
   height: 2rem;
 }
 
-.button-theme,
 .button-lang {
   align-items: center;
   width: 2rem;
@@ -74,11 +73,27 @@
   border: 1px solid var(--btn-color);
 }
 
-.button-theme svg {
-  width: 1.15rem;
-  height: 1.15rem;
+.button-lang:hover {
+  color: var(--bg-color-secondary);
 }
 
-.button-theme:hover svg {
-  color: var(--text-color);
+.button-theme {
+  align-items: center;
+  width: 2rem;
+  height: 2rem;
+  color: var(--btn-color);
+  background-color: var(--bg-color-secondary);
+  border: 1px solid var(--btn-color);
+  background-image: url("../../assets/svg/moon-blue.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 1.2rem;
+}
+
+.button-theme:hover {
+  background-image: url("../../assets/svg/moon-white.svg");
+}
+
+.button-theme.dark {
+  background-image: url("../../assets/svg/sun.svg");
 }
