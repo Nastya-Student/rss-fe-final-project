@@ -1,4 +1,4 @@
-export interface CreateSvgElementOptions {
+export interface CreateSVGElementOptions {
   tag?: string;
   text?: string;
   classes?: string[];

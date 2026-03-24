@@ -1,10 +1,11 @@
-import { CreateSvgElementOptions } from "../interfaces/create-interfaces/create-svg-element-options.interface.js";
-const SVG_NAMESPACE = "http://www.w3.org/2000/svg";
+import { CreateSVGElementOptions } from "../interfaces/create-interfaces/create-svg-element-options.interface";
 
-export default class SvgElementCreator {
+export const SVG_NAMESPACE = "http://www.w3.org/2000/svg";
+
+export default class SVGElementCreator {
   public element: SVGElement;
 
-  constructor(options: CreateSvgElementOptions) {
+  constructor(options: CreateSVGElementOptions) {
     this.element = document.createElementNS(
       SVG_NAMESPACE,
       options.tag ?? "svg",
@@ -12,7 +13,7 @@ export default class SvgElementCreator {
     this.createElement(options);
   }
 
-  public createElement(options: CreateSvgElementOptions): void {
+  public createElement(options: CreateSVGElementOptions): void {
     this.setTextContent(options.text);
     this.addCSSClasses(options.classes);
     this.setAttributes(options.attributes);
