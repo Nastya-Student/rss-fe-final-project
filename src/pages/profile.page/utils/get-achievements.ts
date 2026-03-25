@@ -1,17 +1,75 @@
+/* eslint-disable no-console */
 import { PracticeSession } from "../../../interfaces/practice-session.interface.js";
 
-export const getLastContinuousDuration = (): number => {
-  return 0;
-};
-
-export const groupDataByDays = (id: string) => {
-  return id;
-};
-
-export const getLastTrainingDaysData = (
+export const groupDataByDays = (
   sessions: PracticeSession[],
+): Partial<Record<PropertyKey, PracticeSession[]>> => {
+  const result = Object.groupBy(
+    sessions,
+    (session) => session.completedAt.split("T")[0] as PropertyKey,
+  );
+  console.log(result);
+  return result;
+};
+
+// last 3 days sessions
+export const getLastTrainingDaysData = (
+  data: Partial<Record<PropertyKey, PracticeSession[]>>,
+): [string, PracticeSession[] | undefined][] => {
+  const result = Object.entries(data).slice(-3);
+  return result;
+};
+
+export const getLastSessions = (
+  data: [string, PracticeSession[] | undefined][],
 ): PracticeSession[] => {
-  return sessions.slice(-5);
+  const result: PracticeSession[] = [];
+  for (const element of data) {
+    const item = element[1];
+    if (item) {
+      result.push(...item);
+    }
+  }
+  return result;
+};
+
+export const checkGap = (
+  data: [string, PracticeSession[] | undefined][],
+): boolean => {
+  const days: string[] = [];
+  for (const element of data) {
+    days.push(element[0]);
+  }
+
+  console.log(days);
+
+  if (days[2] == undefined) {
+    return true;
+  }
+
+  const startDay = new Date(days[2]); // should be replaced with the current day
+  const period = 3;
+
+  for (let i = period - 2; i >= 0; i--) {
+    startDay.setDate(startDay.getDate() - 1);
+
+    // console.log(startDay);
+
+    const index = i;
+    if (days[index] == undefined) {
+      return true;
+    }
+    const prevDay = new Date(days[index]);
+
+    // console.log(prevDay);
+
+    if (startDay.getTime() !== prevDay.getTime()) {
+      // console.log("not equal");
+      return true;
+    }
+  }
+
+  return false;
 };
 
 export const getLastAttempts = (sessions: PracticeSession[]): number => {
@@ -37,7 +95,7 @@ export const getLastSuccessfulAttempts = (
 };
 
 export const getSuccessPercent = (total: number, correct: number): number => {
-  return (correct / total) * 100;
+  return Math.round((correct / total) * 100);
 };
 
 export const countDifficulties = (

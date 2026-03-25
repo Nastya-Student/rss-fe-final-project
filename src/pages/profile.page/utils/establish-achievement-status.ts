@@ -1,44 +1,61 @@
+/* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { PracticeSession } from "../../../interfaces/practice-session.interface.js";
 import { ACHIEVEMENTS } from "../constants.js";
 import {
-  // get1DifficultySuccess,
+  checkGap,
   get2DifficultySuccess,
   get3DifficultySuccess,
   getLastAttempts,
-  getLastContinuousDuration,
+  getLastSessions,
   getLastSuccessfulAttempts,
   getLastTrainingDaysData,
   getSuccessPercent,
+  groupDataByDays,
 } from "./get-achievements.js";
 
 export const establishAchievementStatus = (
   sessions: PracticeSession[],
 ): string => {
-  // const lastContinuousDuration = getLastContinuousDuration();
-  const lastContinuousDuration = 15; // 15 sessions, but should be 15 days
-  if (lastContinuousDuration < 3) {
+  const data = groupDataByDays(sessions);
+  const lastData = getLastTrainingDaysData(data);
+
+  if (checkGap(lastData)) {
     return ACHIEVEMENTS.novice;
   }
 
-  const data = getLastTrainingDaysData(sessions);
+  const lastSessions = getLastSessions(lastData);
 
-  const lastAttempts = getLastAttempts(sessions);
-  const lastSuccessfulAttempts = getLastSuccessfulAttempts(sessions);
+  console.log(lastSessions);
+
+  const lastAttempts = getLastAttempts(lastSessions);
+
+  console.log(lastAttempts);
+
+  const lastSuccessfulAttempts = getLastSuccessfulAttempts(lastSessions);
+
+  console.log(lastSuccessfulAttempts);
+
   const lastSuccessPercent = getSuccessPercent(
     lastAttempts,
     lastSuccessfulAttempts,
   );
 
-  // const last1DPercent = get1DifficultySuccess();
+  console.log(lastSuccessPercent);
+
   const last2DifficultyPercent = get2DifficultySuccess(
-    sessions,
+    lastSessions,
     lastSuccessfulAttempts,
   );
+
+  console.log(last2DifficultyPercent);
+
   const last3DifficultyPercent = get3DifficultySuccess(
-    sessions,
+    lastSessions,
     lastSuccessfulAttempts,
   );
+
+  console.log(last3DifficultyPercent);
 
   if (
     lastSuccessfulAttempts >= 30 &&

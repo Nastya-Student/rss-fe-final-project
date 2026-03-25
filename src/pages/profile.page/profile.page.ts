@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { HEADINGS_ONE, HEADINGS_TWO } from "../../constants.js";
 import { PracticeSession } from "../../interfaces/practice-session.interface.js";
 import { User } from "../../interfaces/user.interface.js";
@@ -67,10 +68,6 @@ export class ProfilePage extends BasePage {
     parent.append(this.container);
     this.container.classList.add("profile-page");
     this.container.id = "profile-page";
-
-    this.setData().catch(() => {
-      throw new Error("Error loading user data");
-    });
 
     const profileHeader = new ElementCreator({
       classes: ["profile__header"],
