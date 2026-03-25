@@ -1,4 +1,4 @@
-import { EVENT } from "../../constants";
+import { CLASS_NAME, EVENT } from "../../constants";
 import {
   MemoryGameLink,
   MemoryGameObject,
@@ -47,6 +47,7 @@ export class GraphRenderer {
   private createObjectNode(obj: MemoryGameObject): SVGGElement {
     const g = new SVGGCreator({
       attributes: { transform: `translate(${obj.x}, ${obj.y})` },
+      classes: ["memory-game__object"],
     }).getElement();
 
     const rect = new SVGRectCreator({
@@ -77,7 +78,9 @@ export class GraphRenderer {
     to: MemoryGameObject,
     label?: string,
   ): SVGGElement {
-    const g = new SVGGCreator({}).getElement();
+    const g = new SVGGCreator({
+      classes: ["memory-game__link"],
+    }).getElement();
     new SVGLineCreator({
       parent: g,
       classes: ["memory-game__object-link"],
@@ -106,5 +109,14 @@ export class GraphRenderer {
 
   toggleGarbageMark(rect: SVGRectElement): void {
     rect.classList.toggle("garbage");
+  }
+
+  disableInteractiveElements(): void {
+    for (const svgElement of this.objects.values()) {
+      svgElement.classList.add(CLASS_NAME.noActive);
+    }
+    for (const link of this.links) {
+      link.classList.add(CLASS_NAME.noActive);
+    }
   }
 }

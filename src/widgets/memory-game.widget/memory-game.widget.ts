@@ -89,6 +89,7 @@ export default function memoryGameWidget(
 
   submitButton.addEventListener(EVENT.click, () => {
     onAnswer(getAnswer(graphRenderer.userAnswers));
+    graphRenderer.disableInteractiveElements();
     submitButton.classList.add(CLASS_NAME.noActive);
     submitButton.disabled = true;
   });

@@ -1,3 +1,8 @@
+.memory-game__object.no-active {
+  pointer-events: none;
+  opacity: 20%;
+}
+
 .memory-game__object-node {
   fill: var(--bg-color);
   stroke: black;
@@ -10,6 +15,10 @@
 
 .memory-game__object-node.garbage {
   fill: #ffcccc;
+}
+
+.memory-game__link.no-active {
+  opacity: 20%;
 }
 
 .memory-game__object-link {
