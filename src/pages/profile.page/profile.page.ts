@@ -10,6 +10,7 @@ import { BasePage } from "../base-page.js";
 import { SettingsButtonHandler } from "./controllers/settings.js";
 import { renderSettingsWindow } from "./profile-settings.window.js";
 import "./profile.page.css";
+import { createChart } from "./utils/create-chart.js";
 import {
   createLocalUser,
   createPracticeHistory,
@@ -25,6 +26,8 @@ export class ProfilePage extends BasePage {
   private _name?: HTMLHeadingElement | undefined;
 
   private _achievement?: HTMLElement | undefined;
+
+  private _ctx?: HTMLCanvasElement | undefined;
 
   public get avatar(): HTMLImageElement {
     if (!this._avatar) {
@@ -47,6 +50,13 @@ export class ProfilePage extends BasePage {
     return this._achievement;
   }
 
+  public get ctx(): HTMLCanvasElement {
+    if (!this._ctx) {
+      throw new Error("Chart can not be created. Please, reload this page.");
+    }
+    return this._ctx;
+  }
+
   loadImage(name: string): string {
     return new URL(`../../assets/${name}`, import.meta.url).href;
   }
@@ -62,6 +72,7 @@ export class ProfilePage extends BasePage {
     this.avatar.src = this.loadImage(this.user.photo);
     this.name.textContent = this.user.name;
     this.achievement.textContent = establishAchievementStatus(this.sessions);
+    createChart(this.ctx, this.sessions);
   }
 
   create(parent: HTMLElement): void {
@@ -166,6 +177,10 @@ export class ProfilePage extends BasePage {
       parent: profileContent,
     }).getElement();
     chartBlock.id = "profile-chart-block";
+
+    this._ctx = document.createElement("canvas");
+    this._ctx.id = "profile-chart";
+    chartBlock.append(this._ctx);
 
     toDashboardButton.dataset.route = RoutePath.Dashboard;
 

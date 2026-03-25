@@ -67,6 +67,17 @@
   }
 }
 
+.profile-chart-block {
+  /* margin: auto; */
+  /* width: 5rem;
+  height: 5rem;
+  padding: 20px;
+  display: flex;
+  justify-content: end;
+  align-items: center; */
+  position: relative;
+}
+
 .profile__description-header {
   display: flex;
 }
