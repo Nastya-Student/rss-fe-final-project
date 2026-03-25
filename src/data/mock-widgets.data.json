@@ -711,8 +711,8 @@
       "title": "Single node",
       "codeSnippet": "let node = {value: 10, next: null};\nnode = null;",
       "objects": [
-        { "id": "var-node", "label": "Variable 'node'", "x": 100, "y": 150 },
-        { "id": "heap-1", "label": "Node {value:10}", "x": 300, "y": 150 }
+        { "id": "var-node", "label": "Variable 'node'", "x": 100, "y": 130 },
+        { "id": "heap-1", "label": "Node {value:10}", "x": 300, "y": 130 }
       ],
       "links": [],
       "rootIds": ["global"],
@@ -730,9 +730,9 @@
       "title": "Linked list lost",
       "codeSnippet": "let head = {value: 1, next: {value: 2, next: null}};\nhead = null;",
       "objects": [
-        { "id": "var-head", "label": "Variable 'head'", "x": 100, "y": 150 },
-        { "id": "heap-1", "label": "Node {value:1}", "x": 300, "y": 120 },
-        { "id": "heap-2", "label": "Node {value:2}", "x": 300, "y": 200 }
+        { "id": "var-head", "label": "Variable 'head'", "x": 100, "y": 130 },
+        { "id": "heap-1", "label": "Node {value:1}", "x": 300, "y": 80 },
+        { "id": "heap-2", "label": "Node {value:2}", "x": 300, "y": 180 }
       ],
       "links": [{ "from": "heap-1", "to": "heap-2", "label": "next" }],
       "rootIds": ["global"],
@@ -750,10 +750,10 @@
       "title": "Array with cycle",
       "codeSnippet": "let array = [ {data: 1}, {data: 2} ];\narray[0].ref = array[1];\narray[1].ref = array[0];\narray = null;",
       "objects": [
-        { "id": "var-array", "label": "Variable 'array'", "x": 100, "y": 150 },
-        { "id": "heap-arr", "label": "Array", "x": 300, "y": 150 },
-        { "id": "heap-1", "label": "Object #1", "x": 450, "y": 100 },
-        { "id": "heap-2", "label": "Object #2", "x": 450, "y": 200 }
+        { "id": "var-array", "label": "Variable 'array'", "x": 30, "y": 130 },
+        { "id": "heap-arr", "label": "Array", "x": 180, "y": 130 },
+        { "id": "heap-1", "label": "Object #1", "x": 350, "y": 80 },
+        { "id": "heap-2", "label": "Object #2", "x": 350, "y": 180 }
       ],
       "links": [
         { "from": "heap-arr", "to": "heap-1" },
@@ -776,8 +776,8 @@
       "title": "Simple object",
       "codeSnippet": "let obj = {data: 42};\nobj = null;",
       "objects": [
-        { "id": "var-obj", "label": "Variable 'obj'", "x": 100, "y": 150 },
-        { "id": "heap-1", "label": "Object {data:42}", "x": 300, "y": 150 }
+        { "id": "var-obj", "label": "Variable 'obj'", "x": 100, "y": 130 },
+        { "id": "heap-1", "label": "Object {data:42}", "x": 300, "y": 130 }
       ],
       "links": [],
       "rootIds": ["global"],
@@ -795,10 +795,10 @@
       "title": "Reassign references",
       "codeSnippet": "let a = {value: 1};\nlet b = {value: 2};\na = b;\nb = null;",
       "objects": [
-        { "id": "var-a", "label": "Variable 'a'", "x": 100, "y": 100 },
-        { "id": "var-b", "label": "Variable 'b'", "x": 100, "y": 200 },
-        { "id": "heap-1", "label": "Object {value:1}", "x": 300, "y": 100 },
-        { "id": "heap-2", "label": "Object {value:2}", "x": 300, "y": 200 }
+        { "id": "var-a", "label": "Variable 'a'", "x": 100, "y": 80 },
+        { "id": "var-b", "label": "Variable 'b'", "x": 100, "y": 180 },
+        { "id": "heap-1", "label": "Object {value:1}", "x": 300, "y": 80 },
+        { "id": "heap-2", "label": "Object {value:2}", "x": 300, "y": 180 }
       ],
       "links": [{ "from": "var-a", "to": "heap-2" }],
       "rootIds": ["global"],
@@ -819,8 +819,8 @@
       "title": "Returned object",
       "codeSnippet": "function create() {\n  let x = {data: 1};\n  return x;\n}\n\nlet y = create();\ny = null;",
       "objects": [
-        { "id": "var-y", "label": "Variable 'y'", "x": 100, "y": 150 },
-        { "id": "heap-1", "label": "Object {data:1}", "x": 300, "y": 150 }
+        { "id": "var-y", "label": "Variable 'y'", "x": 100, "y": 130 },
+        { "id": "heap-1", "label": "Object {data:1}", "x": 300, "y": 130 }
       ],
       "links": [],
       "rootIds": ["global"],
@@ -838,8 +838,8 @@
       "title": "Typed object",
       "codeSnippet": "let obj: {data: number} = {data: 42};\nobj = null;",
       "objects": [
-        { "id": "var-obj", "label": "Variable 'obj'", "x": 100, "y": 150 },
-        { "id": "heap-1", "label": "Object {data:42}", "x": 300, "y": 150 }
+        { "id": "var-obj", "label": "Variable 'obj'", "x": 100, "y": 130 },
+        { "id": "heap-1", "label": "Object {data:42}", "x": 300, "y": 130 }
       ],
       "links": [],
       "rootIds": ["global"],
@@ -857,15 +857,15 @@
       "title": "Cyclic nodes",
       "codeSnippet": "let first = { value: 1 };\nlet second = { value: 2 };\nfirst.next = second;\nsecond.next = first;\nfirst = null;\nsecond = null;",
       "objects": [
-        { "id": "var-first", "label": "Variable 'first'", "x": 100, "y": 100 },
+        { "id": "var-first", "label": "Variable 'first'", "x": 100, "y": 80 },
         {
           "id": "var-second",
           "label": "Variable 'second'",
           "x": 100,
-          "y": 200
+          "y": 180
         },
-        { "id": "heap-1", "label": "Node 1", "x": 300, "y": 100 },
-        { "id": "heap-2", "label": "Node 2", "x": 300, "y": 200 }
+        { "id": "heap-1", "label": "Node 1", "x": 300, "y": 80 },
+        { "id": "heap-2", "label": "Node 2", "x": 300, "y": 180 }
       ],
       "links": [
         { "from": "heap-1", "to": "heap-2", "label": "next" },
@@ -889,10 +889,10 @@
       "title": "Mutual references",
       "codeSnippet": "let a = {ref: null};\nlet b = {ref: a};\na.ref = b;\na = null;\nb = null;",
       "objects": [
-        { "id": "var-a", "label": "Variable 'a'", "x": 100, "y": 100 },
-        { "id": "var-b", "label": "Variable 'b'", "x": 100, "y": 200 },
-        { "id": "heap-1", "label": "Object A", "x": 300, "y": 100 },
-        { "id": "heap-2", "label": "Object B", "x": 300, "y": 200 }
+        { "id": "var-a", "label": "Variable 'a'", "x": 100, "y": 80 },
+        { "id": "var-b", "label": "Variable 'b'", "x": 100, "y": 180 },
+        { "id": "heap-1", "label": "Object A", "x": 300, "y": 80 },
+        { "id": "heap-2", "label": "Object B", "x": 300, "y": 180 }
       ],
       "links": [
         { "from": "heap-1", "to": "heap-2", "label": "ref" },
