@@ -2,4 +2,27 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  align-items: center;
+}
+
+.truefalse-wrapper {
+  display: flex;
+  gap: 1rem;
+}
+
+.truefalse-btn {
+  background-color: var(--bg-color-secondary);
+  color: var(--primary-color);
+  width: 7rem;
+  height: 3rem;
+  border: 1px solid var(--btn-color);
+}
+
+.truefalse-btn:hover {
+  color: var(--bg-color-secondary);
+  transform: none;
+}
+
+.truefalse-chosen {
+  background-color: var(--secondary-color);
 }

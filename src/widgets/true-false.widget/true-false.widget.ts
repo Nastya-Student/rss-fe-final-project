@@ -32,6 +32,11 @@ export default function trueFalseWidget(
     text: "True-False Widget",
   }).getElement();
 
+  new ParagraphCreator({
+    parent: trueFalseWidgetContainer,
+    text: "Decide if this statement is true or false",
+  }).getElement();
+
   new HeadingsCreator(HEADINGS_THREE, {
     parent: trueFalseWidgetContainer,
     text: payload.title,
@@ -42,18 +47,51 @@ export default function trueFalseWidget(
     text: payload.statement,
   }).getElement();
 
+  const answersWrapper = new ElementCreator({
+    classes: ["truefalse-wrapper"],
+    parent: trueFalseWidgetContainer,
+  }).getElement();
+
+  const trueButton = new ButtonCreator({
+    text: "True",
+    classes: [CLASS_NAME.button, "truefalse-btn"],
+    parent: answersWrapper,
+  }).getElement();
+
+  const falseButton = new ButtonCreator({
+    text: "False",
+    classes: [CLASS_NAME.button, "truefalse-btn"],
+    parent: answersWrapper,
+  }).getElement();
+
+  let selectedAnswerIndex: TrueFalseAnswer;
+
+  function setAnswer(value: boolean, button: HTMLButtonElement): void {
+    selectedAnswerIndex = { answer: value };
+    trueButton.classList.remove("truefalse-chosen");
+    falseButton.classList.remove("truefalse-chosen");
+    button.classList.add("truefalse-chosen");
+  }
+
+  trueButton.addEventListener("click", (evt) => {
+    setAnswer(true, evt.currentTarget as HTMLButtonElement);
+  });
+  falseButton.addEventListener("click", (evt) => {
+    setAnswer(false, evt.currentTarget as HTMLButtonElement);
+  });
+
   const submitButton = new ButtonCreator({
     text: STRING_CONSTANTS_PRACTICE.submit,
     classes: [CLASS_NAME.button],
     parent: trueFalseWidgetContainer,
   }).getElement();
 
-  const selectedAnswerIndex: TrueFalseAnswer = { answer: false };
-
   submitButton.addEventListener(EVENT.click, () => {
     onAnswer(selectedAnswerIndex);
     submitButton.classList.add(CLASS_NAME.noActive);
     submitButton.disabled = true;
+    trueButton.disabled = true;
+    falseButton.disabled = true;
   });
 
   return trueFalseWidgetContainer;
