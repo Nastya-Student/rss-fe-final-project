@@ -1,5 +1,5 @@
 import { PracticeSession } from "../../../interfaces/practice-session.interface.js";
-import { ACHIEVEMENTS } from "../constants.js";
+import { ACHIEVEMENTS } from "../profile-configs.js";
 import {
   checkGap,
   get2DifficultySuccess,

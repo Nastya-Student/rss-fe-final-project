@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { HEADINGS_ONE, HEADINGS_TWO } from "../../constants.js";
 import { PracticeSession } from "../../interfaces/practice-session.interface.js";
 import { User } from "../../interfaces/user.interface.js";
@@ -8,6 +7,12 @@ import ElementCreator from "../../utils/element-creator.js";
 import HeadingsCreator from "../../utils/headings/headings-creator.js";
 import { BasePage } from "../base-page.js";
 import { SettingsButtonHandler } from "./controllers/settings.js";
+import {
+  ACHIEVEMENTS,
+  BUTTONS,
+  ERRORS,
+  NOTIFICATIONS,
+} from "./profile-configs.js";
 import { renderSettingsWindow } from "./profile-settings.window.js";
 import "./profile.page.css";
 import { createChart } from "./utils/create-chart.js";
@@ -16,6 +21,9 @@ import {
   createPracticeHistory,
 } from "./utils/create-local-data.js";
 import { establishAchievementStatus } from "./utils/establish-achievement-status.js";
+
+const LOCAL_USER = "u1";
+const LOCAL_AVATAR_PATH = "../../assets/";
 
 export class ProfilePage extends BasePage {
   private user: User | undefined;
@@ -29,41 +37,50 @@ export class ProfilePage extends BasePage {
 
   private _ctx?: HTMLCanvasElement | undefined;
 
+  private _readyText: HTMLElement | undefined;
+
   public get avatar(): HTMLImageElement {
     if (!this._avatar) {
-      throw new Error("Avatar not found");
+      throw new Error(ERRORS.avatar);
     }
     return this._avatar;
   }
 
   public get name(): HTMLHeadingElement {
     if (!this._name) {
-      throw new Error("User name not found");
+      throw new Error(ERRORS.user);
     }
     return this._name;
   }
 
   public get achievement(): HTMLElement {
     if (!this._achievement) {
-      throw new Error("Achievement can not be calculated");
+      throw new Error(ERRORS.achievement);
     }
     return this._achievement;
   }
 
   public get ctx(): HTMLCanvasElement {
     if (!this._ctx) {
-      throw new Error("Chart can not be created. Please, reload this page.");
+      throw new Error(ERRORS.chart);
     }
     return this._ctx;
   }
 
+  public get readyText(): HTMLElement {
+    if (!this._readyText) {
+      throw new Error(ERRORS.finalText);
+    }
+    return this._readyText;
+  }
+
   loadImage(name: string): string {
-    return new URL(`../../assets/${name}`, import.meta.url).href;
+    return new URL(`${LOCAL_AVATAR_PATH}${name}`, import.meta.url).href;
   }
 
   private async setData(): Promise<void> {
-    this.user = await createLocalUser("u1").catch();
-    this.sessions = await createPracticeHistory("u1");
+    this.user = await createLocalUser(LOCAL_USER).catch();
+    this.sessions = await createPracticeHistory(LOCAL_USER);
 
     if (!this.user || !this.sessions) {
       return;
@@ -71,7 +88,11 @@ export class ProfilePage extends BasePage {
 
     this.avatar.src = this.loadImage(this.user.photo);
     this.name.textContent = this.user.name;
-    this.achievement.textContent = establishAchievementStatus(this.sessions);
+    const status = establishAchievementStatus(this.sessions);
+    this.achievement.textContent = status;
+    if (status === ACHIEVEMENTS.expert) {
+      this.readyText.classList.remove("hidden");
+    }
     createChart(this.ctx, this.sessions);
   }
 
@@ -101,7 +122,7 @@ export class ProfilePage extends BasePage {
     const pageTitle = new HeadingsCreator(HEADINGS_TWO, {
       parent: profileHeader,
     }).getElement();
-    pageTitle.textContent = "Profile Page";
+    pageTitle.textContent = NOTIFICATIONS.profileTitle;
 
     const buttons = new ElementCreator({
       classes: ["profile__header-buttons"],
@@ -109,13 +130,13 @@ export class ProfilePage extends BasePage {
     }).getElement();
 
     const toDashboardButton = new ButtonCreator({
-      text: "To dashboard",
+      text: BUTTONS.toDashboard,
       classes: ["button"],
       parent: buttons,
     }).getElement();
 
     new ButtonCreator({
-      text: "Logout",
+      text: BUTTONS.logout,
       classes: ["button"],
       parent: buttons,
     }).getElement();
@@ -164,13 +185,13 @@ export class ProfilePage extends BasePage {
     }).getElement();
     this._achievement.id = "profile-achievement-wrapper";
 
-    const readyText = new ElementCreator({
-      text: "You are ready to the interview!",
+    this._readyText = new ElementCreator({
+      text: NOTIFICATIONS.finalText,
       classes: ["profile__ready-text"],
       hidden: true,
       parent: description,
     }).getElement();
-    readyText.id = "profile-ready-text";
+    this._readyText.id = "profile-ready-text";
 
     const chartBlock = new ElementCreator({
       classes: ["profile__chart-block"],
@@ -187,7 +208,7 @@ export class ProfilePage extends BasePage {
     SettingsButtonHandler(settings);
 
     this.setData().catch(() => {
-      throw new Error("Error loading user data");
+      throw new Error(ERRORS.userData);
     });
   }
 }
