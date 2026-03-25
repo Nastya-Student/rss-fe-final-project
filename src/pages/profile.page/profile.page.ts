@@ -162,10 +162,10 @@ export class ProfilePage extends BasePage {
     readyText.id = "profile-ready-text";
 
     const chartBlock = new ElementCreator({
-      classes: ["profile__chart-wrapper"],
+      classes: ["profile__chart-block"],
       parent: profileContent,
     }).getElement();
-    chartBlock.id = "profile-chart-wrapper";
+    chartBlock.id = "profile-chart-block";
 
     toDashboardButton.dataset.route = RoutePath.Dashboard;
 
