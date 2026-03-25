@@ -96,7 +96,7 @@ export default function memoryGameWidget(
 
   const submitButton = new ButtonCreator({
     text: STRING_CONSTANTS_PRACTICE.submit,
-    classes: [CLASS_NAME.button],
+    classes: [CLASS_NAMES_PRACTICE.submitButton, CLASS_NAME.button],
     parent: memoryGameWidgetContainer,
   }).getElement();
 
