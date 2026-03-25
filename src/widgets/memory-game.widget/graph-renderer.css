@@ -21,7 +21,7 @@
   opacity: 20%;
 }
 
-.memory-game__object-link {
+.memory-game__link-line {
   stroke: black;
   stroke-width: 1;
   fill: none;

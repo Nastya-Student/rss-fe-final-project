@@ -23,12 +23,24 @@ export const CLASS_NAMES_MEMORY_GAME_WIDGET = {
   memoryGameTitle: "memory-game__memory-game-title",
   widgetDescription: "memory-game__widget-description",
   codeContainer: "memory-game__code-container",
+  svg: "memory-game__svg",
+  gameObject: "memory-game__object",
+  gameObjectNode: "memory-game__object-node",
+  gameObjectText: "memory-game__object-text",
+  gameObjectsLink: "memory-game__link",
+  gameObjectsLinkLine: "memory-game__link-line",
+  gameObjectsLinkLabel: "memory-game__link-label",
+  gameGarbage: "garbage",
 };
 
 export const STRING_CONSTANTS_MEMORY_GAME_WIDGET = {
   memoryGame: "Memory Game",
   widgetDescription:
     "Click on objects that become garbage after code execution",
+  svgViewBox: "0 0 500 300",
+  svgPreserveAspectRatio: "xMidYMid meet",
+  gameObjectTextX: "60",
+  gameObjectTextY: "30",
 };
 
 export default function memoryGameWidget(
@@ -69,10 +81,11 @@ export default function memoryGameWidget(
   }).getElement();
 
   const svgElement = new SVGSVGCreator({
-    classes: ["memory-game__svg", CLASS_NAME.cardElement],
+    classes: [CLASS_NAMES_MEMORY_GAME_WIDGET.svg, CLASS_NAME.cardElement],
     attributes: {
-      viewBox: "0 0 500 300",
-      preserveAspectRatio: "xMidYMid meet",
+      viewBox: STRING_CONSTANTS_MEMORY_GAME_WIDGET.svgViewBox,
+      preserveAspectRatio:
+        STRING_CONSTANTS_MEMORY_GAME_WIDGET.svgPreserveAspectRatio,
     },
   }).getElement();
 

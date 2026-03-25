@@ -9,6 +9,10 @@ import { SVGLineCreator } from "../../utils/svg-elements/svg-line/svg-line";
 import { SVGRectCreator } from "../../utils/svg-elements/svg-rect/svg-rect";
 import { SVGTextCreator } from "../../utils/svg-elements/svg-text/svg-text";
 import "./graph-renderer.css";
+import {
+  CLASS_NAMES_MEMORY_GAME_WIDGET,
+  STRING_CONSTANTS_MEMORY_GAME_WIDGET,
+} from "./memory-game.widget";
 
 export class GraphRenderer {
   container: SVGSVGElement;
@@ -47,19 +51,22 @@ export class GraphRenderer {
   private createObjectNode(obj: MemoryGameObject): SVGGElement {
     const g = new SVGGCreator({
       attributes: { transform: `translate(${obj.x}, ${obj.y})` },
-      classes: ["memory-game__object"],
+      classes: [CLASS_NAMES_MEMORY_GAME_WIDGET.gameObject],
     }).getElement();
 
     const rect = new SVGRectCreator({
-      classes: ["memory-game__object-node"],
+      classes: [CLASS_NAMES_MEMORY_GAME_WIDGET.gameObjectNode],
       parent: g,
     }).getElement();
 
     new SVGTextCreator({
-      classes: ["memory-game__object-text"],
+      classes: [CLASS_NAMES_MEMORY_GAME_WIDGET.gameObjectText],
       parent: g,
       text: obj.label,
-      attributes: { x: "60", y: "30" },
+      attributes: {
+        x: STRING_CONSTANTS_MEMORY_GAME_WIDGET.gameObjectTextX,
+        y: STRING_CONSTANTS_MEMORY_GAME_WIDGET.gameObjectTextY,
+      },
     }).getElement();
 
     g.addEventListener(EVENT.click, () => {
@@ -79,11 +86,11 @@ export class GraphRenderer {
     label?: string,
   ): SVGGElement {
     const g = new SVGGCreator({
-      classes: ["memory-game__link"],
+      classes: [CLASS_NAMES_MEMORY_GAME_WIDGET.gameObjectsLink],
     }).getElement();
     new SVGLineCreator({
       parent: g,
-      classes: ["memory-game__object-link"],
+      classes: [CLASS_NAMES_MEMORY_GAME_WIDGET.gameObjectsLinkLine],
       attributes: {
         x1: String(from.x + 120),
         y1: String(from.y + 25),
@@ -96,7 +103,7 @@ export class GraphRenderer {
       new SVGTextCreator({
         parent: g,
         text: label,
-        classes: ["memory-game__link-label"],
+        classes: [CLASS_NAMES_MEMORY_GAME_WIDGET.gameObjectsLinkLabel],
         attributes: {
           x: String((from.x + 120 + to.x) / 2),
           y: String((from.y + to.y + 50) / 2 - 5),
@@ -108,7 +115,7 @@ export class GraphRenderer {
   }
 
   toggleGarbageMark(rect: SVGRectElement): void {
-    rect.classList.toggle("garbage");
+    rect.classList.toggle(CLASS_NAMES_MEMORY_GAME_WIDGET.gameGarbage);
   }
 
   disableInteractiveElements(): void {
