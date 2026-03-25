@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { PracticeSession } from "../../../interfaces/practice-session.interface.js";
 import { ACHIEVEMENTS } from "../constants.js";
 import {
@@ -26,36 +24,24 @@ export const establishAchievementStatus = (
 
   const lastSessions = getLastSessions(lastData);
 
-  console.log(lastSessions);
-
   const lastAttempts = getLastAttempts(lastSessions);
 
-  console.log(lastAttempts);
-
   const lastSuccessfulAttempts = getLastSuccessfulAttempts(lastSessions);
-
-  console.log(lastSuccessfulAttempts);
 
   const lastSuccessPercent = getSuccessPercent(
     lastAttempts,
     lastSuccessfulAttempts,
   );
 
-  console.log(lastSuccessPercent);
-
   const last2DifficultyPercent = get2DifficultySuccess(
     lastSessions,
     lastSuccessfulAttempts,
   );
 
-  console.log(last2DifficultyPercent);
-
   const last3DifficultyPercent = get3DifficultySuccess(
     lastSessions,
     lastSuccessfulAttempts,
   );
-
-  console.log(last3DifficultyPercent);
 
   if (
     lastSuccessfulAttempts >= 30 &&

@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { PracticeSession } from "../../../interfaces/practice-session.interface.js";
 
 export const groupDataByDays = (
@@ -8,7 +7,6 @@ export const groupDataByDays = (
     sessions,
     (session) => session.completedAt.split("T")[0] as PropertyKey,
   );
-  console.log(result);
   return result;
 };
 
@@ -41,8 +39,6 @@ export const checkGap = (
     days.push(element[0]);
   }
 
-  console.log(days);
-
   if (days[2] == undefined) {
     return true;
   }
@@ -53,18 +49,13 @@ export const checkGap = (
   for (let i = period - 2; i >= 0; i--) {
     startDay.setDate(startDay.getDate() - 1);
 
-    // console.log(startDay);
-
     const index = i;
     if (days[index] == undefined) {
       return true;
     }
     const prevDay = new Date(days[index]);
 
-    // console.log(prevDay);
-
     if (startDay.getTime() !== prevDay.getTime()) {
-      // console.log("not equal");
       return true;
     }
   }
