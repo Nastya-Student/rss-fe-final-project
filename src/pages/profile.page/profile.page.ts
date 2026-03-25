@@ -23,7 +23,7 @@ import {
 import { establishAchievementStatus } from "./utils/establish-achievement-status.js";
 
 const LOCAL_USER = "u1";
-const LOCAL_AVATAR_PATH = "../../assets/";
+// const LOCAL_AVATAR_PATH = "../../assets/";
 
 export class ProfilePage extends BasePage {
   private user: User | undefined;
@@ -75,7 +75,7 @@ export class ProfilePage extends BasePage {
   }
 
   loadImage(name: string): string {
-    return new URL(`${LOCAL_AVATAR_PATH}${name}`, import.meta.url).href;
+    return new URL(`../../assets/${name}`, import.meta.url).href;
   }
 
   private async setData(): Promise<void> {
