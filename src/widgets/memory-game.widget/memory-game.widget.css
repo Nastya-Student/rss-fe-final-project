@@ -15,4 +15,5 @@
   background-color: var(--bg-code-color);
   color: var(--text-code-color);
   margin: 0;
+  white-space: pre-wrap;
 }
