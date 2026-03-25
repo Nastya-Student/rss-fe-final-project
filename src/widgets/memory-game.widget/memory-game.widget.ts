@@ -87,15 +87,16 @@ export default function memoryGameWidget(
     parent: memoryGameWidgetContainer,
   }).getElement();
 
-  const selectedAnswerIndex: MemoryGameAnswer = {
-    answer: [{ from: 2, to: 1 }],
-  };
-
   submitButton.addEventListener(EVENT.click, () => {
-    onAnswer(selectedAnswerIndex);
+    onAnswer(getAnswer(graphRenderer.userAnswers));
     submitButton.classList.add(CLASS_NAME.noActive);
     submitButton.disabled = true;
   });
 
   return memoryGameWidgetContainer;
+}
+
+function getAnswer(userAnswer: Set<string>): MemoryGameAnswer {
+  const answer: string[] = [...userAnswer];
+  return { answer };
 }

@@ -14,6 +14,12 @@ export const memoryGameStrategy: WidgetStrategy<
   },
 
   validate(widget, answer) {
-    return answer.answer === widget.payload.links;
+    const sortedCorrectArray = [...widget.payload.garbageIds].sort();
+    const sortedAnswerArray = [...answer.answer].sort();
+
+    const isEqual =
+      sortedCorrectArray.length === sortedAnswerArray.length &&
+      sortedCorrectArray.every((x, i) => x === sortedAnswerArray[i]);
+    return isEqual;
   },
 };

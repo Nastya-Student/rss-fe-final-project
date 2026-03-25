@@ -14,6 +14,7 @@ export class GraphRenderer {
   container: SVGSVGElement;
   objects: Map<string, SVGGElement> = new Map();
   links: SVGGElement[] = [];
+  userAnswers: Set<string> = new Set();
 
   constructor(container: SVGSVGElement) {
     this.container = container;
@@ -62,6 +63,11 @@ export class GraphRenderer {
 
     g.addEventListener(EVENT.click, () => {
       this.toggleGarbageMark(rect);
+      if (this.userAnswers.has(obj.id)) {
+        this.userAnswers.delete(obj.id);
+      } else {
+        this.userAnswers.add(obj.id);
+      }
     });
     return g;
   }
