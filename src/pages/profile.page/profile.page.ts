@@ -88,7 +88,7 @@ export class ProfilePage extends BasePage {
 
     this.avatar.src = this.loadImage(this.user.photo);
     this.name.textContent = this.user.name;
-    const status = establishAchievementStatus(this.sessions);
+    const status = `status: ${establishAchievementStatus(this.sessions)}`;
     this.achievement.textContent = status;
     if (status === ACHIEVEMENTS.expert) {
       this.readyText.classList.remove("hidden");

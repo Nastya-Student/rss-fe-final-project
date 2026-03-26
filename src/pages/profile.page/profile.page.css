@@ -114,3 +114,11 @@
   gap: 2rem;
   align-items: center;
 }
+
+#profile-ready-text {
+  color: rgb(14, 40, 110);
+}
+
+#profile-achievement-wrapper {
+  color: green;
+}
