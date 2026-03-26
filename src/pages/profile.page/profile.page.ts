@@ -195,7 +195,7 @@ export class ProfilePage extends BasePage {
 
     const chartBlock = new ElementCreator({
       classes: ["profile__chart-block"],
-      parent: profileContent,
+      parent: description,
     }).getElement();
     chartBlock.id = "profile-chart-block";
 

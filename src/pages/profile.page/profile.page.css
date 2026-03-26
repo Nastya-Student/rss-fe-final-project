@@ -67,20 +67,27 @@
   display: flex;
   justify-content: space-between;
   @media screen and (max-width: 600px) {
-    flex-wrap: wrap-reverse;
+    flex-wrap: wrap;
     gap: 30px;
   }
 }
 
 .profile-chart-block {
-  /* margin: auto; */
-  /* width: 5rem;
-  height: 5rem;
   padding: 20px;
   display: flex;
-  justify-content: end;
-  align-items: center; */
-  position: relative;
+}
+
+#profile-chart {
+  width: 30rem;
+  height: 20rem;
+
+  @media screen and (max-width: 900px) {
+    width: 25rem;
+  }
+
+  @media screen and (max-width: 470px) {
+    display: none;
+  }
 }
 
 .profile__description-header {

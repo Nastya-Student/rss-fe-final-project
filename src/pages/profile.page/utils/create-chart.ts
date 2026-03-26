@@ -21,11 +21,7 @@ export const createChart = (
       ],
     },
     options: {
-      scales: {
-        y: {
-          beginAtZero: true,
-        },
-      },
+      responsive: false,
     },
   });
 };
