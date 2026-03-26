@@ -3,7 +3,7 @@ import progressMock from "../data/mock-progress.data.json" with { type: "json" }
 import { isTopicProgressArray } from "../guards/topic-progress.guards.js";
 import { BaseDataService } from "./base-data.service.js";
 
-class TopicProgressService extends BaseDataService<TopicProgress> {
+export class TopicProgressService extends BaseDataService<TopicProgress> {
   protected endpoint = "progress";
   protected mockData: unknown = progressMock;
   protected isValid = isTopicProgressArray;

@@ -3,7 +3,7 @@ import sessionsMock from "../data/mock-sessions.data.json" with { type: "json" }
 import { isPracticeSessionArray } from "../guards/practice-session.guards.js";
 import { BaseDataService } from "./base-data.service.js";
 
-class PracticeSessionService extends BaseDataService<PracticeSession> {
+export class PracticeSessionService extends BaseDataService<PracticeSession> {
   protected endpoint = "sessions";
   protected mockData: unknown = sessionsMock;
   protected isValid = isPracticeSessionArray;

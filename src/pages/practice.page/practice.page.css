@@ -2,6 +2,14 @@
   display: flex;
   flex-direction: column;
   gap: var(--spacing-1);
+  margin: 0 auto;
+  width: 100%;
+  max-width: 40rem;
+}
+
+.practice__submit-button {
+  width: fit-content;
+  align-self: flex-end;
 }
 
 .practice__widget-result-text {
