@@ -118,3 +118,27 @@ export const onAuthChange = (
 
   return data.subscription;
 };
+
+export const resetPassword = async (
+  email: string,
+): Promise<{ error: unknown }> => {
+  const { error } = await supabase.auth.resetPasswordForEmail(email, {
+    redirectTo: `${window.location.origin}/#/update-password`,
+  });
+
+  return { error };
+};
+
+export const updatePassword = async (
+  password: string,
+): Promise<{ error: AuthError | undefined }> => {
+  const { error } = await supabase.auth.updateUser({
+    password,
+  });
+
+  if (error !== null) {
+    return { error };
+  }
+
+  return { error: undefined };
+};

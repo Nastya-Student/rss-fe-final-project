@@ -11,6 +11,8 @@ const staticRoutes: Record<string, Page> = {
   [RoutePath.Dashboard]: "dashboard",
   [RoutePath.Library]: "library",
   [RoutePath.Profile]: "profile",
+  [RoutePath.ForgotPassword]: "forgot-password",
+  [RoutePath.UpdatePassword]: "update-password",
 };
 
 export class Router {
@@ -45,7 +47,14 @@ export class Router {
 
   private resolve(): void {
     const hash = window.location.hash;
-    const path = hash ? hash.slice(1) : RoutePath.Landing;
+    const raw = hash ? hash.slice(1) : RoutePath.Landing;
+
+    const path = raw.split("#")[0] ?? RoutePath.Landing;
+
+    if (raw.includes("access_token")) {
+      window.location.hash = path;
+      return;
+    }
 
     const match = this.matchRoute(path);
 

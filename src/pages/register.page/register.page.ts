@@ -2,6 +2,7 @@ import { RoutePath } from "../../types/route-path.enum.js";
 import { BasePage } from "../base-page.js";
 import { createElement } from "../../utils/create-element.js";
 import { register } from "../../api/auth.service.js";
+
 import "../login.page/login.page.style.css";
 
 type AuthField = {
@@ -17,9 +18,14 @@ export class RegisterPage extends BasePage {
 
     const card = createElement("div", { className: "auth-card" });
     const pageTitle = createElement("h2", { textContent: "Register" });
+
     const form = createElement("form", {
       className: "auth-form",
       attrs: { novalidate: true },
+    });
+
+    const formError = createElement("p", {
+      className: "auth-form-error",
     });
 
     const createField = (input: HTMLInputElement): AuthField => {
@@ -31,7 +37,12 @@ export class RegisterPage extends BasePage {
 
     const name = createField(
       createElement("input", {
-        attrs: { type: "text", placeholder: "Name", required: true },
+        attrs: {
+          type: "text",
+          placeholder: "Name",
+          required: true,
+          autocomplete: "name",
+        },
       }),
     );
 
@@ -75,17 +86,84 @@ export class RegisterPage extends BasePage {
       attrs: { type: "submit", disabled: true },
     });
 
-    const updateSubmitState = () => {
-      submitButton.disabled = fields.some((field) => !field.input.value.trim());
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    const clearErrors = () => {
+      formError.textContent = "";
+
+      for (const field of fields) {
+        field.error.textContent = "";
+        field.input.classList.remove("auth-input-error");
+      }
+    };
+
+    const validate = (): boolean => {
+      clearErrors();
+
+      const nameValue = name.input.value.trim();
+      const emailValue = email.input.value.trim().toLowerCase();
+      const passwordValue = password.input.value;
+      const confirmValue = confirm.input.value;
+
+      if (nameValue.length < 2) {
+        name.error.textContent = "Name must be at least 2 characters";
+        name.input.classList.add("auth-input-error");
+        return false;
+      }
+
+      if (!emailRegex.test(emailValue)) {
+        email.error.textContent = "Invalid email format";
+        email.input.classList.add("auth-input-error");
+        return false;
+      }
+
+      if (passwordValue.length < 6) {
+        password.error.textContent = "Password must be at least 6 characters";
+        password.input.classList.add("auth-input-error");
+        return false;
+      }
+
+      if (!/[A-Za-z]/.test(passwordValue) || !/\d/.test(passwordValue)) {
+        password.error.textContent =
+          "Password must contain letters and numbers";
+        password.input.classList.add("auth-input-error");
+        return false;
+      }
+
+      if (passwordValue !== confirmValue) {
+        confirm.error.textContent = "Passwords do not match";
+        confirm.input.classList.add("auth-input-error");
+        return false;
+      }
+
+      return true;
+    };
+
+    const updateSubmitState = (): void => {
+      const hasValues = fields.every((f) => f.input.value.trim().length > 0);
+      submitButton.disabled = !hasValues;
     };
 
     for (const field of fields) {
       field.input.addEventListener("input", updateSubmitState);
     }
 
-    form.addEventListener("submit", (e) => {
+    form.addEventListener("submit", (e: SubmitEvent): void => {
       e.preventDefault();
-      void this.handleSubmit(fields, submitButton);
+
+      if (!validate()) {
+        return;
+      }
+
+      void this.handleSubmit(
+        name.input.value.trim(),
+        email.input.value.trim().toLowerCase(),
+        password.input.value,
+        submitButton,
+        formError,
+        email,
+        password,
+      );
     });
 
     const switchBlock = createElement("div", {
@@ -100,6 +178,7 @@ export class RegisterPage extends BasePage {
     loginButton.dataset.route = RoutePath.Login;
 
     form.append(
+      formError,
       name.wrapper,
       email.wrapper,
       password.wrapper,
@@ -115,69 +194,42 @@ export class RegisterPage extends BasePage {
   }
 
   private async handleSubmit(
-    fields: AuthField[],
+    name: string,
+    email: string,
+    password: string,
     submitButton: HTMLButtonElement,
+    formError: HTMLElement,
+    emailField: AuthField,
+    passwordField: AuthField,
   ): Promise<void> {
-    const [name, email, password, confirm] = fields as [
-      AuthField,
-      AuthField,
-      AuthField,
-      AuthField,
-    ];
-
-    for (const field of fields) {
-      field.error.textContent = "";
-      field.input.classList.remove("auth-input-error");
-    }
-
-    const nameValue = name.input.value.trim();
-    const emailValue = email.input.value.trim().toLowerCase();
-    const passwordValue = password.input.value;
-    const confirmValue = confirm.input.value;
-
-    if (!nameValue) {
-      name.error.textContent = "Name is required";
-      name.input.classList.add("auth-input-error");
-      return;
-    }
-
-    if (!emailValue.includes("@")) {
-      email.error.textContent = "Invalid email format";
-      email.input.classList.add("auth-input-error");
-      return;
-    }
-
-    if (passwordValue.length < 6) {
-      password.error.textContent = "Password must be at least 6 characters";
-      password.input.classList.add("auth-input-error");
-      return;
-    }
-
-    if (passwordValue !== confirmValue) {
-      confirm.error.textContent = "Passwords do not match";
-      confirm.input.classList.add("auth-input-error");
-      return;
-    }
+    formError.textContent = "";
 
     submitButton.disabled = true;
     submitButton.textContent = "Creating account...";
 
     try {
-      const { error } = await register(emailValue, passwordValue, nameValue);
+      const { error } = await register(email, password, name);
 
-      if (error) {
-        email.error.textContent = error.message;
-        email.input.classList.add("auth-input-error");
+      if (error !== undefined) {
+        const message = error.message.toLowerCase();
+
+        if (message.includes("password")) {
+          passwordField.error.textContent = error.message;
+          passwordField.input.classList.add("auth-input-error");
+        } else {
+          emailField.error.textContent = error.message;
+          emailField.input.classList.add("auth-input-error");
+        }
+
         return;
       }
 
-      window.location.hash = RoutePath.Dashboard;
+      window.location.hash = `#${RoutePath.Dashboard}`;
     } catch {
-      email.error.textContent = "Network error. Please try again.";
-      email.input.classList.add("auth-input-error");
+      formError.textContent = "Network error. Please try again.";
     } finally {
       submitButton.textContent = "Create Account";
-      submitButton.disabled = fields.some((field) => !field.input.value.trim());
+      submitButton.disabled = false;
     }
   }
 }
