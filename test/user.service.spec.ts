@@ -26,6 +26,8 @@ describe("UserService", () => {
         xp: 120,
         streak: 5,
         createdAt: "2026-02-20",
+        photo: "",
+        getReminder: false,
       },
       {
         id: "u2",
@@ -35,6 +37,8 @@ describe("UserService", () => {
         xp: 80,
         streak: 2,
         createdAt: "2026-02-18",
+        photo: "",
+        getReminder: false,
       },
       {
         id: "u3",
@@ -44,6 +48,8 @@ describe("UserService", () => {
         xp: 200,
         streak: 10,
         createdAt: "2026-02-10",
+        photo: "",
+        getReminder: false,
       },
     ];
 
