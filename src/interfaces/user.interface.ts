@@ -4,4 +4,6 @@ export interface User {
   xp: number;
   streak: number;
   createdAt: string;
+  photo: string;
+  getReminder: boolean;
 }

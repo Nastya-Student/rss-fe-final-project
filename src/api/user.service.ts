@@ -1,78 +1,97 @@
 import { supabase } from "./supabase";
-import type { User as SupabaseUser } from "@supabase/supabase-js";
 import type { User } from "../interfaces/user.interface";
 
-type UserMetadata = {
-  name?: string;
-  full_name?: string;
+type ProfileRow = {
+  id: string;
+  name: string;
+  photo: string;
+  xp: number;
+  streak: number;
+  get_reminder: boolean;
+  created_at: string;
 };
 
-const getUserName = (user: SupabaseUser): string => {
-  const meta = user.user_metadata as UserMetadata;
+const mapProfile = (row: ProfileRow): User => ({
+  id: row.id,
+  name: row.name,
+  photo: row.photo,
+  xp: row.xp,
+  streak: row.streak,
+  getReminder: row.get_reminder,
+  createdAt: row.created_at,
+});
 
-  return meta?.name ?? meta?.full_name ?? user.email ?? "Anonymous";
-};
-
-export const getCurrentUser = async (): Promise<SupabaseUser | null> => {
+export const getCurrentUserId = async (): Promise<string | undefined> => {
   const { data, error } = await supabase.auth.getUser();
-  if (error) throw error;
-  return data.user;
-};
 
-export const ensureMyProfile = async (): Promise<User> => {
-  const user = await getCurrentUser();
-  if (!user) throw new Error("Not authenticated");
+  if (error !== null) throw error;
 
-  const { data, error } = await supabase
-    .from("profiles")
-    .upsert(
-      {
-        id: user.id,
-        name: getUserName(user),
-      },
-      { onConflict: "id" },
-    )
-    .select()
-    .single<User>();
-
-  if (error) throw error;
-
-  return data;
+  return data.user?.id ?? undefined;
 };
 
 export const getMyProfile = async (): Promise<User | undefined> => {
-  const user = await getCurrentUser();
-  if (!user) return undefined;
+  const userId = await getCurrentUserId();
+  if (userId === undefined) return undefined;
 
   const { data, error } = await supabase
     .from("profiles")
     .select("*")
-    .eq("id", user.id)
-    .maybeSingle<User>();
+    .eq("id", userId)
+    .single<ProfileRow>();
 
-  if (error) throw error;
+  if (error !== null) throw error;
 
-  return data ?? undefined;
+  return mapProfile(data);
 };
 
 export const updateProfile = async (
-  updates: Partial<Pick<User, "name" | "xp" | "streak">>,
+  updates: Partial<Omit<User, "id" | "createdAt">>,
 ): Promise<User> => {
-  const user = await getCurrentUser();
-  if (!user) throw new Error("Not authenticated");
+  const userId = await getCurrentUserId();
+  if (userId === undefined) throw new Error("Not authenticated");
+
+  const payload: Partial<ProfileRow> = {};
+
+  if (updates.name !== undefined) payload.name = updates.name;
+  if (updates.photo !== undefined) payload.photo = updates.photo;
+  if (updates.xp !== undefined) payload.xp = updates.xp;
+  if (updates.streak !== undefined) payload.streak = updates.streak;
+  if (updates.getReminder !== undefined) {
+    payload.get_reminder = updates.getReminder;
+  }
 
   const { data, error } = await supabase
     .from("profiles")
-    .update(updates)
-    .eq("id", user.id)
+    .update(payload)
+    .eq("id", userId)
     .select()
-    .single<User>();
+    .single<ProfileRow>();
 
-  if (error) throw error;
+  if (error !== null) throw error;
 
-  return data;
+  return mapProfile(data);
 };
 
-export const getCurrentUserWithProfile = async (): Promise<User> => {
-  return await ensureMyProfile();
+export const addXp = async (amount: number): Promise<User> => {
+  const profile = await getMyProfile();
+  if (profile === undefined) throw new Error("No profile");
+
+  return updateProfile({
+    xp: profile.xp + amount,
+  });
+};
+
+export const incrementStreak = async (): Promise<User> => {
+  const profile = await getMyProfile();
+  if (profile === undefined) throw new Error("No profile");
+
+  return updateProfile({
+    streak: profile.streak + 1,
+  });
+};
+
+export const resetStreak = async (): Promise<User> => {
+  return updateProfile({
+    streak: 0,
+  });
 };

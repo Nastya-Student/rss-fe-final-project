@@ -1,120 +1,86 @@
 import { supabase } from "./supabase";
-import { getCurrentUser } from "./user.service";
+import { getCurrentUserId } from "./user.service";
+import type { TopicProgress } from "../interfaces/topic-progress.interface";
 
-export type Progress = {
-  id: string;
-  user_id: string;
+type CompletedRow = {
   topic_id: string;
-  completed_widget_ids: string[];
-  updated_at: string;
+  widget_id: string;
 };
 
 type ProgressRow = {
   id: string;
-  user_id: string;
   topic_id: string;
-  completed_widget_ids: unknown;
   updated_at: string;
 };
 
-export const addWidgetProgress = async (
-  topicId: string,
-  widgetId: string,
-): Promise<Progress> => {
-  const user = await getCurrentUser();
-  if (!user) throw new Error("Not authenticated");
-
-  const { data: existing, error: fetchError } = await supabase
-    .from("progress")
-    .select("*")
-    .eq("user_id", user.id)
-    .eq("topic_id", topicId)
-    .maybeSingle<ProgressRow>();
-
-  if (fetchError) throw fetchError;
-
-  const current = Array.isArray(existing?.completed_widget_ids)
-    ? existing.completed_widget_ids.map(String)
-    : [];
-
-  const updated = [...new Set([...current, widgetId])];
-
-  const { data, error } = await supabase
-    .from("progress")
-    .upsert(
-      {
-        user_id: user.id,
-        topic_id: topicId,
-        completed_widget_ids: updated,
-        updated_at: new Date().toISOString(),
-      },
-      {
-        onConflict: "user_id,topic_id",
-      },
-    )
-    .select()
-    .maybeSingle<ProgressRow>();
-
-  if (error) throw error;
-  if (!data) throw new Error("No data returned");
-
-  return {
-    id: data.id,
-    user_id: data.user_id,
-    topic_id: data.topic_id,
-    completed_widget_ids: Array.isArray(data.completed_widget_ids)
-      ? data.completed_widget_ids.map(String)
-      : [],
-    updated_at: data.updated_at,
-  };
+type Topic = {
+  id: string;
+  title: string;
+  widgetIds: string[];
 };
 
-export const getMyProgress = async (): Promise<Progress[]> => {
-  const user = await getCurrentUser();
-  if (!user) throw new Error("Not authenticated");
+export const getTopicProgressList = async (
+  topics: Topic[],
+): Promise<TopicProgress[]> => {
+  const userId = await getCurrentUserId();
+  if (userId === undefined) throw new Error("Not authenticated");
 
-  const { data, error } = await supabase
+  const { data: completed, error: completedError } = await supabase
+    .from("completed_widgets")
+    .select("topic_id, widget_id")
+    .eq("user_id", userId)
+    .overrideTypes<CompletedRow[]>();
+
+  if (completedError !== null) throw completedError;
+
+  const { data: progressRows, error: progressError } = await supabase
     .from("progress")
     .select("*")
-    .eq("user_id", user.id)
+    .eq("user_id", userId)
     .overrideTypes<ProgressRow[]>();
 
-  if (error) throw error;
+  if (progressError !== null) throw progressError;
 
-  return (data ?? []).map((item) => ({
-    id: item.id,
-    user_id: item.user_id,
-    topic_id: item.topic_id,
-    completed_widget_ids: Array.isArray(item.completed_widget_ids)
-      ? item.completed_widget_ids.map(String)
-      : [],
-    updated_at: item.updated_at,
-  }));
-};
+  const completedMap = new Map<string, string[]>();
 
-export const getTopicProgress = async (
-  topicId: string,
-): Promise<Progress | undefined> => {
-  const user = await getCurrentUser();
-  if (!user) throw new Error("Not authenticated");
+  for (const row of completed ?? []) {
+    const list = completedMap.get(row.topic_id);
 
-  const { data, error } = await supabase
-    .from("progress")
-    .select("*")
-    .eq("user_id", user.id)
-    .eq("topic_id", topicId)
-    .maybeSingle<ProgressRow>();
+    if (list === undefined) {
+      completedMap.set(row.topic_id, [row.widget_id]);
+      continue;
+    }
 
-  if (error) throw error;
-  if (!data) return undefined;
+    list.push(row.widget_id);
+  }
 
-  return {
-    id: data.id,
-    user_id: data.user_id,
-    topic_id: data.topic_id,
-    completed_widget_ids: Array.isArray(data.completed_widget_ids)
-      ? data.completed_widget_ids.map(String)
-      : [],
-    updated_at: data.updated_at,
-  };
+  const progressMap = new Map<string, ProgressRow>();
+
+  for (const row of progressRows ?? []) {
+    progressMap.set(row.topic_id, row);
+  }
+
+  const result: TopicProgress[] = [];
+
+  for (const topic of topics) {
+    const completedIds = completedMap.get(topic.id) ?? [];
+    const total = topic.widgetIds.length;
+
+    const percent =
+      total === 0 ? 0 : Math.round((completedIds.length / total) * 100);
+
+    const progressRow = progressMap.get(topic.id);
+
+    result.push({
+      id: progressRow?.id ?? `${userId}_${topic.id}`,
+      userId,
+      topicId: topic.id,
+      topicTitle: topic.title,
+      completedWidgetIds: completedIds,
+      percent,
+      updatedAt: progressRow?.updated_at ?? new Date().toISOString(),
+    });
+  }
+
+  return result;
 };

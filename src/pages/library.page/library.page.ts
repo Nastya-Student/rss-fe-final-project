@@ -3,6 +3,7 @@ import { RoutePath } from "../../types/route-path.enum.js";
 import ButtonCreator from "../../utils/button/button-creator.js";
 import HeadingsCreator from "../../utils/headings/headings-creator.js";
 import { BasePage } from "../base-page.js";
+import { logout } from "../../api/auth.service";
 
 export class LibraryPage extends BasePage {
   create(parent: HTMLElement): void {
@@ -19,7 +20,16 @@ export class LibraryPage extends BasePage {
       classes: ["button"],
       parent: this.container,
     }).getElement();
-    logoutButton.dataset.route = RoutePath.Login;
+    logoutButton.addEventListener("click", () => {
+      void (async () => {
+        try {
+          await logout();
+          window.location.hash = RoutePath.Login;
+        } catch {
+          //
+        }
+      })();
+    });
 
     const profileButton = new ButtonCreator({
       text: "To profile page",
