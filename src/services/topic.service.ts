@@ -3,7 +3,7 @@ import topicsMock from "../data/mock-topics.data.json" with { type: "json" };
 import { isTopicArray } from "../guards/topic.guards.js";
 import { BaseDataService } from "./base-data.service.js";
 
-class TopicService extends BaseDataService<Topic> {
+export class TopicService extends BaseDataService<Topic> {
   protected endpoint = "topics";
   protected mockData: unknown = topicsMock;
   protected isValid = isTopicArray;

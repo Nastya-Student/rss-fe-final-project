@@ -3,7 +3,7 @@ import usersMock from "../data/mock-user.data.json" with { type: "json" };
 import { isUserArray } from "../guards/user.guards.js";
 import { BaseDataService } from "./base-data.service.js";
 
-class UserService extends BaseDataService<User> {
+export class UserService extends BaseDataService<User> {
   protected endpoint = "users";
   protected mockData: unknown = usersMock;
   protected isValid = isUserArray;
