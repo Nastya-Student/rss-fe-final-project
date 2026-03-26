@@ -25,12 +25,17 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
 .profile__header-buttons {
   display: flex;
   justify-content: space-around;
   gap: 5rem;
+  @media screen and (max-width: 380px) {
+    gap: 1rem;
+  }
 }
 
 .profile__avatar-wrapper {
@@ -100,4 +105,5 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  align-items: center;
 }
