@@ -14,7 +14,7 @@
 }
 
 .memory-game__object-node.garbage {
-  fill: #ffcccc;
+  fill: var(--secondary-color);
 }
 
 .memory-game__link.no-active {
