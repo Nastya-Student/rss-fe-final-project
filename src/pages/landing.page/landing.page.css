@@ -1,6 +1,6 @@
 main .landing-page {
   background-color: var(--bg-color);
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Roboto", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .landing-wrapper {
