@@ -11,6 +11,7 @@ import { SVGTextCreator } from "../../utils/svg-elements/svg-text/svg-text";
 import "./graph-renderer.css";
 import {
   CLASS_NAMES_MEMORY_GAME_WIDGET,
+  NUMBER_CONSTANTS_MEMORY_GAME_WIDGET,
   STRING_CONSTANTS_MEMORY_GAME_WIDGET,
 } from "./memory-game.widget";
 
@@ -92,10 +93,10 @@ export class GraphRenderer {
       parent: g,
       classes: [CLASS_NAMES_MEMORY_GAME_WIDGET.gameObjectsLinkLine],
       attributes: {
-        x1: String(from.x + 120),
-        y1: String(from.y + 25),
+        x1: String(from.x + NUMBER_CONSTANTS_MEMORY_GAME_WIDGET.linkStartX),
+        y1: String(from.y + NUMBER_CONSTANTS_MEMORY_GAME_WIDGET.linkStartEndY),
         x2: String(to.x),
-        y2: String(to.y + 25),
+        y2: String(to.y + NUMBER_CONSTANTS_MEMORY_GAME_WIDGET.linkStartEndY),
       },
     }).getElement();
 
@@ -105,8 +106,18 @@ export class GraphRenderer {
         text: label,
         classes: [CLASS_NAMES_MEMORY_GAME_WIDGET.gameObjectsLinkLabel],
         attributes: {
-          x: String((from.x + 120 + to.x) / 2),
-          y: String((from.y + to.y + 50) / 2 - 5),
+          x: String(
+            (from.x + NUMBER_CONSTANTS_MEMORY_GAME_WIDGET.linkStartX + to.x) /
+              NUMBER_CONSTANTS_MEMORY_GAME_WIDGET.findCenter,
+          ),
+          y: String(
+            (from.y +
+              to.y +
+              NUMBER_CONSTANTS_MEMORY_GAME_WIDGET.linkStartEndY *
+                NUMBER_CONSTANTS_MEMORY_GAME_WIDGET.findCenter) /
+              NUMBER_CONSTANTS_MEMORY_GAME_WIDGET.findCenter -
+              NUMBER_CONSTANTS_MEMORY_GAME_WIDGET.linkTextOffsetY,
+          ),
         },
       }).getElement();
     }

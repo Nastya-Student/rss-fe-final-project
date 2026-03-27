@@ -43,6 +43,13 @@ export const STRING_CONSTANTS_MEMORY_GAME_WIDGET = {
   gameObjectTextY: "30",
 };
 
+export const NUMBER_CONSTANTS_MEMORY_GAME_WIDGET = {
+  linkStartX: 120,
+  linkStartEndY: 25,
+  linkTextOffsetY: 5,
+  findCenter: 2,
+};
+
 export default function memoryGameWidget(
   payload: MemoryGamePayload,
   onAnswer: (answer: MemoryGameAnswer) => void,
