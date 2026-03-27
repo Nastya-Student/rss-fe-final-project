@@ -63,6 +63,7 @@ export default function quizWidget(
     parent: quizWidgetContainer,
   }).getElement();
 
+  let userAnswer: string | undefined;
   let pressedOption: HTMLElement | undefined;
 
   optionsContainer.addEventListener("click", (event) => {
@@ -75,12 +76,15 @@ export default function quizWidget(
       pressedOption.classList.remove("pressed");
       option.classList.add("pressed");
       pressedOption = option;
+      userAnswer = option.textContent;
     } else if (option && option === pressedOption) {
       pressedOption.classList.remove("pressed");
       pressedOption = undefined;
+      userAnswer = undefined;
     } else if (option) {
       option.classList.add("pressed");
       pressedOption = option;
+      userAnswer = option.textContent;
     } else {
       return;
     }
@@ -100,9 +104,11 @@ export default function quizWidget(
     parent: quizWidgetContainer,
   }).getElement();
 
-  const selectedAnswerIndex: QuizAnswer = { answer: "1" };
-
   submitButton.addEventListener(EVENT.click, () => {
+    const selectedAnswerIndex: QuizAnswer = { answer: "" };
+    if (userAnswer !== undefined) {
+      selectedAnswerIndex.answer = userAnswer;
+    }
     onAnswer(selectedAnswerIndex);
     submitButton.classList.add(CLASS_NAME.noActive);
     submitButton.disabled = true;
