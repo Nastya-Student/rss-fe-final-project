@@ -36,6 +36,7 @@
 }
 
 .memory-game__object-text {
+  font-size: 0.9rem;
   font-family: Arial, sans-serif;
   dominant-baseline: middle;
   text-anchor: middle;
