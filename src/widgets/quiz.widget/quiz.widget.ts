@@ -100,7 +100,7 @@ export default function quizWidget(
     parent: quizWidgetContainer,
   }).getElement();
 
-  const selectedAnswerIndex: QuizAnswer = { answer: 1 };
+  const selectedAnswerIndex: QuizAnswer = { answer: "1" };
 
   submitButton.addEventListener(EVENT.click, () => {
     onAnswer(selectedAnswerIndex);

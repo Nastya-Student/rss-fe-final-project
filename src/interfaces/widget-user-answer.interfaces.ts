@@ -1,5 +1,5 @@
 export interface QuizAnswer {
-  answer: number;
+  answer: string;
 }
 export interface TrueFalseAnswer {
   answer: boolean;
