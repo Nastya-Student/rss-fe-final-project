@@ -7,9 +7,9 @@
     "tags": ["algorithms", "complexity"],
     "payload": {
       "title": "Binary Search Complexity",
-      "question": "Какая временная сложность у бинарного поиска?",
+      "question": "What is the time complexity of binary search?",
       "options": ["O(n)", "O(log n)", "O(n²)", "O(1)"],
-      "correctIndex": 1
+      "correctAnswer": "O(log n)"
     }
   },
   {
@@ -20,9 +20,9 @@
     "tags": ["algorithms", "sorting"],
     "payload": {
       "title": "Best Average Sorting",
-      "question": "Какой алгоритм сортировки имеет наилучшую среднюю временную сложность?",
+      "question": "Which sorting algorithm has the best average time complexity?",
       "options": ["Bubble sort", "Quick sort", "Insertion sort", "Selection sort"],
-      "correctIndex": 1
+      "correctAnswer": "Quick sort"
     }
   },
   {
@@ -33,9 +33,9 @@
     "tags": ["algorithms", "recursion"],
     "payload": {
       "title": "Fibonacci Value",
-      "question": "Что вернет функция f(5) если f(n) = n<=1 ? 1 : f(n-1)+f(n-2)?",
+      "question": "What will the function f(5) return if f(n) = n<=1 ? 1 : f(n-1)+f(n-2)?",
       "options": ["5", "8", "13", "21"],
-      "correctIndex": 1
+      "correctAnswer": "8"
     }
   },
   {
@@ -46,9 +46,9 @@
     "tags": ["coreJS", "types"],
     "payload": {
       "title": "typeof NaN",
-      "question": "Какое значение вернет typeof NaN?",
+      "question": "What value does typeof NaN return?",
       "options": ["NaN", "number", "undefined", "object"],
-      "correctIndex": 1
+      "correctAnswer": "number"
     }
   },
   {
@@ -59,9 +59,9 @@
     "tags": ["coreJS", "objects"],
     "payload": {
       "title": "Object Reference",
-      "question": "Что выведет код? let a = {x: 1}; let b = a; b.x = 2; console.log(a.x);",
-      "options": ["1", "2", "undefined", "ошибка"],
-      "correctIndex": 1
+      "question": "What will the code output? let a = {x: 1}; let b = a; b.x = 2; console.log(a.x);",
+      "options": ["1", "2", "undefined", "error"],
+      "correctAnswer": "2"
     }
   },
   {
@@ -72,9 +72,9 @@
     "tags": ["coreJS", "promises"],
     "payload": {
       "title": "Promise finally",
-      "question": "Что выведет Promise.resolve(1).finally(() => 2).then(console.log)?",
+      "question": "What will Promise.resolve(1).finally(() => 2).then(console.log) output?",
       "options": ["1", "2", "undefined", "Promise"],
-      "correctIndex": 0
+      "correctAnswer": "1"
     }
   },
   {
@@ -85,9 +85,9 @@
     "tags": ["typescript", "inference"],
     "payload": {
       "title": "Array Type Inference",
-      "question": "Какого типа переменная let arr = [1, '2', true]; ?",
+      "question": "What type is the variable let arr = [1, '2', true]; ?",
       "options": ["number[]", "string[]", "(string | number | boolean)[]", "any[]"],
-      "correctIndex": 2
+      "correctAnswer": "(string | number | boolean)[]"
     }
   },
   {
@@ -98,9 +98,9 @@
     "tags": ["typescript", "typeof"],
     "payload": {
       "title": "typeof operator",
-      "question": "Что вернет typeof в TypeScript для переменной типа string?",
-      "options": ["'string'", "'String'", "'object'", "зависит от компиляции"],
-      "correctIndex": 0
+      "question": "What does typeof return in TypeScript for a variable of type string?",
+      "options": ["'string'", "'String'", "'object'", "depends on compilation"],
+      "correctAnswer": "'string'"
     }
   },
   {
@@ -111,9 +111,9 @@
     "tags": ["typescript", "const assertions"],
     "payload": {
       "title": "as const",
-      "question": "Какой тип у переменной const obj = { a: 1, b: '2' } as const; ?",
+      "question": "What is the type of the variable const obj = { a: 1, b: '2' } as const; ?",
       "options": ["{ a: number; b: string; }", "{ readonly a: 1; readonly b: '2'; }", "{ a: 1; b: '2'; }", "any"],
-      "correctIndex": 1
+      "correctAnswer": "{ readonly a: 1; readonly b: '2'; }"
     }
   },
   {
