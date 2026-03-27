@@ -25,9 +25,7 @@ export class LibraryPage extends BasePage {
         try {
           await logout();
           window.location.hash = RoutePath.Login;
-        } catch {
-          //
-        }
+        } catch {}
       })();
     });
 

@@ -24,7 +24,9 @@ const mapProfile = (row: ProfileRow): User => ({
 export const getCurrentUserId = async (): Promise<string | undefined> => {
   const { data, error } = await supabase.auth.getUser();
 
-  if (error !== null) throw error;
+  if (error !== null) {
+    return undefined;
+  }
 
   return data.user?.id ?? undefined;
 };
