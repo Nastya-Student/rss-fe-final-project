@@ -20,6 +20,9 @@ import "./quiz.widget.css";
 export const CLASS_NAMES_QUIZ_WIDGET = {
   quizTitle: "quiz__quiz-title",
   widgetDescription: "quiz__widget-description",
+  optionsContainer: "quiz__options-container",
+  option: "quiz__option",
+  pressed: "pressed",
 };
 
 export const STRING_CONSTANTS_QUIZ_WIDGET = {
@@ -59,30 +62,32 @@ export default function quizWidget(
   }).getElement();
 
   const optionsContainer = new ElementCreator({
-    classes: ["quiz__options-container"],
+    classes: [CLASS_NAMES_QUIZ_WIDGET.optionsContainer],
     parent: quizWidgetContainer,
   }).getElement();
 
   let userAnswer: string | undefined;
   let pressedOption: HTMLElement | undefined;
 
-  optionsContainer.addEventListener("click", (event) => {
+  optionsContainer.addEventListener(EVENT.click, (event) => {
     const target = event.target;
     if (!(target instanceof HTMLElement)) {
       return;
     }
-    const option = target.closest<HTMLElement>(".quiz__option");
+    const option = target.closest<HTMLElement>(
+      `.${CLASS_NAMES_QUIZ_WIDGET.option}`,
+    );
     if (option && pressedOption && option !== pressedOption) {
-      pressedOption.classList.remove("pressed");
-      option.classList.add("pressed");
+      pressedOption.classList.remove(CLASS_NAMES_QUIZ_WIDGET.pressed);
+      option.classList.add(CLASS_NAMES_QUIZ_WIDGET.pressed);
       pressedOption = option;
       userAnswer = option.textContent;
     } else if (option && option === pressedOption) {
-      pressedOption.classList.remove("pressed");
+      pressedOption.classList.remove(CLASS_NAMES_QUIZ_WIDGET.pressed);
       pressedOption = undefined;
       userAnswer = undefined;
     } else if (option) {
-      option.classList.add("pressed");
+      option.classList.add(CLASS_NAMES_QUIZ_WIDGET.pressed);
       pressedOption = option;
       userAnswer = option.textContent;
     } else {
@@ -96,7 +101,7 @@ export default function quizWidget(
     const optionElement = new ElementCreator({
       parent: optionsContainer,
       text: option,
-      classes: ["quiz__option", CLASS_NAME.cardElement],
+      classes: [CLASS_NAMES_QUIZ_WIDGET.option, CLASS_NAME.cardElement],
     }).getElement();
     optionsElements.push(optionElement);
   }
