@@ -90,12 +90,15 @@ export default function quizWidget(
     }
   });
 
+  const optionsElements: HTMLElement[] = [];
+
   for (const option of shuffleArray(payload.options)) {
-    new ElementCreator({
+    const optionElement = new ElementCreator({
       parent: optionsContainer,
       text: option,
       classes: ["quiz__option", CLASS_NAME.cardElement],
-    });
+    }).getElement();
+    optionsElements.push(optionElement);
   }
 
   const submitButton = new ButtonCreator({
@@ -112,6 +115,9 @@ export default function quizWidget(
     onAnswer(selectedAnswerIndex);
     submitButton.classList.add(CLASS_NAME.noActive);
     submitButton.disabled = true;
+    for (const optionElement of optionsElements) {
+      optionElement.classList.add(CLASS_NAME.noActive);
+    }
   });
 
   return quizWidgetContainer;

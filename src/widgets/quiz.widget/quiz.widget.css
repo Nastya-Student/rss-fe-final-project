@@ -30,3 +30,7 @@
 .quiz__option.pressed {
   background-color: var(--secondary-color);
 }
+.quiz__option.no-active {
+  pointer-events: none;
+  opacity: 20%;
+}
