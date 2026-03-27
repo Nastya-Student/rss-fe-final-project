@@ -8,8 +8,12 @@ import { LoginPage } from "./pages/login.page/login.page.js";
 import { PracticePage } from "./pages/practice.page/practice.page.js";
 import { ProfilePage } from "./pages/profile.page/profile.page.js";
 import { RegisterPage } from "./pages/register.page/register.page.js";
+import { ForgotPasswordPage } from "./pages/forgot-password.page/forgot-password.page.js";
+import { UpdatePasswordPage } from "./pages/update-password.page/update-password.page.js";
+import { appStateService } from "./api/app-state.service";
 
 const app = new App(document.body);
+await appStateService.init();
 
 app.init();
 app.register("landing", new LandingPage());
@@ -20,6 +24,8 @@ app.register("library", new LibraryPage());
 app.register("practice", new PracticePage());
 app.register("profile", new ProfilePage());
 app.register("404", new ErrorPage());
+app.register("forgot-password", new ForgotPasswordPage());
+app.register("update-password", new UpdatePasswordPage());
 
 const router = new Router(app);
 router.init();
