@@ -26,3 +26,13 @@
 .truefalse-chosen {
   background-color: var(--secondary-color);
 }
+
+.truefalse-explanation {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--descr-color);
+}
+
+.truefalse-explanation.hidden {
+  display: none;
+}

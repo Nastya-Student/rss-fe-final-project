@@ -73,10 +73,10 @@ export default function trueFalseWidget(
     button.classList.add("truefalse-chosen");
   }
 
-  trueButton.addEventListener("click", (evt) => {
+  trueButton.addEventListener(EVENT.click, (evt) => {
     setAnswer(true, evt.currentTarget as HTMLButtonElement);
   });
-  falseButton.addEventListener("click", (evt) => {
+  falseButton.addEventListener(EVENT.click, (evt) => {
     setAnswer(false, evt.currentTarget as HTMLButtonElement);
   });
 
@@ -86,12 +86,19 @@ export default function trueFalseWidget(
     parent: trueFalseWidgetContainer,
   }).getElement();
 
+  const explanationField = new ParagraphCreator({
+    parent: trueFalseWidgetContainer,
+    text: payload.explanation ?? "",
+    classes: ["truefalse-explanation", "hidden"],
+  }).getElement();
+
   submitButton.addEventListener(EVENT.click, () => {
     onAnswer(selectedAnswerIndex);
     submitButton.classList.add(CLASS_NAME.noActive);
     submitButton.disabled = true;
     trueButton.disabled = true;
     falseButton.disabled = true;
+    explanationField.classList.remove("hidden");
   });
 
   return trueFalseWidgetContainer;
