@@ -14,7 +14,19 @@ import ButtonCreator from "../../utils/button/button-creator.js";
 import ElementCreator from "../../utils/element-creator.js";
 import HeadingsCreator from "../../utils/headings/headings-creator.js";
 import ParagraphCreator from "../../utils/paragraph/paragraph-creator.js";
+import shuffleArray from "../../utils/shuffle-array.js";
 import "./quiz.widget.css";
+
+export const CLASS_NAMES_QUIZ_WIDGET = {
+  quizTitle: "quiz__quiz-title",
+  widgetDescription: "quiz__widget-description",
+};
+
+export const STRING_CONSTANTS_QUIZ_WIDGET = {
+  quiz: "Quiz",
+  widgetDescription:
+    "Test your knowledge with interactive multiple-choice quizzes",
+};
 
 export default function quizWidget(
   payload: QuizPayload,
@@ -26,8 +38,15 @@ export default function quizWidget(
 
   new HeadingsCreator(HEADINGS_TWO, {
     parent: quizWidgetContainer,
-    text: "Quiz Widget",
+    classes: [CLASS_NAMES_QUIZ_WIDGET.quizTitle],
+    text: STRING_CONSTANTS_QUIZ_WIDGET.quiz,
   }).getElement();
+
+  new ParagraphCreator({
+    parent: quizWidgetContainer,
+    classes: [CLASS_NAMES_QUIZ_WIDGET.widgetDescription],
+    text: STRING_CONSTANTS_QUIZ_WIDGET.widgetDescription,
+  });
 
   new HeadingsCreator(HEADINGS_THREE, {
     parent: quizWidgetContainer,
@@ -39,9 +58,22 @@ export default function quizWidget(
     text: payload.question,
   }).getElement();
 
+  const optionsContainer = new ElementCreator({
+    classes: ["quiz__options-container"],
+    parent: quizWidgetContainer,
+  }).getElement();
+
+  for (const option of shuffleArray(payload.options)) {
+    new ElementCreator({
+      parent: optionsContainer,
+      text: option,
+      classes: ["quiz__option", CLASS_NAME.cardElement],
+    });
+  }
+
   const submitButton = new ButtonCreator({
     text: STRING_CONSTANTS_PRACTICE.submit,
-    classes: [CLASS_NAME.button],
+    classes: [CLASS_NAMES_PRACTICE.submitButton, CLASS_NAME.button],
     parent: quizWidgetContainer,
   }).getElement();
 
