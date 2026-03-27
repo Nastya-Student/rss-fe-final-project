@@ -11,10 +11,9 @@
 
 .quiz__options-container {
   display: grid;
-  display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
-  gap: 10px;
+  gap: var(--spacing-0-75);
 }
 
 .quiz__option {
@@ -26,5 +25,8 @@
   transition: all 0.4s ease;
 }
 .quiz__option:hover {
+  background-color: var(--secondary-color);
+}
+.quiz__option.pressed {
   background-color: var(--secondary-color);
 }

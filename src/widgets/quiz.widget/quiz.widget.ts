@@ -63,6 +63,29 @@ export default function quizWidget(
     parent: quizWidgetContainer,
   }).getElement();
 
+  let pressedOption: HTMLElement | undefined;
+
+  optionsContainer.addEventListener("click", (event) => {
+    const target = event.target;
+    if (!(target instanceof HTMLElement)) {
+      return;
+    }
+    const option = target.closest<HTMLElement>(".quiz__option");
+    if (option && pressedOption && option !== pressedOption) {
+      pressedOption.classList.remove("pressed");
+      option.classList.add("pressed");
+      pressedOption = option;
+    } else if (option && option === pressedOption) {
+      pressedOption.classList.remove("pressed");
+      pressedOption = undefined;
+    } else if (option) {
+      option.classList.add("pressed");
+      pressedOption = option;
+    } else {
+      return;
+    }
+  });
+
   for (const option of shuffleArray(payload.options)) {
     new ElementCreator({
       parent: optionsContainer,
