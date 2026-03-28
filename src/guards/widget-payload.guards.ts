@@ -26,7 +26,7 @@ export function isQuizPayload(obj: unknown): obj is QuizPayload {
     hasStringProp(obj, "question") &&
     "options" in obj &&
     isStringArray(obj.options) &&
-    hasNumberProp(obj, "correctIndex")
+    hasStringProp(obj, "correctAnswer")
   );
 }
 
