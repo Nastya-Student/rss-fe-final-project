@@ -77,22 +77,23 @@ export default function quizWidget(
     const option = target.closest<HTMLElement>(
       `.${CLASS_NAMES_QUIZ_WIDGET.option}`,
     );
-    if (option && pressedOption && option !== pressedOption) {
-      pressedOption.classList.remove(CLASS_NAMES_QUIZ_WIDGET.pressed);
-      option.classList.add(CLASS_NAMES_QUIZ_WIDGET.pressed);
-      pressedOption = option;
-      userAnswer = option.textContent;
-    } else if (option && option === pressedOption) {
-      pressedOption.classList.remove(CLASS_NAMES_QUIZ_WIDGET.pressed);
-      pressedOption = undefined;
-      userAnswer = undefined;
-    } else if (option) {
-      option.classList.add(CLASS_NAMES_QUIZ_WIDGET.pressed);
-      pressedOption = option;
-      userAnswer = option.textContent;
-    } else {
+
+    if (!option) {
       return;
     }
+
+    if (option === pressedOption) {
+      option.classList.remove(CLASS_NAMES_QUIZ_WIDGET.pressed);
+      pressedOption = undefined;
+      userAnswer = undefined;
+      return;
+    }
+
+    pressedOption?.classList.remove(CLASS_NAMES_QUIZ_WIDGET.pressed);
+
+    option.classList.add(CLASS_NAMES_QUIZ_WIDGET.pressed);
+    pressedOption = option;
+    userAnswer = option.textContent;
   });
 
   const optionsElements: HTMLElement[] = [];
