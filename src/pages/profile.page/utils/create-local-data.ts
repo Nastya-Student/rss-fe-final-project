@@ -1,5 +1,7 @@
 import { PracticeSession } from "../../../interfaces/practice-session.interface.js";
 import { User } from "../../../interfaces/user.interface.js";
+import { setSessions } from "../../../local-storage/practice-sessions.js";
+import { setUser } from "../../../local-storage/user.js";
 import { practiceSessionService } from "../../../services/practice-session.service.js";
 import { userService } from "../../../services/user.service.js";
 
@@ -8,7 +10,10 @@ export const createLocalUser = async (
 ): Promise<User | undefined> => {
   const currentUser: User | undefined = await userService.getUserById(userId);
 
-  localStorage.setItem("current-user", JSON.stringify(currentUser) ?? "");
+  if (currentUser) {
+    setUser(currentUser);
+  }
+
   return currentUser;
 };
 
@@ -18,6 +23,9 @@ export const createPracticeHistory = async (
   const practiceHistory: PracticeSession[] | undefined =
     await practiceSessionService.getPracticeSessionsByUserId(userId);
 
-  localStorage.setItem("practice-history", JSON.stringify(practiceHistory));
+  if (practiceHistory) {
+    setSessions(practiceHistory);
+  }
+
   return practiceHistory;
 };

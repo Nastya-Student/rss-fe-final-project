@@ -5,11 +5,6 @@ export const ACHIEVEMENTS = {
   expert: "expert",
 } as const;
 
-export const LOCAL_STORAGE = {
-  currentUser: "current-user",
-  userSessions: "user-sessions",
-} as const;
-
 export const ERRORS = {
   avatar: "Avatar not found",
   user: "User name not found",
