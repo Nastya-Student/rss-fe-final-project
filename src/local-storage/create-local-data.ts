@@ -13,10 +13,10 @@ export const createLocalUser = async (
 ): Promise<User | undefined> => {
   const currentUser: User | undefined = await userService.getUserById(userId);
 
-  if (currentUser) {
-    setUser(currentUser);
+  if (!currentUser) {
+    throw new Error("user can not be found");
   }
-
+  setUser(currentUser);
   return currentUser;
 };
 
@@ -26,10 +26,10 @@ export const createPracticeHistory = async (
   const practiceHistory: PracticeSession[] | undefined =
     await practiceSessionService.getPracticeSessionsByUserId(userId);
 
-  if (practiceHistory) {
-    setSessions(practiceHistory);
+  if (!practiceHistory) {
+    throw new Error("practice history can not be found");
   }
-
+  setSessions(practiceHistory);
   return practiceHistory;
 };
 
@@ -38,8 +38,9 @@ export const createProgress = async (
 ): Promise<TopicProgress[] | undefined> => {
   const progress: TopicProgress[] | undefined =
     await topicProgressService.getTopicProgressByUserId(userId);
-  if (progress) {
-    setProgress(progress);
+  if (!progress) {
+    throw new Error("progress can not be found");
   }
+  setProgress(progress);
   return progress;
 };
