@@ -14,7 +14,7 @@ export interface CodeOrderingAnswer {
 }
 
 export interface MemoryGameAnswer {
-  answer: { from: number; to: number }[];
+  answer: string[];
 }
 
 export interface StackBuilderAnswer {
