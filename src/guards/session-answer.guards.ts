@@ -11,7 +11,8 @@ export function isSessionAnswer(obj: unknown): obj is SessionAnswer {
     obj !== null &&
     hasStringProp(obj, "widgetId") &&
     hasBooleanProp(obj, "isCorrect") &&
-    hasNumberProp(obj, "timeSpent")
+    hasNumberProp(obj, "timeSpent") &&
+    hasNumberProp(obj, "difficulty")
   );
 }
 

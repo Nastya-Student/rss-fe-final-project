@@ -1,0 +1,124 @@
+.profile-page {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 5rem;
+  gap: 2rem;
+  background-color: var(--bg-color);
+
+  @media screen and (max-width: 640px) {
+    padding: 1rem 2rem;
+  }
+}
+
+.button {
+  width: fit-content;
+  height: fit-content;
+}
+
+.profile__content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.profile__header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.profile__header-buttons {
+  display: flex;
+  justify-content: space-around;
+  gap: 5rem;
+  @media screen and (max-width: 380px) {
+    gap: 1rem;
+  }
+}
+
+.profile__avatar-wrapper {
+  width: 30%;
+  /* height: 20%; */
+  @media screen and (max-width: 600px) {
+    width: 100%;
+  }
+}
+
+.profile__avatar {
+  width: 100%;
+  height: 100%;
+  box-shadow: 0.35rem 0.35rem 0.35rem rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    box-shadow: 1rem 1rem 1rem rgba(0, 0, 0, 0.3);
+  }
+}
+
+.profile__description {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+}
+
+.profile__description-block {
+  display: flex;
+  justify-content: space-between;
+  @media screen and (max-width: 600px) {
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+}
+
+.profile-chart-block {
+  padding: 20px;
+  display: flex;
+}
+
+#profile-chart {
+  width: 30rem;
+  height: 20rem;
+
+  @media screen and (max-width: 900px) {
+    width: 25rem;
+  }
+
+  @media screen and (max-width: 470px) {
+    display: none;
+  }
+}
+
+.profile__description-header {
+  display: flex;
+}
+
+#profile-achievement-wrapper,
+#profile-settings-header {
+  color: var(--descr-color);
+}
+
+.hidden {
+  display: none;
+}
+
+.profile__settings-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.profile__settings-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+}
+
+#profile-ready-text {
+  color: rgb(14, 40, 110);
+}
+
+#profile-achievement-wrapper {
+  color: green;
+}

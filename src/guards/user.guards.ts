@@ -1,5 +1,9 @@
 import { User } from "../interfaces/user.interface.js";
-import { hasNumberProp, hasStringProp } from "../utils/has-type-prop.js";
+import {
+  hasBooleanProp,
+  hasNumberProp,
+  hasStringProp,
+} from "../utils/has-type-prop.js";
 
 export function isUser(obj: unknown): obj is User {
   return (
@@ -11,7 +15,9 @@ export function isUser(obj: unknown): obj is User {
     hasStringProp(obj, "passwordHash") &&
     hasNumberProp(obj, "xp") &&
     hasNumberProp(obj, "streak") &&
-    hasStringProp(obj, "createdAt")
+    hasStringProp(obj, "createdAt") &&
+    hasStringProp(obj, "photo") &&
+    hasBooleanProp(obj, "getReminder")
   );
 }
 
