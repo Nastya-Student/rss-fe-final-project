@@ -46,6 +46,7 @@
 html {
   scroll-behavior: smooth;
   height: 100%;
+  font-family: "Roboto", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
