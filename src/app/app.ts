@@ -1,8 +1,8 @@
 import { Screen } from "../interfaces/screen.interface.js";
 import { Page } from "../types/page.type.js";
 import FooterCreator from "../utils/footer/footer-creator.js";
-import HeaderCreator from "../utils/header/header-creator.js";
 import MainCreator from "../utils/main/main-creator.js";
+import headerCreator from "../layout/header/header.js";
 
 export default class App {
   private screens = new Map<Page, Screen>();
@@ -18,9 +18,7 @@ export default class App {
   }
 
   init(): void {
-    this.headerElement = new HeaderCreator({
-      classes: ["header"],
-    }).getElement();
+    this.headerElement = headerCreator();
     this.main = new MainCreator({
       classes: ["main"],
     }).getElement();
