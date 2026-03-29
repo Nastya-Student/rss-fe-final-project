@@ -26,7 +26,7 @@ export function isQuizPayload(obj: unknown): obj is QuizPayload {
     hasStringProp(obj, "question") &&
     "options" in obj &&
     isStringArray(obj.options) &&
-    hasNumberProp(obj, "correctIndex")
+    hasStringProp(obj, "correctAnswer")
   );
 }
 
@@ -75,8 +75,10 @@ function isMemoryGameObject(obj: unknown): obj is MemoryGameObject {
   return (
     typeof obj === "object" &&
     obj !== null &&
-    hasNumberProp(obj, "id") &&
-    hasStringProp(obj, "label")
+    hasStringProp(obj, "id") &&
+    hasStringProp(obj, "label") &&
+    hasNumberProp(obj, "x") &&
+    hasNumberProp(obj, "y")
   );
 }
 
@@ -84,8 +86,8 @@ function isMemoryGameLink(obj: unknown): obj is MemoryGameLink {
   return (
     typeof obj === "object" &&
     obj !== null &&
-    hasNumberProp(obj, "from") &&
-    hasNumberProp(obj, "to")
+    hasStringProp(obj, "from") &&
+    hasStringProp(obj, "to")
   );
 }
 
@@ -117,8 +119,12 @@ export function isMemoryGamePayload(obj: unknown): obj is MemoryGamePayload {
     isMemoryGameObjectArray(obj.objects) &&
     "links" in obj &&
     isMemoryGameLinkArray(obj.links) &&
+    "rootIds" in obj &&
+    isStringArray(obj.rootIds) &&
+    "rootLinks" in obj &&
+    isMemoryGameLinkArray(obj.rootLinks) &&
     "garbageIds" in obj &&
-    isNumberArray(obj.garbageIds)
+    isStringArray(obj.garbageIds)
   );
 }
 

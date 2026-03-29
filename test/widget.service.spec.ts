@@ -28,7 +28,7 @@ describe("WidgetService", () => {
           title: "typeof null",
           question: "Что вернет typeof null?",
           options: ["null", "undefined", "object", "NaN"],
-          correctIndex: 2,
+          correctAnswer: "object",
         },
       },
       {
