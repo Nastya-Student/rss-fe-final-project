@@ -2,7 +2,7 @@ export interface QuizPayload {
   title: string;
   question: string;
   options: string[];
-  correctIndex: number;
+  correctAnswer: string;
 }
 
 export interface TrueFalsePayload {
