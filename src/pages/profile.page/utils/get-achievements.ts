@@ -5,7 +5,7 @@ export const groupDataByDays = (
 ): Partial<Record<PropertyKey, PracticeSession[]>> => {
   const result = Object.groupBy(
     sessions,
-    (session) => session.completedAt.split("T")[0] as PropertyKey,
+    (session) => session.completedAt.split("T")[0] ?? "",
   );
   return result;
 };

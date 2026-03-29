@@ -19,7 +19,7 @@ import { createChart } from "./utils/create-chart.js";
 import {
   createLocalUser,
   createPracticeHistory,
-} from "./utils/create-local-data.js";
+} from "../../local-storage/create-local-data.js";
 import { establishAchievementStatus } from "./utils/establish-achievement-status.js";
 
 const LOCAL_USER = "u1";
@@ -157,9 +157,24 @@ export class ProfilePage extends BasePage {
     this.avatar.classList.add("profile__avatar");
     avatarWrapper.append(this.avatar);
 
+    const rightWrapper = new ElementCreator({
+      classes: ["profile__right-wrapper"],
+      parent: descriptionBlock,
+    }).getElement();
+
+    const rightWrapperHeader = new ElementCreator({
+      classes: ["profile__right-wrapper-header"],
+      parent: rightWrapper,
+    }).getElement();
+
+    const rightWrapperChart = new ElementCreator({
+      classes: ["profile__right-wrapper-chart"],
+      parent: rightWrapper,
+    }).getElement();
+
     const description = new ElementCreator({
       classes: ["profile__description"],
-      parent: descriptionBlock,
+      parent: rightWrapperHeader,
     }).getElement();
 
     const descriptionHeader = new ElementCreator({
@@ -174,7 +189,7 @@ export class ProfilePage extends BasePage {
 
     const settings = new ButtonCreator({
       classes: ["button"],
-      parent: descriptionBlock,
+      parent: rightWrapperHeader,
     }).getElement();
     settings.id = "profile-settings-button";
     settings.innerHTML = settingsSVG;
@@ -195,7 +210,7 @@ export class ProfilePage extends BasePage {
 
     const chartBlock = new ElementCreator({
       classes: ["profile__chart-block"],
-      parent: description,
+      parent: rightWrapperChart,
     }).getElement();
     chartBlock.id = "profile-chart-block";
 
