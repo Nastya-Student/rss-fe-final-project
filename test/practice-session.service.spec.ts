@@ -25,8 +25,8 @@ describe("PracticeSessionService", () => {
         topicId: "core-js",
         topicTitle: "Core JS",
         answers: [
-          { widgetId: "w1", isCorrect: true, timeSpent: 12 },
-          { widgetId: "w2", isCorrect: true, timeSpent: 8 },
+          { widgetId: "w1", isCorrect: true, timeSpent: 12, difficulty: 1 },
+          { widgetId: "w2", isCorrect: true, timeSpent: 8, difficulty: 1 },
         ],
         score: 85,
         startedAt: "2026-02-22T10:00:00",
@@ -37,7 +37,9 @@ describe("PracticeSessionService", () => {
         userId: "u1",
         topicId: "algorithms",
         topicTitle: "Algorithms",
-        answers: [{ widgetId: "w4", isCorrect: true, timeSpent: 20 }],
+        answers: [
+          { widgetId: "w4", isCorrect: true, timeSpent: 20, difficulty: 1 },
+        ],
         score: 70,
         startedAt: "2026-02-23T11:00:00",
         completedAt: "2026-02-23T11:15:00",
@@ -47,7 +49,9 @@ describe("PracticeSessionService", () => {
         userId: "u2",
         topicId: "core-js",
         topicTitle: "Core JS",
-        answers: [{ widgetId: "w1", isCorrect: false, timeSpent: 15 }],
+        answers: [
+          { widgetId: "w1", isCorrect: false, timeSpent: 15, difficulty: 1 },
+        ],
         score: 0,
         startedAt: "2026-02-22T12:00:00",
         completedAt: "2026-02-22T12:05:00",
