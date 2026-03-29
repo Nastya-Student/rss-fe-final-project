@@ -1,5 +1,69 @@
-.practice__code-ordering-widget-container {
+.code-ordering {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 12px;
+}
+
+.code-ordering__list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  padding: 12px;
+  background: #111;
+  border-radius: 8px;
+}
+
+.code-ordering__item {
+  padding: 10px 12px;
+  border-radius: 6px;
+
+  background: #1e1e1e;
+  color: #eaeaea;
+
+  font-family: monospace;
+  font-size: 14px;
+  line-height: 1.4;
+
+  cursor: grab;
+  user-select: none;
+
+  transition:
+    transform 0.15s ease,
+    background 0.15s ease;
+}
+
+.code-ordering__item:hover {
+  background: #2a2a2a;
+}
+
+.code-ordering__item:active {
+  cursor: grabbing;
+}
+
+.dragging {
+  opacity: 0.5;
+}
+
+.sortable-chosen {
+  background: #333;
+}
+
+.sortable-drag {
+  transform: scale(1.03);
+  z-index: 10;
+}
+
+.code-ordering__item.correct {
+  background: #1f7a1f !important;
+  color: #d4ffd4;
+}
+
+.code-ordering__item.wrong {
+  background: #7a1f1f !important;
+  color: #ffd4d4;
+}
+
+.code-ordering button {
+  align-self: flex-start;
 }
