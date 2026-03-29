@@ -25,4 +25,6 @@ export const getSessions = (): PracticeSession[] => {
   return [];
 };
 
-export const deleteSessions = (): void => {};
+export const deleteSessions = (): void => {
+  localStorage.removeItem(LOCAL_STORAGE.userSessions);
+};

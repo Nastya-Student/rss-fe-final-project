@@ -16,6 +16,10 @@ export const getUser = (): User | undefined => {
   return;
 };
 
-export const updateUser = (): void => {};
+export const updateUser = (user: User): void => {
+  setUser(user);
+};
 
-export const deleteUser = (): void => {};
+export const deleteUser = (): void => {
+  localStorage.removeItem(LOCAL_STORAGE.currentUser);
+};
