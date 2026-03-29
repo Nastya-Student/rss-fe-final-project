@@ -64,20 +64,20 @@ export default function trueFalseWidget(
     parent: answersWrapper,
   }).getElement();
 
-  let selectedAnswerIndex: TrueFalseAnswer;
+  let selectedAnswer: TrueFalseAnswer;
 
   function setAnswer(value: boolean, button: HTMLButtonElement): void {
-    selectedAnswerIndex = { answer: value };
+    selectedAnswer = { answer: value };
     trueButton.classList.remove("truefalse-chosen");
     falseButton.classList.remove("truefalse-chosen");
     button.classList.add("truefalse-chosen");
   }
 
-  trueButton.addEventListener(EVENT.click, (evt) => {
-    setAnswer(true, evt.currentTarget as HTMLButtonElement);
+  trueButton.addEventListener(EVENT.click, () => {
+    setAnswer(true, trueButton);
   });
-  falseButton.addEventListener(EVENT.click, (evt) => {
-    setAnswer(false, evt.currentTarget as HTMLButtonElement);
+  falseButton.addEventListener(EVENT.click, () => {
+    setAnswer(false, falseButton);
   });
 
   const submitButton = new ButtonCreator({
@@ -93,7 +93,7 @@ export default function trueFalseWidget(
   }).getElement();
 
   submitButton.addEventListener(EVENT.click, () => {
-    onAnswer(selectedAnswerIndex);
+    onAnswer(selectedAnswer);
     submitButton.classList.add(CLASS_NAME.noActive);
     submitButton.disabled = true;
     trueButton.disabled = true;

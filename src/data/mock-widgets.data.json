@@ -116,7 +116,7 @@
       "correctIndex": 1
     }
   },
-  {
+ {
     "id": "w200",
     "topicId": "coreJS",
     "type": "true-false",
@@ -124,9 +124,9 @@
     "tags": ["coreJS", "basics"],
     "payload": {
       "title": "typeof null",
-      "statement": "В JavaScript typeof null возвращает 'null'",
+      "statement": "In JavaScript, typeof null returns 'null'",
       "correct": false,
-      "explanation": "typeof null возвращает 'object' — это известная ошибка языка с первых дней"
+      "explanation": "typeof null returns 'object' — this is a known language bug from the early days"
     }
   },
   {
@@ -137,9 +137,9 @@
     "tags": ["coreJS", "closures"],
     "payload": {
       "title": "Closures and variables",
-      "statement": "Замыкание в JavaScript сохраняет ссылку на переменные внешней функции, а не их значения",
+      "statement": "A closure in JavaScript keeps a reference to the outer function's variables, not their values",
       "correct": true,
-      "explanation": "Замыкание хранит ссылку на переменные, поэтому если переменная изменится после создания функции, функция увидит новое значение"
+      "explanation": "A closure stores a reference to variables, so if a variable changes after the function is created, the function will see the new value"
     }
   },
   {
@@ -150,9 +150,9 @@
     "tags": ["coreJS", "event-loop"],
     "payload": {
       "title": "Microtasks vs Macrotasks",
-      "statement": "setTimeout с задержкой 0 выполняется сразу после текущего синхронного кода, до Promise.resolve().then()",
+      "statement": "setTimeout with a 0 delay executes immediately after the current synchronous code, before Promise.resolve().then()",
       "correct": false,
-      "explanation": "Promise.then (микротаска) выполняется до setTimeout (макротаска), даже если задержка 0"
+      "explanation": "Promise.then (microtask) executes before setTimeout (macrotask), even if the delay is 0"
     }
   },
   {
@@ -163,9 +163,9 @@
     "tags": ["algorithms", "sorting"],
     "payload": {
       "title": "Bubble Sort Complexity",
-      "statement": "Bubble sort имеет сложность O(n²) в худшем случае",
+      "statement": "Bubble sort has O(n²) complexity in the worst case",
       "correct": true,
-      "explanation": "Да, пузырьковая сортировка требует n²/2 сравнений в худшем случае"
+      "explanation": "Yes, bubble sort requires n²/2 comparisons in the worst case"
     }
   },
   {
@@ -176,9 +176,9 @@
     "tags": ["algorithms", "binary-search"],
     "payload": {
       "title": "Binary Search Requirement",
-      "statement": "Бинарный поиск требует отсортированный массив",
+      "statement": "Binary search requires a sorted array",
       "correct": true,
-      "explanation": "Да, бинарный поиск работает только на отсортированных данных, иначе результат непредсказуем"
+      "explanation": "Yes, binary search works only on sorted data, otherwise the result is unpredictable"
     }
   },
   {
@@ -189,9 +189,9 @@
     "tags": ["algorithms", "graph"],
     "payload": {
       "title": "DFS vs BFS Memory",
-      "statement": "Поиск в глубину (DFS) обычно использует больше памяти, чем поиск в ширину (BFS) на разреженных графах",
+      "statement": "Depth-first search (DFS) usually uses more memory than breadth-first search (BFS) on sparse graphs",
       "correct": false,
-      "explanation": "BFS обычно требует больше памяти, так как хранит целый уровень узлов. DFS хранит только текущий путь"
+      "explanation": "BFS usually requires more memory as it stores an entire level of nodes. DFS stores only the current path"
     }
   },
   {
@@ -202,9 +202,9 @@
     "tags": ["typescript", "types"],
     "payload": {
       "title": "any vs unknown",
-      "statement": "Тип unknown в TypeScript позволяет присвоить значение переменной типа string без проверки типа",
+      "statement": "The unknown type in TypeScript allows assigning a value to a variable of type string without type checking",
       "correct": false,
-      "explanation": "unknown требует проверки типа перед использованием. any — не требует. unknown безопаснее"
+      "explanation": "unknown requires type checking before use. any does not. unknown is safer"
     }
   },
   {
@@ -215,9 +215,9 @@
     "tags": ["typescript", "interfaces"],
     "payload": {
       "title": "Interface Extending",
-      "statement": "Интерфейс в TypeScript может расширять несколько других интерфейсов одновременно",
+      "statement": "An interface in TypeScript can extend several other interfaces simultaneously",
       "correct": true,
-      "explanation": "Да, interface C extends A, B { ... } — интерфейсы поддерживают множественное наследование"
+      "explanation": "Yes, interface C extends A, B { ... } — interfaces support multiple inheritance"
     }
   },
   {
@@ -228,9 +228,9 @@
     "tags": ["typescript", "generics"],
     "payload": {
       "title": "Generic Constraints",
-      "statement": "В TypeScript невозможно ограничить дженерик только типами с определенным свойством",
+      "statement": "In TypeScript, it is impossible to constrain a generic to only types with a specific property",
       "correct": false,
-      "explanation": "Можно: <T extends { length: number }> — такой дженерик примет только типы со свойством length"
+      "explanation": "You can: <T extends { length: number }> — such a generic will accept only types with the length property"
     }
   },
   {
