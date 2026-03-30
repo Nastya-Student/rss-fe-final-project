@@ -32,3 +32,5 @@
 * [2026-02-21](https://github.com/Nastya-Student/rss-fe-final-project/blob/main/meetings/meeting-2026-02-21.md)
 * [2026-03-01](https://github.com/Nastya-Student/rss-fe-final-project/blob/main/meetings/meeting-2026-03-01.md)
 * [2026-03-08](https://github.com/Nastya-Student/rss-fe-final-project/blob/main/meetings/meeting-2026-03-08.md)
+* [2026-03-28](https://github.com/Nastya-Student/rss-fe-final-project/blob/main/meetings/meeting-2026-03-28.md)
+  
