@@ -1,0 +1,18 @@
+footer.footer {
+  display: flex;
+  margin-top: auto;
+  position: relative;
+  justify-content: space-between;
+  color: var(--primary-color);
+}
+
+.authors-link,
+.school-link {
+  color: var(--primary-color);
+}
+
+.footer-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 0.4rem;
+}

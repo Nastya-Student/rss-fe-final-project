@@ -1,8 +1,8 @@
 import { Screen } from "../interfaces/screen.interface.js";
 import { Page } from "../types/page.type.js";
-import FooterCreator from "../utils/footer/footer-creator.js";
 import MainCreator from "../utils/main/main-creator.js";
 import headerCreator from "../layout/header/header.js";
+import footerCreator from "../layout/footer/footer.js";
 
 export default class App {
   private screens = new Map<Page, Screen>();
@@ -11,7 +11,7 @@ export default class App {
 
   private headerElement?: HTMLElement;
   private main?: HTMLElement;
-  private footer?: HTMLElement;
+  private footerElement?: HTMLElement;
 
   constructor(root: HTMLElement) {
     this.root = root;
@@ -22,10 +22,10 @@ export default class App {
     this.main = new MainCreator({
       classes: ["main"],
     }).getElement();
-    this.footer = new FooterCreator({ classes: ["footer"] }).getElement();
+    this.footerElement = footerCreator();
     this.root.append(this.headerElement);
     this.root.append(this.main);
-    this.root.append(this.footer);
+    this.root.append(this.footerElement);
   }
 
   register(page: Page, screen: Screen): void {
