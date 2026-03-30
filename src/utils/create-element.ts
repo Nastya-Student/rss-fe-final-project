@@ -22,15 +22,12 @@ export function createElement<K extends keyof HTMLElementTagNameMap>(
     Object.assign(element, options.attrs);
   }
 
-<<<<<<< HEAD
   if (options?.dataset !== undefined) {
     for (const [key, value] of Object.entries(options.dataset)) {
       element.dataset[key] = value;
     }
   }
 
-=======
->>>>>>> a167d7b (feat: RST-14 implement Library page)
   if (options?.children !== undefined) {
     for (const child of options.children) {
       element.append(child);

@@ -4,20 +4,21 @@ import "../landing.page/landing.page.css";
 import { BasePage } from "../base-page.js";
 import { createElement } from "../../utils/create-element.js";
 
-import topics from "../../data/mock-topics.data.json";
-import widgets from "../../data/mock-widgets.data.json";
-import progress from "../../data/mock-progress.data.json";
+import { topicService } from "../../services/topic.service.js";
+import { widgetService } from "../../services/widget.service.js";
+import { topicProgressService } from "../../services/topic-progress.service";
+import { userService } from "../../services/user.service";
 
 type Topic = {
   id: string;
   title: string;
   description: string;
   difficulty: number;
-  widgetIds: string[];
 };
 
 type Widget = {
   id: string;
+  topicId: string;
 };
 
 type Progress = {
@@ -27,19 +28,56 @@ type Progress = {
 };
 
 export class LibraryPage extends BasePage {
-  private currentUserId = "u1";
+  private userId?: string;
+  private topics?: Topic[];
+  private widgets?: Widget[];
+  private progress?: Progress[];
 
   create(parent: HTMLElement): void {
     parent.append(this.container);
     this.container.classList.add("library-page");
 
+    void this.initLibrary();
+  }
+
+  private async initLibrary(): Promise<void> {
+    const loader = createElement("div", {
+      className: "loader",
+      textContent: "Loading...",
+    });
+
+    this.container.append(loader);
+
+    const user = await userService.getUserById("u1");
+    if (!user) {
+      loader.remove();
+      return;
+    }
+
+    this.userId = user.id;
+
+    const [topics, widgets, progress] = await Promise.all([
+      topicService.getTopics(),
+      widgetService.getWidgets(),
+      topicProgressService.getTopicProgressByUserId(user.id),
+    ]);
+
+    if (!topics || !widgets) {
+      loader.remove();
+      return;
+    }
+
+    this.topics = topics;
+    this.widgets = widgets;
+    this.progress = progress ?? [];
+
     this.renderTopics();
+
+    loader.remove();
   }
 
   private renderTopics(): void {
-    const topicsData: Topic[] = topics;
-    const widgetsData: Widget[] = widgets;
-    const progressData: Progress[] = progress;
+    if (!this.topics || !this.widgets) return;
 
     const wrapper = createElement("div", {
       className: "library-wrapper",
@@ -54,13 +92,11 @@ export class LibraryPage extends BasePage {
       className: "library-cards",
     });
 
-    for (const topic of topicsData) {
-      const topicWidgets = widgetsData.filter((w) =>
-        topic.widgetIds.includes(w.id),
-      );
+    for (const topic of this.topics) {
+      const topicWidgets = this.widgets.filter((w) => w.topicId === topic.id);
 
-      const topicProgress = progressData.find(
-        (p) => p.userId === this.currentUserId && p.topicId === topic.id,
+      const topicProgress = this.progress?.find(
+        (p) => p.userId === this.userId && p.topicId === topic.id,
       );
 
       const completed = topicProgress?.completedWidgetIds.length ?? 0;
@@ -99,12 +135,11 @@ export class LibraryPage extends BasePage {
       startBtn.dataset.route = `/practice/${topic.id}`;
 
       card.append(type, topicTitle, description, progressText, startBtn);
-
       cards.append(card);
     }
 
     wrapper.append(title, cards);
 
-    this.container.append(wrapper);
+    this.container.replaceChildren(wrapper);
   }
 }
