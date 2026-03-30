@@ -1,10 +1,7 @@
 import { WidgetStrategy } from "../../interfaces/widget-strategy.interface.js";
+import { CodeOrderingAnswer } from "../../interfaces/widget-user-answer.interfaces.js";
 import { CodeOrderingWidget } from "../../types/widget.type.js";
 import codeOrderingWidget from "./code-ordering.widget.js";
-
-export type CodeOrderingAnswer = {
-  order: number[];
-};
 
 export const codeOrderingStrategy: WidgetStrategy<
   CodeOrderingWidget,
@@ -17,12 +14,6 @@ export const codeOrderingStrategy: WidgetStrategy<
   },
 
   validate(widget, answer) {
-    const correctOrder = widget.payload.correctOrder;
-
-    if (answer.order.length !== correctOrder.length) {
-      return false;
-    }
-
-    return answer.order.every((itemIndex, i) => itemIndex === correctOrder[i]);
+    return answer.answer === widget.payload.correctOrder;
   },
 };

@@ -109,4 +109,3 @@ dist
 coverage/
 .vercel
 .env*.local
-.idea/
