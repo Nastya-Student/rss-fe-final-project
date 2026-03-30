@@ -31,11 +31,13 @@ export default function codeCompletionWidget(
   new HeadingsCreator(HEADINGS_TWO, {
     parent: codeCompletionWidgetContainer,
     text: "Code Completion Widget",
+    classes: ["code-completion-title"],
   }).getElement();
 
   new ParagraphCreator({
     parent: codeCompletionWidgetContainer,
     text: "Complete the code snippets by filling in missing parts",
+    classes: ["code-completion-descr"],
   }).getElement();
 
   new HeadingsCreator(HEADINGS_THREE, {
@@ -45,7 +47,7 @@ export default function codeCompletionWidget(
 
   const codeField = new ElementCreator({
     parent: codeCompletionWidgetContainer,
-    classes: ["completion-code-container"],
+    classes: ["completion-code-container", "card-element"],
   }).getElement();
 
   const codeText = payload.code;
@@ -104,11 +106,8 @@ export default function codeCompletionWidget(
     parent: codeCompletionWidgetContainer,
   }).getElement();
 
-  //const answersArray: CodeCompletionAnswer = { answer: ["map"] };
-
   submitButton.addEventListener(EVENT.click, () => {
     const inputValues = document.querySelectorAll(".code-completion-input");
-
     const answersArray: CodeCompletionAnswer = { answer: [] };
 
     for (const item of inputValues) {
@@ -116,8 +115,6 @@ export default function codeCompletionWidget(
         answersArray.answer.push(item.value);
       }
     }
-    // const userAnswer = input.value.trim();
-    // let answersArray: CodeCompletionAnswer = { answer: [userAnswer] };
 
     onAnswer(answersArray);
     submitButton.classList.add(CLASS_NAME.noActive);

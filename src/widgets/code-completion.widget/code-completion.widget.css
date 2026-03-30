@@ -12,6 +12,12 @@
   gap: var(--spacing-0-5);
   background-color: var(--bg-code-color);
   color: var(--text-code-color);
+  width: 100%;
+}
+
+.code-completion-title,
+.code-completion-descr {
+  text-align: center;
 }
 
 .complicated-string {
@@ -21,6 +27,6 @@
 }
 
 .code-completion-input {
-  width: 5rem;
+  width: 6rem;
   border: none;
 }

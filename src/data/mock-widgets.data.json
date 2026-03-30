@@ -240,7 +240,7 @@
     "difficulty": 1,
     "tags": ["algorithms", "reduce"],
     "payload": {
-      "title": "Sum with reduce",
+      "title": "Accumulate values",
       "code": "const sum = arr.___((a,b) => a + b, 0);",
       "blanks": ["___"],
       "correctAnswers": ["reduce"]
@@ -253,7 +253,7 @@
     "difficulty": 2,
     "tags": ["algorithms", "search"],
     "payload": {
-      "title": "Find index",
+      "title": "Locate by condition",
       "code": "const index = arr.___(x => x > 10);",
       "blanks": ["___"],
       "correctAnswers": ["findIndex"]
@@ -266,10 +266,10 @@
     "difficulty": 3,
     "tags": ["algorithms", "sort"],
     "payload": {
-      "title": "Descending sort",
-      "code": "const sorted = arr.___((a,b) => b - a);",
+      "title": "Order descending",
+      "code": "const sorted = arr.___((a,b) => ___ - ___);",
       "blanks": ["___"],
-      "correctAnswers": ["sort"]
+      "correctAnswers": ["sort", "b", "a"]
     }
   },
   {
@@ -279,7 +279,7 @@
     "difficulty": 1,
     "tags": ["coreJS", "array methods"],
     "payload": {
-      "title": "Map array",
+      "title": "Transform elements",
       "code": "const doubled = arr.___(x => x * 2);",
       "blanks": ["___"],
       "correctAnswers": ["map"]
@@ -292,7 +292,7 @@
     "difficulty": 2,
     "tags": ["coreJS", "objects"],
     "payload": {
-      "title": "Object keys",
+      "title": "Property names",
       "code": "const keys = Object.___(obj);",
       "blanks": ["___"],
       "correctAnswers": ["keys"]
@@ -305,7 +305,7 @@
     "difficulty": 3,
     "tags": ["coreJS", "functions"],
     "payload": {
-      "title": "Apply method",
+      "title": "Call with array args",
       "code": "const result = sum.___(null, [1, 2]);",
       "blanks": ["___"],
       "correctAnswers": ["apply"]
@@ -344,7 +344,7 @@
     "difficulty": 3,
     "tags": ["typescript", "utility types"],
     "payload": {
-      "title": "Readonly",
+      "title": "Make immutable",
       "code": "type Readonly<T> = { readonly [P in keyof T]: T[P]; };\nconst obj: ___<{ a: number }> = { a: 1 };",
       "blanks": ["___"],
       "correctAnswers": ["Readonly"]
