@@ -42,6 +42,6 @@
     ]
   },
   "validate-branch-name": {
-    "pattern": "(^(feat|fix|style|refactor|test|chore|ci|build|perf|revert|init)/RST-\\d+_[a-zA-Z0-9]+$)|(^development-notes$)"
+    "pattern": "(^(feat|fix|style|refactor|test|chore|ci|build|perf|revert|init)/RST-\\d+_[a-zA-Z0-9]+$)|(^development-notes$)|(^develop$)"
   }
 }
