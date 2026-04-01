@@ -28,7 +28,7 @@ export default {
       rules: {
         "header-format": ({ header }) => {
           const regex =
-            /^(feat|fix|docs|style|refactor|test|chore|ci|build|perf|revert|init): RST-\d+ .+/;
+            /(^(feat|fix|style|refactor|test|chore|ci|build|perf|revert|init): RST-\d+ .+$)|(^(docs): .+$)/;
           const valid = regex.test(header);
           return [
             valid,
