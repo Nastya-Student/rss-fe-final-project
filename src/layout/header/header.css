@@ -60,11 +60,11 @@
   color: var(--primary-color);
 }
 
-.button-header {
+.button.button-header {
   height: 2rem;
 }
 
-.button-lang {
+.button.button-lang {
   align-items: center;
   width: 2rem;
   height: 2rem;
@@ -73,11 +73,12 @@
   border: 1px solid var(--btn-color);
 }
 
-.button-lang:hover {
+.button.button-lang:hover {
   color: var(--bg-color-secondary);
+  background-color: var(--primary-color);
 }
 
-.button-theme {
+.button.button-theme {
   align-items: center;
   width: 2rem;
   height: 2rem;
@@ -90,10 +91,11 @@
   background-size: 1.2rem;
 }
 
-.button-theme:hover {
+.button.button-theme:hover {
   background-image: url("../../assets/svg/moon-white.svg");
+  background-color: var(--primary-color);
 }
 
-.button-theme.dark {
+.button.button-theme.dark {
   background-image: url("../../assets/svg/sun.svg");
 }

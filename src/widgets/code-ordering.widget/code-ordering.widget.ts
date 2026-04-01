@@ -39,14 +39,11 @@ export default function codeOrderingWidget(
   }
 
   const button = createElement("button", {
-    className: "button", // 👈 добавили класс
+    className: "button",
     textContent: "Submit",
-    attrs: {
-      disabled: true,
-    },
   });
 
-  Sortable.create(list, {
+  const sortable = Sortable.create(list, {
     animation: 150,
     ghostClass: "dragging",
     onChange: () => {
@@ -54,7 +51,10 @@ export default function codeOrderingWidget(
     },
   });
 
+  let isSubmitted = false;
+
   button.addEventListener("click", () => {
+    if (isSubmitted) return;
     const order: number[] = [...list.children].map((el) =>
       Number((el as HTMLElement).dataset.index),
     );
@@ -72,6 +72,11 @@ export default function codeOrderingWidget(
     }
 
     button.disabled = true;
+    button.classList.add("no-active");
+
+    isSubmitted = true;
+
+    sortable.option("disabled", true);
 
     onAnswer({ order });
   });
