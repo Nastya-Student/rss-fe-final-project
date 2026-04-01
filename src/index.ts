@@ -12,6 +12,7 @@ import { RegisterPage } from "./pages/register.page/register.page.js";
 const app = new App(document.body);
 
 app.init();
+await app.createUser();
 app.register("landing", new LandingPage());
 app.register("login", new LoginPage());
 app.register("register", new RegisterPage());
