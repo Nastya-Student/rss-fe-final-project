@@ -33,6 +33,8 @@ export const CLASS_NAME = {
   button: "button",
   noActive: "no-active",
   cardElement: "card-element",
+  header: "header",
+  nav: "nav",
 } as const;
 
 export const HEADINGS_ONE = 1;

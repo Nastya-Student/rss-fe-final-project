@@ -1,5 +1,5 @@
 export interface QuizAnswer {
-  answer: number;
+  answer: string;
 }
 export interface TrueFalseAnswer {
   answer: boolean;
@@ -14,7 +14,7 @@ export interface CodeOrderingAnswer {
 }
 
 export interface MemoryGameAnswer {
-  answer: { from: number; to: number }[];
+  answer: string[];
 }
 
 export interface StackBuilderAnswer {

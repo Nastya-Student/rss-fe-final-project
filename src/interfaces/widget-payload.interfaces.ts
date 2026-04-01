@@ -2,7 +2,7 @@ export interface QuizPayload {
   title: string;
   question: string;
   options: string[];
-  correctIndex: number;
+  correctAnswer: string;
 }
 
 export interface TrueFalsePayload {
@@ -27,13 +27,16 @@ export interface CodeOrderingPayload {
 }
 
 export interface MemoryGameObject {
-  id: number;
+  id: string;
   label: string;
+  x: number;
+  y: number;
 }
 
 export interface MemoryGameLink {
-  from: number;
-  to: number;
+  from: string;
+  to: string;
+  label?: string;
 }
 
 export interface MemoryGamePayload {
@@ -41,7 +44,9 @@ export interface MemoryGamePayload {
   codeSnippet: string;
   objects: MemoryGameObject[];
   links: MemoryGameLink[];
-  garbageIds: number[];
+  rootIds: string[];
+  rootLinks: MemoryGameLink[];
+  garbageIds: string[];
 }
 
 export interface StackBuilderStep {

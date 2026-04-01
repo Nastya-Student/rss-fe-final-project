@@ -14,13 +14,47 @@ import ButtonCreator from "../../utils/button/button-creator.js";
 import ElementCreator from "../../utils/element-creator.js";
 import HeadingsCreator from "../../utils/headings/headings-creator.js";
 import ParagraphCreator from "../../utils/paragraph/paragraph-creator.js";
+import PreCreator from "../../utils/pre/pre-creator.js";
+import { SVGSVGCreator } from "../../utils/svg-elements/svg-svg/svg-svg.js";
+import { GraphRenderer } from "./graph-renderer.js";
 import "./memory-game.widget.css";
+
+export const CLASS_NAMES_MEMORY_GAME_WIDGET = {
+  memoryGameTitle: "memory-game__memory-game-title",
+  widgetDescription: "memory-game__widget-description",
+  codeContainer: "memory-game__code-container",
+  svg: "memory-game__svg",
+  gameObject: "memory-game__object",
+  gameObjectNode: "memory-game__object-node",
+  gameObjectText: "memory-game__object-text",
+  gameObjectsLink: "memory-game__link",
+  gameObjectsLinkLine: "memory-game__link-line",
+  gameObjectsLinkLabel: "memory-game__link-label",
+  gameGarbage: "garbage",
+};
+
+export const STRING_CONSTANTS_MEMORY_GAME_WIDGET = {
+  memoryGame: "Memory Game",
+  widgetDescription:
+    "Click on objects that become garbage after code execution",
+  svgViewBox: "0 0 500 300",
+  svgPreserveAspectRatio: "xMidYMid meet",
+  gameObjectTextX: "60",
+  gameObjectTextY: "30",
+};
+
+export const NUMBER_CONSTANTS_MEMORY_GAME_WIDGET = {
+  linkStartX: 120,
+  linkStartEndY: 25,
+  linkTextOffsetY: 5,
+  findCenter: 2,
+};
 
 export default function memoryGameWidget(
   payload: MemoryGamePayload,
   onAnswer: (answer: MemoryGameAnswer) => void,
 ): HTMLElement {
-  const memoryGameCollectorWidgetContainer = new ElementCreator({
+  const memoryGameWidgetContainer = new ElementCreator({
     classes: [
       CLASS_NAMES_PRACTICE.memoryGameWidgetContainer,
       CLASS_NAME.cardElement,
@@ -28,35 +62,62 @@ export default function memoryGameWidget(
   }).getElement();
 
   new HeadingsCreator(HEADINGS_TWO, {
-    parent: memoryGameCollectorWidgetContainer,
-    text: "Memory Game Widget",
-  }).getElement();
-
-  new HeadingsCreator(HEADINGS_THREE, {
-    parent: memoryGameCollectorWidgetContainer,
-    text: payload.title,
+    parent: memoryGameWidgetContainer,
+    classes: [CLASS_NAMES_MEMORY_GAME_WIDGET.memoryGameTitle],
+    text: STRING_CONSTANTS_MEMORY_GAME_WIDGET.memoryGame,
   }).getElement();
 
   new ParagraphCreator({
-    parent: memoryGameCollectorWidgetContainer,
+    parent: memoryGameWidgetContainer,
+    classes: [CLASS_NAMES_MEMORY_GAME_WIDGET.widgetDescription],
+    text: STRING_CONSTANTS_MEMORY_GAME_WIDGET.widgetDescription,
+  });
+
+  new HeadingsCreator(HEADINGS_THREE, {
+    parent: memoryGameWidgetContainer,
+    text: payload.title,
+  }).getElement();
+
+  new PreCreator({
+    classes: [
+      CLASS_NAMES_MEMORY_GAME_WIDGET.codeContainer,
+      CLASS_NAME.cardElement,
+    ],
+    parent: memoryGameWidgetContainer,
     text: payload.codeSnippet,
   }).getElement();
 
-  const submitButton = new ButtonCreator({
-    text: STRING_CONSTANTS_PRACTICE.submit,
-    classes: [CLASS_NAME.button],
-    parent: memoryGameCollectorWidgetContainer,
+  const svgElement = new SVGSVGCreator({
+    classes: [CLASS_NAMES_MEMORY_GAME_WIDGET.svg, CLASS_NAME.cardElement],
+    attributes: {
+      viewBox: STRING_CONSTANTS_MEMORY_GAME_WIDGET.svgViewBox,
+      preserveAspectRatio:
+        STRING_CONSTANTS_MEMORY_GAME_WIDGET.svgPreserveAspectRatio,
+    },
   }).getElement();
 
-  const selectedAnswerIndex: MemoryGameAnswer = {
-    answer: [{ from: 2, to: 1 }],
-  };
+  const graphRenderer = new GraphRenderer(svgElement);
+
+  graphRenderer.render(payload);
+  memoryGameWidgetContainer.append(svgElement);
+
+  const submitButton = new ButtonCreator({
+    text: STRING_CONSTANTS_PRACTICE.submit,
+    classes: [CLASS_NAMES_PRACTICE.submitButton, CLASS_NAME.button],
+    parent: memoryGameWidgetContainer,
+  }).getElement();
 
   submitButton.addEventListener(EVENT.click, () => {
-    onAnswer(selectedAnswerIndex);
+    onAnswer(getAnswer(graphRenderer.userAnswers));
+    graphRenderer.disableInteractiveElements();
     submitButton.classList.add(CLASS_NAME.noActive);
     submitButton.disabled = true;
   });
 
-  return memoryGameCollectorWidgetContainer;
+  return memoryGameWidgetContainer;
+}
+
+function getAnswer(userAnswer: Set<string>): MemoryGameAnswer {
+  const answer: string[] = [...userAnswer];
+  return { answer };
 }

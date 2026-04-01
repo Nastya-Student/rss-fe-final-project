@@ -11,6 +11,6 @@ export const quizStrategy: WidgetStrategy<QuizWidget, QuizAnswer> = {
   },
 
   validate(widget, answer) {
-    return answer.answer === widget.payload.correctIndex;
+    return answer.answer === widget.payload.correctAnswer;
   },
 };
