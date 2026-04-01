@@ -23,7 +23,7 @@ module.exports = {
   },
 
   ignorePatterns: ["vite.config.ts", "commitlint.config.js", "dist/**"],
-
+  
   rules: {
     "prettier/prettier": "error",
     "import/extensions": "off",
