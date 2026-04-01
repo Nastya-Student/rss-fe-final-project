@@ -27,7 +27,6 @@
     "isolatedModules": true,
     "moduleDetection": "force",
     "skipLibCheck": true,
-    "moduleResolution": "bundler"
   },
   "include": ["src/**/*", "test/"]
 }

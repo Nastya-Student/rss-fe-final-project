@@ -12,24 +12,23 @@ import { addSession, getSessions } from "../../local-storage/practice-sessions";
 import { updateProgress } from "../../local-storage/progress";
 import { getUser } from "../../local-storage/user";
 import { Widget } from "../../types/widget.type";
-import { renderResultScreen } from "../result-screen/result-screen ";
 
 // add this to the last widgets Next button
-export const resultOnclickHandler = (
-  resultButton: HTMLElement,
-  widgets: Widget[],
-) => {
-  resultButton.addEventListener(EVENT.click, () => {
-    const currentSession: PracticeSession | undefined = getSession();
-    if (currentSession === undefined) {
-      throw new Error("Something went wrong. Please, try again.");
-    }
-    addSession(currentSession);
-    updateProgress();
-    renderResultScreen(currentSession, widgets);
-    deleteSession();
-  });
-};
+// export const resultOnclickHandler = (
+//   resultButton: HTMLElement,
+//   widgets: Widget[],
+// ) => {
+//   resultButton.addEventListener(EVENT.click, () => {
+//     const currentSession: PracticeSession | undefined = getSession();
+//     if (currentSession === undefined) {
+//       throw new Error("Something went wrong. Please, try again.");
+//     }
+//     addSession(currentSession);
+//     updateProgress();
+//     renderResultScreen(currentSession, widgets);
+//     deleteSession();
+//   });
+// };
 
 // bind this with buttons in library and landing page
 export const toPracticeButtonHandler = (
