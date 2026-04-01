@@ -14,6 +14,6 @@ export const codeCompletionStrategy: WidgetStrategy<
   },
 
   validate(widget, answer) {
-    return answer.answer === widget.payload.correctAnswers;
+    return answer.answer.join(",") === widget.payload.correctAnswers.join(",");
   },
 };

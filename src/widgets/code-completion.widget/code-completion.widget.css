@@ -3,3 +3,30 @@
   flex-direction: column;
   gap: 1rem;
 }
+
+.completion-code-container {
+  display: flex;
+  flex-direction: column;
+  font-family: "Courier New", Courier, monospace;
+  font-size: clamp(0.5rem, 1vw + 0.35rem, 1rem);
+  gap: var(--spacing-0-5);
+  background-color: var(--bg-code-color);
+  color: var(--text-code-color);
+  width: 100%;
+}
+
+.code-completion-title,
+.code-completion-descr {
+  text-align: center;
+}
+
+.complicated-string {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.code-completion-input {
+  width: 6rem;
+  border: none;
+}

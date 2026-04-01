@@ -8,6 +8,7 @@ import ElementCreator from "../../utils/element-creator.js";
 import { RoutePath } from "../../types/route-path.enum.js";
 import { CLASS_NAME } from "../../constants.js";
 import { EVENT } from "../../constants.js";
+import { LOCAL_STORAGE } from "../../local-storage/objects.js";
 import "./header.css";
 import { isAuthenticated, logout } from "../../api/auth.service";
 
@@ -50,7 +51,6 @@ export default function headerCreator(): HTMLElement {
   }).getElement();
 
   const authorized = isAuthenticated();
-
   if (authorized) {
     const navigation = new NavigationCreator({
       parent: headerWrapper,
