@@ -11,6 +11,8 @@ const staticRoutes: Record<string, Page> = {
   [RoutePath.Dashboard]: "dashboard",
   [RoutePath.Library]: "library",
   [RoutePath.Profile]: "profile",
+  [RoutePath.ForgotPassword]: "forgot-password",
+  [RoutePath.UpdatePassword]: "update-password",
 };
 
 export class Router {

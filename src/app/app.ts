@@ -3,6 +3,7 @@ import { Page } from "../types/page.type.js";
 import FooterCreator from "../utils/footer/footer-creator.js";
 import MainCreator from "../utils/main/main-creator.js";
 import headerCreator from "../layout/header/header.js";
+import { isAuthenticated } from "../api/auth.service";
 
 export default class App {
   private screens = new Map<Page, Screen>();
@@ -12,6 +13,8 @@ export default class App {
   private headerElement?: HTMLElement;
   private main?: HTMLElement;
   private footer?: HTMLElement;
+
+  private protectedRoutes = new Set<Page>(["dashboard", "profile"]);
 
   constructor(root: HTMLElement) {
     this.root = root;
@@ -37,6 +40,15 @@ export default class App {
   }
 
   navigate(page: Page, params?: Record<string, string>): void {
+    const isProtected = this.protectedRoutes.has(page);
+
+    if (isProtected && !isAuthenticated()) {
+      if (window.location.hash !== "#/login") {
+        window.location.hash = "#/login";
+      }
+      return;
+    }
+
     const next = this.screens.get(page);
     if (!next) {
       return;

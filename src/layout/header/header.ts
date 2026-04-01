@@ -9,6 +9,7 @@ import { RoutePath } from "../../types/route-path.enum.js";
 import { CLASS_NAME } from "../../constants.js";
 import { EVENT } from "../../constants.js";
 import "./header.css";
+import { isAuthenticated, logout } from "../../api/auth.service";
 
 export default function headerCreator(): HTMLElement {
   const header = new HeaderCreator({
@@ -48,7 +49,7 @@ export default function headerCreator(): HTMLElement {
     classes: ["header-wrapper"],
   }).getElement();
 
-  let authorized: boolean = true;
+  const authorized = isAuthenticated();
 
   if (authorized) {
     const navigation = new NavigationCreator({
@@ -83,7 +84,12 @@ export default function headerCreator(): HTMLElement {
       text: "Logout",
       classes: [CLASS_NAME.button, "button-header"],
     }).getElement();
-    logoutButton.dataset.route = RoutePath.Login;
+
+    logoutButton.addEventListener("click", () => {
+      void logout().then(() => {
+        window.location.reload();
+      });
+    });
   } else {
     const registerButton = new ButtonCreator({
       parent: headerWrapper,
@@ -99,8 +105,6 @@ export default function headerCreator(): HTMLElement {
     }).getElement();
     loginButton.dataset.route = RoutePath.Login;
   }
-
-  authorized = true;
 
   const themeButton = new ButtonCreator({
     classes: [CLASS_NAME.button, "button-theme"],
