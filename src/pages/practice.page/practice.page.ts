@@ -90,9 +90,7 @@ export class PracticePage extends BasePage {
   private createCurrentSession(topic: Topic): void {
     const user = getUser();
     const sessions = getSessions();
-    if (!user) {
-      throw new Error("Sorry, we have lost this user :(");
-    }
+
     let id = "s1";
     if (sessions.length > 0) {
       id = `s${sessions.at(-1)?.id.slice(1)}`;
