@@ -58,11 +58,11 @@ export class PracticePage extends BasePage {
 
     if (topic !== undefined) {
       const widgetArr = await widgetService.getWidgetsByTopicId(topic);
+
       if (widgetArr) {
-        const widgetEngine = new WidgetEngine(
-          shuffleArray(widgetArr),
-          this.container,
-        );
+        const shuffledArr = shuffleArray(widgetArr);
+        shuffledArr.length = 10;
+        const widgetEngine = new WidgetEngine(shuffledArr, this.container);
         widgetEngine.startSession();
       }
     }
