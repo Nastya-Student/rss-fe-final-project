@@ -8,6 +8,7 @@ import ButtonCreator from "../../../utils/button/button-creator.js";
 import ElementCreator from "../../../utils/element-creator.js";
 import HeadingsCreator from "../../../utils/headings/headings-creator.js";
 import ListItemCreator from "../../../utils/list-item/list-item-creator.js";
+import ParagraphCreator from "../../../utils/paragraph/paragraph-creator.js";
 import UnorderedListCreator from "../../../utils/unordered-list/unordered-list-creator.js";
 import "./results-screen.component.css";
 
@@ -54,6 +55,12 @@ export default function resultsScreenComponent(
   new HeadingsCreator(HEADINGS_TWO, {
     text: session.topicTitle,
     classes: ["result__title"],
+    parent: resultBlock,
+  }).getElement();
+
+  new ParagraphCreator({
+    text: `Score: ${session.score}`,
+    classes: ["result__score"],
     parent: resultBlock,
   }).getElement();
 
