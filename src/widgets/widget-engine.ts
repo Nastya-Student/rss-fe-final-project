@@ -123,6 +123,11 @@ export class WidgetEngine {
       nextButton.textContent = STRING_CONSTANTS_PRACTICE.goToResults;
     }
 
+    nextButton.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+    });
+
     nextButton.addEventListener(EVENT.click, () => {
       this.isNextButtonPressed = true;
       this.currentIndex += 1;
