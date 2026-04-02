@@ -33,7 +33,9 @@ export const updateSession = (
     timeSpent: Math.round(Math.random() * 20),
     difficulty: widget.difficulty,
   });
-  session.score += widget.difficulty;
+  if (isCorrect) {
+    session.score += widget.difficulty;
+  }
   session.completedAt = newDate;
   setSession(session);
 };
