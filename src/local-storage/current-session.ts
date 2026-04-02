@@ -9,7 +9,7 @@ export const setSession = (session: PracticeSession) => {
 
 export const getSession = (): PracticeSession | undefined => {
   const session: unknown = JSON.parse(
-    localStorage.getItem(LOCAL_STORAGE.currentSession) ?? "",
+    localStorage.getItem(LOCAL_STORAGE.currentSession) ?? "{}",
   );
   if (isPracticeSession(session)) {
     return session;
