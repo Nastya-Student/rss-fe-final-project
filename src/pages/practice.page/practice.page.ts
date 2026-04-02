@@ -22,6 +22,8 @@ export const CLASS_NAMES_PRACTICE = {
   stackBuilderWidgetContainer: "practice__stack-builder-widget-container",
   trueFalseWidgetContainer: "practice__true-false-widget-container",
   submitButton: "practice__submit-button",
+  userProgressContainer: "practice__user-progress-container",
+  progressCircle: "practice__progress-circle",
 } as const;
 
 export const STRING_CONSTANTS_PRACTICE = {
