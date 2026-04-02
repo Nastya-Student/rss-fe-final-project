@@ -1,18 +1,8 @@
 import Sortable from "sortablejs";
 import { createElement } from "../../utils/create-element.js";
-
+import { CodeOrderingAnswer } from "../../interfaces/widget-user-answer.interfaces.js";
+import { CodeOrderingPayload } from "../../interfaces/widget-payload.interfaces.js";
 import "./code-ordering.widget.css";
-
-type CodeOrderingPayload = {
-  title: string;
-  description: string;
-  lines: string[];
-  correctOrder: number[];
-};
-
-type CodeOrderingAnswer = {
-  order: number[];
-};
 
 export default function codeOrderingWidget(
   payload: CodeOrderingPayload,
@@ -78,7 +68,7 @@ export default function codeOrderingWidget(
 
     sortable.option("disabled", true);
 
-    onAnswer({ order });
+    onAnswer({ answer: order });
   });
 
   const container = createElement("div", {
