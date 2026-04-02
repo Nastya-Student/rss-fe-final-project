@@ -358,7 +358,7 @@
     "tags": ["algorithms", "sorting"],
     "payload": {
       "title": "Bubble Sort",
-      "description": "Отсортируй массив по возрастанию",
+      "description": "Sort the array in ascending order",
       "lines": [
         "for(let i=0;i<arr.length;i++){",
         "for(let j=0;j<arr.length-i-1;j++){",
@@ -379,7 +379,7 @@
     "tags": ["algorithms", "search"],
     "payload": {
       "title": "Binary Search",
-      "description": "Реализуй бинарный поиск",
+      "description": "Implement binary search",
       "lines": [
         "function binarySearch(arr, target) {",
         "let left = 0;",
@@ -404,7 +404,7 @@
     "tags": ["algorithms", "sorting"],
     "payload": {
       "title": "Quick Sort",
-      "description": "Реализуй быструю сортировку",
+      "description": "Implement quicksort",
       "lines": [
         "function quickSort(arr) {",
         "if (arr.length <= 1) return arr;",
@@ -429,7 +429,7 @@
     "tags": ["coreJS", "functions"],
     "payload": {
       "title": "Simple function",
-      "description": "Определи порядок объявления функции и вызова",
+      "description": "Determine the order of function declaration and call",
       "lines": [
         "function add(a,b) {",
         "return a + b;",
@@ -447,7 +447,7 @@
     "tags": ["coreJS", "closures"],
     "payload": {
       "title": "Counter closure",
-      "description": "Создай счетчик через замыкание",
+      "description": "Create a counter using a closure",
       "lines": [
         "function makeCounter() {",
         "let count = 0;",
@@ -470,7 +470,7 @@
     "tags": ["coreJS", "prototypes"],
     "payload": {
       "title": "Prototype inheritance",
-      "description": "Определи порядок объявления конструктора и метода",
+      "description": "Determine the order of constructor and method declarations",
       "lines": [
         "function Animal(name) {",
         "this.name = name;",
@@ -492,7 +492,7 @@
     "tags": ["typescript", "interfaces"],
     "payload": {
       "title": "Interface and function",
-      "description": "Объяви интерфейс и функцию",
+      "description": "Declare an interface and a function",
       "lines": [
         "interface Person {",
         "name: string;",
@@ -514,7 +514,7 @@
     "tags": ["typescript", "generics"],
     "payload": {
       "title": "Generic function",
-      "description": "Используй дженерик",
+      "description": "Use a generic",
       "lines": [
         "function identity<T>(arg: T): T {",
         "return arg;",
@@ -533,7 +533,7 @@
     "tags": ["typescript", "advanced types"],
     "payload": {
       "title": "Mapped types",
-      "description": "Используй Readonly",
+      "description": "Use Readonly",
       "lines": [
         "type Readonly<T> = {",
         "readonly [P in keyof T]: T[P];",
