@@ -1,15 +1,8 @@
 import Sortable from "sortablejs";
 import { createElement } from "../../utils/create-element.js";
 import { CodeOrderingAnswer } from "../../interfaces/widget-user-answer.interfaces.js";
-
+import { CodeOrderingPayload } from "../../interfaces/widget-payload.interfaces.js";
 import "./code-ordering.widget.css";
-
-type CodeOrderingPayload = {
-  title: string;
-  description: string;
-  lines: string[];
-  correctOrder: number[];
-};
 
 export default function codeOrderingWidget(
   payload: CodeOrderingPayload,
