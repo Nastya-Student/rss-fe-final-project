@@ -2,7 +2,7 @@
   {
     "id": "p1",
     "userId": "u1",
-    "topicId": "core-js",
+    "topicId": "coreJS",
     "topicTitle": "Core JS",
     "completedWidgetIds": ["w1", "w2"],
     "percent": 66,
@@ -20,7 +20,7 @@
   {
     "id": "p3",
     "userId": "u2",
-    "topicId": "core-js",
+    "topicId": "coreJS",
     "topicTitle": "Core JS",
     "completedWidgetIds": ["w1"],
     "percent": 33,
