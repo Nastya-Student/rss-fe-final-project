@@ -1,6 +1,6 @@
 import { isPracticeSession } from "../guards/practice-session.guards";
 import { PracticeSession } from "../interfaces/practice-session.interface";
-import { SessionAnswer } from "../interfaces/session-answer.interface";
+import { Widget } from "../types/widget.type";
 import { LOCAL_STORAGE } from "./objects";
 
 export const setSession = (session: PracticeSession) => {
@@ -19,16 +19,21 @@ export const getSession = (): PracticeSession | undefined => {
 };
 
 export const updateSession = (
-  answer: SessionAnswer,
-  score: number,
+  isCorrect: boolean,
+  widget: Widget,
   newDate: string,
 ): void => {
   const session = getSession();
   if (session === undefined) {
     throw new Error("please, create a local session first");
   }
-  session.answers.push(answer);
-  session.score += score;
+  session.answers.push({
+    widgetId: widget.id,
+    isCorrect: isCorrect,
+    timeSpent: Math.round(Math.random() * 20),
+    difficulty: widget.difficulty,
+  });
+  session.score += widget.difficulty;
   session.completedAt = newDate;
   setSession(session);
 };

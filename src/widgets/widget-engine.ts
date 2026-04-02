@@ -26,7 +26,11 @@ import {
 import loaderComponent from "../components/loader.component/loader.component.js";
 import { delay } from "../utils/delay.js";
 import { PracticeSession } from "../interfaces/practice-session.interface.js";
-import { deleteSession, getSession } from "../local-storage/current-session.js";
+import {
+  deleteSession,
+  getSession,
+  updateSession,
+} from "../local-storage/current-session.js";
 import { addSession } from "../local-storage/practice-sessions.js";
 import { updateProgress } from "../local-storage/progress.js";
 
@@ -76,7 +80,7 @@ export class WidgetEngine {
     answer: WidgetAnswerMap[T],
   ) {
     const correct = strategy.validate(widget, answer);
-
+    updateSession(correct, widget, new Date().toISOString());
     this.showResult(correct);
   }
 

@@ -1,11 +1,7 @@
 import { CLASS_NAME, EVENT, HEADINGS_TWO } from "../../constants.js";
 import { PracticeSession } from "../../interfaces/practice-session.interface.js";
 import { Topic } from "../../interfaces/topic.interface.js";
-import {
-  deleteSession,
-  getSession,
-  setSession,
-} from "../../local-storage/current-session.js";
+import { setSession } from "../../local-storage/current-session.js";
 import { getSessions } from "../../local-storage/practice-sessions.js";
 import { getUser } from "../../local-storage/user.js";
 import { topicService } from "../../services/topic.service.js";
@@ -92,9 +88,6 @@ export class PracticePage extends BasePage {
   }
 
   private createCurrentSession(topic: Topic): void {
-    if (getSession() !== undefined) {
-      deleteSession();
-    }
     const user = getUser();
     const sessions = getSessions();
     if (!user) {
