@@ -33,6 +33,11 @@ export const STRING_CONSTANTS_PRACTICE = {
   goToResults: "Go to Results",
   submit: "Submit",
 } as const;
+
+export const NUMBER_CONSTANTS_PRACTICE = {
+  widgetArrayLength: 10,
+} as const;
+
 export class PracticePage extends BasePage {
   create(parent: HTMLElement): void {
     parent.append(this.container);
@@ -63,7 +68,9 @@ export class PracticePage extends BasePage {
 
       if (widgetArr) {
         const shuffledArr = shuffleArray(widgetArr);
-        shuffledArr.length = 10;
+        if (shuffledArr.length > NUMBER_CONSTANTS_PRACTICE.widgetArrayLength) {
+          shuffledArr.length = NUMBER_CONSTANTS_PRACTICE.widgetArrayLength;
+        }
         const widgetEngine = new WidgetEngine(shuffledArr, this.container);
         widgetEngine.startSession();
       }
