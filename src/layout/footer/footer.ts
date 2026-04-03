@@ -1,7 +1,6 @@
 import FooterCreator from "../../utils/footer/footer-creator";
 import AnchorCreator from "../../utils/anchor/anchor-creator";
 import ParagraphCreator from "../../utils/paragraph/paragraph-creator";
-import ElementCreator from "../../utils/element-creator";
 import "./footer.css";
 
 export default function footerCreator(): HTMLElement {
@@ -11,34 +10,22 @@ export default function footerCreator(): HTMLElement {
 
   new AnchorCreator({
     parent: footer,
+    classes: ["footer__project-link"],
     href: "https://github.com/Nastya-Student/rss-fe-final-project",
     target: "_blank",
-    classes: ["authors-link"],
-    text: "©T-8",
-  }).getElement();
-
-  const footerWrapper = new ElementCreator({
-    parent: footer,
-    classes: ["footer-wrapper"],
-  }).getElement();
-
-  new ParagraphCreator({
-    parent: footerWrapper,
-    classes: ["school-text"],
-    text: "Created at ",
+    text: "© T-8",
   }).getElement();
 
   new AnchorCreator({
-    parent: footerWrapper,
-    href: "https://rs.school/js",
+    parent: footer,
+    classes: ["rs-logo"],
+    href: "https://rs.school/",
     target: "_blank",
-    classes: ["school-link"],
-    text: " RS School",
   }).getElement();
 
   new ParagraphCreator({
     parent: footer,
-    classes: ["year-text"],
+    classes: ["footer__year"],
     text: "2026",
   }).getElement();
 

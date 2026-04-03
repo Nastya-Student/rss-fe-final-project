@@ -1,18 +1,30 @@
-footer.footer {
+.footer {
   display: flex;
-  margin-top: auto;
-  position: relative;
   justify-content: space-between;
-  color: var(--primary-color);
+  align-items: center;
+  padding: 1rem;
+  background-color: var(--secondary-color);
 }
 
-.authors-link,
-.school-link {
-  color: var(--primary-color);
-}
-
-.footer-wrapper {
+.footer__project-link {
   display: flex;
-  justify-content: center;
-  gap: 0.4rem;
+  align-items: center;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+.footer__year {
+  display: flex;
+  align-items: center;
+}
+
+.rs-logo {
+  width: 6rem;
+  height: 2rem;
+  background-repeat: no-repeat;
+  background-position: center;
+  object-fit: contain;
+  cursor: pointer;
+  background-color: transparent;
+  background-image: url("../../assets/svg/rs-school-logo.svg");
 }
