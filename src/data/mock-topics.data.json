@@ -1,6 +1,6 @@
 [
   {
-    "id": "core-js",
+    "id": "coreJS",
     "title": "Core JS",
     "description": "Замыкания, event loop, this",
     "difficulty": 3,

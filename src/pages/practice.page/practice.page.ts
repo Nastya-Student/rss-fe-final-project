@@ -1,4 +1,10 @@
 import { CLASS_NAME, EVENT, HEADINGS_TWO } from "../../constants.js";
+import { PracticeSession } from "../../interfaces/practice-session.interface.js";
+import { Topic } from "../../interfaces/topic.interface.js";
+import { setSession } from "../../local-storage/current-session.js";
+import { getSessions } from "../../local-storage/practice-sessions.js";
+import { getUser } from "../../local-storage/user.js";
+import { topicService } from "../../services/topic.service.js";
 import { widgetService } from "../../services/widget.service.js";
 import { RoutePath } from "../../types/route-path.enum.js";
 import ButtonCreator from "../../utils/button/button-creator.js";
@@ -74,6 +80,11 @@ export class PracticePage extends BasePage {
         const widgetEngine = new WidgetEngine(shuffledArr, this.container);
         widgetEngine.startSession();
       }
+
+      const topicObject = await topicService.getTopicById(topic);
+      if (topicObject) {
+        this.createCurrentSession(topicObject);
+      }
     }
   }
 
@@ -83,5 +94,27 @@ export class PracticePage extends BasePage {
     const topicPath = hash.split("/")[indexOfTopicPath];
 
     return topicPath;
+  }
+
+  private createCurrentSession(topic: Topic): void {
+    const user = getUser();
+    const sessions = getSessions();
+
+    let id = "s1";
+    if (sessions.length > 0) {
+      id = `s${sessions.at(-1)?.id.slice(1)}`;
+    }
+    const date = new Date().toISOString();
+    const session: PracticeSession = {
+      id: id,
+      userId: user.id,
+      topicId: topic.id,
+      topicTitle: topic.title,
+      answers: [],
+      score: 0,
+      startedAt: date,
+      completedAt: "",
+    };
+    setSession(session);
   }
 }

@@ -26,6 +26,14 @@ import {
 import loaderComponent from "../components/loader.component/loader.component.js";
 import { delay } from "../utils/delay.js";
 import renderUserProgress from "../components/practice.components/user-progress-component/user-progress-component.js";
+import { PracticeSession } from "../interfaces/practice-session.interface.js";
+import {
+  deleteSession,
+  getSession,
+  updateSession,
+} from "../local-storage/current-session.js";
+import { addSession } from "../local-storage/practice-sessions.js";
+import { updateProgress } from "../local-storage/progress.js";
 
 const widgetStrategies: {
   [K in WidgetType]: WidgetStrategy<WidgetMap[K], WidgetAnswerMap[K]>;
@@ -84,7 +92,7 @@ export class WidgetEngine {
     answer: WidgetAnswerMap[T],
   ) {
     const correct = strategy.validate(widget, answer);
-
+    updateSession(correct, widget, new Date().toISOString());
     this.showResult(correct);
   }
 
@@ -135,7 +143,8 @@ export class WidgetEngine {
       if (this.currentIndex >= this.widgets.length) {
         this.container.innerHTML = "";
         this.widgetContainer.innerHTML = "";
-        this.container.append(resultsScreenComponent());
+        this.container.append(resultsScreenComponent(this.widgets));
+        this.updateLocalData();
         return;
       }
 
@@ -163,5 +172,15 @@ export class WidgetEngine {
     if (widget) {
       this.render(widget);
     }
+  }
+
+  updateLocalData() {
+    const currentSession: PracticeSession | undefined = getSession();
+    if (currentSession === undefined) {
+      throw new Error("Something went wrong. Please, try again.");
+    }
+    addSession(currentSession);
+    updateProgress();
+    deleteSession();
   }
 }
