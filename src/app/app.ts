@@ -3,6 +3,13 @@ import { Page } from "../types/page.type.js";
 import MainCreator from "../utils/main/main-creator.js";
 import headerCreator from "../layout/header/header.js";
 import footerCreator from "../layout/footer/footer.js";
+import {
+  createLocalUser,
+  createPracticeHistory,
+  createProgress,
+} from "../local-storage/create-local-data.js";
+
+const DEFAULT_USER_ID = "u1";
 
 export default class App {
   private screens = new Map<Page, Screen>();
@@ -15,6 +22,12 @@ export default class App {
 
   constructor(root: HTMLElement) {
     this.root = root;
+  }
+
+  async createUser(): Promise<void> {
+    await createLocalUser(DEFAULT_USER_ID);
+    await createPracticeHistory(DEFAULT_USER_ID);
+    await createProgress(DEFAULT_USER_ID);
   }
 
   init(): void {

@@ -1,25 +1,42 @@
 import { isPracticeSession } from "../guards/practice-session.guards";
 import { PracticeSession } from "../interfaces/practice-session.interface";
-import { SessionAnswer } from "../interfaces/session-answer.interface";
+import { Widget } from "../types/widget.type";
 import { LOCAL_STORAGE } from "./objects";
 
 export const setSession = (session: PracticeSession) => {
   localStorage.setItem(LOCAL_STORAGE.currentSession, JSON.stringify(session));
 };
 
-export const getSession = (): PracticeSession => {
+export const getSession = (): PracticeSession | undefined => {
   const session: unknown = JSON.parse(
-    localStorage.getItem(LOCAL_STORAGE.currentSession) ?? "",
+    localStorage.getItem(LOCAL_STORAGE.currentSession) ?? "{}",
   );
   if (isPracticeSession(session)) {
     return session;
   }
-  throw new Error("please, create a local session first");
+  // throw new Error("please, create a local session first");
+  return undefined;
 };
 
-export const updateSession = (answer: SessionAnswer): void => {
+export const updateSession = (
+  isCorrect: boolean,
+  widget: Widget,
+  newDate: string,
+): void => {
   const session = getSession();
-  session.answers.push(answer);
+  if (session === undefined) {
+    throw new Error("please, create a local session first");
+  }
+  session.answers.push({
+    widgetId: widget.id,
+    isCorrect: isCorrect,
+    timeSpent: Math.round(Math.random() * 20),
+    difficulty: widget.difficulty,
+  });
+  if (isCorrect) {
+    session.score += widget.difficulty;
+  }
+  session.completedAt = newDate;
   setSession(session);
 };
 

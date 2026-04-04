@@ -6,14 +6,14 @@ export const setUser = (user: User): void => {
   localStorage.setItem(LOCAL_STORAGE.currentUser, JSON.stringify(user) ?? "");
 };
 
-export const getUser = (): User | undefined => {
+export const getUser = (): User => {
   const user: unknown = JSON.parse(
     localStorage.getItem(LOCAL_STORAGE.currentUser) ?? "{}",
   );
   if (isUser(user)) {
     return user;
   }
-  return;
+  throw new Error("This user does not exist");
 };
 
 export const updateUser = (user: User): void => {
