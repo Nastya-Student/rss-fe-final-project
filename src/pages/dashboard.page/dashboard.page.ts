@@ -11,9 +11,9 @@ import {
 import { PracticeSession } from "../../interfaces/practice-session.interface.js";
 import { TopicProgress } from "../../interfaces/topic-progress.interface.js";
 import { User } from "../../interfaces/user.interface.js";
-import { practiceSessionService } from "../../services/practice-session.service.js";
-import { topicProgressService } from "../../services/topic-progress.service.js";
-import { userService } from "../../services/user.service.js";
+import { getSessions } from "../../local-storage/practice-sessions.js";
+import { getProgress } from "../../local-storage/progress.js";
+import { getUser } from "../../local-storage/user.js";
 import { RoutePath } from "../../types/route-path.enum.js";
 import ButtonCreator from "../../utils/button/button-creator.js";
 import { delay } from "../../utils/delay.js";
@@ -147,20 +147,25 @@ export class DashboardPage extends BasePage {
     }
   }
 
+  updateDashboardElements() {
+    this.initDashboardElements().catch(() => {
+      throw new Error(STRING_CONSTANTS_DASHBOARD.errorLoading);
+    });
+  }
+
   private async initDashboardElements(): Promise<void> {
     const loader = loaderComponent();
 
     this.container.append(loader);
     await delay(ONE_SECOND_DELAY);
 
-    this.user = await userService.getUserById(this.USER_ID);
+    this.user = getUser();
     if (this.user === undefined) {
       return;
     }
     this.userGreeting.textContent = `${STRING_CONSTANTS_DASHBOARD.hello}, ${this.user.name}!`;
 
-    this.userTopicArr =
-      (await topicProgressService.getTopicProgressByUserId(this.user.id)) ?? [];
+    this.userTopicArr = getProgress() ?? [];
     if (this.userTopicArr === undefined) {
       return;
     }
@@ -173,10 +178,7 @@ export class DashboardPage extends BasePage {
     this.progressContainer.append(topicsProgressContainer);
     this.progressContainer.append(streakContainer);
 
-    this.userSessionArr =
-      (await practiceSessionService.getPracticeSessionsByUserId(
-        this.user.id,
-      )) ?? [];
+    this.userSessionArr = getSessions() ?? [];
     if (this.userSessionArr === undefined) {
       return;
     }
@@ -241,3 +243,5 @@ export class DashboardPage extends BasePage {
     });
   }
 }
+
+export const dashboardUI = new DashboardPage();
