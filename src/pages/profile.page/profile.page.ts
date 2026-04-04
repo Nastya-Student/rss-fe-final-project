@@ -1,6 +1,4 @@
 import { HEADINGS_ONE, HEADINGS_TWO } from "../../constants.js";
-import { PracticeSession } from "../../interfaces/practice-session.interface.js";
-import { User } from "../../interfaces/user.interface.js";
 import { RoutePath } from "../../types/route-path.enum.js";
 import ButtonCreator from "../../utils/button/button-creator.js";
 import ElementCreator from "../../utils/element-creator.js";
@@ -16,28 +14,15 @@ import {
 import { renderSettingsWindow } from "./profile-settings.window.js";
 import "./profile.page.css";
 import { createChart } from "./utils/create-chart.js";
-import {
-  createLocalUser,
-  createPracticeHistory,
-} from "../../local-storage/create-local-data.js";
 import { establishAchievementStatus } from "./utils/establish-achievement-status.js";
-
-const LOCAL_USER = "u1";
-// const LOCAL_AVATAR_PATH = "../../assets/";
+import { getUser } from "../../local-storage/user.js";
+import { getSessions } from "../../local-storage/practice-sessions.js";
 
 export class ProfilePage extends BasePage {
-  private user: User | undefined;
-  private sessions: PracticeSession[] | undefined;
+  user = getUser();
+  sessions = getSessions();
 
   private _avatar?: HTMLImageElement | undefined;
-
-  private _name?: HTMLHeadingElement | undefined;
-
-  private _achievement?: HTMLElement | undefined;
-
-  private _ctx?: HTMLCanvasElement | undefined;
-
-  private _readyText: HTMLElement | undefined;
 
   public get avatar(): HTMLImageElement {
     if (!this._avatar) {
@@ -46,54 +31,8 @@ export class ProfilePage extends BasePage {
     return this._avatar;
   }
 
-  public get name(): HTMLHeadingElement {
-    if (!this._name) {
-      throw new Error(ERRORS.user);
-    }
-    return this._name;
-  }
-
-  public get achievement(): HTMLElement {
-    if (!this._achievement) {
-      throw new Error(ERRORS.achievement);
-    }
-    return this._achievement;
-  }
-
-  public get ctx(): HTMLCanvasElement {
-    if (!this._ctx) {
-      throw new Error(ERRORS.chart);
-    }
-    return this._ctx;
-  }
-
-  public get readyText(): HTMLElement {
-    if (!this._readyText) {
-      throw new Error(ERRORS.finalText);
-    }
-    return this._readyText;
-  }
-
-  loadImage(name: string): string {
-    return new URL(`../../assets/${name}`, import.meta.url).href;
-  }
-
-  private async setData(): Promise<void> {
-    this.user = await createLocalUser(LOCAL_USER).catch();
-    this.sessions = await createPracticeHistory(LOCAL_USER);
-
-    if (!this.user || !this.sessions) {
-      return;
-    }
-
-    this.avatar.src = this.loadImage(this.user.photo);
-    this.name.textContent = this.user.name;
-    const status = `status: ${establishAchievementStatus(this.sessions)}`;
-    this.achievement.textContent = status;
-    if (status === ACHIEVEMENTS.expert) {
-      this.readyText.classList.remove("hidden");
-    }
-    createChart(this.ctx, this.sessions);
+  loadImage(name: string): void {
+    this.avatar.src = new URL(`../../assets/${name}`, import.meta.url).href;
   }
 
   create(parent: HTMLElement): void {
@@ -156,6 +95,7 @@ export class ProfilePage extends BasePage {
     this._avatar = document.createElement("img");
     this.avatar.classList.add("profile__avatar");
     avatarWrapper.append(this.avatar);
+    this.loadImage(this.user.photo);
 
     const rightWrapper = new ElementCreator({
       classes: ["profile__right-wrapper"],
@@ -182,7 +122,8 @@ export class ProfilePage extends BasePage {
       parent: description,
     }).getElement();
 
-    this._name = new HeadingsCreator(HEADINGS_ONE, {
+    new HeadingsCreator(HEADINGS_ONE, {
+      text: this.user.name,
       classes: ["profile__username"],
       parent: descriptionHeader,
     }).getElement();
@@ -194,19 +135,26 @@ export class ProfilePage extends BasePage {
     settings.id = "profile-settings-button";
     settings.innerHTML = settingsSVG;
 
-    this._achievement = new ElementCreator({
+    const status = `status: ${establishAchievementStatus(this.sessions)}`;
+
+    const achievement = new ElementCreator({
+      text: status,
       classes: ["profile__achievement-wrapper"],
       parent: description,
     }).getElement();
-    this._achievement.id = "profile-achievement-wrapper";
+    achievement.id = "profile-achievement-wrapper";
 
-    this._readyText = new ElementCreator({
+    const readyText = new ElementCreator({
       text: NOTIFICATIONS.finalText,
       classes: ["profile__ready-text"],
       hidden: true,
       parent: description,
     }).getElement();
-    this._readyText.id = "profile-ready-text";
+    readyText.id = "profile-ready-text";
+
+    if (status === ACHIEVEMENTS.expert) {
+      readyText.classList.remove("hidden");
+    }
 
     const chartBlock = new ElementCreator({
       classes: ["profile__chart-block"],
@@ -214,17 +162,14 @@ export class ProfilePage extends BasePage {
     }).getElement();
     chartBlock.id = "profile-chart-block";
 
-    this._ctx = document.createElement("canvas");
-    this._ctx.id = "profile-chart";
-    chartBlock.append(this._ctx);
+    const ctx = document.createElement("canvas");
+    ctx.id = "profile-chart";
+    chartBlock.append(ctx);
+    createChart(ctx, this.sessions);
 
     toDashboardButton.dataset.route = RoutePath.Dashboard;
 
     SettingsButtonHandler(settings);
-
-    this.setData().catch(() => {
-      throw new Error(ERRORS.userData);
-    });
   }
 }
 
