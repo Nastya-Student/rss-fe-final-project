@@ -64,6 +64,7 @@ export const STRING_CONSTANTS_DASHBOARD = {
   sessionTopicDateLocale: "ru-RU",
   arrowRight: "→",
   arrowLeft: "←",
+  arrowCircle: "↺",
   sessionHistory: "Session history",
   totalProgress: "Total Progress",
   streak: "Streak",
