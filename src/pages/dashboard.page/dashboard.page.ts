@@ -75,7 +75,6 @@ export class DashboardPage extends BasePage {
   private currentPage = 1;
   private totalPages = 1;
   private SESSION_PER_PAGE = 3;
-  private USER_ID = "u1";
 
   private userSessionArr?: PracticeSession[];
   private userTopicArr?: TopicProgress[];
