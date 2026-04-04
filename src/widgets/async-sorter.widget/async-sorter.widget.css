@@ -21,6 +21,12 @@
   line-height: 1.5;
 }
 
+.async-sorter__code {
+  font-family: "Courier New", Courier, monospace;
+  margin: 0;
+  white-space: pre-wrap;
+}
+
 .async-sorter__code-blocks-container {
   display: flex;
   gap: var(--spacing-1);

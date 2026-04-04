@@ -31,6 +31,7 @@ export const CLASS_NAMES_ASYNC_SORTER_WIDGET = {
   dropZone: "async-sorter__drop-zone",
   outputContainer: "async-sorter__output-container",
   runButton: "async-sorter__run-button",
+  code: "async-sorter__code",
 };
 
 export const STRING_CONSTANTS_ASYNC_SORTER_WIDGET = {
@@ -113,6 +114,7 @@ export default function asyncSorterWidget(
 
   new PreCreator({
     parent: codeContainer,
+    classes: [CLASS_NAMES_ASYNC_SORTER_WIDGET.code],
     text: payload.code,
   }).getElement();
 
