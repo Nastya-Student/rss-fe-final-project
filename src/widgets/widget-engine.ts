@@ -34,6 +34,7 @@ import {
 } from "../local-storage/current-session.js";
 import { addSession } from "../local-storage/practice-sessions.js";
 import { updateProgress } from "../local-storage/progress.js";
+import { dashboardUI } from "../pages/dashboard.page/dashboard.page.js";
 
 const widgetStrategies: {
   [K in WidgetType]: WidgetStrategy<WidgetMap[K], WidgetAnswerMap[K]>;
@@ -182,5 +183,6 @@ export class WidgetEngine {
     addSession(currentSession);
     updateProgress();
     deleteSession();
+    dashboardUI.updateDashboardElements();
   }
 }

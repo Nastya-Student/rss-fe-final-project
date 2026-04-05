@@ -41,7 +41,7 @@ export default function sessionComponent(
   const sessionTopicButton = new ButtonCreator({
     classes: [CLASS_NAMES_DASHBOARD.sessionTopicButton, CLASS_NAME.button],
     parent: sessionContainer,
-    text: STRING_CONSTANTS_DASHBOARD.arrowRight,
+    text: STRING_CONSTANTS_DASHBOARD.arrowCircle,
   }).getElement();
   sessionTopicButton.dataset.route = `${RoutePath.Practice}/${session.topicId}`;
 

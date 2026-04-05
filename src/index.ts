@@ -1,6 +1,6 @@
 import App from "./app/app.js";
 import { Router } from "./app/router.js";
-import { DashboardPage } from "./pages/dashboard.page/dashboard.page.js";
+import { dashboardUI } from "./pages/dashboard.page/dashboard.page.js";
 import { ErrorPage } from "./pages/error.page/error.page.js";
 import { LandingPage } from "./pages/landing.page/landing.page.js";
 import { LibraryPage } from "./pages/library.page/library.page.js";
@@ -16,7 +16,7 @@ await app.createUser();
 app.register("landing", new LandingPage());
 app.register("login", new LoginPage());
 app.register("register", new RegisterPage());
-app.register("dashboard", new DashboardPage());
+app.register("dashboard", dashboardUI);
 app.register("library", new LibraryPage());
 app.register("practice", new PracticePage());
 app.register("profile", new ProfilePage());
