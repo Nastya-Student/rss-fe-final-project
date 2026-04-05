@@ -1,0 +1,79 @@
+:root {
+  --primary-color: #078ec9;
+  --secondary-color: #e7f8ff;
+
+  --btn-color: #3fbdf1;
+  --btn-text: #ffffff;
+  --border-color: #f0f0f0;
+
+  --bg-color: #f9f9f9;
+  --bg-color-secondary: #fff;
+  --bg-code-color: #000;
+  --bg-bucket-color: #f1f4f8;
+
+  --text-color: #000;
+  --descr-color: #555555;
+  --text-code-color: #fff;
+
+  --btn-disabled: #898a88;
+  --error-color: #ff0202;
+
+  --total-progress-color: #00e676;
+
+  --spacing-0-25: 0.25rem;
+  --spacing-0-3: 0.3rem;
+  --spacing-0-5: 0.5rem;
+  --spacing-0-6: 0.6rem;
+  --spacing-0-75: 0.75rem;
+  --spacing-1: 1rem;
+  --spacing-1-25: 1.25rem;
+  --spacing-1-5: 1.5rem;
+  --spacing-2: 2rem;
+  --spacing-2-5: 2.5rem;
+  --spacing-3: 3rem;
+  --spacing-4: 4rem;
+
+  --landing-cards-width: 86vh;
+  --landing-title: 3.5rem;
+  --landing-subtitle: 1.5rem;
+}
+
+* {
+  box-sizing: border-box;
+  user-select: none;
+}
+
+html {
+  scroll-behavior: smooth;
+  height: 100%;
+  font-family: "Roboto", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  color: black;
+  background-color: white;
+  font-size: clamp(0.7rem, 1vw + 0.5rem, 1rem);
+  padding: 10px;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  flex: 1;
+  padding: 1rem 0;
+}
+
+.card-element {
+  padding: 1.2rem 1rem;
+  border-radius: 1rem;
+  background: var(--bg-color-secondary);
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  border: 1px solid var(--border-color);
+}

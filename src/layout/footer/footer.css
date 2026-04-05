@@ -1,0 +1,30 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: var(--secondary-color);
+}
+
+.footer__project-link {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+.footer__year {
+  display: flex;
+  align-items: center;
+}
+
+.rs-logo {
+  width: 6rem;
+  height: 2rem;
+  background-repeat: no-repeat;
+  background-position: center;
+  object-fit: contain;
+  cursor: pointer;
+  background-color: transparent;
+  background-image: url("../../assets/svg/rs-school-logo.svg");
+}

@@ -103,7 +103,10 @@ dist
 # TernJS port file
 .tern-port
 
-#Web storm IDE
-.idea/
 # Desktop Services Store macOS
 .DS_Store
+
+coverage/
+.vercel
+.env*.local
+.idea/

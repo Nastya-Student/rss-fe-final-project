@@ -1,0 +1,120 @@
+import { CLASS_NAME, EVENT, HEADINGS_TWO } from "../../constants.js";
+import { PracticeSession } from "../../interfaces/practice-session.interface.js";
+import { Topic } from "../../interfaces/topic.interface.js";
+import { setSession } from "../../local-storage/current-session.js";
+import { getSessions } from "../../local-storage/practice-sessions.js";
+import { getUser } from "../../local-storage/user.js";
+import { topicService } from "../../services/topic.service.js";
+import { widgetService } from "../../services/widget.service.js";
+import { RoutePath } from "../../types/route-path.enum.js";
+import ButtonCreator from "../../utils/button/button-creator.js";
+import HeadingsCreator from "../../utils/headings/headings-creator.js";
+import shuffleArray from "../../utils/shuffle-array.js";
+import { WidgetEngine } from "../../widgets/widget-engine.js";
+import { BasePage } from "../base-page.js";
+
+export const CLASS_NAMES_PRACTICE = {
+  page: "practice-page",
+  widgetContainer: "practice__widget-container",
+  widgetResultText: "practice__widget-result-text",
+  correct: "correct",
+  wrong: "wrong",
+  resultsScreenContainer: "practice__results-screen-container",
+  asyncSorterWidgetContainer: "practice__async-sorter-widget-container",
+  codeCompletionWidgetContainer: "practice__code-completion-widget-container",
+  codeOrderingWidgetContainer: "practice__code-ordering-widget-container",
+  memoryGameWidgetContainer: "practice__memory-game-widget-container",
+  quizWidgetContainer: "practice__quiz-widget-container",
+  stackBuilderWidgetContainer: "practice__stack-builder-widget-container",
+  trueFalseWidgetContainer: "practice__true-false-widget-container",
+  submitButton: "practice__submit-button",
+  userProgressContainer: "practice__user-progress-container",
+  progressCircle: "practice__progress-circle",
+} as const;
+
+export const STRING_CONSTANTS_PRACTICE = {
+  correctAnswer: "Correct",
+  wrongAnswer: "Wrong",
+  next: "Next",
+  goToResults: "Go to Results",
+  submit: "Submit",
+} as const;
+
+export const NUMBER_CONSTANTS_PRACTICE = {
+  widgetArrayLength: 10,
+} as const;
+
+export class PracticePage extends BasePage {
+  create(parent: HTMLElement): void {
+    parent.append(this.container);
+    this.container.classList.add(CLASS_NAMES_PRACTICE.page);
+
+    const pageTitle = new HeadingsCreator(HEADINGS_TWO, {
+      parent: this.container,
+    }).getElement();
+    pageTitle.textContent = "Practice Page";
+
+    const button = new ButtonCreator({
+      text: "To library page",
+      classes: [CLASS_NAME.button],
+      parent: this.container,
+    }).getElement();
+    button.dataset.route = RoutePath.Library;
+
+    window.addEventListener(EVENT.hashchange, () => {
+      void this.loadWidgets();
+    });
+  }
+
+  private async loadWidgets() {
+    const topic = this.getTopicFromUrl();
+
+    if (topic !== undefined) {
+      const widgetArr = await widgetService.getWidgetsByTopicId(topic);
+
+      if (widgetArr) {
+        const shuffledArr = shuffleArray(widgetArr);
+        if (shuffledArr.length > NUMBER_CONSTANTS_PRACTICE.widgetArrayLength) {
+          shuffledArr.length = NUMBER_CONSTANTS_PRACTICE.widgetArrayLength;
+        }
+        const widgetEngine = new WidgetEngine(shuffledArr, this.container);
+        widgetEngine.startSession();
+      }
+
+      const topicObject = await topicService.getTopicById(topic);
+      if (topicObject) {
+        this.createCurrentSession(topicObject);
+      }
+    }
+  }
+
+  private getTopicFromUrl() {
+    const hash = location.hash;
+    const indexOfTopicPath = 2;
+    const topicPath = hash.split("/")[indexOfTopicPath];
+
+    return topicPath;
+  }
+
+  private createCurrentSession(topic: Topic): void {
+    const user = getUser();
+    const sessions = getSessions();
+
+    let id = "s1";
+    if (sessions.length > 0) {
+      id = `s${sessions.at(-1)?.id.slice(1)}`;
+    }
+    const date = new Date().toISOString();
+    const session: PracticeSession = {
+      id: id,
+      userId: user.id,
+      topicId: topic.id,
+      topicTitle: topic.title,
+      answers: [],
+      score: 0,
+      startedAt: date,
+      completedAt: "",
+    };
+    setSession(session);
+  }
+}

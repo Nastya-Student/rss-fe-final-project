@@ -1,0 +1,35 @@
+[
+  {
+    "id": "u1",
+    "name": "Alisa",
+    "email": "alisa@gmail.com",
+    "passwordHash": "hashed",
+    "xp": 120,
+    "streak": 5,
+    "createdAt": "2026-02-20",
+    "photo": "alisa.jpg",
+    "getReminder": false
+  },
+  {
+    "id": "u2",
+    "name": "Olga",
+    "email": "olga@mail.com",
+    "passwordHash": "hashed",
+    "xp": 80,
+    "streak": 2,
+    "createdAt": "2026-02-18",
+    "photo": "",
+    "getReminder": false
+  },
+  {
+    "id": "u3",
+    "name": "Alex",
+    "email": "alex@mail.com",
+    "passwordHash": "hashed",
+    "xp": 200,
+    "streak": 10,
+    "createdAt": "2026-02-10",
+    "photo": "",
+    "getReminder": false
+  }
+]

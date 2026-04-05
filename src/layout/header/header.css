@@ -1,0 +1,101 @@
+.header {
+  font-family: "Roboto", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  min-height: 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+}
+
+.logo {
+  display: flex;
+  color: #000;
+  gap: var(--spacing-0-25);
+  align-items: center;
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.logo-svg {
+  display: flex;
+  align-items: center;
+  width: 2rem;
+  height: 2rem;
+  background-image: url("../../assets/svg/logo-part.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 1.5rem;
+}
+
+.logo-text {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 1.2rem;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.header-wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-0-75);
+}
+
+.nav {
+  display: flex;
+}
+
+.nav-list {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1);
+}
+
+.nav-link {
+  color: var(--primary-color);
+}
+
+.button.button-header {
+  height: 2rem;
+}
+
+.button.button-lang {
+  align-items: center;
+  width: 2rem;
+  height: 2rem;
+  color: var(--btn-color);
+  background-color: var(--bg-color-secondary);
+  border: 1px solid var(--btn-color);
+}
+
+.button.button-lang:hover {
+  color: var(--bg-color-secondary);
+  background-color: var(--primary-color);
+}
+
+.button.button-theme {
+  align-items: center;
+  width: 2rem;
+  height: 2rem;
+  color: var(--btn-color);
+  background-color: var(--bg-color-secondary);
+  border: 1px solid var(--btn-color);
+  background-image: url("../../assets/svg/moon-blue.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 1.2rem;
+}
+
+.button.button-theme:hover {
+  background-image: url("../../assets/svg/moon-white.svg");
+  background-color: var(--primary-color);
+}
+
+.button.button-theme.dark {
+  background-image: url("../../assets/svg/sun.svg");
+}
