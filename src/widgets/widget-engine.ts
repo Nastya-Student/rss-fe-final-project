@@ -25,6 +25,7 @@ import {
 } from "../pages/practice.page/practice.page.js";
 import loaderComponent from "../components/loader.component/loader.component.js";
 import { delay } from "../utils/delay.js";
+import renderUserProgress from "../components/practice.components/user-progress-component/user-progress-component.js";
 import { PracticeSession } from "../interfaces/practice-session.interface.js";
 import {
   deleteSession,
@@ -48,9 +49,12 @@ const widgetStrategies: {
 
 export class WidgetEngine {
   private widgets: Widget[];
+  private userAnswersCheckArr: boolean[] = [];
   private currentIndex = 0;
   private container;
   private widgetContainer: HTMLElement;
+  private userProgress: HTMLElement | undefined;
+  private isNextButtonPressed: boolean = false;
 
   constructor(widgets: Widget[], container: HTMLElement) {
     this.widgets = widgets;
@@ -72,6 +76,14 @@ export class WidgetEngine {
       ),
     );
     this.container.append(this.widgetContainer);
+    this.userProgress = renderUserProgress(
+      this.userAnswersCheckArr,
+      this.widgets,
+      this.isNextButtonPressed,
+    );
+    this.container.append(this.userProgress);
+
+    this.isNextButtonPressed = false;
   }
 
   private handleAnswer<T extends WidgetType>(
@@ -93,6 +105,18 @@ export class WidgetEngine {
         : STRING_CONSTANTS_PRACTICE.wrongAnswer,
     }).getElement();
 
+    this.userAnswersCheckArr.push(correct);
+
+    this.userProgress?.remove();
+    this.userProgress = renderUserProgress(
+      this.userAnswersCheckArr,
+      this.widgets,
+      this.isNextButtonPressed,
+    );
+    this.container.append(this.userProgress);
+
+    this.isNextButtonPressed = false;
+
     resultText.classList.add(
       correct ? CLASS_NAMES_PRACTICE.correct : CLASS_NAMES_PRACTICE.wrong,
     );
@@ -107,7 +131,13 @@ export class WidgetEngine {
       nextButton.textContent = STRING_CONSTANTS_PRACTICE.goToResults;
     }
 
+    nextButton.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+    });
+
     nextButton.addEventListener(EVENT.click, () => {
+      this.isNextButtonPressed = true;
       this.currentIndex += 1;
 
       if (this.currentIndex >= this.widgets.length) {

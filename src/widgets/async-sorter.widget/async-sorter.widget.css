@@ -18,6 +18,13 @@
   gap: var(--spacing-0-5);
   background-color: var(--bg-code-color);
   color: var(--text-code-color);
+  line-height: 1.5;
+}
+
+.async-sorter__code {
+  font-family: "Courier New", Courier, monospace;
+  margin: 0;
+  white-space: pre-wrap;
 }
 
 .async-sorter__code-blocks-container {

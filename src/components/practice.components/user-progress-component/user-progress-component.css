@@ -1,0 +1,23 @@
+.practice__user-progress-container {
+  display: flex;
+  gap: var(--spacing-1);
+}
+
+.practice__progress-circle {
+  border-radius: 50%;
+  height: 0.75rem;
+  width: 0.75rem;
+}
+.practice__progress-circle.active {
+  border: 2px solid var(--primary-color);
+  background-color: var(--bg-color-secondary);
+}
+.practice__progress-circle.no-active {
+  background-color: var(--bg-bucket-color);
+}
+.practice__progress-circle.correct {
+  background-color: #a3ffb8;
+}
+.practice__progress-circle.wrong {
+  background-color: #ffbeb8;
+}
