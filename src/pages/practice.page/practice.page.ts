@@ -28,6 +28,8 @@ export const CLASS_NAMES_PRACTICE = {
   stackBuilderWidgetContainer: "practice__stack-builder-widget-container",
   trueFalseWidgetContainer: "practice__true-false-widget-container",
   submitButton: "practice__submit-button",
+  userProgressContainer: "practice__user-progress-container",
+  progressCircle: "practice__progress-circle",
 } as const;
 
 export const STRING_CONSTANTS_PRACTICE = {
@@ -37,6 +39,11 @@ export const STRING_CONSTANTS_PRACTICE = {
   goToResults: "Go to Results",
   submit: "Submit",
 } as const;
+
+export const NUMBER_CONSTANTS_PRACTICE = {
+  widgetArrayLength: 10,
+} as const;
+
 export class PracticePage extends BasePage {
   create(parent: HTMLElement): void {
     parent.append(this.container);
@@ -64,11 +71,13 @@ export class PracticePage extends BasePage {
 
     if (topic !== undefined) {
       const widgetArr = await widgetService.getWidgetsByTopicId(topic);
+
       if (widgetArr) {
-        const widgetEngine = new WidgetEngine(
-          shuffleArray(widgetArr),
-          this.container,
-        );
+        const shuffledArr = shuffleArray(widgetArr);
+        if (shuffledArr.length > NUMBER_CONSTANTS_PRACTICE.widgetArrayLength) {
+          shuffledArr.length = NUMBER_CONSTANTS_PRACTICE.widgetArrayLength;
+        }
+        const widgetEngine = new WidgetEngine(shuffledArr, this.container);
         widgetEngine.startSession();
       }
 

@@ -16,6 +16,7 @@ import ElementCreator from "../../utils/element-creator.js";
 import HeadingsCreator from "../../utils/headings/headings-creator.js";
 import { offButton } from "../../utils/off-button.js";
 import ParagraphCreator from "../../utils/paragraph/paragraph-creator.js";
+import PreCreator from "../../utils/pre/pre-creator.js";
 import "./async-sorter.widget.css";
 import Sortable from "sortablejs";
 
@@ -30,6 +31,7 @@ export const CLASS_NAMES_ASYNC_SORTER_WIDGET = {
   dropZone: "async-sorter__drop-zone",
   outputContainer: "async-sorter__output-container",
   runButton: "async-sorter__run-button",
+  code: "async-sorter__code",
 };
 
 export const STRING_CONSTANTS_ASYNC_SORTER_WIDGET = {
@@ -108,11 +110,13 @@ export default function asyncSorterWidget(
       }
       codeBlockValues.push(value);
     }
-    new ParagraphCreator({
-      parent: codeContainer,
-      text: codeLine,
-    }).getElement();
   }
+
+  new PreCreator({
+    parent: codeContainer,
+    classes: [CLASS_NAMES_ASYNC_SORTER_WIDGET.code],
+    text: payload.code,
+  }).getElement();
 
   new HeadingsCreator(HEADINGS_THREE, {
     parent: asyncSorterWidgetContainer,

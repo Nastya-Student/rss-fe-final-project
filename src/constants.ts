@@ -31,6 +31,7 @@ export const ID = {
 export const CLASS_NAME = {
   container: "container",
   button: "button",
+  active: "active",
   noActive: "no-active",
   cardElement: "card-element",
   header: "header",

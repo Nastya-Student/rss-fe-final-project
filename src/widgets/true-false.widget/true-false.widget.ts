@@ -93,11 +93,16 @@ export default function trueFalseWidget(
   }).getElement();
 
   submitButton.addEventListener(EVENT.click, () => {
+    if (selectedAnswer === undefined) {
+      selectedAnswer = { answer: !payload.correct };
+    }
     onAnswer(selectedAnswer);
     submitButton.classList.add(CLASS_NAME.noActive);
     submitButton.disabled = true;
     trueButton.disabled = true;
     falseButton.disabled = true;
+    trueButton.classList.add(CLASS_NAME.noActive);
+    falseButton.classList.add(CLASS_NAME.noActive);
     explanationField.classList.remove("hidden");
   });
 
