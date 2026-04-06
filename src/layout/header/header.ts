@@ -70,13 +70,18 @@ export default function headerCreator(): HTMLElement {
         classes: ["nav-item"],
       }).getElement();
 
-      new AnchorCreator({
+      const navLink = new AnchorCreator({
         parent: navigationItem,
         href: `#/${link.toLowerCase()}`,
         target: "_self",
         classes: ["nav-link"],
         text: link,
       }).getElement();
+
+      navLink.addEventListener("click", () => {
+        navigation.classList.remove("open");
+        hamburger.classList.remove("open");
+      });
     }
 
     const logoutButton = new ButtonCreator({
@@ -85,6 +90,41 @@ export default function headerCreator(): HTMLElement {
       classes: [CLASS_NAME.button, "button-header"],
     }).getElement();
     logoutButton.dataset.route = RoutePath.Login;
+
+    const hamburger = new ElementCreator({
+      parent: headerWrapper,
+      classes: ["hamburger"],
+    }).getElement();
+
+    for (let i = 0; i < 3; i++) {
+      new ElementCreator({
+        tag: "span",
+        parent: hamburger,
+        classes: ["hamburger-span"],
+      }).getElement();
+    }
+
+    const closeMenu = () => {
+      navigation.classList.remove("open");
+      hamburger.classList.remove("open");
+    };
+
+    hamburger.addEventListener(EVENT.click, (e) => {
+      e.stopPropagation();
+      hamburger.classList.toggle("open");
+      navigation.classList.toggle("open");
+    });
+
+    document.addEventListener(EVENT.click, (e) => {
+      if (!navigation.classList.contains("open")) return;
+
+      const target = e.target;
+      if (!target || !(target instanceof Node)) return;
+
+      if (!navigation.contains(target) && !hamburger.contains(target)) {
+        closeMenu();
+      }
+    });
   } else {
     const registerButton = new ButtonCreator({
       parent: headerWrapper,
