@@ -11,10 +11,13 @@ import { createChart } from "./utils/create-chart.js";
 import { establishAchievementStatus } from "./utils/establish-achievement-status.js";
 import { getUser } from "../../local-storage/user.js";
 import { getSessions } from "../../local-storage/practice-sessions.js";
+import { User } from "../../interfaces/user.interface.js";
+import { PracticeSession } from "../../interfaces/practice-session.interface.js";
 
 export class ProfilePage extends BasePage {
-  user = getUser();
-  sessions = getSessions();
+  private user?: User;
+
+  private sessions?: PracticeSession[];
 
   private _avatar?: HTMLImageElement | undefined;
 
@@ -62,6 +65,8 @@ export class ProfilePage extends BasePage {
   }
 
   setProfileData(): void {
+    this.user = getUser();
+    this.sessions = getSessions();
     this.userName.textContent = this.user.name;
     this.avatar.src = this.loadImage(this.user.photo);
     const status = `status: ${establishAchievementStatus(this.sessions)}`;
@@ -115,7 +120,6 @@ export class ProfilePage extends BasePage {
     this._avatar = document.createElement("img");
     this.avatar.classList.add("profile__avatar");
     avatarWrapper.append(this.avatar);
-    this.loadImage(this.user.photo);
 
     const rightWrapper = new ElementCreator({
       classes: ["profile__right-wrapper"],
