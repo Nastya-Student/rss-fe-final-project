@@ -35,6 +35,7 @@ import {
 import { addSession } from "../local-storage/practice-sessions.js";
 import { updateProgress } from "../local-storage/progress.js";
 import { dashboardUI } from "../pages/dashboard.page/dashboard.page.js";
+import { profilePage } from "../pages/profile.page/profile.page.js";
 
 const widgetStrategies: {
   [K in WidgetType]: WidgetStrategy<WidgetMap[K], WidgetAnswerMap[K]>;
@@ -184,5 +185,6 @@ export class WidgetEngine {
     updateProgress();
     deleteSession();
     dashboardUI.updateDashboardElements();
+    profilePage.setProfileData();
   }
 }

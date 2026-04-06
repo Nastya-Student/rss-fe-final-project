@@ -6,7 +6,7 @@ import { LandingPage } from "./pages/landing.page/landing.page.js";
 import { LibraryPage } from "./pages/library.page/library.page.js";
 import { LoginPage } from "./pages/login.page/login.page.js";
 import { PracticePage } from "./pages/practice.page/practice.page.js";
-import { ProfilePage } from "./pages/profile.page/profile.page.js";
+import { profilePage } from "./pages/profile.page/profile.page.js";
 import { RegisterPage } from "./pages/register.page/register.page.js";
 
 const app = new App(document.body);
@@ -19,7 +19,7 @@ app.register("register", new RegisterPage());
 app.register("dashboard", dashboardUI);
 app.register("library", new LibraryPage());
 app.register("practice", new PracticePage());
-app.register("profile", new ProfilePage());
+app.register("profile", profilePage);
 app.register("404", new ErrorPage());
 
 const router = new Router(app);
