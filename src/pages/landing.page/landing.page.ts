@@ -115,12 +115,6 @@ export class LandingPage extends BasePage {
         description:
           "Click on objects that become garbage after code execution",
       },
-      {
-        title: "Stack Builder",
-        type: "Call Stack Game",
-        description:
-          "Build the call stack by dragging function blocks in correct order",
-      },
     ];
 
     const cardsSection = new SectionCreator({
