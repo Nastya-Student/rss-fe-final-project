@@ -36,6 +36,8 @@ import { addSession } from "../local-storage/practice-sessions.js";
 import { updateProgress } from "../local-storage/progress.js";
 import { dashboardUI } from "../pages/dashboard.page/dashboard.page.js";
 import { profilePage } from "../pages/profile.page/profile.page.js";
+import { getUser, updateUser } from "../local-storage/user.js";
+import { User } from "../interfaces/user.interface.js";
 
 const widgetStrategies: {
   [K in WidgetType]: WidgetStrategy<WidgetMap[K], WidgetAnswerMap[K]>;
@@ -189,6 +191,9 @@ export class WidgetEngine {
     }
     addSession(currentSession);
     updateProgress(widgetsLength);
+    const user: User = getUser();
+    user.streak += 1;
+    updateUser(user);
     deleteSession();
     dashboardUI.updateDashboardElements();
     profilePage.setProfileData();
