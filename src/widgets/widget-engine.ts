@@ -32,7 +32,7 @@ import {
   getSession,
   updateSession,
 } from "../local-storage/current-session.js";
-import { addSession } from "../local-storage/practice-sessions.js";
+import { addSession, getSessions } from "../local-storage/practice-sessions.js";
 import { updateProgress } from "../local-storage/progress.js";
 import { dashboardUI } from "../pages/dashboard.page/dashboard.page.js";
 import { profilePage } from "../pages/profile.page/profile.page.js";
@@ -192,7 +192,10 @@ export class WidgetEngine {
     addSession(currentSession);
     updateProgress(widgetsLength);
     const user: User = getUser();
-    user.streak += 1;
+    const lastSessionDate = getSessions()[-1]?.completedAt.split("T");
+    if (lastSessionDate !== new Date().toISOString().split("T")) {
+      user.streak += 1;
+    }
     updateUser(user);
     deleteSession();
     dashboardUI.updateDashboardElements();
