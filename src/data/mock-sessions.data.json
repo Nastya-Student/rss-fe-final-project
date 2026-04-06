@@ -2,7 +2,7 @@
   {
     "id": "s1",
     "userId": "u1",
-    "topicId": "core-js",
+    "topicId": "coreJS",
     "topicTitle": "Core JS",
     "answers": [
       { "widgetId": "w1", "isCorrect": true, "timeSpent": 12, "difficulty": 1 },
@@ -39,7 +39,7 @@
   {
     "id": "s5",
     "userId": "u1",
-    "topicId": "core-js",
+    "topicId": "coreJS",
     "topicTitle": "Core JS",
     "answers": [
       { "widgetId": "w4", "isCorrect": true, "timeSpent": 11, "difficulty": 3 },
@@ -85,7 +85,7 @@
   {
     "id": "s9",
     "userId": "u1",
-    "topicId": "core-js",
+    "topicId": "coreJS",
     "topicTitle": "Core JS",
     "answers": [
       { "widgetId": "w4", "isCorrect": true, "timeSpent": 16, "difficulty": 3 },
@@ -136,7 +136,7 @@
   {
     "id": "s13",
     "userId": "u1",
-    "topicId": "core-js",
+    "topicId": "coreJS",
     "topicTitle": "Core JS",
     "answers": [
       { "widgetId": "w3", "isCorrect": false, "timeSpent": 13, "difficulty": 2 },
@@ -178,7 +178,7 @@
   {
     "id": "s17",
     "userId": "u1",
-    "topicId": "core-js",
+    "topicId": "coreJS",
     "topicTitle": "Core JS",
     "answers": [
       { "widgetId": "w2", "isCorrect": true, "timeSpent": 14, "difficulty": 3 },
@@ -224,7 +224,7 @@
   {
     "id": "s21",
     "userId": "u1",
-    "topicId": "core-js",
+    "topicId": "coreJS",
     "topicTitle": "Core JS",
     "answers": [
       { "widgetId": "w4", "isCorrect": true, "timeSpent": 15, "difficulty": 3 },
@@ -272,7 +272,7 @@
   {
     "id": "s25",
     "userId": "u1",
-    "topicId": "core-js",
+    "topicId": "coreJS",
     "topicTitle": "Core JS",
     "answers": [
       { "widgetId": "w7", "isCorrect": true, "timeSpent": 13, "difficulty": 2 },
@@ -316,7 +316,7 @@
   {
     "id": "s29",
     "userId": "u1",
-    "topicId": "core-js",
+    "topicId": "coreJS",
     "topicTitle": "Core JS",
     "answers": [
       { "widgetId": "w1", "isCorrect": true, "timeSpent": 14, "difficulty": 3 },
@@ -357,7 +357,7 @@
   {
     "id": "s33",
     "userId": "u1",
-    "topicId": "core-js",
+    "topicId": "coreJS",
     "topicTitle": "Core JS",
     "answers": [
       { "widgetId": "w4", "isCorrect": true, "timeSpent": 12, "difficulty": 2 },
@@ -403,7 +403,7 @@
   {
     "id": "s37",
     "userId": "u1",
-    "topicId": "core-js",
+    "topicId": "coreJS",
     "topicTitle": "Core JS",
     "answers": [
       { "widgetId": "w2", "isCorrect": true, "timeSpent": 15, "difficulty": 3 },
@@ -447,7 +447,7 @@
   {
     "id": "s41",
     "userId": "u1",
-    "topicId": "core-js",
+    "topicId": "coreJS",
     "topicTitle": "Core JS",
     "answers": [
       { "widgetId": "w7", "isCorrect": true, "timeSpent": 13, "difficulty": 2 },
@@ -491,7 +491,7 @@
   {
     "id": "s45",
     "userId": "u1",
-    "topicId": "core-js",
+    "topicId": "coreJS",
     "topicTitle": "Core JS",
     "answers": [
       { "widgetId": "w3", "isCorrect": true, "timeSpent": 14, "difficulty": 3 },
@@ -535,7 +535,7 @@
   {
     "id": "s49",
     "userId": "u1",
-    "topicId": "core-js",
+    "topicId": "coreJS",
     "topicTitle": "Core JS",
     "answers": [
       { "widgetId": "w1", "isCorrect": true, "timeSpent": 12, "difficulty": 2 },
@@ -581,7 +581,7 @@
   {
     "id": "s53",
     "userId": "u1",
-    "topicId": "core-js",
+    "topicId": "coreJS",
     "topicTitle": "Core JS",
     "answers": [
       { "widgetId": "w3", "isCorrect": true, "timeSpent": 13, "difficulty": 2 },
@@ -626,7 +626,7 @@
   {
     "id": "s57",
     "userId": "u1",
-    "topicId": "core-js",
+    "topicId": "coreJS",
     "topicTitle": "Core JS",
     "answers": [
       { "widgetId": "w4", "isCorrect": true, "timeSpent": 13, "difficulty": 3 },
@@ -673,7 +673,7 @@
   {
     "id": "s61",
     "userId": "u1",
-    "topicId": "core-js",
+    "topicId": "coreJS",
     "topicTitle": "Core JS",
     "answers": [
       { "widgetId": "w5", "isCorrect": true, "timeSpent": 12, "difficulty": 2 },
@@ -716,7 +716,7 @@
   {
     "id": "s65",
     "userId": "u1",
-    "topicId": "core-js",
+    "topicId": "coreJS",
     "topicTitle": "Core JS",
     "answers": [
       { "widgetId": "w6", "isCorrect": true, "timeSpent": 14, "difficulty": 3 },
@@ -760,7 +760,7 @@
   {
     "id": "s69",
     "userId": "u1",
-    "topicId": "core-js",
+    "topicId": "coreJS",
     "topicTitle": "Core JS",
     "answers": [
       { "widgetId": "w5", "isCorrect": true, "timeSpent": 13, "difficulty": 2 },
