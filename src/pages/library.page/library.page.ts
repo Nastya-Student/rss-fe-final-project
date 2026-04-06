@@ -1,7 +1,7 @@
 import { HEADINGS_TWO } from "../../constants.js";
-import { RoutePath } from "../../types/route-path.enum.js";
 import ButtonCreator from "../../utils/button/button-creator.js";
 import HeadingsCreator from "../../utils/headings/headings-creator.js";
+import ParagraphCreator from "../../utils/paragraph/paragraph-creator.js";
 import { BasePage } from "../base-page.js";
 import "./library.page.css";
 
@@ -15,36 +15,27 @@ export class LibraryPage extends BasePage {
     }).getElement();
     pageTitle.textContent = "Library Page";
 
-    const logoutButton = new ButtonCreator({
-      text: "To login page",
-      classes: ["button"],
+    new ParagraphCreator({
       parent: this.container,
-    }).getElement();
-    logoutButton.dataset.route = RoutePath.Login;
-
-    const profileButton = new ButtonCreator({
-      text: "To profile page",
-      classes: ["button"],
-      parent: this.container,
-    }).getElement();
-    profileButton.dataset.route = RoutePath.Profile;
+      text: "Choose a topic:",
+    });
 
     const coreJSButton = new ButtonCreator({
-      text: "To core JS theme",
+      text: "Core JS",
       classes: ["button"],
       parent: this.container,
     }).getElement();
     coreJSButton.dataset.route = "/practice/coreJS";
 
     const typescriptButton = new ButtonCreator({
-      text: "To typescript theme",
+      text: "Typescript",
       classes: ["button"],
       parent: this.container,
     }).getElement();
     typescriptButton.dataset.route = "/practice/typescript";
 
     const algorithmsButton = new ButtonCreator({
-      text: "To algorithms theme",
+      text: "Algorithms",
       classes: ["button"],
       parent: this.container,
     }).getElement();
