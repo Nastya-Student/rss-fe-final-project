@@ -47,6 +47,7 @@ main .landing-page {
   display: block;
   min-width: 13.75rem;
   max-width: 16.25rem;
+  min-height: 11.125rem;
   padding: 1.5rem 1.25rem;
   border-radius: 1rem;
   background: var(--bg-color-secondary);
@@ -118,4 +119,24 @@ main .landing-page {
 .motivation-topics-title {
   font-size: 3rem;
   color: var(--primary-color);
+}
+
+@media (max-width: 480px) {
+  .landing-title {
+    font-size: 2rem;
+  }
+
+  .landing-subtitle {
+    font-size: 1rem;
+  }
+
+  .motivation-topics-title,
+  .landing-topics-title {
+    font-size: 1.8rem;
+  }
+
+  .landing-topics,
+  .landing-motivation {
+    padding: 2rem 0;
+  }
 }

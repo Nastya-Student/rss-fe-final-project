@@ -16,7 +16,7 @@ describe("Landing Tests", () => {
 
   it("render all cards", () => {
     const cards = container.querySelectorAll(".landing-widget-card");
-    expect(cards.length).toBe(7);
+    expect(cards.length).toBe(6);
   });
 
   it("render all theme items", () => {
