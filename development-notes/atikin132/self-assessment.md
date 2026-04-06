@@ -260,4 +260,4 @@ Async Sorter работает следующим образом:
 
 Код: [PR#57](https://github.com/Nastya-Student/rss-fe-final-project/pull/57)
 
-Ссылка на PR
+Ссылка на [PR с self-assessment.md](https://github.com/Nastya-Student/rss-fe-final-project/pull/94) 
