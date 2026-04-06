@@ -2,21 +2,29 @@
 
 [deploy](https://rss-fe-final-project.vercel.app/)
 
-[board](https://rss-final.atlassian.net/jira/core/projects/RST/board)
-
 [project description](https://github.com/rolling-scopes-school/tasks/tree/master/stage2/tasks/rs-tandem)
 
 Название проекта - Tandem.
 За основу проекта взяли пример [01-widget-trainer](https://github.com/rolling-scopes-school/tasks/blob/master/stage2/tasks/rs-tandem/examples/01-widget-trainer/README.md) из репозитория школы.
-Приложение представляет собой SPA для подготовки к интервью и будет включать страницы:
+Приложение представляет собой SPA для подготовки к интервью и включает страницы:
 * Landing,
-* Login,
 * Register,
 * Dashboard,
 * Library,
 * Practice,
 * Profile,
-* 404.
+* Error.
+
+В проекте продуман UX/UI дизайн, архитектура кода включает необходимые паттерны проектирования и стандарты, и представляет собой структуру, которую легко масштабировать.  
+В проекте реализован widget-engine, который включает 6 виджетов по 3 темам с 3 уровнями сложности. В дальнейшем при необходимости в код несложно добавить другие виджеты.  
+В коде предусмотрена обработка ошибок и реализована прикольная страница 404 для отображения при ошибке в URL.  
+Страницы дашборда и профиля содержат разнообразную визуализацию актуального прогресса тренировки.  
+В дашборде реализована пагинация для просмотра истории сессий пользователя.  
+Для отображения статуса на странице профиля разработана система достижений для четырёх уровней.  
+Дизайн приложения адаптирован как для десктопа, так и для мобильных устройств.
+
+[видео - финальное демо](https://youtu.be/-6b9BwIeAPo)
+
 
 [видео - 404, loading, error state](https://youtu.be/M57p4R2uLhU) 
 
@@ -26,6 +34,9 @@
 * Никита [Atikin132](https://github.com/Atikin132)  [ - notes](https://github.com/Nastya-Student/rss-fe-final-project/tree/main/development-notes/atikin132)
 * Андрей [amelur](https://github.com/amelur)  [ - notes](https://github.com/Nastya-Student/rss-fe-final-project/tree/main/development-notes/amelur)
 * Ульяна [Ulya10](https://github.com/Ulya10)  [ - notes](https://github.com/Nastya-Student/rss-fe-final-project/tree/main/development-notes/ulya10)
+
+  [board](https://rss-final.atlassian.net/jira/core/projects/RST/board)
+<img width="1410" height="723" alt="image" src="https://github.com/user-attachments/assets/61eed878-ef52-4257-bd58-d293f489bee8" />
 
 ### Meeting Notes: ###
 
