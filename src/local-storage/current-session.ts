@@ -14,7 +14,6 @@ export const getSession = (): PracticeSession | undefined => {
   if (isPracticeSession(session)) {
     return session;
   }
-  // throw new Error("please, create a local session first");
   return undefined;
 };
 

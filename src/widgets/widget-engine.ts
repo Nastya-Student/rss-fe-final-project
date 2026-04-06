@@ -154,6 +154,7 @@ export class WidgetEngine {
       if (this.currentIndex >= this.widgets.length) {
         this.container.innerHTML = "";
         this.widgetContainer.innerHTML = "";
+        updateScore(this.countScore());
         this.container.append(resultsScreenComponent(this.widgets));
         this.updateLocalData(this.widgetsLength);
         return;
@@ -190,7 +191,6 @@ export class WidgetEngine {
     if (currentSession === undefined) {
       throw new Error("Something went wrong. Please, try again.");
     }
-    updateScore(this.countScore());
     addSession(currentSession);
     updateProgress(widgetsLength);
     const user: User = getUser();
@@ -219,11 +219,13 @@ export class WidgetEngine {
     if (!session) {
       throw new Error("can not find session");
     }
-    for (const element of session?.answers) {
+    for (const element of session.answers) {
       if (element.isCorrect) {
         currentScore += element.difficulty;
       }
     }
-    return Math.round((currentScore * 100) / maxScore);
+    const score = Math.round((currentScore * 100) / maxScore);
+
+    return score;
   }
 }
