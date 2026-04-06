@@ -99,3 +99,103 @@
 .button.button-theme.dark {
   background-image: url("../../assets/svg/sun.svg");
 }
+
+.button.button-theme,
+.button.button-lang {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 0 0.75rem;
+    min-height: 2rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .logo {
+    gap: var(--spacing-0-25);
+  }
+
+  .logo-svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    background-size: 1.2rem;
+  }
+
+  .logo-text {
+    font-size: 1rem;
+  }
+
+  .header-wrapper {
+    gap: var(--spacing-0-5);
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .nav-list {
+    gap: var(--spacing-0-5);
+  }
+
+  .nav-link {
+    font-size: 0.9rem;
+  }
+
+  .button.button-header {
+    height: 1.75rem;
+    font-size: 0.85rem;
+    padding: 0 0.75rem;
+  }
+
+  .button.button-lang,
+  .button.button-theme {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+
+  .button.button-theme {
+    background-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    flex-direction: column;
+    padding: 0.2rem;
+    gap: 0.5rem;
+  }
+
+  .logo {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .header-wrapper {
+    width: 100%;
+    justify-content: center;
+    gap: var(--spacing-0-75);
+  }
+
+  .nav-list {
+    gap: var(--spacing-0-75);
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .nav-link {
+    font-size: 0.85rem;
+    white-space: nowrap;
+  }
+
+  .button.button-header {
+    height: 1.5rem;
+    font-size: 0.8rem;
+    padding: 0 0.5rem;
+  }
+
+  .button.button-lang,
+  .button.button-theme {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
