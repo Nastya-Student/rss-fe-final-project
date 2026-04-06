@@ -3,6 +3,7 @@ import { RoutePath } from "../../types/route-path.enum.js";
 import ButtonCreator from "../../utils/button/button-creator.js";
 import HeadingsCreator from "../../utils/headings/headings-creator.js";
 import { BasePage } from "../base-page.js";
+import "./library.page.css";
 
 export class LibraryPage extends BasePage {
   create(parent: HTMLElement): void {
@@ -41,5 +42,12 @@ export class LibraryPage extends BasePage {
       parent: this.container,
     }).getElement();
     typescriptButton.dataset.route = "/practice/typescript";
+
+    const algorithmsButton = new ButtonCreator({
+      text: "To algorithms theme",
+      classes: ["button"],
+      parent: this.container,
+    }).getElement();
+    algorithmsButton.dataset.route = "/practice/algorithms";
   }
 }

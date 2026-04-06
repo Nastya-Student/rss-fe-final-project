@@ -14,7 +14,6 @@ export const getSession = (): PracticeSession | undefined => {
   if (isPracticeSession(session)) {
     return session;
   }
-  // throw new Error("please, create a local session first");
   return undefined;
 };
 
@@ -33,10 +32,16 @@ export const updateSession = (
     timeSpent: Math.round(Math.random() * 20),
     difficulty: widget.difficulty,
   });
-  if (isCorrect) {
-    session.score += widget.difficulty;
-  }
   session.completedAt = newDate;
+  setSession(session);
+};
+
+export const updateScore = (score: number) => {
+  const session = getSession();
+  if (!session) {
+    throw new Error("can not find session");
+  }
+  session.score = score;
   setSession(session);
 };
 
