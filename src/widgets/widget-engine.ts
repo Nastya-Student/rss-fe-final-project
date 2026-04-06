@@ -57,14 +57,20 @@ export class WidgetEngine {
   private widgetContainer: HTMLElement;
   private userProgress: HTMLElement | undefined;
   private isNextButtonPressed: boolean = false;
+  private widgetsLength: number;
 
-  constructor(widgets: Widget[], container: HTMLElement) {
+  constructor(
+    widgets: Widget[],
+    container: HTMLElement,
+    widgetsLength: number,
+  ) {
     this.widgets = widgets;
     this.container = container;
     this.widgetContainer = new ElementCreator({
       parent: this.container,
       classes: [CLASS_NAMES_PRACTICE.widgetContainer],
     }).getElement();
+    this.widgetsLength = widgetsLength;
   }
 
   render<T extends WidgetType>(widget: WidgetMap[T] & { type: T }) {
@@ -146,7 +152,7 @@ export class WidgetEngine {
         this.container.innerHTML = "";
         this.widgetContainer.innerHTML = "";
         this.container.append(resultsScreenComponent(this.widgets));
-        this.updateLocalData();
+        this.updateLocalData(this.widgetsLength);
         return;
       }
 
@@ -176,13 +182,13 @@ export class WidgetEngine {
     }
   }
 
-  updateLocalData() {
+  updateLocalData(widgetsLength: number) {
     const currentSession: PracticeSession | undefined = getSession();
     if (currentSession === undefined) {
       throw new Error("Something went wrong. Please, try again.");
     }
     addSession(currentSession);
-    updateProgress();
+    updateProgress(widgetsLength);
     deleteSession();
     dashboardUI.updateDashboardElements();
     profilePage.setProfileData();
