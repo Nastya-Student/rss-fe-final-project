@@ -30,6 +30,7 @@ import { PracticeSession } from "../interfaces/practice-session.interface.js";
 import {
   deleteSession,
   getSession,
+  updateScore,
   updateSession,
 } from "../local-storage/current-session.js";
 import { addSession, getSessions } from "../local-storage/practice-sessions.js";
@@ -189,6 +190,7 @@ export class WidgetEngine {
     if (currentSession === undefined) {
       throw new Error("Something went wrong. Please, try again.");
     }
+    updateScore(this.countScore());
     addSession(currentSession);
     updateProgress(widgetsLength);
     const user: User = getUser();
@@ -200,5 +202,28 @@ export class WidgetEngine {
     deleteSession();
     dashboardUI.updateDashboardElements();
     profilePage.setProfileData();
+  }
+
+  countMaxScore(): number {
+    let score = 0;
+    for (const element of this.widgets) {
+      score += element.difficulty;
+    }
+    return score;
+  }
+
+  countScore(): number {
+    const maxScore = this.countMaxScore();
+    let currentScore = 0;
+    const session = getSession();
+    if (!session) {
+      throw new Error("can not find session");
+    }
+    for (const element of session?.answers) {
+      if (element.isCorrect) {
+        currentScore += element.difficulty;
+      }
+    }
+    return Math.round((currentScore * 100) / maxScore);
   }
 }
