@@ -7,17 +7,20 @@ import { settingsButtonHandler } from "./controllers/settings.js";
 import { ACHIEVEMENTS, ERRORS, NOTIFICATIONS } from "./profile-configs.js";
 import { renderSettingsWindow } from "./profile-settings.window.js";
 import "./profile.page.css";
-import { createChart } from "./utils/create-chart.js";
+import { createChart, updateChart } from "./utils/create-chart.js";
 import { establishAchievementStatus } from "./utils/establish-achievement-status.js";
 import { getUser } from "../../local-storage/user.js";
 import { getSessions } from "../../local-storage/practice-sessions.js";
 import { User } from "../../interfaces/user.interface.js";
 import { PracticeSession } from "../../interfaces/practice-session.interface.js";
+import { Chart } from "chart.js";
 
 export class ProfilePage extends BasePage {
   private user?: User;
 
   private sessions?: PracticeSession[];
+
+  private chart?: Chart<"line", number[], string>;
 
   private _avatar?: HTMLImageElement | undefined;
 
@@ -74,7 +77,11 @@ export class ProfilePage extends BasePage {
     if (status === ACHIEVEMENTS.expert) {
       this.readyText.classList.remove("hidden");
     }
-    createChart(this.ctx, this.sessions);
+    if (this.chart) {
+      updateChart(this.chart, this.sessions);
+    } else {
+      this.chart = createChart(this.ctx, this.sessions);
+    }
   }
 
   create(parent: HTMLElement): void {
