@@ -38,6 +38,11 @@
   [board](https://rss-final.atlassian.net/jira/core/projects/RST/board)
 <img width="1410" height="723" alt="image" src="https://github.com/user-attachments/assets/61eed878-ef52-4257-bd58-d293f489bee8" />
 
+code-review:
+[PR#8](https://github.com/Nastya-Student/rss-fe-final-project/pull/8),  
+[PR#17](https://github.com/Nastya-Student/rss-fe-final-project/pull/17),  
+[PR#39](https://github.com/Nastya-Student/rss-fe-final-project/pull/39)
+
 ### Meeting Notes: ###
 
 * [2026-02-21](https://github.com/Nastya-Student/rss-fe-final-project/blob/main/meetings/meeting-2026-02-21.md)
