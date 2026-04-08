@@ -8,8 +8,8 @@ import ElementCreator from "../../utils/element-creator.js";
 import { RoutePath } from "../../types/route-path.enum.js";
 import { CLASS_NAME } from "../../constants.js";
 import { EVENT } from "../../constants.js";
-import { LOCAL_STORAGE } from "../../local-storage/objects.js";
 import "./header.css";
+import { logout, isAuthenticated } from "../../api/auth.service";
 
 export default function headerCreator(): HTMLElement {
   const header = new HeaderCreator({
@@ -49,7 +49,7 @@ export default function headerCreator(): HTMLElement {
     classes: ["header-wrapper"],
   }).getElement();
 
-  const authorized: boolean = LOCAL_STORAGE.currentUser ? true : false;
+  const authorized = isAuthenticated();
 
   if (authorized) {
     const navigation = new NavigationCreator({
@@ -89,7 +89,13 @@ export default function headerCreator(): HTMLElement {
       text: "Logout",
       classes: [CLASS_NAME.button, "button-header"],
     }).getElement();
-    logoutButton.dataset.route = RoutePath.Login;
+    logoutButton.addEventListener("click", () => {
+      void (async () => {
+        await logout();
+        window.location.reload();
+        window.location.hash = RoutePath.Login;
+      })();
+    });
 
     const hamburger = new ElementCreator({
       parent: headerWrapper,

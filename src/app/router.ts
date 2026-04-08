@@ -3,6 +3,7 @@ import { Page } from "../types/page.type.js";
 import { RouteMatch } from "../types/route-match.type.js";
 import { RoutePath } from "../types/route-path.enum.js";
 import App from "./app.js";
+import { isAuthenticated } from "../api/auth.service.js";
 
 const staticRoutes: Record<string, Page> = {
   [RoutePath.Landing]: "landing",
@@ -11,7 +12,15 @@ const staticRoutes: Record<string, Page> = {
   [RoutePath.Dashboard]: "dashboard",
   [RoutePath.Library]: "library",
   [RoutePath.Profile]: "profile",
+  [RoutePath.ForgotPassword]: "forgot-password",
+  [RoutePath.UpdatePassword]: "update-password",
 };
+
+const publicRoutes = new Set([
+  RoutePath.Login,
+  RoutePath.Register,
+  RoutePath.ForgotPassword,
+]);
 
 export class Router {
   constructor(private app: App) {}
@@ -45,7 +54,19 @@ export class Router {
 
   private resolve(): void {
     const hash = window.location.hash;
-    const path = hash ? hash.slice(1) : RoutePath.Landing;
+    const path = hash ? hash.slice(1) : RoutePath.Login;
+
+    const isAuth = isAuthenticated();
+    const isStaticRoute = Object.values(RoutePath).includes(path as RoutePath);
+
+    if (!isAuth && (!isStaticRoute || !publicRoutes.has(path as RoutePath))) {
+      window.location.hash = RoutePath.Login;
+      return;
+    }
+    if (isAuth && isStaticRoute && publicRoutes.has(path as RoutePath)) {
+      window.location.hash = RoutePath.Dashboard;
+      return;
+    }
 
     const match = this.matchRoute(path);
 

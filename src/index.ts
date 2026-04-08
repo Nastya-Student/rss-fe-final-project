@@ -8,7 +8,9 @@ import { LoginPage } from "./pages/login.page/login.page.js";
 import { PracticePage } from "./pages/practice.page/practice.page.js";
 import { profilePage } from "./pages/profile.page/profile.page.js";
 import { RegisterPage } from "./pages/register.page/register.page.js";
-import { initAuth, isAuthenticated } from "./api/auth.service";
+import { ForgotPasswordPage } from "./pages/forgot-password.page/forgot-password.page.js";
+import { UpdatePasswordPage } from "./pages/update-password.page/update-password.page.js";
+import { initAuth } from "./api/auth.service";
 
 await initAuth();
 
@@ -24,10 +26,8 @@ app.register("library", new LibraryPage());
 app.register("practice", new PracticePage());
 app.register("profile", profilePage);
 app.register("404", new ErrorPage());
+app.register("forgot-password", new ForgotPasswordPage());
+app.register("update-password", new UpdatePasswordPage());
 
 const router = new Router(app);
 router.init();
-
-if (!window.location.hash) {
-  window.location.hash = isAuthenticated() ? "#/dashboard" : "#/login";
-}
