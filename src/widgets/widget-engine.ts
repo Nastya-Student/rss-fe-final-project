@@ -30,11 +30,15 @@ import { PracticeSession } from "../interfaces/practice-session.interface.js";
 import {
   deleteSession,
   getSession,
+  updateScore,
   updateSession,
 } from "../local-storage/current-session.js";
-import { addSession } from "../local-storage/practice-sessions.js";
+import { addSession, getSessions } from "../local-storage/practice-sessions.js";
 import { updateProgress } from "../local-storage/progress.js";
 import { dashboardUI } from "../pages/dashboard.page/dashboard.page.js";
+import { profilePage } from "../pages/profile.page/profile.page.js";
+import { getUser, updateUser } from "../local-storage/user.js";
+import { User } from "../interfaces/user.interface.js";
 
 const widgetStrategies: {
   [K in WidgetType]: WidgetStrategy<WidgetMap[K], WidgetAnswerMap[K]>;
@@ -56,14 +60,20 @@ export class WidgetEngine {
   private widgetContainer: HTMLElement;
   private userProgress: HTMLElement | undefined;
   private isNextButtonPressed: boolean = false;
+  private widgetsLength: number;
 
-  constructor(widgets: Widget[], container: HTMLElement) {
+  constructor(
+    widgets: Widget[],
+    container: HTMLElement,
+    widgetsLength: number,
+  ) {
     this.widgets = widgets;
     this.container = container;
     this.widgetContainer = new ElementCreator({
       parent: this.container,
       classes: [CLASS_NAMES_PRACTICE.widgetContainer],
     }).getElement();
+    this.widgetsLength = widgetsLength;
   }
 
   render<T extends WidgetType>(widget: WidgetMap[T] & { type: T }) {
@@ -144,8 +154,9 @@ export class WidgetEngine {
       if (this.currentIndex >= this.widgets.length) {
         this.container.innerHTML = "";
         this.widgetContainer.innerHTML = "";
+        updateScore(this.countScore());
         this.container.append(resultsScreenComponent(this.widgets));
-        this.updateLocalData();
+        this.updateLocalData(this.widgetsLength);
         return;
       }
 
@@ -175,14 +186,46 @@ export class WidgetEngine {
     }
   }
 
-  updateLocalData() {
+  updateLocalData(widgetsLength: number) {
     const currentSession: PracticeSession | undefined = getSession();
     if (currentSession === undefined) {
       throw new Error("Something went wrong. Please, try again.");
     }
     addSession(currentSession);
-    updateProgress();
+    updateProgress(widgetsLength);
+    const user: User = getUser();
+    const lastSessionDate = getSessions()[-1]?.completedAt.split("T");
+    if (lastSessionDate !== new Date().toISOString().split("T")) {
+      user.streak += 1;
+    }
+    updateUser(user);
     deleteSession();
     dashboardUI.updateDashboardElements();
+    profilePage.setProfileData();
+  }
+
+  countMaxScore(): number {
+    let score = 0;
+    for (const element of this.widgets) {
+      score += element.difficulty;
+    }
+    return score;
+  }
+
+  countScore(): number {
+    const maxScore = this.countMaxScore();
+    let currentScore = 0;
+    const session = getSession();
+    if (!session) {
+      throw new Error("can not find session");
+    }
+    for (const element of session.answers) {
+      if (element.isCorrect) {
+        currentScore += element.difficulty;
+      }
+    }
+    const score = Math.round((currentScore * 100) / maxScore);
+
+    return score;
   }
 }

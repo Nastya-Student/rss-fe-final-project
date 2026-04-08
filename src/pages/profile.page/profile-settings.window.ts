@@ -2,7 +2,7 @@ import { HEADINGS_TWO } from "../../constants.js";
 import ButtonCreator from "../../utils/button/button-creator.js";
 import ElementCreator from "../../utils/element-creator.js";
 import HeadingsCreator from "../../utils/headings/headings-creator.js";
-import { SettingsButtonHandler } from "./controllers/settings.js";
+import { settingsButtonHandler } from "./controllers/settings.js";
 
 export const renderSettingsWindow = (container: HTMLElement): void => {
   const settingsHeader = new ElementCreator({
@@ -23,7 +23,7 @@ export const renderSettingsWindow = (container: HTMLElement): void => {
   goBack.id = "profile-back-button";
   goBack.innerHTML = backSVG;
 
-  SettingsButtonHandler(goBack);
+  settingsButtonHandler(goBack);
 
   const buttons = new ElementCreator({
     classes: ["profile__settings-buttons"],

@@ -8,6 +8,7 @@ import {
   createPracticeHistory,
   createProgress,
 } from "../local-storage/create-local-data.js";
+import { getUser } from "../local-storage/user.js";
 
 const DEFAULT_USER_ID = "u1";
 
@@ -25,9 +26,13 @@ export default class App {
   }
 
   async createUser(): Promise<void> {
-    await createLocalUser(DEFAULT_USER_ID);
-    await createPracticeHistory(DEFAULT_USER_ID);
-    await createProgress(DEFAULT_USER_ID);
+    try {
+      getUser();
+    } catch {
+      await createLocalUser(DEFAULT_USER_ID);
+      await createPracticeHistory(DEFAULT_USER_ID);
+      await createProgress(DEFAULT_USER_ID);
+    }
   }
 
   init(): void {

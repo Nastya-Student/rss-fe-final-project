@@ -5,10 +5,10 @@ import { groupDataByDays } from "./get-achievements";
 export const createChart = (
   ctx: HTMLCanvasElement,
   sessions: PracticeSession[],
-): void => {
+): Chart<"line", number[], string> => {
   const days = getAllDateArray(sessions);
   const correctAnswers = getAllCorrectAnswers(sessions);
-  new Chart(ctx, {
+  return new Chart(ctx, {
     type: "line",
     data: {
       labels: days,
@@ -24,6 +24,24 @@ export const createChart = (
       responsive: false,
     },
   });
+};
+
+export const removeChart = (chart: Chart<"line", number[], string>): void => {
+  chart.destroy();
+};
+
+export const updateChart = (
+  chart: Chart<"line", number[], string>,
+  sessions: PracticeSession[],
+): void => {
+  const days = getAllDateArray(sessions);
+  const correctAnswers = getAllCorrectAnswers(sessions);
+  if (!chart.data.datasets[0] || !chart.data.labels) {
+    throw new Error("can not upload data");
+  }
+  chart.data.datasets[0].data = correctAnswers;
+  chart.data.labels = days;
+  chart.update();
 };
 
 export const getAllDateArray = (sessions: PracticeSession[]): string[] => {

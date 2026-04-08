@@ -6,7 +6,7 @@
     "topicTitle": "Core JS",
     "completedWidgetIds": ["w1", "w2"],
     "percent": 66,
-    "updatedAt": "2026-02-22"
+    "updatedAt": "2026-04-05"
   },
   {
     "id": "p2",
@@ -15,7 +15,7 @@
     "topicTitle": "Algorithms",
     "completedWidgetIds": ["w4"],
     "percent": 50,
-    "updatedAt": "2026-02-23"
+    "updatedAt": "2026-04-04"
   },
   {
     "id": "p3",
@@ -24,7 +24,7 @@
     "topicTitle": "Core JS",
     "completedWidgetIds": ["w1"],
     "percent": 33,
-    "updatedAt": "2026-02-22"
+    "updatedAt": "2026-04-05"
   },
   {
     "id": "p4",
@@ -33,7 +33,7 @@
     "topicTitle": "Typescript",
     "completedWidgetIds": ["w6", "w7"],
     "percent": 100,
-    "updatedAt": "2026-02-22"
+    "updatedAt": "2026-04-04"
   },
   {
     "id": "p5",
@@ -42,15 +42,6 @@
     "topicTitle": "Typescript",
     "completedWidgetIds": ["w4"],
     "percent": 20,
-    "updatedAt": "2026-02-22"
-  },
-  {
-    "id": "p6",
-    "userId": "u1",
-    "topicId": "html",
-    "topicTitle": "HTML",
-    "completedWidgetIds": ["w1", "w3", "w4"],
-    "percent": 45,
-    "updatedAt": "2026-02-23"
+    "updatedAt": "2026-04-03"
   }
 ]

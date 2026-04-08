@@ -1,6 +1,6 @@
 import { EVENT } from "../../../constants.js";
 
-export const SettingsButtonHandler = (button: HTMLButtonElement): void => {
+export const settingsButtonHandler = (button: HTMLButtonElement): void => {
   const profileContent =
     document.querySelector<HTMLElement>("#profile-content");
   const profileSettings =

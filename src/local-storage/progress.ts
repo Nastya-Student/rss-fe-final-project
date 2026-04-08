@@ -18,7 +18,7 @@ export const setProgress = (progress: TopicProgress[]): void => {
   localStorage.setItem(LOCAL_STORAGE.progress, JSON.stringify(progress));
 };
 
-export const updateProgress = (): void => {
+export const updateProgress = (widgetsLength: number): void => {
   const session = getSession();
   if (!session) {
     return;
@@ -29,8 +29,12 @@ export const updateProgress = (): void => {
     progress = createNewProgress(session);
   }
   const completedWidgets = session.answers.map((item) => item.widgetId);
-  progress.completedWidgetIds = completedWidgets;
-  progress.percent = Math.round(completedWidgets.length / 10);
+  progress.completedWidgetIds = [
+    ...new Set([...completedWidgets, ...progress.completedWidgetIds]),
+  ];
+  progress.percent = Math.round(
+    (completedWidgets.length / widgetsLength) * 100,
+  );
   progress.updatedAt = session.completedAt.split("T")[0] ?? "";
 
   const newProgressList = progressList.filter(
