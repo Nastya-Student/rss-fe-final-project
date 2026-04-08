@@ -6,4 +6,6 @@ export type Page =
   | "library"
   | "practice"
   | "profile"
-  | "404";
+  | "404"
+  | "forgot-password"
+  | "update-password";

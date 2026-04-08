@@ -6,4 +6,6 @@ export enum RoutePath {
   Library = "/library",
   Profile = "/profile",
   Practice = "/practice",
+  ForgotPassword = "/forgot-password",
+  UpdatePassword = "/update-password",
 }
