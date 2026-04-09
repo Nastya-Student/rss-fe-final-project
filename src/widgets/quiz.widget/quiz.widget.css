@@ -1,0 +1,36 @@
+.practice__quiz-widget-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-0-75);
+}
+
+.quiz__quiz-title,
+.quiz__widget-description {
+  text-align: center;
+}
+
+.quiz__options-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: var(--spacing-0-75);
+}
+
+.quiz__option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+.quiz__option:hover {
+  background-color: var(--secondary-color);
+}
+.quiz__option.pressed {
+  background-color: var(--secondary-color);
+}
+.quiz__option.no-active {
+  pointer-events: none;
+  opacity: 20%;
+}

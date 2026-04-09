@@ -1,0 +1,19 @@
+.practice__memory-game-widget-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-0-75);
+}
+
+.memory-game__memory-game-title,
+.memory-game__widget-description {
+  text-align: center;
+}
+
+.memory-game__code-container {
+  font-family: "Courier New", Courier, monospace;
+  font-size: clamp(0.5rem, 1vw + 0.35rem, 1rem);
+  background-color: var(--bg-code-color);
+  color: var(--text-code-color);
+  margin: 0;
+  white-space: pre-wrap;
+}

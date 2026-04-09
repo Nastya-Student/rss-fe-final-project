@@ -1,0 +1,909 @@
+[
+  {
+    "id": "w100",
+    "topicId": "algorithms",
+    "type": "quiz",
+    "difficulty": 1,
+    "tags": ["algorithms", "complexity"],
+    "payload": {
+      "title": "Binary Search Complexity",
+      "question": "What is the time complexity of binary search?",
+      "options": ["O(n)", "O(log n)", "O(n²)", "O(1)"],
+      "correctAnswer": "O(log n)"
+    }
+  },
+  {
+    "id": "w101",
+    "topicId": "algorithms",
+    "type": "quiz",
+    "difficulty": 2,
+    "tags": ["algorithms", "sorting"],
+    "payload": {
+      "title": "Best Average Sorting",
+      "question": "Which sorting algorithm has the best average time complexity?",
+      "options": ["Bubble sort", "Quick sort", "Insertion sort", "Selection sort"],
+      "correctAnswer": "Quick sort"
+    }
+  },
+  {
+    "id": "w102",
+    "topicId": "algorithms",
+    "type": "quiz",
+    "difficulty": 3,
+    "tags": ["algorithms", "recursion"],
+    "payload": {
+      "title": "Fibonacci Value",
+      "question": "What will the function f(5) return if f(n) = n<=1 ? 1 : f(n-1)+f(n-2)?",
+      "options": ["5", "8", "13", "21"],
+      "correctAnswer": "8"
+    }
+  },
+  {
+    "id": "w103",
+    "topicId": "coreJS",
+    "type": "quiz",
+    "difficulty": 1,
+    "tags": ["coreJS", "types"],
+    "payload": {
+      "title": "typeof NaN",
+      "question": "What value does typeof NaN return?",
+      "options": ["NaN", "number", "undefined", "object"],
+      "correctAnswer": "number"
+    }
+  },
+  {
+    "id": "w104",
+    "topicId": "coreJS",
+    "type": "quiz",
+    "difficulty": 2,
+    "tags": ["coreJS", "objects"],
+    "payload": {
+      "title": "Object Reference",
+      "question": "What will the code output? let a = {x: 1}; let b = a; b.x = 2; console.log(a.x);",
+      "options": ["1", "2", "undefined", "error"],
+      "correctAnswer": "2"
+    }
+  },
+  {
+    "id": "w105",
+    "topicId": "coreJS",
+    "type": "quiz",
+    "difficulty": 3,
+    "tags": ["coreJS", "promises"],
+    "payload": {
+      "title": "Promise finally",
+      "question": "What will Promise.resolve(1).finally(() => 2).then(console.log) output?",
+      "options": ["1", "2", "undefined", "Promise"],
+      "correctAnswer": "1"
+    }
+  },
+  {
+    "id": "w106",
+    "topicId": "typescript",
+    "type": "quiz",
+    "difficulty": 1,
+    "tags": ["typescript", "inference"],
+    "payload": {
+      "title": "Array Type Inference",
+      "question": "What type is the variable let arr = [1, '2', true]; ?",
+      "options": ["number[]", "string[]", "(string | number | boolean)[]", "any[]"],
+      "correctAnswer": "(string | number | boolean)[]"
+    }
+  },
+  {
+    "id": "w107",
+    "topicId": "typescript",
+    "type": "quiz",
+    "difficulty": 2,
+    "tags": ["typescript", "typeof"],
+    "payload": {
+      "title": "typeof operator",
+      "question": "What does typeof return in TypeScript for a variable of type string?",
+      "options": ["'string'", "'String'", "'object'", "depends on compilation"],
+      "correctAnswer": "'string'"
+    }
+  },
+  {
+    "id": "w108",
+    "topicId": "typescript",
+    "type": "quiz",
+    "difficulty": 3,
+    "tags": ["typescript", "const assertions"],
+    "payload": {
+      "title": "as const",
+      "question": "What is the type of the variable const obj = { a: 1, b: '2' } as const; ?",
+      "options": ["{ a: number; b: string; }", "{ readonly a: 1; readonly b: '2'; }", "{ a: 1; b: '2'; }", "any"],
+      "correctAnswer": "{ readonly a: 1; readonly b: '2'; }"
+    }
+  },
+ {
+    "id": "w200",
+    "topicId": "coreJS",
+    "type": "true-false",
+    "difficulty": 1,
+    "tags": ["coreJS", "basics"],
+    "payload": {
+      "title": "typeof null",
+      "statement": "In JavaScript, typeof null returns 'null'",
+      "correct": false,
+      "explanation": "typeof null returns 'object' — this is a known language bug from the early days"
+    }
+  },
+  {
+    "id": "w201",
+    "topicId": "coreJS",
+    "type": "true-false",
+    "difficulty": 2,
+    "tags": ["coreJS", "closures"],
+    "payload": {
+      "title": "Closures and variables",
+      "statement": "A closure in JavaScript keeps a reference to the outer function's variables, not their values",
+      "correct": true,
+      "explanation": "A closure stores a reference to variables, so if a variable changes after the function is created, the function will see the new value"
+    }
+  },
+  {
+    "id": "w202",
+    "topicId": "coreJS",
+    "type": "true-false",
+    "difficulty": 3,
+    "tags": ["coreJS", "event-loop"],
+    "payload": {
+      "title": "Microtasks vs Macrotasks",
+      "statement": "setTimeout with a 0 delay executes immediately after the current synchronous code, before Promise.resolve().then()",
+      "correct": false,
+      "explanation": "Promise.then (microtask) executes before setTimeout (macrotask), even if the delay is 0"
+    }
+  },
+  {
+    "id": "w203",
+    "topicId": "algorithms",
+    "type": "true-false",
+    "difficulty": 1,
+    "tags": ["algorithms", "sorting"],
+    "payload": {
+      "title": "Bubble Sort Complexity",
+      "statement": "Bubble sort has O(n²) complexity in the worst case",
+      "correct": true,
+      "explanation": "Yes, bubble sort requires n²/2 comparisons in the worst case"
+    }
+  },
+  {
+    "id": "w204",
+    "topicId": "algorithms",
+    "type": "true-false",
+    "difficulty": 2,
+    "tags": ["algorithms", "binary-search"],
+    "payload": {
+      "title": "Binary Search Requirement",
+      "statement": "Binary search requires a sorted array",
+      "correct": true,
+      "explanation": "Yes, binary search works only on sorted data, otherwise the result is unpredictable"
+    }
+  },
+  {
+    "id": "w205",
+    "topicId": "algorithms",
+    "type": "true-false",
+    "difficulty": 3,
+    "tags": ["algorithms", "graph"],
+    "payload": {
+      "title": "DFS vs BFS Memory",
+      "statement": "Depth-first search (DFS) usually uses more memory than breadth-first search (BFS) on sparse graphs",
+      "correct": false,
+      "explanation": "BFS usually requires more memory as it stores an entire level of nodes. DFS stores only the current path"
+    }
+  },
+  {
+    "id": "w206",
+    "topicId": "typescript",
+    "type": "true-false",
+    "difficulty": 1,
+    "tags": ["typescript", "types"],
+    "payload": {
+      "title": "any vs unknown",
+      "statement": "The unknown type in TypeScript allows assigning a value to a variable of type string without type checking",
+      "correct": false,
+      "explanation": "unknown requires type checking before use. any does not. unknown is safer"
+    }
+  },
+  {
+    "id": "w207",
+    "topicId": "typescript",
+    "type": "true-false",
+    "difficulty": 2,
+    "tags": ["typescript", "interfaces"],
+    "payload": {
+      "title": "Interface Extending",
+      "statement": "An interface in TypeScript can extend several other interfaces simultaneously",
+      "correct": true,
+      "explanation": "Yes, interface C extends A, B { ... } — interfaces support multiple inheritance"
+    }
+  },
+  {
+    "id": "w208",
+    "topicId": "typescript",
+    "type": "true-false",
+    "difficulty": 3,
+    "tags": ["typescript", "generics"],
+    "payload": {
+      "title": "Generic Constraints",
+      "statement": "In TypeScript, it is impossible to constrain a generic to only types with a specific property",
+      "correct": false,
+      "explanation": "You can: <T extends { length: number }> — such a generic will accept only types with the length property"
+    }
+  },
+  {
+    "id": "w300",
+    "topicId": "algorithms",
+    "type": "code-completion",
+    "difficulty": 1,
+    "tags": ["algorithms", "reduce"],
+    "payload": {
+      "title": "Accumulate values",
+      "code": "const sum = arr.___((a,b) => a + b, 0);",
+      "blanks": ["___"],
+      "correctAnswers": ["reduce"]
+    }
+  },
+  {
+    "id": "w301",
+    "topicId": "algorithms",
+    "type": "code-completion",
+    "difficulty": 2,
+    "tags": ["algorithms", "search"],
+    "payload": {
+      "title": "Locate by condition",
+      "code": "const index = arr.___(x => x > 10);",
+      "blanks": ["___"],
+      "correctAnswers": ["findIndex"]
+    }
+  },
+  {
+    "id": "w302",
+    "topicId": "algorithms",
+    "type": "code-completion",
+    "difficulty": 3,
+    "tags": ["algorithms", "sort"],
+    "payload": {
+      "title": "Order descending",
+      "code": "const sorted = arr.___((a,b) => ___ - ___);",
+      "blanks": ["___"],
+      "correctAnswers": ["sort", "b", "a"]
+    }
+  },
+  {
+    "id": "w303",
+    "topicId": "coreJS",
+    "type": "code-completion",
+    "difficulty": 1,
+    "tags": ["coreJS", "array methods"],
+    "payload": {
+      "title": "Transform elements",
+      "code": "const doubled = arr.___(x => x * 2);",
+      "blanks": ["___"],
+      "correctAnswers": ["map"]
+    }
+  },
+  {
+    "id": "w304",
+    "topicId": "coreJS",
+    "type": "code-completion",
+    "difficulty": 2,
+    "tags": ["coreJS", "objects"],
+    "payload": {
+      "title": "Property names",
+      "code": "const keys = Object.___(obj);",
+      "blanks": ["___"],
+      "correctAnswers": ["keys"]
+    }
+  },
+  {
+    "id": "w305",
+    "topicId": "coreJS",
+    "type": "code-completion",
+    "difficulty": 3,
+    "tags": ["coreJS", "functions"],
+    "payload": {
+      "title": "Call with array args",
+      "code": "const result = sum.___(null, [1, 2]);",
+      "blanks": ["___"],
+      "correctAnswers": ["apply"]
+    }
+  },
+  {
+    "id": "w306",
+    "topicId": "typescript",
+    "type": "code-completion",
+    "difficulty": 1,
+    "tags": ["typescript", "generics"],
+    "payload": {
+      "title": "Generic type",
+      "code": "function identity<T>(arg: T): T { return arg; }\nconst num = identity<___>(5);",
+      "blanks": ["___"],
+      "correctAnswers": ["number"]
+    }
+  },
+  {
+    "id": "w307",
+    "topicId": "typescript",
+    "type": "code-completion",
+    "difficulty": 2,
+    "tags": ["typescript", "interfaces"],
+    "payload": {
+      "title": "Interface type",
+      "code": "interface User { name: string; age: number; }\nconst user: ___ = { name: 'John', age: 30 };",
+      "blanks": ["___"],
+      "correctAnswers": ["User"]
+    }
+  },
+  {
+    "id": "w308",
+    "topicId": "typescript",
+    "type": "code-completion",
+    "difficulty": 3,
+    "tags": ["typescript", "utility types"],
+    "payload": {
+      "title": "Make immutable",
+      "code": "type Readonly<T> = { readonly [P in keyof T]: T[P]; };\nconst obj: ___<{ a: number }> = { a: 1 };",
+      "blanks": ["___"],
+      "correctAnswers": ["Readonly"]
+    }
+  },
+  {
+    "id": "w400",
+    "topicId": "algorithms",
+    "type": "code-ordering",
+    "difficulty": 1,
+    "tags": ["algorithms", "sorting"],
+    "payload": {
+      "title": "Bubble Sort",
+      "description": "Sort the array in ascending order",
+      "lines": [
+        "for(let i=0;i<arr.length;i++){",
+        "for(let j=0;j<arr.length-i-1;j++){",
+        "if(arr[j]>arr[j+1]){",
+        "[arr[j], arr[j+1]]=[arr[j+1], arr[j]];",
+        "}",
+        "}",
+        "}"
+      ],
+      "correctOrder": [0, 1, 2, 3, 4, 5, 6]
+    }
+  },
+  {
+    "id": "w401",
+    "topicId": "algorithms",
+    "type": "code-ordering",
+    "difficulty": 2,
+    "tags": ["algorithms", "search"],
+    "payload": {
+      "title": "Binary Search",
+      "description": "Implement binary search",
+      "lines": [
+        "function binarySearch(arr, target) {",
+        "let left = 0;",
+        "let right = arr.length - 1;",
+        "while (left <= right) {",
+        "const mid = Math.floor((left + right) / 2);",
+        "if (arr[mid] === target) return mid;",
+        "if (arr[mid] < target) left = mid + 1;",
+        "else right = mid - 1;",
+        "}",
+        "return -1;",
+        "}"
+      ],
+      "correctOrder": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    }
+  },
+  {
+    "id": "w402",
+    "topicId": "algorithms",
+    "type": "code-ordering",
+    "difficulty": 3,
+    "tags": ["algorithms", "sorting"],
+    "payload": {
+      "title": "Quick Sort",
+      "description": "Implement quicksort",
+      "lines": [
+        "function quickSort(arr) {",
+        "if (arr.length <= 1) return arr;",
+        "const pivot = arr[0];",
+        "const left = [];",
+        "const right = [];",
+        "for (let i = 1; i < arr.length; i++) {",
+        "if (arr[i] < pivot) left.push(arr[i]);",
+        "else right.push(arr[i]);",
+        "}",
+        "return [...quickSort(left), pivot, ...quickSort(right)];",
+        "}"
+      ],
+      "correctOrder": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    }
+  },
+  {
+    "id": "w403",
+    "topicId": "coreJS",
+    "type": "code-ordering",
+    "difficulty": 1,
+    "tags": ["coreJS", "functions"],
+    "payload": {
+      "title": "Simple function",
+      "description": "Determine the order of function declaration and call",
+      "lines": [
+        "function add(a,b) {",
+        "return a + b;",
+        "}",
+        "console.log(add(2,3));"
+      ],
+      "correctOrder": [0, 1, 2, 3]
+    }
+  },
+  {
+    "id": "w404",
+    "topicId": "coreJS",
+    "type": "code-ordering",
+    "difficulty": 2,
+    "tags": ["coreJS", "closures"],
+    "payload": {
+      "title": "Counter closure",
+      "description": "Create a counter using a closure",
+      "lines": [
+        "function makeCounter() {",
+        "let count = 0;",
+        "return function() {",
+        "count++;",
+        "return count;",
+        "};",
+        "}",
+        "const counter = makeCounter();",
+        "console.log(counter());"
+      ],
+      "correctOrder": [0, 1, 2, 3, 4, 5, 6, 7, 8]
+    }
+  },
+  {
+    "id": "w405",
+    "topicId": "coreJS",
+    "type": "code-ordering",
+    "difficulty": 3,
+    "tags": ["coreJS", "prototypes"],
+    "payload": {
+      "title": "Prototype inheritance",
+      "description": "Determine the order of constructor and method declarations",
+      "lines": [
+        "function Animal(name) {",
+        "this.name = name;",
+        "}",
+        "Animal.prototype.speak = function() {",
+        "console.log(this.name + ' makes a sound.');",
+        "};",
+        "const dog = new Animal('Rex');",
+        "dog.speak();"
+      ],
+      "correctOrder": [0, 1, 2, 3, 4, 5, 6, 7]
+    }
+  },
+  {
+    "id": "w406",
+    "topicId": "typescript",
+    "type": "code-ordering",
+    "difficulty": 1,
+    "tags": ["typescript", "interfaces"],
+    "payload": {
+      "title": "Interface and function",
+      "description": "Declare an interface and a function",
+      "lines": [
+        "interface Person {",
+        "name: string;",
+        "age: number;",
+        "}",
+        "function greet(p: Person) {",
+        "console.log(`Hello, ${p.name}`);",
+        "}",
+        "greet({name: 'John', age: 30});"
+      ],
+      "correctOrder": [0, 1, 2, 3, 4, 5, 6, 7]
+    }
+  },
+  {
+    "id": "w407",
+    "topicId": "typescript",
+    "type": "code-ordering",
+    "difficulty": 2,
+    "tags": ["typescript", "generics"],
+    "payload": {
+      "title": "Generic function",
+      "description": "Use a generic",
+      "lines": [
+        "function identity<T>(arg: T): T {",
+        "return arg;",
+        "}",
+        "const result = identity<string>('hello');",
+        "console.log(result);"
+      ],
+      "correctOrder": [0, 1, 2, 3, 4]
+    }
+  },
+  {
+    "id": "w408",
+    "topicId": "typescript",
+    "type": "code-ordering",
+    "difficulty": 3,
+    "tags": ["typescript", "advanced types"],
+    "payload": {
+      "title": "Mapped types",
+      "description": "Use Readonly",
+      "lines": [
+        "type Readonly<T> = {",
+        "readonly [P in keyof T]: T[P];",
+        "};",
+        "interface User {",
+        "id: number;",
+        "name: string;",
+        "}",
+        "const user: Readonly<User> = { id: 1, name: 'John' };",
+        "user.id = 2; // Error"
+      ],
+      "correctOrder": [0, 1, 2, 3, 4, 5, 6, 7, 8]
+    }
+  },
+  {
+    "id": "w500",
+    "topicId": "coreJS",
+    "type": "async-sorter",
+    "difficulty": 1,
+    "tags": ["coreJS", "event-loop"],
+    "payload": {
+      "title": "Sync vs Async",
+      "code": "console.log('1');\nconsole.log('2');\nsetTimeout(() => console.log('3'), 0);\nconsole.log('4');",
+      "buckets": [
+        { "name": "callstack", "correctItems": ["1", "2", "4"] },
+        { "name": "microtasks", "correctItems": [] },
+        { "name": "macrotasks", "correctItems": ["3"] },
+        { "name": "output", "correctItems": ["1", "2", "4", "3"] }
+      ]
+    }
+  },
+  {
+    "id": "w501",
+    "topicId": "coreJS",
+    "type": "async-sorter",
+    "difficulty": 2,
+    "tags": ["coreJS", "event-loop"],
+    "payload": {
+      "title": "Promise Microtasks",
+      "code": "console.log('start');\nPromise.resolve().then(() => console.log('promise 1'));\nPromise.resolve().then(() => console.log('promise 2'));\nsetTimeout(() => console.log('timeout'), 0);\nconsole.log('end');",
+      "buckets": [
+        { "name": "callstack", "correctItems": ["start", "end"] },
+        { "name": "microtasks", "correctItems": ["promise 1", "promise 2"] },
+        { "name": "macrotasks", "correctItems": ["timeout"] },
+        { "name": "output", "correctItems": ["start", "end", "promise 1", "promise 2", "timeout"] }
+      ]
+    }
+  },
+  {
+    "id": "w502",
+    "topicId": "coreJS",
+    "type": "async-sorter",
+    "difficulty": 3,
+    "tags": ["coreJS", "event-loop"],
+    "payload": {
+      "title": "Async/Await Order",
+      "code": "console.log('1');\nsetTimeout(() => console.log('2'), 0);\n(async () => {\n  console.log('3');\n  await Promise.resolve();\n  console.log('4');\n})();\nPromise.resolve().then(() => console.log('5'));\nconsole.log('6');",
+      "buckets": [
+        { "name": "callstack", "correctItems": ["1", "3", "6"] },
+        { "name": "microtasks", "correctItems": ["4", "5"] },
+        { "name": "macrotasks", "correctItems": ["2"] },
+        { "name": "output", "correctItems": ["1", "3", "6", "4", "5", "2"] }
+      ]
+    }
+  },
+  {
+    "id": "w503",
+    "topicId": "coreJS",
+    "type": "async-sorter",
+    "difficulty": 1,
+    "tags": ["coreJS", "event-loop"],
+    "payload": {
+      "title": "Event Loop Basic",
+      "code": "console.log('1');\nsetTimeout(() => console.log('2'),0);\nPromise.resolve().then(()=>console.log('3'));\nconsole.log('4');",
+      "buckets": [
+        { "name": "callstack", "correctItems": ["1", "4"] },
+        { "name": "microtasks", "correctItems": ["3"] },
+        { "name": "macrotasks", "correctItems": ["2"] },
+        { "name": "output", "correctItems": ["1", "4", "3", "2"] }
+      ]
+    }
+  },
+  {
+    "id": "w504",
+    "topicId": "coreJS",
+    "type": "async-sorter",
+    "difficulty": 2,
+    "tags": ["coreJS", "event-loop"],
+    "payload": {
+      "title": "Promises and timeouts",
+      "code": "console.log('start');\nsetTimeout(() => console.log('timeout1'), 0);\nPromise.resolve().then(() => {\n  console.log('promise1');\n  setTimeout(() => console.log('timeout2'), 0);\n});\nPromise.resolve().then(() => console.log('promise2'));\nconsole.log('end');",
+      "buckets": [
+        { "name": "callstack", "correctItems": ["start", "end"] },
+        { "name": "microtasks", "correctItems": ["promise1", "promise2"] },
+        { "name": "macrotasks", "correctItems": ["timeout1", "timeout2"] },
+        { "name": "output", "correctItems": ["start", "end", "promise1", "promise2", "timeout1", "timeout2"] }
+      ]
+    }
+  },
+  {
+    "id": "w505",
+    "topicId": "coreJS",
+    "type": "async-sorter",
+    "difficulty": 3,
+    "tags": ["coreJS", "async/await"],
+    "payload": {
+      "title": "Async/await",
+      "code": "async function foo() {\n  console.log('foo start');\n  await bar();\n  console.log('foo end');\n}\nasync function bar() {\n  console.log('bar');\n}\nconsole.log('script start');\nsetTimeout(() => console.log('setTimeout'), 0);\nfoo();\nPromise.resolve().then(() => console.log('promise'));\nconsole.log('script end');",
+      "buckets": [
+        { "name": "callstack", "correctItems": ["script start", "foo start", "bar", "script end"] },
+        { "name": "microtasks", "correctItems": ["foo end", "promise"] },
+        { "name": "macrotasks", "correctItems": ["setTimeout"] },
+        { "name": "output", "correctItems": ["script start", "foo start", "bar", "script end", "foo end", "promise", "setTimeout"] }
+      ]
+    }
+  },
+  {
+    "id": "w506",
+    "topicId": "typescript",
+    "type": "async-sorter",
+    "difficulty": 1,
+    "tags": ["typescript", "promises"],
+    "payload": {
+      "title": "Typed Promise",
+      "code": "console.log('start');\nsetTimeout(() => console.log('timeout'), 0);\nPromise.resolve<string>('promise').then(msg => console.log(msg));\nconsole.log('end');",
+      "buckets": [
+        { "name": "callstack", "correctItems": ["start", "end"] },
+        { "name": "microtasks", "correctItems": ["promise"] },
+        { "name": "macrotasks", "correctItems": ["timeout"] },
+        { "name": "output", "correctItems": ["start", "end", "promise", "timeout"] }
+      ]
+    }
+  },
+  {
+    "id": "w507",
+    "topicId": "typescript",
+    "type": "async-sorter",
+    "difficulty": 2,
+    "tags": ["typescript", "event-loop"],
+    "payload": {
+      "title": "Typed promises",
+      "code": "console.log('A');\nPromise.resolve(1).then(x => console.log(x));\nsetTimeout(() => console.log('B'), 0);\nPromise.resolve(2).then(x => console.log(x));\nconsole.log('C');",
+      "buckets": [
+        { "name": "callstack", "correctItems": ["A", "C"] },
+        { "name": "microtasks", "correctItems": ["1", "2"] },
+        { "name": "macrotasks", "correctItems": ["B"] },
+        { "name": "output", "correctItems": ["A", "C", "1", "2", "B"] }
+      ]
+    }
+  },
+  {
+    "id": "w508",
+    "topicId": "typescript",
+    "type": "async-sorter",
+    "difficulty": 3,
+    "tags": ["typescript", "async"],
+    "payload": {
+      "title": "Async with types",
+      "code": "async function foo(): Promise<void> {\n  console.log('foo');\n  await bar();\n  console.log('foo after');\n}\nasync function bar(): Promise<void> {\n  console.log('bar');\n}\nconsole.log('start');\nfoo();\nsetTimeout(() => console.log('timeout'), 0);\nPromise.resolve().then(() => console.log('promise'));\nconsole.log('end');",
+      "buckets": [
+        { "name": "callstack", "correctItems": ["start", "foo", "bar", "end"] },
+        { "name": "microtasks", "correctItems": ["foo after", "promise"] },
+        { "name": "macrotasks", "correctItems": ["timeout"] },
+        { "name": "output", "correctItems": ["start", "foo", "bar", "end", "foo after", "promise", "timeout"] }
+      ]
+    }
+  },
+  {
+    "id": "w600",
+    "topicId": "algorithms",
+    "type": "memory-game",
+    "difficulty": 1,
+    "tags": ["algorithms", "gc"],
+    "payload": {
+      "title": "Single node",
+      "codeSnippet": "let node = {value: 10, next: null};\nnode = null;",
+      "objects": [
+        { "id": "var-node", "label": "Variable 'node'", "x": 100, "y": 130 },
+        { "id": "heap-1", "label": "Node {value:10}", "x": 300, "y": 130 }
+      ],
+      "links": [],
+      "rootIds": ["global"],
+      "rootLinks": [{ "from": "global", "to": "var-node" }],
+      "garbageIds": ["heap-1"]
+    }
+  },
+  {
+    "id": "w601",
+    "topicId": "algorithms",
+    "type": "memory-game",
+    "difficulty": 2,
+    "tags": ["algorithms", "gc"],
+    "payload": {
+      "title": "Linked list lost",
+      "codeSnippet": "let head = {value: 1, next: {value: 2, next: null}};\nhead = null;",
+      "objects": [
+        { "id": "var-head", "label": "Variable 'head'", "x": 100, "y": 130 },
+        { "id": "heap-1", "label": "Node {value:1}", "x": 300, "y": 80 },
+        { "id": "heap-2", "label": "Node {value:2}", "x": 300, "y": 180 }
+      ],
+      "links": [{ "from": "heap-1", "to": "heap-2", "label": "next" }],
+      "rootIds": ["global"],
+      "rootLinks": [{ "from": "global", "to": "var-head" }],
+      "garbageIds": ["heap-1", "heap-2"]
+    }
+  },
+  {
+    "id": "w602",
+    "topicId": "algorithms",
+    "type": "memory-game",
+    "difficulty": 3,
+    "tags": ["algorithms", "gc"],
+    "payload": {
+      "title": "Array with cycle",
+      "codeSnippet": "let array = [ {data: 1}, {data: 2} ];\narray[0].ref = array[1];\narray[1].ref = array[0];\narray = null;",
+      "objects": [
+        { "id": "var-array", "label": "Variable 'array'", "x": 30, "y": 130 },
+        { "id": "heap-arr", "label": "Array", "x": 180, "y": 130 },
+        { "id": "heap-1", "label": "Object #1", "x": 350, "y": 80 },
+        { "id": "heap-2", "label": "Object #2", "x": 350, "y": 180 }
+      ],
+      "links": [
+        { "from": "heap-arr", "to": "heap-1" },
+        { "from": "heap-arr", "to": "heap-2" },
+        { "from": "heap-1", "to": "heap-2", "label": "ref" },
+        { "from": "heap-2", "to": "heap-1", "label": "ref" }
+      ],
+      "rootIds": ["global"],
+      "rootLinks": [{ "from": "global", "to": "var-array" }],
+      "garbageIds": ["heap-arr", "heap-1", "heap-2"]
+    }
+  },
+  {
+    "id": "w603",
+    "topicId": "coreJS",
+    "type": "memory-game",
+    "difficulty": 1,
+    "tags": ["coreJS", "gc"],
+    "payload": {
+      "title": "Simple object",
+      "codeSnippet": "let obj = {data: 42};\nobj = null;",
+      "objects": [
+        { "id": "var-obj", "label": "Variable 'obj'", "x": 100, "y": 130 },
+        { "id": "heap-1", "label": "Object {data:42}", "x": 300, "y": 130 }
+      ],
+      "links": [],
+      "rootIds": ["global"],
+      "rootLinks": [{ "from": "global", "to": "var-obj" }],
+      "garbageIds": ["heap-1"]
+    }
+  },
+  {
+    "id": "w604",
+    "topicId": "coreJS",
+    "type": "memory-game",
+    "difficulty": 2,
+    "tags": ["coreJS", "gc"],
+    "payload": {
+      "title": "Reassign references",
+      "codeSnippet": "let a = {value: 1};\nlet b = {value: 2};\na = b;\nb = null;",
+      "objects": [
+        { "id": "var-a", "label": "Variable 'a'", "x": 100, "y": 80 },
+        { "id": "var-b", "label": "Variable 'b'", "x": 100, "y": 180 },
+        { "id": "heap-1", "label": "Object {value:1}", "x": 300, "y": 80 },
+        { "id": "heap-2", "label": "Object {value:2}", "x": 300, "y": 180 }
+      ],
+      "links": [{ "from": "var-a", "to": "heap-2" }],
+      "rootIds": ["global"],
+      "rootLinks": [
+        { "from": "global", "to": "var-a" },
+        { "from": "global", "to": "var-b" }
+      ],
+      "garbageIds": ["heap-1"]
+    }
+  },
+  {
+    "id": "w605",
+    "topicId": "coreJS",
+    "type": "memory-game",
+    "difficulty": 3,
+    "tags": ["coreJS", "gc"],
+    "payload": {
+      "title": "Returned object",
+      "codeSnippet": "function create() {\n  let x = {data: 1};\n  return x;\n}\n\nlet y = create();\ny = null;",
+      "objects": [
+        { "id": "var-y", "label": "Variable 'y'", "x": 100, "y": 130 },
+        { "id": "heap-1", "label": "Object {data:1}", "x": 300, "y": 130 }
+      ],
+      "links": [],
+      "rootIds": ["global"],
+      "rootLinks": [{ "from": "global", "to": "var-y" }],
+      "garbageIds": ["heap-1"]
+    }
+  },
+  {
+    "id": "w606",
+    "topicId": "typescript",
+    "type": "memory-game",
+    "difficulty": 1,
+    "tags": ["typescript", "gc"],
+    "payload": {
+      "title": "Typed object",
+      "codeSnippet": "let obj: {data: number} = {data: 42};\nobj = null;",
+      "objects": [
+        { "id": "var-obj", "label": "Variable 'obj'", "x": 100, "y": 130 },
+        { "id": "heap-1", "label": "Object {data:42}", "x": 300, "y": 130 }
+      ],
+      "links": [],
+      "rootIds": ["global"],
+      "rootLinks": [{ "from": "global", "to": "var-obj" }],
+      "garbageIds": ["heap-1"]
+    }
+  },
+  {
+    "id": "w607",
+    "topicId": "typescript",
+    "type": "memory-game",
+    "difficulty": 2,
+    "tags": ["typescript", "gc"],
+    "payload": {
+      "title": "Cyclic nodes",
+      "codeSnippet": "let first = { value: 1 };\nlet second = { value: 2 };\nfirst.next = second;\nsecond.next = first;\nfirst = null;\nsecond = null;",
+      "objects": [
+        { "id": "var-first", "label": "Variable 'first'", "x": 100, "y": 80 },
+        {
+          "id": "var-second",
+          "label": "Variable 'second'",
+          "x": 100,
+          "y": 180
+        },
+        { "id": "heap-1", "label": "Node 1", "x": 300, "y": 80 },
+        { "id": "heap-2", "label": "Node 2", "x": 300, "y": 180 }
+      ],
+      "links": [
+        { "from": "heap-1", "to": "heap-2", "label": "next" },
+        { "from": "heap-2", "to": "heap-1", "label": "next" }
+      ],
+      "rootIds": ["global"],
+      "rootLinks": [
+        { "from": "global", "to": "var-first" },
+        { "from": "global", "to": "var-second" }
+      ],
+      "garbageIds": ["heap-1", "heap-2"]
+    }
+  },
+  {
+    "id": "w608",
+    "topicId": "typescript",
+    "type": "memory-game",
+    "difficulty": 3,
+    "tags": ["typescript", "gc"],
+    "payload": {
+      "title": "Mutual references",
+      "codeSnippet": "let a = {ref: null};\nlet b = {ref: a};\na.ref = b;\na = null;\nb = null;",
+      "objects": [
+        { "id": "var-a", "label": "Variable 'a'", "x": 100, "y": 80 },
+        { "id": "var-b", "label": "Variable 'b'", "x": 100, "y": 180 },
+        { "id": "heap-1", "label": "Object A", "x": 300, "y": 80 },
+        { "id": "heap-2", "label": "Object B", "x": 300, "y": 180 }
+      ],
+      "links": [
+        { "from": "heap-1", "to": "heap-2", "label": "ref" },
+        { "from": "heap-2", "to": "heap-1", "label": "ref" }
+      ],
+      "rootIds": ["global"],
+      "rootLinks": [
+        { "from": "global", "to": "var-a" },
+        { "from": "global", "to": "var-b" }
+      ],
+      "garbageIds": ["heap-1", "heap-2"]
+    }
+  }
+]

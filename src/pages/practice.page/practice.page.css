@@ -1,0 +1,31 @@
+.practice-page {
+  flex-direction: column;
+  gap: var(--spacing-1);
+  align-items: center;
+}
+
+.practice__widget-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+  margin: 0 auto;
+  width: 100%;
+  max-width: 40rem;
+}
+
+.practice__submit-button {
+  width: fit-content;
+  align-self: flex-end;
+}
+
+.practice__widget-result-text {
+  font-size: 0.8rem;
+}
+
+.practice__widget-result-text.correct {
+  background-color: #e6ffec;
+}
+
+.practice__widget-result-text.wrong {
+  background-color: #ffebe9;
+}
