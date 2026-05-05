@@ -191,14 +191,16 @@ export class WidgetEngine {
     if (currentSession === undefined) {
       throw new Error("Something went wrong. Please, try again.");
     }
-    addSession(currentSession);
-    updateProgress(widgetsLength);
+
     const user: User = getUser();
-    const lastSessionDate = getSessions()[-1]?.completedAt.split("T");
-    if (lastSessionDate !== new Date().toISOString().split("T")) {
+    const lastSessionDate = getSessions().at(-1)?.completedAt.split("T")[0];
+    const currentDate = new Date().toISOString().split("T")[0];
+    if (lastSessionDate != currentDate) {
       user.streak += 1;
     }
     updateUser(user);
+    addSession(currentSession);
+    updateProgress(widgetsLength);
     deleteSession();
     dashboardUI.updateDashboardElements();
     profilePage.setProfileData();

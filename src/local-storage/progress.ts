@@ -32,8 +32,10 @@ export const updateProgress = (widgetsLength: number): void => {
   progress.completedWidgetIds = [
     ...new Set([...completedWidgets, ...progress.completedWidgetIds]),
   ];
+
+  // percent of all viewed widgets
   progress.percent = Math.round(
-    (completedWidgets.length / widgetsLength) * 100,
+    ((progress.completedWidgetIds.length - 2) / widgetsLength) * 100,
   );
   progress.updatedAt = session.completedAt.split("T")[0] ?? "";
 
